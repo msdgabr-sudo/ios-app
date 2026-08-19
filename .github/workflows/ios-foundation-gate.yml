@@ -63,6 +63,10 @@ jobs:
         working-directory: WebApp
         run: node tests/ios-native-heading-boundary.test.js
 
+      - name: Prove iOS motion boundary stays magnetic-north referenced
+        working-directory: WebApp
+        run: node tests/ios-native-motion-boundary.test.js
+
       - name: Validate Apple metadata and native sensor boundary
         run: |
           plutil -lint QiblaAstroIOS/Info.plist
@@ -76,7 +80,10 @@ jobs:
           grep -q 'reduced-accuracy' QiblaAstroIOS/NativeBridge.swift
           grep -q 'newHeading.magneticHeading' QiblaAstroIOS/HeadingService.swift
           ! grep -q 'newHeading.trueHeading' QiblaAstroIOS/HeadingService.swift
+          grep -q 'startDeviceMotionUpdates(using: .xMagneticNorthZVertical' QiblaAstroIOS/MotionService.swift
+          ! grep -q 'xTrueNorthZVertical' QiblaAstroIOS/MotionService.swift
           grep -q 'HeadingService.swift in Sources' QiblaAstroIOS.xcodeproj/project.pbxproj
+          grep -q 'MotionService.swift in Sources' QiblaAstroIOS.xcodeproj/project.pbxproj
 
       - name: Build iPhone simulator app without signing
         run: |
