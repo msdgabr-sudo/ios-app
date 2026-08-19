@@ -14,6 +14,7 @@
 		A10000000000000000000005 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = A20000000000000000000006 /* Assets.xcassets */; };
 		A10000000000000000000006 /* PrivacyInfo.xcprivacy in Resources */ = {isa = PBXBuildFile; fileRef = A20000000000000000000007 /* PrivacyInfo.xcprivacy */; };
 		A10000000000000000000007 /* WebApp in Resources */ = {isa = PBXBuildFile; fileRef = A20000000000000000000008 /* WebApp */; };
+		A10000000000000000000008 /* HeadingService.swift in Sources */ = {isa = PBXBuildFile; fileRef = A20000000000000000000010 /* HeadingService.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -26,6 +27,7 @@
 		A20000000000000000000007 /* PrivacyInfo.xcprivacy */ = {isa = PBXFileReference; lastKnownFileType = text.xml; path = PrivacyInfo.xcprivacy; sourceTree = "<group>"; };
 		A20000000000000000000008 /* WebApp */ = {isa = PBXFileReference; lastKnownFileType = folder; path = WebApp; sourceTree = "<group>"; };
 		A20000000000000000000009 /* QiblaAstro.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = QiblaAstro.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		A20000000000000000000010 /* HeadingService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HeadingService.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -55,6 +57,7 @@
 				A20000000000000000000002 /* RootViewController.swift */,
 				A20000000000000000000003 /* NativeBridge.swift */,
 				A20000000000000000000004 /* LocationService.swift */,
+				A20000000000000000000010 /* HeadingService.swift */,
 				A20000000000000000000005 /* Info.plist */,
 				A20000000000000000000006 /* Assets.xcassets */,
 				A20000000000000000000007 /* PrivacyInfo.xcprivacy */,
@@ -146,6 +149,7 @@
 				A10000000000000000000002 /* RootViewController.swift in Sources */,
 				A10000000000000000000003 /* NativeBridge.swift in Sources */,
 				A10000000000000000000004 /* LocationService.swift in Sources */,
+				A10000000000000000000008 /* HeadingService.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
