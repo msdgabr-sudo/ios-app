@@ -31,7 +31,6 @@ function makeContext(nativeResult, nativeReject){
         return nodes.get(id);
       }
     },
-    set(id,value){this.document.getElementById(id).textContent=String(value);},
     MDECL_READY:false,
     MDECL_STATUS:'unavailable',
     MDECL_FIELD:null,
@@ -40,10 +39,16 @@ function makeContext(nativeResult, nativeReject){
     QM:0,
     _rawHeading:null,
     compassAvailable:false,
-    calOffset:0,
-    refreshMdeclFromTrustedGnss(){this.MDECL_READY=true;this.MDECL_STATUS='ready';this.MDECL=2;return true;},
-    calcQibla(lat,lon){return (lat+lon+360)%360;}
+    calOffset:0
   };
+  context.set=(id,value)=>{context.document.getElementById(id).textContent=String(value);};
+  context.refreshMdeclFromTrustedGnss=()=>{
+    context.MDECL_READY=true;
+    context.MDECL_STATUS='ready';
+    context.MDECL=2;
+    return true;
+  };
+  context.calcQibla=(lat,lon)=>(lat+lon+360)%360;
   context.window=context;
   context.QiblaIOSNative={
     platform:'ios',
@@ -100,8 +105,7 @@ async function flush(){await Promise.resolve();await Promise.resolve();}
   await flush();
   assert.strictEqual(vm.runInContext('gnssHasTrustedFix',invalid.context),false,'out-of-range coordinate must be rejected');
 
-  for(const forbidden of ['tryIPGeo()','ipapi','ipinfo','geolocation-db']){
-    if(forbidden==='tryIPGeo()')continue;
+  for(const forbidden of ['ipapi','ipinfo','geolocation-db']){
     assert(!src.toLowerCase().includes(forbidden.toLowerCase()),`forbidden approximate location provider: ${forbidden}`);
   }
   assert(src.includes("result.source!=='core-location'"));
