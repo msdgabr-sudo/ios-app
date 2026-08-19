@@ -1,4 +1,5 @@
 name: iOS Foundation Gate
+# App Store 2026: Xcode 26+ / iOS 26 SDK validation gate.
 
 on:
   push:
