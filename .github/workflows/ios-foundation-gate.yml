@@ -36,6 +36,13 @@ jobs:
           test -f WebApp/index.html
           test -f IOS_PORT_CONTRACT.md
           test "$(git hash-object WebApp/js/18-sky-bg.js)" = "f9ca600d46aaa2bbe0d276b3fb77028d5649d7b4"
+          # Camera/scientific geometry remains frozen while only the iOS permission boundary is added.
+          test "$(git hash-object WebApp/js/astronomical-observation-bridge.js)" = "1db4f3e4e3b79ae552ee7eaef77272bbfe20c2e5"
+          test "$(git hash-object WebApp/js/astronomical-solver.js)" = "b17a4ac09c1a84e640e5007c2d69aaf8b542a65b"
+          test "$(git hash-object WebApp/js/astronomical-verification-session.js)" = "3f144a46c0488a8de2f1cb007d400b35fe44ba40"
+          test "$(git hash-object WebApp/js/camera-pose.js)" = "519e4773582ddc4bd6d0b4c3c2ffd79073bb1890"
+          test "$(git hash-object WebApp/js/camera-projection.js)" = "0ccdd9de84bb11ab41afe01b8b7eca91c1c62384"
+          test "$(git hash-object WebApp/js/gravity-reference.js)" = "b4aa8dffd7ba3f0e11a0dba54ad67032bff0b2b7"
           if find . -type f \( -iname '*.p12' -o -iname '*.pfx' -o -iname '*.mobileprovision' -o -iname '*.jks' -o -iname '*.keystore' \) -print -quit | grep -q .; then
             echo 'Signing material must never be committed.' >&2
             exit 1
@@ -71,6 +78,10 @@ jobs:
         working-directory: WebApp
         run: node tests/ios-orientation-adapter.test.js
 
+      - name: Prove bundled WebKit camera permission boundary is least-privilege
+        working-directory: WebApp
+        run: node tests/ios-camera-webkit-boundary.test.js
+
       - name: Validate Apple metadata and native sensor boundary
         run: |
           plutil -lint QiblaAstroIOS/Info.plist
@@ -78,6 +89,7 @@ jobs:
           grep -q 'NSLocationWhenInUseUsageDescription' QiblaAstroIOS/Info.plist
           grep -q 'NSCameraUsageDescription' QiblaAstroIOS/Info.plist
           grep -q 'NSMotionUsageDescription' QiblaAstroIOS/Info.plist
+          ! grep -q 'NSMicrophoneUsageDescription' QiblaAstroIOS/Info.plist
           ! grep -q 'NSLocationAlwaysAndWhenInUseUsageDescription' QiblaAstroIOS/Info.plist
           grep -q 'accuracyAuthorization == .fullAccuracy' QiblaAstroIOS/LocationService.swift
           grep -q 'maximumAcceptedAge' QiblaAstroIOS/LocationService.swift
@@ -89,6 +101,8 @@ jobs:
           grep -q 'HeadingService.swift in Sources' QiblaAstroIOS.xcodeproj/project.pbxproj
           grep -q 'MotionService.swift in Sources' QiblaAstroIOS.xcodeproj/project.pbxproj
           grep -q "script.src='js/ios-orientation-adapter.js'" QiblaAstroIOS/RootViewController.swift
+          grep -q 'requestMediaCapturePermissionFor origin' QiblaAstroIOS/RootViewController.swift
+          grep -q 'case .microphone, .cameraAndMicrophone:' QiblaAstroIOS/RootViewController.swift
           test -f WebApp/js/ios-orientation-adapter.js
 
       - name: Build iPhone simulator app without signing
@@ -113,6 +127,11 @@ jobs:
           test -f "$APP/PrivacyInfo.xcprivacy"
           /usr/libexec/PlistBuddy -c 'Print :CFBundleIdentifier' "$APP/Info.plist" | grep -Fx 'com.qiblalabs.qiblaastro'
           /usr/libexec/PlistBuddy -c 'Print :CFBundleShortVersionString' "$APP/Info.plist" | grep -Fx '3.1.1'
+          /usr/libexec/PlistBuddy -c 'Print :NSCameraUsageDescription' "$APP/Info.plist" | grep -q .
+          if /usr/libexec/PlistBuddy -c 'Print :NSMicrophoneUsageDescription' "$APP/Info.plist" >/dev/null 2>&1; then
+            echo 'Microphone usage description must not be present.' >&2
+            exit 1
+          fi
 
       - name: Upload build log on failure
         if: failure()
