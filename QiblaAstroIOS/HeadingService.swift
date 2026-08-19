@@ -1,7 +1,7 @@
 import CoreLocation
 
 @MainActor
-final class HeadingService: NSObject, CLLocationManagerDelegate {
+final class HeadingService: NSObject, @preconcurrency CLLocationManagerDelegate {
     enum HeadingError: Error {
         case servicesDisabled
         case denied
@@ -45,8 +45,6 @@ final class HeadingService: NSObject, CLLocationManagerDelegate {
         case .restricted:
             updateHandler(.failure(.restricted))
         case .notDetermined:
-            // Location permission belongs to the location flow. Heading must not
-            // create a second, surprising permission request.
             updateHandler(.failure(.denied))
         @unknown default:
             updateHandler(.failure(.unavailable))
