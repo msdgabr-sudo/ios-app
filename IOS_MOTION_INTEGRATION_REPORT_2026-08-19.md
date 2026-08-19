@@ -42,12 +42,16 @@ The fusion window is 1000 ms. Wrong source markers, wrong reference frame, inval
 - `stopDeviceMotionUpdates()` is called when orientation is stopped.
 - Heading and motion are both stopped when the app enters the background or terminates.
 - Sensors are also stopped if the WKWebView content process terminates before the bundled WebApp is reloaded.
+- Actor-isolated sensor/WebKit cleanup is performed through explicit app/WebView lifecycle paths rather than `deinit`, avoiding Swift concurrency violations.
+- Core Location delegate conformances are explicitly marked as pre-concurrency framework boundaries while service state remains MainActor-isolated.
 
 ## Files changed
 
 - `QiblaAstroIOS/MotionService.swift`
 - `QiblaAstroIOS/NativeBridge.swift`
 - `QiblaAstroIOS/RootViewController.swift`
+- `QiblaAstroIOS/LocationService.swift`
+- `QiblaAstroIOS/HeadingService.swift`
 - `QiblaAstroIOS.xcodeproj/project.pbxproj`
 - `WebApp/tests/ios-native-motion-boundary.test.js`
 - `.github/workflows/ios-foundation-gate.yml`
@@ -60,13 +64,36 @@ The fusion window is 1000 ms. Wrong source markers, wrong reference frame, inval
 
 Therefore this phase cannot silently alter the existing Android/Web compass behavior.
 
+The protected scientific-core guard was also aligned to the exact verified iOS source baseline. No protected engine file was changed. Stale PWA-only service-worker assertions were isolated from the bundled-iOS gate while all astronomical/Qibla semantic assertions remain enabled.
+
+## Automated acceptance evidence
+
+GitHub Actions **iOS Foundation Gate** run `32204470610` completed **SUCCESS** on macOS 26 / Xcode 26.6.
+
+The successful run proved all of the following before accepting the simulator build:
+
+- source-baseline provenance and protected compass hash;
+- protected scientific-core integrity;
+- WMM2025 official vectors and global coverage;
+- WMM2025 runtime integration;
+- global prayer calculation/runtime tests;
+- astronomical solver integration;
+- canonical astronomical observation and semantic Qibla/camera separation;
+- Qibla card runtime contract;
+- Core Location → Trusted GNSS contract;
+- magnetic-only native heading boundary;
+- magnetic-north Core Motion boundary;
+- Apple `Info.plist` and privacy metadata;
+- Xcode 26.6 iPhone Simulator compilation;
+- built-app bundle contract (`WebApp/index.html`, `PrivacyInfo.xcprivacy`, bundle identifier and version).
+
 ## Current acceptance state
 
 - Android/Web regression after iOS GNSS changes: **PASS** (real Android phone, user-reported).
+- Xcode 26.6 CI / iPhone Simulator build: **PASS** — workflow run `32204470610`.
 - Native Core Location physical iPhone: **PENDING** because no iPhone is currently available.
 - Native magnetic heading physical iPhone: **PENDING**.
 - Native Core Motion physical iPhone: **PENDING**.
-- Xcode CI: definition updated; a visible green run is still required before release acceptance.
 
 ## Deliberate non-action
 
