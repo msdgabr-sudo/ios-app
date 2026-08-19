@@ -63,15 +63,23 @@ No failed state sets `gnssSource='gps'` or `gnssHasTrustedFix=true`.
 - `.github/workflows/ios-foundation-gate.yml`
   - runs the location contract test in addition to protected scientific regressions and Xcode build.
 
+## Android/Web regression evidence
+
+On 2026-08-19 the current branch WebApp was opened on a real Android phone through the direct branch test URL. The tester reported that the application and location flow were working normally after the iOS location changes.
+
+Result: **PASS — Android/Web regression**.
+
+This proves that the shared WebApp/browser path was not visibly broken by the iOS location adapter. It is **not** evidence for Core Location on iPhone and is not recorded as iOS physical-device acceptance.
+
 ## Automated gate
 
-The GitHub Actions gate is configured for `macos-26` and explicitly selects `/Applications/Xcode_26.6.app`. The runner image currently lists Xcode 26.6 as installed. The gate runs protected WMM/Qibla/prayer/astronomical regressions before building the unsigned iPhone Simulator app.
+The GitHub Actions gate is configured for `macos-26` and explicitly selects `/Applications/Xcode_26.6.app`. The gate runs protected WMM/Qibla/prayer/astronomical regressions before building the unsigned iPhone Simulator app.
 
-**Status at document creation:** workflow trigger has been forced by refreshing the PR branch against current `main` and reopening/synchronizing PR #2. A green Xcode result must be observed before merge; absence of a visible workflow run is a CI/infrastructure blocker, not a pass.
+**Current CI evidence state:** the workflow definition is present and branch synchronization/triggers have been performed, but the available GitHub Actions interface has not returned a visible workflow run for this PR. A green Xcode result must be observed before merge; absence of a run is a CI/infrastructure blocker, not a pass.
 
-## Physical iPhone acceptance — required before compass/camera work
+## Physical iPhone acceptance — still required before release acceptance
 
-This cannot be replaced by Simulator testing because the acceptance target is real Core Location behavior and user permission state on an iPhone.
+This cannot be replaced by Simulator or Android testing because the acceptance target is real Core Location behavior and user permission state on an iPhone.
 
 Required scenarios on a signed Debug/TestFlight build:
 
@@ -86,6 +94,10 @@ Required scenarios on a signed Debug/TestFlight build:
 
 For each run record only: iPhone model, iOS version, authorization state, Precise Location state, reported accuracy, pass/fail, and visible error text. Do not store or publish the tester's coordinates in the report.
 
+## Compass/heading work while iPhone is unavailable
+
+Engineering may prepare an **isolated native heading transport boundary** while physical-iPhone location acceptance is pending, provided it does not alter or replace WebApp compass/WMM mathematics and is not declared production-accepted. The protected WebApp compass implementation remains frozen during that work. Camera integration remains out of scope until the sensor boundary is reviewed and testable.
+
 ## Current blocking condition
 
-A real-device result may only be marked PASS after execution on an actual signed iPhone build. Until that evidence exists, the project must **not** claim physical-device location acceptance and must **not** proceed to compass/camera integration as if the location field test were complete.
+A real-device iOS result may only be marked PASS after execution on an actual signed iPhone build. Until that evidence exists, the project must not claim physical-device Core Location acceptance or App Store sensor readiness.
