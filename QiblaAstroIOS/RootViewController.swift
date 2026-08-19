@@ -115,15 +115,6 @@ final class RootViewController: UIViewController, WKNavigationDelegate, WKUIDele
         loadBundledApplication()
     }
 
-    deinit {
-        bridge.stopTransientSensors()
-        NotificationCenter.default.removeObserver(self)
-        let controller = webView.configuration.userContentController
-        controller.removeScriptMessageHandler(forName: NativeBridge.locationHandlerName)
-        controller.removeScriptMessageHandler(forName: NativeBridge.headingHandlerName)
-        controller.removeScriptMessageHandler(forName: NativeBridge.motionHandlerName)
-    }
-
     private static let bootstrapScript = #"""
     (function(){
       'use strict';
