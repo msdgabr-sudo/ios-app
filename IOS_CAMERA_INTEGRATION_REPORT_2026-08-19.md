@@ -65,7 +65,7 @@ The new test `WebApp/tests/ios-camera-webkit-boundary.test.js` proves:
 
 The Xcode gate also verifies that the final built app includes `NSCameraUsageDescription` and does not include `NSMicrophoneUsageDescription`.
 
-Camera-stage CI evidence is intentionally not marked PASS in this report until a workflow run containing the new camera boundary test and updated Xcode source has completed successfully. The previous orientation-stage run `32204997532` remains valid evidence only for the pre-camera state.
+GitHub Actions **iOS Foundation Gate** run `32205501584` completed **SUCCESS** with the camera-stage source and camera boundary test present. This run supersedes the earlier orientation-stage run as the current automated evidence for the branch. It includes protected scientific regressions, iOS GNSS/heading/motion/orientation boundaries, the new least-privilege WebKit camera boundary, Xcode 26.6 simulator compilation, and built-app contract inspection.
 
 ## Physical-iPhone acceptance still required
 
