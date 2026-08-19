@@ -88,6 +88,48 @@ final class RootViewController: UIViewController, WKNavigationDelegate, WKUIDele
         webView.loadFileURL(indexURL, allowingReadAccessTo: webRoot)
     }
 
+    private func isTrustedBundledMainFrame(_ frame: WKFrameInfo) -> Bool {
+        guard frame.isMainFrame, let url = frame.request.url, url.isFileURL else { return false }
+        let normalizedPath = url.standardizedFileURL.path
+        return normalizedPath.contains("/WebApp/")
+    }
+
+    func webView(
+        _ webView: WKWebView,
+        requestMediaCapturePermissionFor origin: WKSecurityOrigin,
+        initiatedByFrame frame: WKFrameInfo,
+        type: WKMediaCaptureType,
+        decisionHandler: @escaping @MainActor @Sendable (WKPermissionDecision) -> Void
+    ) {
+        guard isTrustedBundledMainFrame(frame) else {
+            decisionHandler(.deny)
+            return
+        }
+
+        switch type {
+        case .camera:
+            // The astronomical verification pipeline requests video only.
+            // iOS still enforces NSCameraUsageDescription / system authorization.
+            decisionHandler(.grant)
+        case .microphone, .cameraAndMicrophone:
+            // Qibla verification never requires microphone access.
+            decisionHandler(.deny)
+        @unknown default:
+            decisionHandler(.deny)
+        }
+    }
+
+    func webView(
+        _ webView: WKWebView,
+        requestDeviceOrientationAndMotionPermissionFor origin: WKSecurityOrigin,
+        initiatedByFrame frame: WKFrameInfo,
+        decisionHandler: @escaping @MainActor @Sendable (WKPermissionDecision) -> Void
+    ) {
+        // The existing astronomical gravity reference uses DeviceMotion only.
+        // Limit WebKit permission to the bundled main frame; no remote/subframe grant.
+        decisionHandler(isTrustedBundledMainFrame(frame) ? .grant : .deny)
+    }
+
     func webView(_ webView: WKWebView, decidePolicyFor navigationAction: WKNavigationAction) async -> WKNavigationActionPolicy {
         guard let url = navigationAction.request.url else { return .cancel }
 
