@@ -35,6 +35,7 @@ jobs:
           test "$(tr -d '\r\n' < .ios-baseline-source-sha)" = "cc2d1c2389a3de4d2cb4dbb6329da868dd1e6247"
           test -f WebApp/index.html
           test -f IOS_PORT_CONTRACT.md
+          test "$(git hash-object WebApp/js/18-sky-bg.js)" = "f9ca600d46aaa2bbe0d276b3fb77028d5649d7b4"
           if find . -type f \( -iname '*.p12' -o -iname '*.pfx' -o -iname '*.mobileprovision' -o -iname '*.jks' -o -iname '*.keystore' \) -print -quit | grep -q .; then
             echo 'Signing material must never be committed.' >&2
             exit 1
@@ -58,7 +59,11 @@ jobs:
         working-directory: WebApp
         run: node tests/ios-core-location-trusted-gnss.test.js
 
-      - name: Validate Apple metadata
+      - name: Prove iOS heading boundary stays magnetic-only
+        working-directory: WebApp
+        run: node tests/ios-native-heading-boundary.test.js
+
+      - name: Validate Apple metadata and native sensor boundary
         run: |
           plutil -lint QiblaAstroIOS/Info.plist
           plutil -lint QiblaAstroIOS/PrivacyInfo.xcprivacy
@@ -69,6 +74,9 @@ jobs:
           grep -q 'accuracyAuthorization == .fullAccuracy' QiblaAstroIOS/LocationService.swift
           grep -q 'maximumAcceptedAge' QiblaAstroIOS/LocationService.swift
           grep -q 'reduced-accuracy' QiblaAstroIOS/NativeBridge.swift
+          grep -q 'newHeading.magneticHeading' QiblaAstroIOS/HeadingService.swift
+          ! grep -q 'newHeading.trueHeading' QiblaAstroIOS/HeadingService.swift
+          grep -q 'HeadingService.swift in Sources' QiblaAstroIOS.xcodeproj/project.pbxproj
 
       - name: Build iPhone simulator app without signing
         run: |
