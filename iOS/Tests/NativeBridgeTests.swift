@@ -16,8 +16,10 @@ final class NativeBridgeTests: XCTestCase {
         XCTAssertEqual(object["type"] as? String, "location")
         let body = try XCTUnwrap(object["payload"] as? [String: Any])
         XCTAssertEqual(Set(body.keys), Set(["latitude", "longitude", "horizontalAccuracy", "timestampMilliseconds"]))
-        XCTAssertEqual(body["latitude"] as? Double, 30.0444, accuracy: 0.000001)
-        XCTAssertEqual(body["longitude"] as? Double, 31.2357, accuracy: 0.000001)
+        let latitude = try XCTUnwrap(body["latitude"] as? Double)
+        let longitude = try XCTUnwrap(body["longitude"] as? Double)
+        XCTAssertEqual(latitude, 30.0444, accuracy: 0.000001)
+        XCTAssertEqual(longitude, 31.2357, accuracy: 0.000001)
     }
 
     @MainActor
