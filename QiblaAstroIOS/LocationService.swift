@@ -6,7 +6,9 @@ final class LocationService: NSObject, CLLocationManagerDelegate {
         case servicesDisabled
         case denied
         case restricted
+        case reducedAccuracy
         case unavailable
+        case timedOut
     }
 
     struct Sample {
@@ -21,6 +23,10 @@ final class LocationService: NSObject, CLLocationManagerDelegate {
 
     private let manager = CLLocationManager()
     private var pendingCompletion: ((Result<Sample, LocationError>) -> Void)?
+    private var timeoutTask: Task<Void, Never>?
+
+    private static let maximumAcceptedAge: TimeInterval = 30
+    private static let requestTimeoutNanoseconds: UInt64 = 15_000_000_000
 
     override init() {
         super.init()
@@ -32,6 +38,10 @@ final class LocationService: NSObject, CLLocationManagerDelegate {
     }
 
     func requestCurrentLocation(completion: @escaping (Result<Sample, LocationError>) -> Void) {
+        guard pendingCompletion == nil else {
+            completion(.failure(.unavailable))
+            return
+        }
         guard CLLocationManager.locationServicesEnabled() else {
             completion(.failure(.servicesDisabled))
             return
@@ -42,7 +52,7 @@ final class LocationService: NSObject, CLLocationManagerDelegate {
         case .notDetermined:
             manager.requestWhenInUseAuthorization()
         case .authorizedWhenInUse, .authorizedAlways:
-            manager.requestLocation()
+            beginLocationAcquisition()
         case .denied:
             finish(.failure(.denied))
         case .restricted:
@@ -56,7 +66,7 @@ final class LocationService: NSObject, CLLocationManagerDelegate {
         guard pendingCompletion != nil else { return }
         switch manager.authorizationStatus {
         case .authorizedWhenInUse, .authorizedAlways:
-            manager.requestLocation()
+            beginLocationAcquisition()
         case .denied:
             finish(.failure(.denied))
         case .restricted:
@@ -69,8 +79,21 @@ final class LocationService: NSObject, CLLocationManagerDelegate {
     }
 
     func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
-        guard let location = locations.last else {
-            finish(.failure(.unavailable))
+        guard pendingCompletion != nil else { return }
+        guard manager.accuracyAuthorization == .fullAccuracy else {
+            finish(.failure(.reducedAccuracy))
+            return
+        }
+
+        let now = Date()
+        let candidates = locations.filter { location in
+            location.horizontalAccuracy >= 0 &&
+            location.coordinate.latitude.isFinite &&
+            location.coordinate.longitude.isFinite &&
+            abs(location.timestamp.timeIntervalSince(now)) <= Self.maximumAcceptedAge
+        }
+
+        guard let location = candidates.min(by: { $0.horizontalAccuracy < $1.horizontalAccuracy }) else {
             return
         }
 
@@ -81,20 +104,52 @@ final class LocationService: NSObject, CLLocationManagerDelegate {
             horizontalAccuracy: location.horizontalAccuracy,
             verticalAccuracy: location.verticalAccuracy,
             timestamp: location.timestamp,
-            fullAccuracy: manager.accuracyAuthorization == .fullAccuracy
+            fullAccuracy: true
         )
         finish(.success(sample))
     }
 
     func locationManager(_ manager: CLLocationManager, didFailWithError error: Error) {
-        if let clError = error as? CLError, clError.code == .denied {
-            finish(.failure(.denied))
+        guard pendingCompletion != nil else { return }
+        if let clError = error as? CLError {
+            switch clError.code {
+            case .denied:
+                finish(.failure(.denied))
+            case .locationUnknown:
+                // Transient. Keep the request alive until the timeout expires.
+                return
+            default:
+                finish(.failure(.unavailable))
+            }
         } else {
             finish(.failure(.unavailable))
         }
     }
 
+    private func beginLocationAcquisition() {
+        guard pendingCompletion != nil else { return }
+        guard manager.accuracyAuthorization == .fullAccuracy else {
+            finish(.failure(.reducedAccuracy))
+            return
+        }
+
+        timeoutTask?.cancel()
+        timeoutTask = Task { [weak self] in
+            try? await Task.sleep(nanoseconds: Self.requestTimeoutNanoseconds)
+            guard !Task.isCancelled else { return }
+            await MainActor.run {
+                guard let self, self.pendingCompletion != nil else { return }
+                self.finish(.failure(.timedOut))
+            }
+        }
+
+        manager.startUpdatingLocation()
+    }
+
     private func finish(_ result: Result<Sample, LocationError>) {
+        timeoutTask?.cancel()
+        timeoutTask = nil
+        manager.stopUpdatingLocation()
         let completion = pendingCompletion
         pendingCompletion = nil
         completion?(result)
