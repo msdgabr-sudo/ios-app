@@ -27,6 +27,7 @@ targets:
         INFOPLIST_KEY_CFBundleDisplayName: QiblaAstro
         INFOPLIST_KEY_NSLocationWhenInUseUsageDescription: "يستخدم QiblaAstro موقعك أثناء استخدام التطبيق لحساب اتجاه القبلة ومواقيت الصلاة والبيانات الفلكية بدقة."
         INFOPLIST_KEY_NSCameraUsageDescription: "يستخدم QiblaAstro الكاميرا عند بدء التحقق الفلكي لرصد الشمس أو القمر وفق اختيارك."
+        INFOPLIST_KEY_NSMotionUsageDescription: "يستخدم QiblaAstro اتجاه وحركة الجهاز لتشغيل البوصلة والتحقق الفلكي أثناء استخدامك لهذه الميزات."
         INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents: YES
         GENERATE_INFOPLIST_FILE: YES
         ASSETCATALOG_COMPILER_GENERATE_SWIFT_ASSET_SYMBOL_EXTENSIONS: YES
