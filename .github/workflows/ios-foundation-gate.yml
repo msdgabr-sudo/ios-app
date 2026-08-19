@@ -1,4 +1,5 @@
 name: iOS Foundation Gate
+# App Store 2026: Xcode 26+ / iOS 26 SDK validation gate.
 
 on:
   push:
@@ -53,6 +54,10 @@ jobs:
           node tests/astronomical-qibla-semantic-mapping.test.js
           node tests/qibla-card-runtime.test.js
 
+      - name: Prove iOS Core Location reaches trusted GNSS safely
+        working-directory: WebApp
+        run: node tests/ios-core-location-trusted-gnss.test.js
+
       - name: Validate Apple metadata
         run: |
           plutil -lint QiblaAstroIOS/Info.plist
@@ -61,6 +66,9 @@ jobs:
           grep -q 'NSCameraUsageDescription' QiblaAstroIOS/Info.plist
           grep -q 'NSMotionUsageDescription' QiblaAstroIOS/Info.plist
           ! grep -q 'NSLocationAlwaysAndWhenInUseUsageDescription' QiblaAstroIOS/Info.plist
+          grep -q 'accuracyAuthorization == .fullAccuracy' QiblaAstroIOS/LocationService.swift
+          grep -q 'maximumAcceptedAge' QiblaAstroIOS/LocationService.swift
+          grep -q 'reduced-accuracy' QiblaAstroIOS/NativeBridge.swift
 
       - name: Build iPhone simulator app without signing
         run: |
