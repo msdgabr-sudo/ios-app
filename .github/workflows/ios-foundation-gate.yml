@@ -2,7 +2,7 @@ name: iOS Foundation Gate
 
 on:
   push:
-    branches: [main, 'ios/**']
+    branches: ['ios/**']
     paths:
       - 'QiblaAstroIOS/**'
       - 'QiblaAstroIOS.xcodeproj/**'
@@ -65,6 +65,7 @@ jobs:
       - name: Build iPhone simulator app without signing
         run: |
           set -o pipefail
+          mkdir -p build
           xcodebuild \
             -project QiblaAstroIOS.xcodeproj \
             -target QiblaAstroIOS \
