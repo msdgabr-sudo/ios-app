@@ -16,14 +16,14 @@ const protectedFiles = [
 ];
 
 const expected = {
-  // Authoritative PR #3 / feature/astronomical-solver-foundation baseline.
-  // Gateway includes the reviewed Sun-first observable-body restoration.
-  // These hashes freeze the restored scientific engine on branch `one`.
+  // iOS port authoritative source baseline:
+  // q-app-an/main@cc2d1c2389a3de4d2cb4dbb6329da868dd1e6247.
+  // Only the guard manifest is aligned here; no protected engine file is modified.
   'js/astro-verification.js': '692c1f628aa524c3f0d58530bed3c4618841da24',
   'js/astronomical-observation-bridge.js': '1db4f3e4e3b79ae552ee7eaef77272bbfe20c2e5',
   'js/astronomical-solver.js': 'b17a4ac09c1a84e640e5007c2d69aaf8b542a65b',
   'js/astronomical-verification-session.js': '3f144a46c0488a8de2f1cb007d400b35fe44ba40',
-  'js/astronomical-verification-store.js': '29b7ac0dee7259a25a4a51bea00eb1bcb66d20e7',
+  'js/astronomical-verification-store.js': '86931360c8590d5b807dca1b3ec73cd131a51aaa',
   'js/celestial-detector.js': 'd0b77e77b4398b88fa8a3771a04d97fdaed0d7a4',
   'js/camera-projection.js': '0ccdd9de84bb11ab41afe01b8b7eca91c1c62384',
   'js/camera-pose.js': '519e4773582ddc4bd6d0b4c3c2ffd79073bb1890',

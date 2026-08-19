@@ -3,12 +3,11 @@
 // ══════════════════════════════════════════════════════════════════════════════
 
 // Trusted position policy:
-// Device Geolocation only (GPS/GLONASS/Galileo/BeiDou as provided by Android/browser).
-// IP geolocation and the former Giza fallback are intentionally NOT used for
-// Qibla, astronomical verification, prayer calculations, or deviation distance.
+// Device Geolocation only (GPS/GLONASS/Galileo/BeiDou as provided by the OS/browser).
+// On iOS native builds, Core Location is the trusted device provider and feeds
+// this same existing GNSS state contract. It does not calculate Qibla/WMM/prayer
+// or astronomical results. IP geolocation and default-city fallbacks are forbidden.
 // Until a trusted fix is available, coordinates are deliberately non-finite.
-// Location-dependent calculations start only after updateQiblaFromPosition()
-// accepts a trusted Device GPS/GNSS fix; no city is used as a startup surrogate.
 let LAT = Number.NaN;
 let LON = Number.NaN;
 let gnssSource   = 'unresolved'; // 'gps'|'unresolved'
@@ -75,8 +74,58 @@ function updateQiblaFromPosition(){
   _el=document.getElementById('gnss-qibla');if(_el)_el.textContent=QT.toFixed(2)+'° — '+qDir;
 }
 
-// Browser Geolocation uses the device location provider. On Android this may
-// combine GPS, GLONASS, Galileo, BeiDou and other trusted device signals.
+function acceptTrustedDevicePosition(latitude,longitude,accuracy,altitude){
+  if(!Number.isFinite(latitude)||!Number.isFinite(longitude)||!Number.isFinite(accuracy)||accuracy<0)return false;
+  if(latitude < -90 || latitude > 90 || longitude < -180 || longitude > 180)return false;
+  LAT=latitude;
+  LON=longitude;
+  gnssAccuracy=accuracy;
+  gnssAltitudeMeters=Number.isFinite(altitude)?altitude:0;
+  gnssSource='gps';
+  gnssHasTrustedFix=true;
+  gnssUpdating=false;
+  updateQiblaFromPosition();
+  return true;
+}
+
+function iosLocationErrorMessage(code){
+  if(code==='denied')return 'تم رفض إذن الموقع — امنح QiblaAstro إذن الموقع من إعدادات iPhone ثم أعد المحاولة';
+  if(code==='restricted')return 'الوصول إلى الموقع مقيّد على هذا iPhone';
+  if(code==='services-disabled')return 'خدمات الموقع مغلقة — فعّل خدمات الموقع في إعدادات iPhone ثم أعد المحاولة';
+  if(code==='reduced-accuracy')return 'الدقة التقريبية مفعّلة — فعّل «الموقع الدقيق» لـ QiblaAstro ثم أعد المحاولة';
+  if(code==='timeout')return 'لم يصل موقع دقيق وحديث من iPhone في الوقت المحدد — انتقل لمكان مفتوح وأعد المحاولة';
+  return 'تعذر الحصول على موقع دقيق من iPhone — أعد المحاولة';
+}
+
+function requestIOSNativeGPS(){
+  var api=window.QiblaIOSNative;
+  if(!api||api.platform!=='ios'||typeof api.requestLocation!=='function')return false;
+
+  api.requestLocation().then(function(result){
+    try{
+      if(!result||result.ok!==true||result.source!=='core-location'||result.fullAccuracy!==true||!result.coords){
+        showGnssUnavailable('لم يقدّم iPhone موقعًا دقيقًا موثوقًا');
+        return;
+      }
+      var ts=Number(result.timestamp);
+      if(!Number.isFinite(ts)||Math.abs(Date.now()-ts)>30000){
+        showGnssUnavailable('تم تجاهل موقع iPhone قديم — أعد المحاولة للحصول على قراءة حديثة');
+        return;
+      }
+      var c=result.coords;
+      if(!acceptTrustedDevicePosition(Number(c.latitude),Number(c.longitude),Number(c.accuracy),Number(c.altitude))){
+        showGnssUnavailable('تم رفض قراءة موقع غير صالحة من iPhone');
+      }
+    }catch(e){showGnssUnavailable('تعذر معالجة موقع iPhone — أعد المحاولة');}
+  }).catch(function(error){
+    showGnssUnavailable(iosLocationErrorMessage(error&&error.code));
+  });
+  return true;
+}
+
+// Browser Geolocation uses the device location provider. Android/PWA remain on
+// this path. Native iOS uses the Core Location bridge above and never falls back
+// to browser/IP/default-city location when that bridge is present.
 function resetCompassCalibration(){
   _rawHeading=null;
   compassAvailable=false;
@@ -104,6 +153,8 @@ function tryBrowserGPS(){
   set('gnss-btn-status','⏳ جاري التحديث...');
   var srcEl=document.getElementById('gnss-src');if(srcEl)srcEl.textContent='جاري طلب موقع جديد من الجهاز...';
 
+  if(requestIOSNativeGPS())return;
+
   if(window._gnssWatchId != null){
     try{navigator.geolocation.clearWatch(window._gnssWatchId);}catch(e){}
     window._gnssWatchId = null;
@@ -117,30 +168,26 @@ function tryBrowserGPS(){
     navigator.geolocation.getCurrentPosition(
       function(pos){
         try{
-          if(!pos||!pos.coords||!Number.isFinite(pos.coords.latitude)||!Number.isFinite(pos.coords.longitude)){
+          if(!pos||!pos.coords||!acceptTrustedDevicePosition(
+            Number(pos.coords.latitude),
+            Number(pos.coords.longitude),
+            Number(pos.coords.accuracy),
+            Number(pos.coords.altitude)
+          )){
             showGnssUnavailable();
             return;
           }
-          LAT=pos.coords.latitude;
-          LON=pos.coords.longitude;
-          gnssAccuracy=pos.coords.accuracy;
-          gnssAltitudeMeters=Number.isFinite(pos.coords.altitude)?pos.coords.altitude:0;
-          gnssSource='gps';
-          gnssHasTrustedFix=true;
-          gnssUpdating=false;
-          updateQiblaFromPosition();
           try{
             window._gnssWatchId = navigator.geolocation.watchPosition(
               function(p2){
                 try{
-                  if(p2&&p2.coords&&Number.isFinite(p2.coords.latitude)&&Number.isFinite(p2.coords.longitude)&&p2.coords.accuracy<(gnssAccuracy||9999)){
-                    LAT=p2.coords.latitude;
-                    LON=p2.coords.longitude;
-                    gnssAccuracy=p2.coords.accuracy;
-                    gnssAltitudeMeters=Number.isFinite(p2.coords.altitude)?p2.coords.altitude:0;
-                    gnssSource='gps';
-                    gnssHasTrustedFix=true;
-                    updateQiblaFromPosition();
+                  if(p2&&p2.coords&&Number.isFinite(p2.coords.latitude)&&Number.isFinite(p2.coords.longitude)&&Number.isFinite(p2.coords.accuracy)&&p2.coords.accuracy<(gnssAccuracy||9999)){
+                    acceptTrustedDevicePosition(
+                      Number(p2.coords.latitude),
+                      Number(p2.coords.longitude),
+                      Number(p2.coords.accuracy),
+                      Number(p2.coords.altitude)
+                    );
                   }
                 }catch(e){}
               },
