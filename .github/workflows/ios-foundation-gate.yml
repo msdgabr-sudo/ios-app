@@ -51,7 +51,7 @@ jobs:
           node tests/prayer-global-methods.test.js
           node tests/prayer-global-runtime-integration.test.js
           node tests/astronomical-solver.integration.test.js
-          node tests/astronomical-verification-session.test.js
+          QIBLA_IOS_BUNDLED=1 node tests/astronomical-verification-session.test.js
           node tests/astronomical-qibla-semantic-mapping.test.js
           node tests/qibla-card-runtime.test.js
 
