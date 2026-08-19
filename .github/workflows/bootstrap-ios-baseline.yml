@@ -1,0 +1,136 @@
+name: Bootstrap iOS baseline from q-app-an
+
+on:
+  push:
+    branches: [main]
+    paths:
+      - '.github/workflows/bootstrap-ios-baseline.yml'
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+env:
+  SOURCE_REPO: https://github.com/msdgabr-sudo/q-app-an.git
+  SOURCE_SHA: cc2d1c2389a3de4d2cb4dbb6329da868dd1e6247
+
+jobs:
+  bootstrap:
+    runs-on: ubuntu-24.04
+    steps:
+      - name: Checkout ios-app
+        uses: actions/checkout@v4
+
+      - name: Stop if exact baseline is already materialized
+        id: guard
+        shell: bash
+        run: |
+          if [ -f .ios-baseline-source-sha ] && [ "$(tr -d '\r\n' < .ios-baseline-source-sha)" = "$SOURCE_SHA" ] && [ -f WebApp/index.html ]; then
+            echo "done=true" >> "$GITHUB_OUTPUT"
+          else
+            echo "done=false" >> "$GITHUB_OUTPUT"
+          fi
+
+      - name: Fetch exact authoritative q-app-an snapshot
+        if: steps.guard.outputs.done != 'true'
+        shell: bash
+        run: |
+          set -euo pipefail
+          rm -rf /tmp/q-app-an
+          git init /tmp/q-app-an
+          git -C /tmp/q-app-an remote add origin "$SOURCE_REPO"
+          git -C /tmp/q-app-an fetch --depth 1 origin "$SOURCE_SHA"
+          git -C /tmp/q-app-an checkout --detach FETCH_HEAD
+          test "$(git -C /tmp/q-app-an rev-parse HEAD)" = "$SOURCE_SHA"
+          test -f /tmp/q-app-an/source/index.html
+
+      - name: Materialize iOS web/scientific baseline
+        if: steps.guard.outputs.done != 'true'
+        shell: bash
+        run: |
+          set -euo pipefail
+          rm -rf WebApp
+          mkdir -p WebApp
+          rsync -a /tmp/q-app-an/source/ WebApp/ \
+            --exclude '.git/' \
+            --exclude '.github/' \
+            --exclude 'android-twa/' \
+            --exclude '.well-known/' \
+            --exclude 'CNAME' \
+            --exclude '.publishing-repository' \
+            --exclude '.release-channel' \
+            --exclude '.release-source-sha' \
+            --exclude 'A2_HANDOFF_APK_AAB_2026-08-14.md' \
+            --exclude 'PRE_APK_ANDROID_IDENTITY.md'
+
+          printf '%s\n' "$SOURCE_SHA" > .ios-baseline-source-sha
+
+          cat > IOS_PORT_CONTRACT.md <<'EOF'
+          # QiblaAstro iOS Port Contract
+
+          ## Authoritative baseline
+          - Source repository: `msdgabr-sudo/q-app-an`
+          - Source branch: `main`
+          - Frozen baseline SHA: `cc2d1c2389a3de4d2cb4dbb6329da868dd1e6247`
+          - Materialized source: `WebApp/`
+          - Android-only Bubblewrap/TWA workspace is intentionally excluded.
+
+          ## Protected systems — do not rewrite during iOS porting
+          - computational Qibla / QT mathematics;
+          - WMM2025 magnetic-declination mathematics;
+          - digital-compass mathematics;
+          - astronomical verification, camera solving, celestial geometry and accepted-record semantics;
+          - prayer-time calculation equations;
+          - trusted GNSS security policy;
+          - Quran/Azkar canonical content unless separately scoped.
+
+          ## Mandatory separation
+          The iOS native layer is an adapter for Apple platform services only. It may provide trusted location, motion/heading, camera, notifications, audio/background integration and widgets, but it must not create a second scientific implementation or substitute presentation/native values for protected engine results.
+
+          Computational Qibla and astronomical verification remain independent. The astronomical result must never overwrite or be replaced by the computational Qibla result.
+
+          ## Source update rule
+          Future synchronization from q-app-an must use an explicitly approved source SHA and a reviewed diff. Never replace `WebApp/` from an older historical Mizan baseline or from an unreviewed branch.
+          EOF
+
+          cat > README.md <<'EOF'
+          # QiblaAstro iOS
+
+          Apple/iOS release workspace for QiblaAstro.
+
+          `WebApp/` is the frozen iOS baseline materialized from the authoritative QiblaAstro Android/Web release repository at the SHA recorded in `.ios-baseline-source-sha`.
+
+          Android-specific Bubblewrap/TWA packaging is deliberately not copied. iOS-native work must be added separately and must respect `IOS_PORT_CONTRACT.md`.
+          EOF
+
+          cat > .gitignore <<'EOF'
+          .DS_Store
+          DerivedData/
+          *.xcuserstate
+          xcuserdata/
+          *.ipa
+          *.dSYM.zip
+          *.mobileprovision
+          *.p12
+          *.cer
+          *.key
+          EOF
+
+          # Hard guard: Android packaging/signing material must not enter ios-app.
+          test ! -d WebApp/android-twa
+          if find . -type f \( -iname '*.jks' -o -iname '*.keystore' -o -iname '*.p12' -o -iname '*service-account*.json' \) -print -quit | grep -q .; then
+            echo 'ERROR: signing/credential material detected.' >&2
+            exit 1
+          fi
+
+      - name: Record copied baseline
+        if: steps.guard.outputs.done != 'true'
+        shell: bash
+        run: |
+          set -euo pipefail
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          git add README.md IOS_PORT_CONTRACT.md .gitignore .ios-baseline-source-sha WebApp
+          git diff --cached --quiet && exit 0
+          git commit -m 'bootstrap(ios): materialize protected q-app-an baseline'
+          git push origin HEAD:main
