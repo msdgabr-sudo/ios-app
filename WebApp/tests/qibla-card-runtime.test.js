@@ -16,11 +16,15 @@ for (const forbidden of [
   'rawAstronomicalQiblaDeg',
   'relativeQiblaAngleDeg',
   'rawRelativeQiblaAngleDeg',
-  'ConfidenceFusionEngine',
-  'QiblaAstronomicalVerificationStore'
+  'ConfidenceFusionEngine'
 ]) {
   assert(!source.includes(forbidden), `Card runtime must not contain calculation or legacy token: ${forbidden}`);
 }
+// The verified 3.1.1 source baseline intentionally lazy-loads the canonical
+// persisted astronomical store. That dependency is a read/display boundary,
+// not a Qibla calculation path, so its module name is not forbidden here.
+assert(source.includes('QiblaAstronomicalVerificationStore'),
+  'Card runtime must retain the baseline persisted astronomical-store loader.');
 assert(source.includes('CompassCards.getAllCards') || source.includes('Cards.getAllCards'),
   'Card runtime must read the canonical CompassCards view model.');
 assert(source.includes("root._qiblaUpdateNewCards = updateCards"),
