@@ -16,6 +16,7 @@ final class RootViewController: UIViewController, WKNavigationDelegate, WKUIDele
     private func makeWebView() -> WKWebView {
         let controller = WKUserContentController()
         controller.add(bridge, name: NativeBridge.locationHandlerName)
+        controller.add(bridge, name: NativeBridge.headingHandlerName)
         controller.addUserScript(WKUserScript(
             source: Self.bootstrapScript,
             injectionTime: .atDocumentStart,
@@ -85,7 +86,9 @@ final class RootViewController: UIViewController, WKNavigationDelegate, WKUIDele
     }
 
     deinit {
-        webView.configuration.userContentController.removeScriptMessageHandler(forName: NativeBridge.locationHandlerName)
+        let controller = webView.configuration.userContentController
+        controller.removeScriptMessageHandler(forName: NativeBridge.locationHandlerName)
+        controller.removeScriptMessageHandler(forName: NativeBridge.headingHandlerName)
     }
 
     private static let bootstrapScript = #"""
@@ -93,6 +96,8 @@ final class RootViewController: UIViewController, WKNavigationDelegate, WKUIDele
       'use strict';
       if(window.QiblaIOSNative) return;
       var pending = Object.create(null);
+      var headingRunning = false;
+
       window.QiblaIOSNative = {
         platform: 'ios',
         requestLocation: function(){
@@ -107,13 +112,40 @@ final class RootViewController: UIViewController, WKNavigationDelegate, WKUIDele
             }
           });
         },
+        startHeading: function(){
+          if(headingRunning) return true;
+          try {
+            window.webkit.messageHandlers.qiblaHeading.postMessage({action:'start'});
+            headingRunning = true;
+            return true;
+          } catch (error) {
+            headingRunning = false;
+            return false;
+          }
+        },
+        stopHeading: function(){
+          if(!headingRunning) return;
+          try { window.webkit.messageHandlers.qiblaHeading.postMessage({action:'stop'}); } catch (error) {}
+          headingRunning = false;
+        },
         _receive: function(message){
-          if(!message || message.type !== 'location' || !message.requestId) return;
-          var slot = pending[message.requestId];
-          if(!slot) return;
-          delete pending[message.requestId];
-          if(message.ok) slot.resolve(message);
-          else slot.reject({code:message.error || 'unavailable'});
+          if(!message || !message.type) return;
+          if(message.type === 'location' && message.requestId){
+            var slot = pending[message.requestId];
+            if(!slot) return;
+            delete pending[message.requestId];
+            if(message.ok) slot.resolve(message);
+            else slot.reject({code:message.error || 'unavailable'});
+            return;
+          }
+          if(message.type === 'heading'){
+            if(message.ok){
+              window.dispatchEvent(new CustomEvent('qibla-ios-heading', {detail:message}));
+            } else {
+              headingRunning = false;
+              window.dispatchEvent(new CustomEvent('qibla-ios-heading-error', {detail:message}));
+            }
+          }
         }
       };
       window.dispatchEvent(new CustomEvent('qibla-ios-native-ready'));
