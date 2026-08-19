@@ -158,6 +158,15 @@ final class RootViewController: UIViewController, WKNavigationDelegate, WKUIDele
         }}));
       }
 
+      function loadIOSOrientationAdapter(){
+        if(document.querySelector('script[data-qibla-ios-orientation-adapter]')) return;
+        var script=document.createElement('script');
+        script.src='js/ios-orientation-adapter.js';
+        script.async=false;
+        script.setAttribute('data-qibla-ios-orientation-adapter','true');
+        (document.head||document.documentElement).appendChild(script);
+      }
+
       window.QiblaIOSNative = {
         platform: 'ios',
         requestLocation: function(){
@@ -250,6 +259,12 @@ final class RootViewController: UIViewController, WKNavigationDelegate, WKUIDele
           }
         }
       };
+
+      if(document.readyState === 'loading'){
+        document.addEventListener('DOMContentLoaded', loadIOSOrientationAdapter, {once:true});
+      } else {
+        loadIOSOrientationAdapter();
+      }
       window.dispatchEvent(new CustomEvent('qibla-ios-native-ready'));
     })();
     """#
