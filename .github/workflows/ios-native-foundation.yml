@@ -1,0 +1,67 @@
+name: iOS Native Foundation
+
+on:
+  pull_request:
+    branches: [main]
+    paths:
+      - 'iOS/**'
+      - 'project.yml'
+      - 'WebApp/**'
+      - 'IOS_PORT_CONTRACT.md'
+      - 'APPLE_ENGINEERING_BASELINE.md'
+      - '.github/workflows/ios-native-foundation.yml'
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  build-and-test:
+    runs-on: macos-15
+    timeout-minutes: 30
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Verify pinned web baseline marker
+        run: |
+          set -euo pipefail
+          test "$(tr -d '\r\n' < .ios-baseline-source-sha)" = "cc2d1c2389a3de4d2cb4dbb6329da868dd1e6247"
+          test -f WebApp/index.html
+          if find . -type f \( -iname '*.p12' -o -iname '*.p8' -o -iname '*.mobileprovision' -o -iname '*.jks' -o -iname '*.keystore' \) -print -quit | grep -q .; then
+            echo 'Secret/signing material is forbidden in Git.' >&2
+            exit 1
+          fi
+
+      - name: Install XcodeGen
+        run: brew install xcodegen
+
+      - name: Generate Xcode project
+        run: xcodegen generate --spec project.yml
+
+      - name: Select simulator
+        id: sim
+        run: |
+          set -euo pipefail
+          DEVICE=$(xcrun simctl list devices available -j | python3 -c 'import json,sys; d=json.load(sys.stdin)["devices"]; candidates=[x for arr in d.values() for x in arr if x.get("isAvailable") and x.get("name","").startswith("iPhone")]; print(candidates[0]["name"] if candidates else "")')
+          test -n "$DEVICE"
+          echo "name=$DEVICE" >> "$GITHUB_OUTPUT"
+
+      - name: Build without signing
+        run: |
+          set -euo pipefail
+          xcodebuild \
+            -project QiblaAstroIOS.xcodeproj \
+            -scheme QiblaAstroIOS \
+            -destination "platform=iOS Simulator,name=${{ steps.sim.outputs.name }}" \
+            CODE_SIGNING_ALLOWED=NO \
+            clean build
+
+      - name: Run unit tests
+        run: |
+          set -euo pipefail
+          xcodebuild \
+            -project QiblaAstroIOS.xcodeproj \
+            -scheme QiblaAstroIOS \
+            -destination "platform=iOS Simulator,name=${{ steps.sim.outputs.name }}" \
+            CODE_SIGNING_ALLOWED=NO \
+            test
