@@ -108,7 +108,7 @@ struct WebAppContainer: UIViewRepresentable {
             }
         }
 
-        nonisolated static func label(for state: LocationService.State) -> String {
+        static func label(for state: LocationService.State) -> String {
             switch state {
             case .idle: return "idle"
             case .requestingAuthorization: return "requesting-authorization"
@@ -117,6 +117,10 @@ struct WebAppContainer: UIViewRepresentable {
             case .restricted: return "restricted"
             case .failed(let reason): return "failed:\(reason)"
             }
+        }
+
+        private static func isTrusted(_ origin: WKSecurityOrigin) -> Bool {
+            origin.host.isEmpty || origin.host == trustedRemoteHost
         }
 
         func webView(_ webView: WKWebView, decidePolicyFor navigationAction: WKNavigationAction, decisionHandler: @escaping (WKNavigationActionPolicy) -> Void) {
@@ -143,8 +147,15 @@ struct WebAppContainer: UIViewRepresentable {
                      initiatedByFrame frame: WKFrameInfo,
                      type: WKMediaCaptureType,
                      decisionHandler: @escaping (WKPermissionDecision) -> Void) {
-            let trusted = origin.host.isEmpty || origin.host == Self.trustedRemoteHost
-            decisionHandler(trusted ? .grant : .deny)
+            decisionHandler(Self.isTrusted(origin) ? .prompt : .deny)
+        }
+
+        @available(iOS 15.0, *)
+        func webView(_ webView: WKWebView,
+                     requestDeviceOrientationAndMotionPermissionFor origin: WKSecurityOrigin,
+                     initiatedByFrame frame: WKFrameInfo,
+                     decisionHandler: @escaping (WKPermissionDecision) -> Void) {
+            decisionHandler(Self.isTrusted(origin) ? .prompt : .deny)
         }
     }
 }
