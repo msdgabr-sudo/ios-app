@@ -5,10 +5,12 @@ import WebKit
 final class NativeBridge: NSObject, WKScriptMessageHandler {
     static let locationHandlerName = "qiblaLocation"
     static let headingHandlerName = "qiblaHeading"
+    static let motionHandlerName = "qiblaMotion"
 
     private weak var webView: WKWebView?
     private let locationService = LocationService()
     private let headingService = HeadingService()
+    private let motionService = MotionService()
 
     func attach(to webView: WKWebView) {
         self.webView = webView
@@ -26,6 +28,8 @@ final class NativeBridge: NSObject, WKScriptMessageHandler {
             handleLocation(action: action, body: body)
         case Self.headingHandlerName:
             handleHeading(action: action)
+        case Self.motionHandlerName:
+            handleMotion(action: action)
         default:
             return
         }
@@ -101,6 +105,68 @@ final class NativeBridge: NSObject, WKScriptMessageHandler {
         }
     }
 
+    private func handleMotion(action: String) {
+        switch action {
+        case "start":
+            motionService.start { [weak self] result in
+                guard let self else { return }
+                switch result {
+                case .success(let sample):
+                    self.send([
+                        "type": "motion",
+                        "ok": true,
+                        "source": "core-motion-magnetic-north",
+                        "referenceFrame": "xMagneticNorthZVertical",
+                        "attitude": [
+                            "roll": sample.roll,
+                            "pitch": sample.pitch,
+                            "yaw": sample.yaw,
+                            "quaternion": [
+                                "x": sample.quaternionX,
+                                "y": sample.quaternionY,
+                                "z": sample.quaternionZ,
+                                "w": sample.quaternionW
+                            ]
+                        ],
+                        "gravity": [
+                            "x": sample.gravityX,
+                            "y": sample.gravityY,
+                            "z": sample.gravityZ
+                        ],
+                        "rotationRate": [
+                            "x": sample.rotationRateX,
+                            "y": sample.rotationRateY,
+                            "z": sample.rotationRateZ
+                        ],
+                        "userAcceleration": [
+                            "x": sample.userAccelerationX,
+                            "y": sample.userAccelerationY,
+                            "z": sample.userAccelerationZ
+                        ],
+                        "sensorUptime": sample.sensorUptime * 1000.0,
+                        "timestamp": sample.receivedAt.timeIntervalSince1970 * 1000.0
+                    ])
+                case .failure(let error):
+                    self.send([
+                        "type": "motion",
+                        "ok": false,
+                        "source": "core-motion-magnetic-north",
+                        "error": self.motionErrorCode(error)
+                    ])
+                }
+            }
+        case "stop":
+            motionService.stop()
+        default:
+            return
+        }
+    }
+
+    func stopTransientSensors() {
+        headingService.stop()
+        motionService.stop()
+    }
+
     private func locationErrorCode(_ error: LocationService.LocationError) -> String {
         switch error {
         case .servicesDisabled: return "services-disabled"
@@ -118,6 +184,13 @@ final class NativeBridge: NSObject, WKScriptMessageHandler {
         case .denied: return "denied"
         case .restricted: return "restricted"
         case .unavailable: return "unavailable"
+        }
+    }
+
+    private func motionErrorCode(_ error: MotionService.MotionError) -> String {
+        switch error {
+        case .unavailable: return "unavailable"
+        case .referenceFrameUnavailable: return "magnetic-reference-unavailable"
         }
     }
 
