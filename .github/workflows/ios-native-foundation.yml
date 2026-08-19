@@ -32,6 +32,21 @@ jobs:
             exit 1
           fi
 
+      - name: Run protected WebApp regression gates
+        working-directory: WebApp
+        run: |
+          set -euo pipefail
+          node tests/wmm2025-official-gate.js
+          node tests/wmm2025-global-coverage.test.js
+          node tests/wmm2025-runtime-integration.test.js
+          node tests/prayer-global-methods.test.js
+          node tests/trusted-location-runtime-sync.test.js
+          node tests/astronomical-solver.integration.test.js
+          node tests/astronomical-observation-bridge.test.js
+          node tests/astronomical-qibla-semantic-mapping.test.js
+          node tests/astronomical-verification-session.test.js
+          node tests/record-display-e2e.test.js
+
       - name: Install XcodeGen
         run: brew install xcodegen
 
