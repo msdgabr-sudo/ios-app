@@ -19,6 +19,7 @@ final class NativeBridge: NSObject, WKScriptMessageHandler {
               let action = body["action"] as? String,
               action == "requestCurrent",
               let requestID = body["requestId"] as? String,
+              !requestID.isEmpty,
               requestID.count <= 80 else {
             return
         }
@@ -31,6 +32,7 @@ final class NativeBridge: NSObject, WKScriptMessageHandler {
                     "type": "location",
                     "requestId": requestID,
                     "ok": true,
+                    "source": "core-location",
                     "coords": [
                         "latitude": sample.latitude,
                         "longitude": sample.longitude,
@@ -46,6 +48,7 @@ final class NativeBridge: NSObject, WKScriptMessageHandler {
                     "type": "location",
                     "requestId": requestID,
                     "ok": false,
+                    "source": "core-location",
                     "error": self.errorCode(error)
                 ])
             }
@@ -57,7 +60,9 @@ final class NativeBridge: NSObject, WKScriptMessageHandler {
         case .servicesDisabled: return "services-disabled"
         case .denied: return "denied"
         case .restricted: return "restricted"
+        case .reducedAccuracy: return "reduced-accuracy"
         case .unavailable: return "unavailable"
+        case .timedOut: return "timeout"
         }
     }
 
