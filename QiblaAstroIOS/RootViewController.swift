@@ -10,6 +10,7 @@ final class RootViewController: UIViewController, WKNavigationDelegate, WKUIDele
         super.viewDidLoad()
         view.backgroundColor = UIColor(red: 5.0 / 255.0, green: 8.0 / 255.0, blue: 15.0 / 255.0, alpha: 1)
         configureLayout()
+        observeApplicationLifecycle()
         loadBundledApplication()
     }
 
@@ -17,6 +18,7 @@ final class RootViewController: UIViewController, WKNavigationDelegate, WKUIDele
         let controller = WKUserContentController()
         controller.add(bridge, name: NativeBridge.locationHandlerName)
         controller.add(bridge, name: NativeBridge.headingHandlerName)
+        controller.add(bridge, name: NativeBridge.motionHandlerName)
         controller.addUserScript(WKUserScript(
             source: Self.bootstrapScript,
             injectionTime: .atDocumentStart,
@@ -54,6 +56,29 @@ final class RootViewController: UIViewController, WKNavigationDelegate, WKUIDele
         ])
     }
 
+    private func observeApplicationLifecycle() {
+        NotificationCenter.default.addObserver(
+            self,
+            selector: #selector(applicationDidEnterBackground),
+            name: UIApplication.didEnterBackgroundNotification,
+            object: nil
+        )
+        NotificationCenter.default.addObserver(
+            self,
+            selector: #selector(applicationWillTerminate),
+            name: UIApplication.willTerminateNotification,
+            object: nil
+        )
+    }
+
+    @objc private func applicationDidEnterBackground() {
+        bridge.stopTransientSensors()
+    }
+
+    @objc private func applicationWillTerminate() {
+        bridge.stopTransientSensors()
+    }
+
     private func loadBundledApplication() {
         guard let webRoot = Bundle.main.resourceURL?.appendingPathComponent("WebApp", isDirectory: true),
               let indexURL = Bundle.main.url(forResource: "index", withExtension: "html", subdirectory: "WebApp") else {
@@ -85,10 +110,18 @@ final class RootViewController: UIViewController, WKNavigationDelegate, WKUIDele
         return .allow
     }
 
+    func webViewWebContentProcessDidTerminate(_ webView: WKWebView) {
+        bridge.stopTransientSensors()
+        loadBundledApplication()
+    }
+
     deinit {
+        bridge.stopTransientSensors()
+        NotificationCenter.default.removeObserver(self)
         let controller = webView.configuration.userContentController
         controller.removeScriptMessageHandler(forName: NativeBridge.locationHandlerName)
         controller.removeScriptMessageHandler(forName: NativeBridge.headingHandlerName)
+        controller.removeScriptMessageHandler(forName: NativeBridge.motionHandlerName)
     }
 
     private static let bootstrapScript = #"""
@@ -97,6 +130,42 @@ final class RootViewController: UIViewController, WKNavigationDelegate, WKUIDele
       if(window.QiblaIOSNative) return;
       var pending = Object.create(null);
       var headingRunning = false;
+      var motionRunning = false;
+      var latestHeading = null;
+      var latestMotion = null;
+      var maximumFusionAgeMs = 1000;
+
+      function finiteNumber(value){
+        return typeof value === 'number' && Number.isFinite(value);
+      }
+
+      function fresh(message){
+        return message && finiteNumber(message.timestamp) && Math.abs(Date.now() - message.timestamp) <= maximumFusionAgeMs;
+      }
+
+      function emitOrientationIfReady(){
+        if(!fresh(latestHeading) || !fresh(latestMotion)) return;
+        if(latestHeading.source !== 'core-location-magnetic') return;
+        if(latestMotion.source !== 'core-motion-magnetic-north') return;
+        if(latestMotion.referenceFrame !== 'xMagneticNorthZVertical') return;
+        if(!finiteNumber(latestHeading.magneticHeading) || latestHeading.magneticHeading < 0 || latestHeading.magneticHeading >= 360) return;
+        if(!finiteNumber(latestHeading.accuracy) || latestHeading.accuracy < 0) return;
+        if(!latestMotion.attitude || !latestMotion.attitude.quaternion || !latestMotion.gravity) return;
+
+        window.dispatchEvent(new CustomEvent('qibla-ios-orientation', {detail:{
+          source: 'ios-native-sensors',
+          referenceFrame: 'xMagneticNorthZVertical',
+          magneticHeading: latestHeading.magneticHeading,
+          headingAccuracy: latestHeading.accuracy,
+          headingTimestamp: latestHeading.timestamp,
+          motionTimestamp: latestMotion.timestamp,
+          attitude: latestMotion.attitude,
+          gravity: latestMotion.gravity,
+          rotationRate: latestMotion.rotationRate,
+          userAcceleration: latestMotion.userAcceleration,
+          sensorUptime: latestMotion.sensorUptime
+        }}));
+      }
 
       window.QiblaIOSNative = {
         platform: 'ios',
@@ -127,6 +196,33 @@ final class RootViewController: UIViewController, WKNavigationDelegate, WKUIDele
           if(!headingRunning) return;
           try { window.webkit.messageHandlers.qiblaHeading.postMessage({action:'stop'}); } catch (error) {}
           headingRunning = false;
+          latestHeading = null;
+        },
+        startMotion: function(){
+          if(motionRunning) return true;
+          try {
+            window.webkit.messageHandlers.qiblaMotion.postMessage({action:'start'});
+            motionRunning = true;
+            return true;
+          } catch (error) {
+            motionRunning = false;
+            return false;
+          }
+        },
+        stopMotion: function(){
+          if(!motionRunning) return;
+          try { window.webkit.messageHandlers.qiblaMotion.postMessage({action:'stop'}); } catch (error) {}
+          motionRunning = false;
+          latestMotion = null;
+        },
+        startOrientation: function(){
+          var headingStarted = this.startHeading();
+          var motionStarted = this.startMotion();
+          return headingStarted && motionStarted;
+        },
+        stopOrientation: function(){
+          this.stopHeading();
+          this.stopMotion();
         },
         _receive: function(message){
           if(!message || !message.type) return;
@@ -140,10 +236,25 @@ final class RootViewController: UIViewController, WKNavigationDelegate, WKUIDele
           }
           if(message.type === 'heading'){
             if(message.ok){
+              latestHeading = message;
               window.dispatchEvent(new CustomEvent('qibla-ios-heading', {detail:message}));
+              emitOrientationIfReady();
             } else {
               headingRunning = false;
+              latestHeading = null;
               window.dispatchEvent(new CustomEvent('qibla-ios-heading-error', {detail:message}));
+            }
+            return;
+          }
+          if(message.type === 'motion'){
+            if(message.ok){
+              latestMotion = message;
+              window.dispatchEvent(new CustomEvent('qibla-ios-motion', {detail:message}));
+              emitOrientationIfReady();
+            } else {
+              motionRunning = false;
+              latestMotion = null;
+              window.dispatchEvent(new CustomEvent('qibla-ios-motion-error', {detail:message}));
             }
           }
         }
