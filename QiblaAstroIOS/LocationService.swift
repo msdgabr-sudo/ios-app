@@ -1,7 +1,7 @@
 import CoreLocation
 
 @MainActor
-final class LocationService: NSObject, CLLocationManagerDelegate {
+final class LocationService: NSObject, @preconcurrency CLLocationManagerDelegate {
     enum LocationError: Error {
         case servicesDisabled
         case denied
@@ -116,7 +116,6 @@ final class LocationService: NSObject, CLLocationManagerDelegate {
             case .denied:
                 finish(.failure(.denied))
             case .locationUnknown:
-                // Transient. Keep the request alive until the timeout expires.
                 return
             default:
                 finish(.failure(.unavailable))
@@ -142,16 +141,20 @@ final class LocationService: NSObject, CLLocationManagerDelegate {
                 self.finish(.failure(.timedOut))
             }
         }
-
         manager.startUpdatingLocation()
     }
 
     private func finish(_ result: Result<Sample, LocationError>) {
+        manager.stopUpdatingLocation()
         timeoutTask?.cancel()
         timeoutTask = nil
-        manager.stopUpdatingLocation()
         let completion = pendingCompletion
         pendingCompletion = nil
         completion?(result)
+    }
+
+    deinit {
+        timeoutTask?.cancel()
+        manager.stopUpdatingLocation()
     }
 }
