@@ -67,6 +67,10 @@ jobs:
         working-directory: WebApp
         run: node tests/ios-native-motion-boundary.test.js
 
+      - name: Prove iOS orientation adapter uses existing WMM compass path once
+        working-directory: WebApp
+        run: node tests/ios-orientation-adapter.test.js
+
       - name: Validate Apple metadata and native sensor boundary
         run: |
           plutil -lint QiblaAstroIOS/Info.plist
@@ -84,6 +88,8 @@ jobs:
           ! grep -q 'xTrueNorthZVertical' QiblaAstroIOS/MotionService.swift
           grep -q 'HeadingService.swift in Sources' QiblaAstroIOS.xcodeproj/project.pbxproj
           grep -q 'MotionService.swift in Sources' QiblaAstroIOS.xcodeproj/project.pbxproj
+          grep -q "script.src='js/ios-orientation-adapter.js'" QiblaAstroIOS/RootViewController.swift
+          test -f WebApp/js/ios-orientation-adapter.js
 
       - name: Build iPhone simulator app without signing
         run: |
@@ -103,6 +109,7 @@ jobs:
           APP='build/DerivedData/Build/Products/Debug-iphonesimulator/QiblaAstro.app'
           test -d "$APP"
           test -f "$APP/WebApp/index.html"
+          test -f "$APP/WebApp/js/ios-orientation-adapter.js"
           test -f "$APP/PrivacyInfo.xcprivacy"
           /usr/libexec/PlistBuddy -c 'Print :CFBundleIdentifier' "$APP/Info.plist" | grep -Fx 'com.qiblalabs.qiblaastro'
           /usr/libexec/PlistBuddy -c 'Print :CFBundleShortVersionString' "$APP/Info.plist" | grep -Fx '3.1.1'
