@@ -65,6 +65,8 @@ The new test `WebApp/tests/ios-camera-webkit-boundary.test.js` proves:
 
 The Xcode gate also verifies that the final built app includes `NSCameraUsageDescription` and does not include `NSMicrophoneUsageDescription`.
 
+Camera-stage CI evidence is intentionally not marked PASS in this report until a workflow run containing the new camera boundary test and updated Xcode source has completed successfully. The previous orientation-stage run `32204997532` remains valid evidence only for the pre-camera state.
+
 ## Physical-iPhone acceptance still required
 
 No simulator or Android test can prove iPhone camera behavior. Before App Store/TestFlight acceptance, a signed physical iPhone must verify at minimum:
