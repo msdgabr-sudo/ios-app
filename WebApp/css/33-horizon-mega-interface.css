@@ -1,0 +1,86 @@
+/*
+ * QiblaAstro — Horizon Mega Interface
+ * Presentation-only expansion for secondary pages and global shell.
+ * No GNSS, astronomical, verification, storage, or calculation logic.
+ *
+ * © 2026 محمد سيد جبر بحيرى — Mohamed SG Behairy. All Rights Reserved.
+ */
+
+/* Global page canvas */
+body{background:#03060c;color:var(--qa-truth);font-family:var(--qa-font-ui)}
+.page{background:linear-gradient(180deg,rgba(3,6,12,.18),rgba(3,6,12,.94) 28%,#03060c 100%)}
+.page.active{scrollbar-width:none}.page.active::-webkit-scrollbar{display:none}
+.page>.sec-hdr,.page>.section-title,.page h2,.page h3{font-family:var(--qa-font-content)}
+
+/* Shared premium panels */
+#page-prayer>div:not(.sec-hdr),#page-gnss>div:not(.sec-hdr),#page-settings>div:not(.sec-hdr),#page-cal>div:not(.sec-hdr),#page-night>div:not(.sec-hdr),#page-about>div:not(.sec-hdr),#page-help>div:not(.sec-hdr){border-color:rgba(151,214,249,.14)!important;background:linear-gradient(145deg,rgba(255,255,255,.045),transparent 43%),rgba(7,16,29,.74)!important;box-shadow:inset 0 1px 0 rgba(255,255,255,.045),0 14px 34px rgba(0,0,0,.2)!important;-webkit-backdrop-filter:blur(16px) saturate(112%);backdrop-filter:blur(16px) saturate(112%)}
+
+.sec-hdr{margin:18px 0 9px!important;padding:0 4px 8px!important;border-bottom:1px solid rgba(88,215,255,.12)!important;color:var(--qa-science-soft)!important;font-size:.68rem!important;font-weight:700!important;letter-spacing:.04em!important}
+.sec-hdr::after{content:'';display:block;width:42px;height:2px;margin-top:7px;border-radius:4px;background:linear-gradient(90deg,var(--qa-science),var(--qa-guidance));box-shadow:0 0 14px rgba(88,215,255,.22)}
+
+/* Prayer dashboard */
+#page-prayer{padding-inline:14px!important}
+#page-prayer .prayer-hero,#page-prayer .next-prayer,#page-prayer [class*='prayer-card']{border-radius:24px!important;overflow:hidden;position:relative}
+#page-prayer .prayer-hero::before,#page-prayer .next-prayer::before{content:'';position:absolute;inset:0;pointer-events:none;background:radial-gradient(circle at 15% 0%,rgba(88,215,255,.1),transparent 35%),radial-gradient(circle at 88% 100%,rgba(216,182,91,.1),transparent 36%)}
+#page-prayer .prayer-grid,#page-prayer .times-grid{gap:10px!important}
+#page-prayer .prayer-time,#page-prayer .pt-card,#page-prayer .time-card{border:1px solid rgba(151,214,249,.13)!important;border-radius:18px!important;background:rgba(7,16,29,.72)!important;box-shadow:inset 0 1px 0 rgba(255,255,255,.04),0 10px 24px rgba(0,0,0,.17)!important}
+#page-prayer [id*='time'],#page-prayer .time{font-family:var(--qa-font-numeric)!important;font-variant-numeric:tabular-nums;color:var(--qa-guidance-soft)!important}
+
+/* GNSS mission-control visual layer */
+#page-gnss{padding-inline:14px!important}
+#page-gnss .grid2,#page-gnss .stat-grid{gap:10px!important}
+#page-gnss .stat,#page-gnss .gnss-card,#page-gnss [class*='source']{position:relative;overflow:hidden;border-radius:20px!important;border:1px solid rgba(88,215,255,.15)!important;background:linear-gradient(145deg,rgba(88,215,255,.045),transparent 46%),rgba(5,15,27,.78)!important}
+#page-gnss .stat::after,#page-gnss .gnss-card::after{content:'';position:absolute;inset:auto 0 0;height:2px;background:linear-gradient(90deg,transparent,var(--qa-science),transparent);opacity:.45}
+#page-gnss .val,#page-gnss [id*='lat'],#page-gnss [id*='lon'],#page-gnss [id*='accuracy']{font-family:var(--qa-font-numeric)!important;font-variant-numeric:tabular-nums;color:var(--qa-science-soft)!important}
+#page-gnss button{border-radius:16px!important;border:1px solid rgba(88,215,255,.22)!important;background:linear-gradient(145deg,rgba(88,215,255,.12),rgba(7,16,29,.88))!important;color:var(--qa-truth)!important;box-shadow:0 10px 24px rgba(0,0,0,.2)!important}
+
+/* Quran library */
+#page-quran{background:radial-gradient(circle at 50% 0%,rgba(216,182,91,.08),transparent 26%),linear-gradient(180deg,#04080f,#03060c 42%)}
+#page-quran .qr-header,#page-quran .quran-header{border-bottom:1px solid rgba(216,182,91,.16)!important;background:rgba(5,12,22,.76)!important;-webkit-backdrop-filter:blur(18px);backdrop-filter:blur(18px)}
+#page-quran .surah-card,#page-quran .qr-surah,#page-quran [class*='surah-item']{margin:0 12px 9px!important;padding:12px 14px!important;border:1px solid rgba(216,182,91,.14)!important;border-radius:18px!important;background:linear-gradient(145deg,rgba(216,182,91,.045),transparent 45%),rgba(7,16,29,.76)!important;box-shadow:inset 0 1px 0 rgba(255,255,255,.035),0 10px 24px rgba(0,0,0,.16)!important}
+#page-quran .surah-card:active,#page-quran .qr-surah:active{transform:scale(.988)}
+#page-quran .ayah,#page-quran .qr-ayah,#page-quran [class*='ayah-text']{font-family:'QuranFont','Amiri Quran','Amiri',serif!important;line-height:2.25!important;color:#f5edd8!important;text-shadow:0 1px 0 rgba(0,0,0,.5)}
+#page-quran button{border-radius:14px!important;border:1px solid rgba(216,182,91,.2)!important;background:rgba(216,182,91,.07)!important;color:var(--qa-guidance-soft)!important}
+
+/* Azkar calm instrument mode */
+#page-azkar{background:radial-gradient(circle at 50% 0%,rgba(88,215,255,.08),transparent 30%),linear-gradient(180deg,#07111e,#03060c 46%)}
+#page-azkar .zk-tabs,#page-azkar .azkar-tabs{padding:8px!important;gap:7px!important;background:rgba(4,11,20,.78)!important;border:1px solid rgba(151,214,249,.1)!important;border-radius:18px!important;-webkit-backdrop-filter:blur(16px);backdrop-filter:blur(16px)}
+#page-azkar .zk-tab,#page-azkar .azkar-tab{border-radius:12px!important;border:1px solid transparent!important;transition:.18s ease!important}
+#page-azkar .zk-tab.active,#page-azkar .azkar-tab.active{border-color:rgba(88,215,255,.24)!important;background:rgba(88,215,255,.09)!important;color:var(--qa-science-soft)!important}
+#page-azkar .zk-card,#page-azkar .azkar-card{border-radius:28px!important;border:1px solid rgba(151,214,249,.14)!important;background:linear-gradient(145deg,rgba(255,255,255,.045),transparent 42%),rgba(7,16,29,.82)!important;box-shadow:inset 0 1px 0 rgba(255,255,255,.04),0 18px 44px rgba(0,0,0,.24)!important}
+#page-azkar .zk-text,#page-azkar .azkar-text{font-family:var(--qa-font-content)!important;line-height:2!important;color:#eef4fb!important}
+#page-azkar .zk-count,#page-azkar .counter,#page-azkar button[class*='count']{border-radius:999px!important;background:linear-gradient(145deg,rgba(216,182,91,.16),rgba(7,16,29,.9))!important;border:1px solid rgba(216,182,91,.28)!important;color:var(--qa-guidance-soft)!important;box-shadow:0 10px 28px rgba(0,0,0,.25),0 0 24px rgba(216,182,91,.08)!important}
+
+/* Settings */
+#page-settings{padding-inline:14px!important}
+#page-settings .setting-row,#page-settings .settings-row,#page-settings .set-row{min-height:58px!important;margin-bottom:9px!important;padding:12px 14px!important;border:1px solid rgba(151,214,249,.12)!important;border-radius:18px!important;background:rgba(7,16,29,.74)!important;box-shadow:inset 0 1px 0 rgba(255,255,255,.035),0 9px 22px rgba(0,0,0,.15)!important}
+#page-settings select,#page-settings input,#page-settings button{border-radius:13px!important;border:1px solid rgba(88,215,255,.18)!important;background:rgba(3,10,19,.72)!important;color:var(--qa-truth)!important}
+#page-settings input[type='range']{accent-color:var(--qa-science)}
+#page-settings input[type='checkbox']{accent-color:var(--qa-trust)}
+
+/* Astronomy/night and calibration */
+#page-night,#page-cal{padding-inline:14px!important}
+#page-night canvas,#page-cal canvas{border:1px solid rgba(88,215,255,.13)!important;box-shadow:0 18px 42px rgba(0,0,0,.25),0 0 32px rgba(88,215,255,.055)!important}
+#page-night .stat,#page-cal .stat{border-radius:18px!important;border:1px solid rgba(151,214,249,.13)!important;background:rgba(7,16,29,.76)!important}
+#page-night .val,#page-cal .val{font-family:var(--qa-font-numeric)!important;font-variant-numeric:tabular-nums}
+
+/* Serenity / audio */
+#page-serenity{background:radial-gradient(circle at 50% 22%,rgba(109,224,178,.1),transparent 30%),linear-gradient(180deg,#061019,#03060c 55%)}
+#page-serenity #sk-player,#page-serenity .sk-card,#page-serenity [class*='track']{border-radius:22px!important;border:1px solid rgba(109,224,178,.13)!important;background:linear-gradient(145deg,rgba(109,224,178,.04),transparent 45%),rgba(5,14,24,.78)!important;box-shadow:0 14px 34px rgba(0,0,0,.22)!important}
+#page-serenity button{border-radius:999px!important;border:1px solid rgba(109,224,178,.18)!important;background:rgba(109,224,178,.07)!important;color:#baf2dc!important}
+
+/* About/help/legal */
+#page-about,#page-help{padding-inline:14px!important}
+#page-about h1,#page-about h2,#page-help h1,#page-help h2{color:var(--qa-guidance-soft)!important}
+#page-about a,#page-help a{color:var(--qa-science-soft)!important}
+
+/* Universal controls */
+.page button,.page [role='button']{font-family:var(--qa-font-ui);transition:transform .16s ease,filter .16s ease,border-color .16s ease}
+.page button:active,.page [role='button']:active{transform:scale(.98);filter:brightness(1.08)}
+.page input,.page select,.page textarea{font-family:var(--qa-font-ui)}
+.page .val,.page [id$='-value'],.page [id$='-deg']{font-variant-numeric:tabular-nums}
+
+/* Large-screen and narrow-screen tuning */
+@media (min-width:700px){.page{max-width:760px!important;margin-inline:auto!important}.nav,.ad-slot{max-width:760px!important}}
+@media (max-width:360px){#page-prayer,#page-gnss,#page-settings,#page-night,#page-cal,#page-about,#page-help{padding-inline:9px!important}.sec-hdr{font-size:.62rem!important}.page button{min-height:40px}}
+@media (prefers-reduced-motion:reduce){.page *{transition-duration:.01ms!important;animation-duration:.01ms!important;animation-iteration-count:1!important}}

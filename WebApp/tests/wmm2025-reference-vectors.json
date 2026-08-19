@@ -1,0 +1,19 @@
+{
+  "source": "NOAA/NCEI WMM2025 official test values",
+  "runtimeIntegration": false,
+  "vectors": [
+    {"year":2025.0,"heightKm":0,"lat":80,"lon":0,"x":6521.6,"y":145.9,"z":54791.5,"h":6523.2,"f":55178.5,"inclination":83.21,"declination":1.28},
+    {"year":2025.0,"heightKm":0,"lat":0,"lon":120,"x":39677.8,"y":-109.6,"z":-10580.2,"h":39677.9,"f":41064.3,"inclination":-14.93,"declination":-0.16},
+    {"year":2025.0,"heightKm":0,"lat":-80,"lon":240,"x":6117.5,"y":15751.9,"z":-52022.5,"h":16898.1,"f":54698.2,"inclination":-72.00,"declination":68.78},
+    {"year":2025.0,"heightKm":100,"lat":80,"lon":0,"x":6216.0,"y":92.4,"z":52598.8,"h":6216.7,"f":52964.9,"inclination":83.26,"declination":0.85},
+    {"year":2025.0,"heightKm":100,"lat":0,"lon":120,"x":37688.6,"y":-96.2,"z":-10152.1,"h":37688.7,"f":39032.1,"inclination":-15.08,"declination":-0.15},
+    {"year":2025.0,"heightKm":100,"lat":-80,"lon":240,"x":5907.6,"y":14780.3,"z":-49540.7,"h":15917.1,"f":52035.0,"inclination":-72.19,"declination":68.21},
+    {"year":2027.5,"heightKm":0,"lat":80,"lon":0,"x":6500.8,"y":294.5,"z":54869.4,"h":6507.5,"f":55253.9,"inclination":83.24,"declination":2.59},
+    {"year":2027.5,"heightKm":0,"lat":0,"lon":120,"x":39701.6,"y":-167.4,"z":-10381.8,"h":39702.0,"f":41036.9,"inclination":-14.65,"declination":-0.24},
+    {"year":2027.5,"heightKm":0,"lat":-80,"lon":240,"x":6200.7,"y":15730.3,"z":-51783.7,"h":16908.3,"f":54474.2,"inclination":-71.92,"declination":68.49},
+    {"year":2027.5,"heightKm":100,"lat":80,"lon":0,"x":6196.7,"y":233.8,"z":52670.5,"h":6201.1,"f":53034.3,"inclination":83.29,"declination":2.16},
+    {"year":2027.5,"heightKm":100,"lat":0,"lon":120,"x":37711.5,"y":-148.7,"z":-9969.8,"h":37711.8,"f":39007.4,"inclination":-14.81,"declination":-0.23},
+    {"year":2027.5,"heightKm":100,"lat":-80,"lon":240,"x":5984.0,"y":14760.1,"z":-49317.7,"h":15927.0,"f":51825.7,"inclination":-72.10,"declination":67.93}
+  ],
+  "acceptance": {"fieldNt":1.0,"angleDeg":0.02}
+}

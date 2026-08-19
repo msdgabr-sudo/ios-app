@@ -1,0 +1,69 @@
+<div class="page qa-prayer-screen" id="page-prayer" data-page-module="prayer">
+  <div class="qa-prayer-shell">
+    <section class="qa-prayer-masthead" aria-label="الموقع والتاريخ">
+      <div class="qa-prayer-brand">QiblaAstro <span>Q</span></div>
+      <div class="qa-prayer-topline">
+        <div class="qa-prayer-location"><strong><i></i><span id="prayer-location-label">موقعك الحالي</span></strong><small id="qa-prayer-date">---</small></div>
+        <div class="qa-prayer-gps"><span class="qa-location-target">◎</span><b id="qa-prayer-source">موقعك الحالي</b></div>
+      </div>
+    </section>
+
+    <section class="qa-prayer-hero" aria-label="الصلاة القادمة">
+      <div class="qa-prayer-next">
+        <div class="qa-prayer-next-label">الصلاة القادمة</div>
+        <div class="qa-prayer-next-name" id="qa-next-name">---</div>
+        <div class="qa-prayer-next-time" id="qa-next-time">--:--</div>
+        <div class="qa-prayer-countdown"><span class="qa-hourglass">⌛</span><span>متبقي</span><b id="qa-next-countdown">--:--:--</b></div>
+      </div>
+      <div class="qa-day-track" aria-label="مسار مواقيت اليوم">
+        <div class="qa-day-track-line"></div><div class="qa-day-track-progress" id="qa-day-progress"></div><div class="qa-day-now" id="qa-day-now"></div>
+        <div class="qa-day-track-labels" id="qa-day-track-labels"></div>
+      </div>
+    </section>
+
+    <section class="qa-prayer-list-card">
+      <div class="qa-section-head"><div><div class="qa-section-title"><span class="qa-title-icon">▣</span> مواقيت الصلاة</div><div class="qa-section-sub">اضغط على الجرس لتخصيص تنبيه كل صلاة</div></div><div class="qa-section-sub" id="qa-hijri">---</div></div>
+      <div class="qa-prayer-table" id="qa-prayer-table"></div>
+    </section>
+
+    <section class="qa-adhan-card" id="qa-adhan-card" aria-label="إعدادات الأذان">
+      <div class="qa-adhan-quick-grid">
+        <button class="qa-quick-setting" type="button" data-qa-open="fajr"><span class="qa-quick-icon fajr">☾</span><span><b>أذان الفجر</b><small>صيغة الفجر</small></span><i class="qa-chevron" aria-hidden="true"></i></button>
+        <button class="qa-quick-setting" type="button" data-qa-open="advance"><span class="qa-quick-icon advance">◷</span><span><b>تنبيه قبل الصلاة</b><small id="qa-advance-summary">بدون تنبيه مسبق</small></span><i class="qa-chevron" aria-hidden="true"></i></button>
+        <button class="qa-quick-setting" type="button" data-qa-open="notifications"><span class="qa-quick-icon sound">♬</span><span><b>الأذان</b><small id="qa-notification-summary">الأذان لجميع الصلوات</small></span><i class="qa-chevron" aria-hidden="true"></i></button>
+        <button class="qa-quick-setting" type="button" data-qa-open="muezzin"><span class="qa-quick-icon mic">♩</span><span><b>المؤذن</b><small id="qa-muezzin-summary">الأذان الأساسي</small></span><i class="qa-chevron" aria-hidden="true"></i></button>
+      </div>
+      <div class="qa-adhan-actions"><button class="qa-adhan-master" type="button" data-qa-adhan-toggle aria-pressed="true">الأذان مفعّل</button><button type="button" data-qa-adhan-preview>▶ تجربة الأذان</button><button type="button" data-qa-stop-preview>■ إيقاف</button></div>
+      <div class="qa-audio-readiness" id="qa-audio-readiness" data-state="checking" role="status" aria-live="polite">
+        <span class="qa-audio-readiness-dot" aria-hidden="true"></span>
+        <span class="qa-audio-readiness-copy"><b id="qa-audio-readiness-title">اختبار صلاحية الصوت</b><small id="qa-audio-readiness-sub">نتأكد أولًا أن الهاتف يسمح للتطبيق بإخراج الصوت</small></span>
+        <button type="button" id="qa-audio-readiness-btn">اختبار صلاحية الصوت</button>
+      </div>
+      <div class="qa-adhan-live-status" id="qa-adhan-live-status" role="status" aria-live="polite" aria-atomic="true"></div>
+    </section>
+
+    <section class="qa-prayer-details open" id="qa-prayer-details" aria-label="إعدادات المواقيت والتفاصيل">
+      <div class="qa-prayer-details-title">إعدادات المواقيت والتفاصيل</div>
+      <div class="qa-prayer-details-body"><div class="qa-details-grid">
+        <div class="qa-detail"><span>الشروق</span><b id="pr-r">--:--</b></div>
+        <div class="qa-detail"><span>الغروب</span><b id="pr-s">--:--</b></div>
+        <div class="qa-detail"><span>الظهر الشمسي</span><b id="pr-n">--:--</b></div>
+        <div class="qa-detail"><span>التاريخ الهجري</span><b id="pr-h">---</b></div>
+        <button class="qa-detail qa-detail-action" type="button" id="qa-prayer-location-settings-open"><span>موقع حساب الصلاة</span><b id="qa-prayer-location-value">تلقائي · GPS</b><small>يمكن اختيار مدينة يدويًا دون تغيير موقع البوصلة</small></button>
+        <button class="qa-detail qa-detail-action" type="button" id="qa-calculation-settings-open"><span>إعدادات الحساب</span><b id="qa-calculation-method-value">تلقائي</b><small id="qa-asr-method-value">العصر: شافعي / مالكي / حنبلي</small><small id="qa-high-latitude-value">خطوط العرض: تلقائي</small></button>
+      </div></div>
+    </section>
+
+    <div class="qa-sheet-backdrop" id="qa-sheet-backdrop" hidden></div>
+    <section class="qa-bottom-sheet" id="qa-adhan-sheet" hidden role="dialog" aria-modal="true" aria-labelledby="qa-sheet-title" aria-describedby="qa-sheet-subtitle">
+      <div class="qa-sheet-handle" aria-hidden="true"></div>
+      <div class="qa-sheet-head">
+        <button class="qa-sheet-back" type="button" data-qa-back-sheet aria-label="رجوع" hidden><span aria-hidden="true"></span></button>
+        <div class="qa-sheet-heading"><b id="qa-sheet-title">الإعداد</b><small id="qa-sheet-subtitle"></small></div>
+        <button class="qa-sheet-close" type="button" data-qa-close-sheet aria-label="إغلاق">×</button>
+      </div>
+      <div class="qa-sheet-body" id="qa-sheet-body"></div>
+    </section>
+    <div class="qa-prayer-legacy-contract" hidden aria-hidden="true"><span id="p-cd"></span><span id="p-nn"></span><span id="p-prog"></span><div id="p-list"></div></div>
+  </div>
+</div>

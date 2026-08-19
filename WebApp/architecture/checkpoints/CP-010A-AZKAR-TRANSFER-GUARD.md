@@ -1,0 +1,1 @@
+Azkar transfer execution guard active. Approved source remains azkar-stable@37c9dc9ea4a851c1561e2ea6bfce4b88f470b4eb. No scientific/verification/compass engine file is authorized to change.

@@ -1,0 +1,116 @@
+/* ══════════════════════════════════════════════════════════════════════════════
+   [CSS-B] DYNAMIC SKY BACKGROUNDS
+   ══════════════════════════════════════════════════════════════════════════════ */
+
+/* ══ DYNAMIC SKY BACKGROUND ══════════════════ */
+body{
+  background: #03061A; /* fallback */
+  background-attachment: fixed;
+  transition: background 3s ease;
+}
+body.sky-night{
+  background: radial-gradient(ellipse at 50% 0%,#090D16 0%,#030712 60%,#010208 100%);
+}
+body.sky-dusk{
+  background: linear-gradient(180deg,#1E1B4B 0%,#4C0519 25%,#9F1239 55%,#C2571A 75%,#EA6820 100%);
+}
+body.sky-dawn{
+  background: linear-gradient(180deg,#0F172A 0%,#312E81 30%,#9F3050 60%,#C2667A 80%,#E08860 100%);
+}
+body.sky-golden{
+  background: linear-gradient(180deg,#0A1428 0%,#1A2A5A 25%,#2A4070 50%,#C2571A 75%,#D4AF37 100%);
+}
+body.sky-blue{
+  background: linear-gradient(180deg,#0369A1 0%,#0284C7 25%,#0EA5E9 55%,#38BDF8 80%,#7DD3FC 100%);
+}
+body.sky-midday{
+  background: linear-gradient(180deg,#0284C7 0%,#0EA5E9 20%,#38BDF8 50%,#7DD3FC 75%,#BAE6FD 100%);
+}
+
+/* Stars overlay for night */
+body.sky-night::before, body.sky-dusk::before{
+  content:'';
+  position:fixed;inset:0;z-index:0;
+  background-image:
+    radial-gradient(1px 1px at 10% 8%, rgba(255,255,255,.8) 0%,transparent 100%),
+    radial-gradient(1px 1px at 25% 15%, rgba(255,255,255,.6) 0%,transparent 100%),
+    radial-gradient(1.5px 1.5px at 40% 5%, rgba(255,255,255,.9) 0%,transparent 100%),
+    radial-gradient(1px 1px at 55% 12%, rgba(255,255,255,.7) 0%,transparent 100%),
+    radial-gradient(1px 1px at 70% 6%, rgba(255,255,255,.5) 0%,transparent 100%),
+    radial-gradient(1.5px 1.5px at 85% 18%, rgba(255,255,255,.8) 0%,transparent 100%),
+    radial-gradient(1px 1px at 15% 30%, rgba(255,255,255,.4) 0%,transparent 100%),
+    radial-gradient(1px 1px at 30% 22%, rgba(255,255,255,.6) 0%,transparent 100%),
+    radial-gradient(1px 1px at 60% 25%, rgba(255,255,255,.5) 0%,transparent 100%),
+    radial-gradient(1px 1px at 78% 10%, rgba(255,255,255,.7) 0%,transparent 100%),
+    radial-gradient(1.5px 1.5px at 90% 35%, rgba(255,255,255,.6) 0%,transparent 100%),
+    radial-gradient(1px 1px at 5% 45%, rgba(255,255,255,.4) 0%,transparent 100%),
+    radial-gradient(1px 1px at 50% 38%, rgba(255,255,255,.5) 0%,transparent 100%),
+    radial-gradient(2px 2px at 92% 8%, rgba(200,220,255,.9) 0%,transparent 100%),
+    radial-gradient(1px 1px at 45% 20%, rgba(255,255,255,.5) 0%,transparent 100%);
+  pointer-events:none;
+  animation: starTwinkle 4s ease-in-out infinite alternate;
+}
+@keyframes starTwinkle{
+  from{opacity:.7;} to{opacity:1;}
+}
+
+/* Cloud layer for day */
+body.sky-blue::after, body.sky-midday::after, body.sky-golden::after{
+  content:'';
+  position:fixed;inset:0;z-index:0;
+  background-image:
+    radial-gradient(ellipse 200px 60px at 20% 20%, rgba(255,255,255,.12) 0%,transparent 70%),
+    radial-gradient(ellipse 280px 80px at 70% 15%, rgba(255,255,255,.09) 0%,transparent 70%),
+    radial-gradient(ellipse 150px 45px at 50% 30%, rgba(255,255,255,.07) 0%,transparent 70%);
+  pointer-events:none;
+  animation: cloudDrift 60s linear infinite;
+}
+@keyframes cloudDrift{
+  from{background-position: 0 0;}
+  to{background-position: 200px 0;}
+}
+
+/* All page content above background */
+body > *{position:relative;z-index:1;}
+
+:root{
+  /* Core */
+  --ink:#05080F;
+  --ink2:#0A1018;
+  --ink3:#0F1820;
+  --panel:#131C28;
+  --panel2:#182030;
+  --rim:#1E2E44;
+  --rim2:#243650;
+  /* Text */
+  --txt:#D8D0BC;
+  --txt2:#A0988A;
+  --txt3:#5A7090;
+  /* Accent — Qibla gold */
+  --gold:#C8A44A;
+  --gold-l:#ECCF7A;
+  --gold-d:#6A4E1A;
+  --gold-s:rgba(200,164,74,.12);
+  /* Moon blue */
+  --moon:#8AAEF0;
+  --moon-l:#B8CCFF;
+  --moon-d:#2A3A6A;
+  /* Sun */
+  --sun:#F0C840;
+  --sun-r:#F07030;
+  --sun-s:#A02030;
+  /* Polaris */
+  --pole:#60F0F0;
+  /* Magnetic */
+  --mag:#50A8F0;
+  --qmag:#60D080;
+  /* Status */
+  --ok:#40B870;
+  --warn:#E0A030;
+  --err:#C03040;
+  /* UI */
+  --radius:14px;
+  --radius-sm:9px;
+  --shadow:0 4px 24px rgba(0,0,0,.5);
+}
+

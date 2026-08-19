@@ -1,0 +1,26 @@
+/* QiblaAstro — date-stamped prayer plan for the authenticated Android bridge.
+ * Integration only: reuses the existing prayer location, solar-event and prayer-method APIs.
+ * It does not alter any prayer, Qibla, GNSS, WMM, compass or astronomical equations.
+ */
+(function(root){
+'use strict';
+var PRAYERS={fajr:'الفجر',dhuhr:'الظهر',asr:'العصر',maghrib:'المغرب',isha:'العشاء'};
+var ORDER=['fajr','dhuhr','asr','maghrib','isha'];
+var MAX_DAYS=180,cacheKey='',cachePlan=null;
+function settings(){try{return root.QiblaPrayerSettings&&root.QiblaPrayerSettings.get?root.QiblaPrayerSettings.get():null;}catch(_){return null;}}
+function location(){try{return root.QiblaPrayerLocation&&root.QiblaPrayerLocation.effective?root.QiblaPrayerLocation.effective():null;}catch(_){return null;}}
+function trusted(l){if(!l)return false;if(l.mode!=='auto')return Number.isFinite(Number(l.lat))&&Number.isFinite(Number(l.lon));try{return typeof gnssHasTrustedFix!=='undefined'&&gnssHasTrustedFix===true&&typeof gnssSource!=='undefined'&&gnssSource==='gps'&&Number.isFinite(Number(l.lat))&&Number.isFinite(Number(l.lon));}catch(_){return false;}}
+function deviceOffset(date){try{if(root.QiblaLocalTimezone&&root.QiblaLocalTimezone.offsetHours)return root.QiblaLocalTimezone.offsetHours(date);}catch(_){}return-date.getTimezoneOffset()/60;}
+function targetOffset(date,l){try{if(root.QiblaPrayerLocation&&root.QiblaPrayerLocation.offsetHours)return root.QiblaPrayerLocation.offsetHours(date,l&&l.timeZone);}catch(_){}return deviceOffset(date);}
+function adjustEventZone(ev,date,l){if(!ev||!l||l.mode!=='manual')return ev;var delta=targetOffset(date,l)-deviceOffset(date);if(Math.abs(delta)<1e-9)return ev;var out=Object.assign({},ev);['rH','nH','sH'].forEach(function(k){if(Number.isFinite(Number(out[k])))out[k]=((Number(out[k])+delta)%24+24)%24;});return out;}
+function solarEventsFor(l,date){if(!l||typeof solarEvts!=='function')return null;if(l.mode==='auto')return solarEvts(date);var oldLat,oldLon,hadLat=false,hadLon=false;try{oldLat=LAT;oldLon=LON;hadLat=true;hadLon=true;LAT=Number(l.lat);LON=Number(l.lon);return adjustEventZone(solarEvts(date),date,l);}catch(_){return null;}finally{try{if(hadLat)LAT=oldLat;if(hadLon)LON=oldLon;}catch(_){}}}
+function dateKey(date,l){try{if(root.QiblaPrayerLocation&&root.QiblaPrayerLocation.dateKey)return root.QiblaPrayerLocation.dateKey(date,l&&l.timeZone);}catch(_){}return date.toISOString().slice(0,10);}
+function minute(hour){hour=Number(hour);if(!Number.isFinite(hour))return-1;return((Math.round(hour*60)%1440)+1440)%1440;}
+function calculate(date,l,s){var ev=solarEventsFor(l,date);if(!ev||!root.QiblaPrayerMethods||typeof root.QiblaPrayerMethods.calculate!=='function')return null;var method=s.mode==='manual'?s.method:'auto';var result;try{result=root.QiblaPrayerMethods.calculate(ev,Number(l.lat),{method:method,lon:Number(l.lon),asr:s.asr,highLatitude:s.highLatitude},date);}catch(_){return null;}if(!result||!Array.isArray(result.prayers))return null;var times={};for(var i=0;i<ORDER.length;i++){var id=ORDER[i],name=PRAYERS[id],p=result.prayers.find(function(x){return x&&x.n===name;});var m=minute(p&&p.h);if(m<0)return null;times[id]=m;}return{date:dateKey(date,l),times:times,methodId:result.methodId||''};}
+function currentMinutes(){try{if(typeof pCache==='undefined'||!Array.isArray(pCache))return null;var out={};for(var i=0;i<ORDER.length;i++){var id=ORDER[i],name=PRAYERS[id],p=pCache.find(function(x){return x&&x.n===name;});var m=minute(p&&p.h);if(m<0)return null;out[id]=m;}return out;}catch(_){return null;}}
+function sameMinutes(a,b){if(!a||!b)return false;return ORDER.every(function(id){return Number(a[id])===Number(b[id]);});}
+function signature(days,l,s,current,base){try{return[days,dateKey(base,l),Number(l.lat).toFixed(5),Number(l.lon).toFixed(5),l.mode||'',l.timeZone||'',JSON.stringify({mode:s.mode||'',method:s.method||'',asr:s.asr||'',highLatitude:s.highLatitude||''}),ORDER.map(function(id){return current[id];}).join(',')].join('|');}catch(_){return'';}}
+function build(days){days=Math.max(2,Math.min(MAX_DAYS,Number(days)||MAX_DAYS));var l=location(),s=settings();if(!trusted(l)||!s)return null;var current=currentMinutes();if(!current)return null;var base=new Date(),sig=signature(days,l,s,current,base);if(sig&&sig===cacheKey&&cachePlan)return cachePlan;var seen=Object.create(null),out=[];for(var i=0;i<days+4&&out.length<days;i++){var sample=new Date(base.getTime()+i*86400000),entry=calculate(sample,l,s);if(!entry||seen[entry.date])continue;seen[entry.date]=1;out.push(entry);}if(out.length<days)return null;var today=dateKey(base,l),first=out.find(function(x){return x.date===today;});if(!first||!sameMinutes(first.times,current))return null;cacheKey=sig;cachePlan={version:1,timeZone:l.timeZone||Intl.DateTimeFormat().resolvedOptions().timeZone||'',days:out,order:ORDER.slice()};return cachePlan;}
+function serialize(plan){if(!plan||plan.version!==1||!Array.isArray(plan.days))return'';return plan.days.map(function(day){return day.date+':'+ORDER.map(function(id){return String(day.times[id]);}).join(',');}).join('|');}
+root.QiblaPrayerNativePlan=Object.freeze({build:build,serialize:serialize,order:ORDER.slice(),maxDays:MAX_DAYS});
+})(typeof globalThis!=='undefined'?globalThis:window);

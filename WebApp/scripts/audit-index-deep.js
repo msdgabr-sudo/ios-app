@@ -1,0 +1,40 @@
+#!/usr/bin/env node
+'use strict';
+const fs=require('fs');
+const path=require('path');
+const crypto=require('crypto');
+const root=path.resolve(__dirname,'..');
+const file=path.join(root,'index.html');
+const html=fs.readFileSync(file,'utf8');
+const lines=html.split(/\r?\n/);
+const count=(s,re)=>{let n=0,m;re.lastIndex=0;while((m=re.exec(s)))n++;return n;};
+const uniq=a=>[...new Set(a)];
+const functions=[];
+for(const re of [/\bfunction\s+([A-Za-z_$][\w$]*)\s*\(/g,/\b(?:const|let|var)\s+([A-Za-z_$][\w$]*)\s*=\s*(?:async\s*)?function\s*\(/g,/\b(?:const|let|var)\s+([A-Za-z_$][\w$]*)\s*=\s*(?:async\s*)?\([^)]*\)\s*=>/g]){
+ let m; while((m=re.exec(html))) functions.push(m[1]);
+}
+const vars=[]; let vm; const vre=/\b(?:const|let|var)\s+([A-Za-z_$][\w$]*)/g; while((vm=vre.exec(html)))vars.push(vm[1]);
+const defs={}; for(const n of functions)defs[n]=(defs[n]||0)+1;
+const varDefs={}; for(const n of vars)varDefs[n]=(varDefs[n]||0)+1;
+const handlerNames=[]; let hm; const hre=/\bon(?:click|change|input|submit|load|error)\s*=\s*["']\s*([A-Za-z_$][\w$]*)\s*\(/gi; while((hm=hre.exec(html)))handlerNames.push(hm[2]);
+const usage=n=>count(html,new RegExp('\\b'+n.replace(/[$]/g,'\\$&')+'\\b','g'));
+const deadFunctions=uniq(functions).map(name=>({name,definitions:defs[name],occurrences:usage(name)})).filter(x=>x.occurrences<=x.definitions).sort((a,b)=>a.occurrences-b.occurrences||a.name.localeCompare(b.name));
+const duplicateFunctions=Object.entries(defs).filter(([,n])=>n>1).map(([name,definitions])=>({name,definitions,occurrences:usage(name)}));
+const duplicateVars=Object.entries(varDefs).filter(([,n])=>n>1).map(([name,definitions])=>({name,definitions,occurrences:usage(name)}));
+const missingHandlers=uniq(handlerNames).filter(n=>usage(n)===count(html,new RegExp('(?:onclick|onchange|oninput|onsubmit|onload|onerror)\\s*=\\s*["'][^"']*\\b'+n.replace(/[$]/g,'\\$&')+'\\s*\\(','gi')));
+const ids=[]; let im; const ire=/\bid=["']([^"']+)["']/g; while((im=ire.exec(html)))ids.push(im[1]);
+const idCounts={};ids.forEach(x=>idCounts[x]=(idCounts[x]||0)+1);
+const duplicateIds=Object.entries(idCounts).filter(([,n])=>n>1).map(([id,count])=>({id,count}));
+const srcs=[]; let sm; const sre=/<script\b[^>]*\bsrc=["']([^"']+)["'][^>]*>/gi;while((sm=sre.exec(html)))srcs.push(sm[1]);
+const hrefs=[];let lm;const lre=/<link\b[^>]*\bhref=["']([^"']+)["'][^>]*>/gi;while((lm=lre.exec(html)))hrefs.push(lm[1]);
+const localRefs=uniq([...srcs,...hrefs]).filter(x=>!/^https?:\/\//i.test(x)&&!/^data:/i.test(x)&&!x.startsWith('#'));
+const missingLocalRefs=localRefs.filter(x=>{const clean=x.split(/[?#]/)[0].replace(/^\.\//,'');return !fs.existsSync(path.join(root,clean));});
+const suspiciousTokens=['polaris','WMM2025','astroQibla','trueCameraHeading','recordVerification','deviceHeading','magnetometer','tracking-toggle','lock-toggle'];
+const tokenStats=suspiciousTokens.map(token=>({token,occurrences:count(html,new RegExp(token,'gi'))}));
+const repeatedComments=[]; const comments=html.match(/<!--[\s\S]*?-->/g)||[]; const cc={}; comments.map(x=>x.replace(/\s+/g,' ').trim()).forEach(x=>cc[x]=(cc[x]||0)+1); for(const [text,n] of Object.entries(cc))if(n>1)repeatedComments.push({count:n,text:text.slice(0,180)});
+const report={generatedAt:new Date().toISOString(),index:{bytes:Buffer.byteLength(html),lines:lines.length,sha256:crypto.createHash('sha256').update(html).digest('hex')},counts:{functions:uniq(functions).length,functionDefinitions:functions.length,variables:uniq(vars).length,variableDefinitions:vars.length,inlineHandlers:handlerNames.length,ids:ids.length,externalScripts:srcs.length,stylesheets:hrefs.length},duplicateIds,duplicateFunctions,duplicateVars,missingHandlers,missingLocalRefs,deadFunctionCandidates:deadFunctions,tokenStats,repeatedComments:repeatedComments.sort((a,b)=>b.count-a.count)};
+fs.mkdirSync(path.join(root,'reports'),{recursive:true});
+fs.writeFileSync(path.join(root,'reports/index-deep-audit.json'),JSON.stringify(report,null,2));
+const md=[];md.push('# QiblaAstro Deep index.html Audit','',`Generated: ${report.generatedAt}`,'',`- Size: **${(report.index.bytes/1024).toFixed(2)} KB**`,`- Lines: **${report.index.lines}**`,`- Unique functions: **${report.counts.functions}**`,`- Unique variables: **${report.counts.variables}**`,`- Inline handlers: **${report.counts.inlineHandlers}**`,`- Duplicate IDs: **${duplicateIds.length}**`,`- Duplicate function names: **${duplicateFunctions.length}**`,`- Missing handler candidates: **${missingHandlers.length}**`,`- Missing local asset refs: **${missingLocalRefs.length}**`,`- Dead function candidates: **${deadFunctions.length}**`,'','## Duplicate function names','',duplicateFunctions.length?duplicateFunctions.map(x=>`- \`${x.name}\`: ${x.definitions} definitions, ${x.occurrences} occurrences`).join('\n'):'- None','','## Missing handler candidates','',missingHandlers.length?missingHandlers.map(x=>`- \`${x}\``).join('\n'):'- None','','## Missing local refs','',missingLocalRefs.length?missingLocalRefs.map(x=>`- \`${x}\``).join('\n'):'- None','','## Dead function candidates (static-only)','',deadFunctions.length?deadFunctions.slice(0,100).map(x=>`- \`${x.name}\` — defs ${x.definitions}, occurrences ${x.occurrences}`).join('\n'):'- None','','## Sensitive / legacy token occurrences','',tokenStats.map(x=>`- \`${x.token}\`: ${x.occurrences}`).join('\n'),'','## Repeated HTML comments','',repeatedComments.length?repeatedComments.slice(0,30).map(x=>`- ${x.count}× ${x.text}`).join('\n'):'- None','','> Important: “dead candidate” means static text analysis found no second textual reference. It is not authorization to delete. Dynamic/global/event usage must be checked before any change.');
+fs.writeFileSync(path.join(root,'reports/index-deep-audit.md'),md.join('\n'));
+console.log(md.join('\n'));

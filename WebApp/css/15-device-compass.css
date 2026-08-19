@@ -1,0 +1,24 @@
+/* ══════════════════════════════════════════════════════════════════════════════
+   [CSS-N] DEVICE COMPASS ACCURACY
+   ══════════════════════════════════════════════════════════════════════════════ */
+
+/* ═══════════════════════════════════════════
+   DEVICE COMPASS accuracy colors
+═══════════════════════════════════════════ */
+.acc-excellent{color:var(--ok)!important;}
+.acc-good{color:var(--gold)!important;}
+.acc-fair{color:var(--warn)!important;}
+.acc-poor{color:var(--err)!important;}
+.dir-wrap{width:100%;background:var(--panel);border:1px solid var(--rim);border-radius:var(--radius);overflow:hidden;}
+.dir-hdr{padding:9px 13px;border-bottom:1px solid var(--rim);font-size:.57rem;color:var(--txt3);font-family:'JetBrains Mono',monospace;letter-spacing:.07em;text-transform:uppercase;}
+.dir-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:1px;background:var(--rim);}
+.dc{background:var(--panel);padding:9px 4px;text-align:center;display:flex;flex-direction:column;align-items:center;gap:3px;transition:background .2s;}
+.dc.hl{background:linear-gradient(160deg,rgba(200,164,74,.16),rgba(200,164,74,.03));}
+.dc.hlm{background:linear-gradient(160deg,rgba(138,174,240,.14),rgba(138,174,240,.02));}
+.d-icon{font-size:1.05rem;}
+.d-name{font-size:.68rem;font-weight:700;color:var(--txt);}
+.dc.hl .d-name{color:var(--gold);}
+.dc.hlm .d-name{color:var(--moon);}
+.d-deg{font-family:'JetBrains Mono',monospace;font-size:.6rem;color:var(--txt3);}
+.d-note{font-size:.5rem;color:var(--txt3);line-height:1.2;min-height:12px;}
+

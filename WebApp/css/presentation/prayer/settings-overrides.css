@@ -1,0 +1,29 @@
+/* QiblaAstro — prayer settings UX overrides. */
+/* The active prayer page must not establish a transformed containing block;
+ * otherwise fixed bottom sheets are positioned against the long page instead
+ * of the physical viewport on small phones. Presentation-only rule. */
+#page-prayer.page.active{transform:none!important;animation:none!important}
+#page-prayer.qa-prayer-screen.active{min-height:100dvh!important;padding-bottom:max(20px,env(safe-area-inset-bottom,0px))!important;background:linear-gradient(180deg,#f2eee6 0,#faf8f3 270px,#f7f4ee 100%)!important}
+#page-prayer .qa-prayer-shell{padding-bottom:0!important;margin-bottom:0!important}
+/* Prayer timing details are a permanent part of the screen. They are never
+ * collapsed behind a toggle in the release phone layout. */
+#page-prayer .qa-prayer-details-body{display:block!important;padding:0 13px 13px}
+#page-prayer .qa-prayer-details-title{padding:14px 16px 10px;text-align:center;font-weight:700;color:#5f5a52;font-size:.72rem;cursor:default!important;pointer-events:none!important}
+#page-prayer .qa-prayer-details{overflow:visible!important}
+#page-prayer .qa-detail-action{font-family:inherit;text-align:right;cursor:pointer;width:100%;min-height:92px;color:inherit;touch-action:manipulation;pointer-events:auto!important;position:relative;z-index:1}
+#page-prayer .qa-detail-action:active{transform:scale(.99)}
+#page-prayer .qa-detail-action small{display:block;color:#8c887f;font-size:.48rem;margin-top:3px;line-height:1.55}
+#page-prayer .qa-bottom-sheet{box-sizing:border-box!important;max-height:calc(100dvh - 74px)!important;height:min(82dvh,720px);overflow:hidden!important;display:flex;flex-direction:column;padding-bottom:max(12px,env(safe-area-inset-bottom))!important;overscroll-behavior:contain;animation:qaSheetViewportFade .18s ease-out!important}
+#page-prayer .qa-sheet-handle,#page-prayer .qa-sheet-head{flex:0 0 auto}
+#page-prayer .qa-sheet-head{position:relative!important;top:auto!important}
+#page-prayer .qa-sheet-body{flex:1 1 auto;min-height:0;overflow-y:auto;overflow-x:hidden;-webkit-overflow-scrolling:touch;overscroll-behavior:contain;padding:0 2px calc(28px + env(safe-area-inset-bottom));scrollbar-gutter:stable}
+#page-prayer .qa-sheet-section-title{padding:14px 5px 5px;font-weight:700;color:#6d675d;font-size:.66rem;position:sticky;top:0;background:#fffdf9;z-index:1}
+#page-prayer .qa-city-search,#page-prayer .qa-custom-location-grid input{width:100%;border:1px solid #e5e0d6;border-radius:13px;background:#fff;color:#34312c;font-family:inherit;font-size:.7rem;padding:12px 13px;outline:none}
+#page-prayer .qa-city-search{position:sticky;top:34px;z-index:2;margin:4px 0 8px;box-shadow:0 5px 15px rgba(75,61,40,.05)}
+#page-prayer .qa-city-search:focus,#page-prayer .qa-custom-location-grid input:focus{border-color:#9bcfaf;box-shadow:0 0 0 3px rgba(21,148,71,.08)}
+#page-prayer .qa-custom-location-grid{display:grid;grid-template-columns:1fr 1fr;gap:8px;padding:5px 0}
+#page-prayer .qa-custom-location-grid input:first-child{grid-column:1/-1}
+#page-prayer .qa-prayer-time,#page-prayer .qa-prayer-next-time,#page-prayer .qa-track-item small{direction:rtl;unicode-bidi:plaintext}
+body[data-qa-active-page="prayer"],body[data-qa-active-internal-screen="prayer"]{background:#f7f4ee!important;overflow-x:hidden!important}
+@keyframes qaSheetViewportFade{from{opacity:.65}to{opacity:1}}
+@media(max-width:390px){#page-prayer .qa-bottom-sheet{box-sizing:border-box!important;height:calc(100dvh - 58px);max-height:calc(100dvh - 58px)!important;border-radius:22px 22px 0 0}#page-prayer .qa-custom-location-grid{grid-template-columns:1fr}}

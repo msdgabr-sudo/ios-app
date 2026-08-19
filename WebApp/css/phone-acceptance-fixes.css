@@ -1,0 +1,95 @@
+/* QiblaAstro — phone acceptance presentation fixes.
+ * Presentation only. No Qibla, compass, WMM, astronomy, camera or prayer calculations.
+ */
+
+/* Home Astronomy card: use the approved project asset, never an emoji/pseudo fallback. */
+#page-home .qa-service-card.astronomy .qa-service-icon{
+  background:transparent url('../icons/hm-astronomy.png') center/contain no-repeat!important;
+}
+#page-home .qa-service-card.astronomy .qa-service-icon img{
+  display:none!important;
+}
+#page-home .qa-service-card.astronomy .qa-service-icon::before,
+#page-home .qa-service-card.astronomy .qa-service-icon::after{
+  content:none!important;
+  display:none!important;
+}
+
+/* Home phone acceptance: keep dates/prayer + action rows slightly lower than
+   the original layout, but not as low as the previous 30px acceptance pass. */
+#page-home .qa-info,
+#page-home .qa-actions-primary,
+#page-home .qa-actions-tools,
+#page-home .qa-actions-faith{
+  transform:translateY(18px)!important;
+}
+
+/* Serenity header: only Home + Library are controls. The decorative lantern is not a button. */
+#page-serenity .sr-lantern{
+  display:none!important;
+}
+#page-serenity .sr-hero{
+  grid-template-columns:72px minmax(0,1fr) 72px!important;
+  position:relative!important;
+}
+#page-serenity .sr-title-wrap{
+  grid-column:2!important;
+}
+#page-serenity .sr-history{
+  position:fixed!important;
+  top:calc(env(safe-area-inset-top,0px) + 12px)!important;
+  left:max(14px,calc((100vw - 720px)/2 + 14px))!important;
+  right:auto!important;
+  z-index:1001!important;
+  width:72px!important;
+  min-width:72px!important;
+  height:48px!important;
+  margin:0!important;
+}
+/* Arabic/Urdu: Home right, Library left. */
+html[dir="rtl"] body[data-qa-active-internal-screen="serenity"] #qa-internal-home-button,
+html[dir="rtl"] body[data-qa-active-page="serenity"] #qa-internal-home-button{
+  right:max(14px,calc((100vw - 720px)/2 + 14px))!important;
+  left:auto!important;
+}
+/* LTR languages: swap positions — Home left, Library right. */
+html[dir="ltr"] body[data-qa-active-internal-screen="serenity"] #qa-internal-home-button,
+html[dir="ltr"] body[data-qa-active-page="serenity"] #qa-internal-home-button{
+  left:max(14px,calc((100vw - 720px)/2 + 14px))!important;
+  right:auto!important;
+}
+html[dir="ltr"] #page-serenity .sr-history{
+  right:max(14px,calc((100vw - 720px)/2 + 14px))!important;
+  left:auto!important;
+}
+
+/* Azkar host itself must remain a single physical viewport. Reader card owns any
+   text overflow internally; the application page must not create a second scroll. */
+body[data-qa-active-page="azkar"],
+body[data-qa-active-internal-screen="azkar"]{
+  height:100dvh!important;
+  min-height:100dvh!important;
+  max-height:100dvh!important;
+  overflow:hidden!important;
+  overscroll-behavior:none!important;
+}
+body[data-qa-active-page="azkar"] #page-azkar.active,
+body[data-qa-active-internal-screen="azkar"] #page-azkar.active{
+  width:100%!important;
+  height:100dvh!important;
+  min-height:100dvh!important;
+  max-height:100dvh!important;
+  padding:0!important;
+  margin:0!important;
+  overflow:hidden!important;
+  overscroll-behavior:none!important;
+}
+body[data-qa-active-page="azkar"] #qa-azkar-frame,
+body[data-qa-active-internal-screen="azkar"] #qa-azkar-frame{
+  width:100%!important;
+  height:100dvh!important;
+  min-height:100dvh!important;
+  max-height:100dvh!important;
+  overflow:hidden!important;
+  border:0!important;
+}

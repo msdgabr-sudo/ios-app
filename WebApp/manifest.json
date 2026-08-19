@@ -1,0 +1,39 @@
+{
+  "name": "QiblaAstro ELITE — بوصلة القبلة الفلكية",
+  "short_name": "QiblaAstro",
+  "description": "بوصلة قبلة فلكية مع وظائف الملاحة والتحقق الفلكي ومواقيت الصلاة، مع دعم العمل دون اتصال للموارد المحلية.",
+  "start_url": "./index.html",
+  "display": "standalone",
+  "orientation": "portrait",
+  "background_color": "#05080F",
+  "theme_color": "#05080F",
+  "categories": ["religion", "navigation", "utilities", "lifestyle"],
+  "lang": "ar",
+  "dir": "rtl",
+  "scope": "./",
+  "id": "./?source=pwa",
+  "icons": [
+    {"src":"icons/icon-72x72.png","sizes":"72x72","type":"image/png","purpose":"any"},
+    {"src":"icons/icon-96x96.png","sizes":"96x96","type":"image/png","purpose":"any"},
+    {"src":"icons/icon-128x128.png","sizes":"128x128","type":"image/png","purpose":"any"},
+    {"src":"icons/icon-144x144.png","sizes":"144x144","type":"image/png","purpose":"any"},
+    {"src":"icons/icon-152x152.png","sizes":"152x152","type":"image/png","purpose":"any"},
+    {"src":"icons/icon-192x192.png","sizes":"192x192","type":"image/png","purpose":"any"},
+    {"src":"icons/icon-384x384.png","sizes":"384x384","type":"image/png","purpose":"any"},
+    {"src":"icons/icon-512x512.png","sizes":"512x512","type":"image/png","purpose":"any"},
+    {"src":"icons/maskable/icon-maskable-192x192.png","sizes":"192x192","type":"image/png","purpose":"maskable"},
+    {"src":"icons/maskable/icon-maskable-512x512.png","sizes":"512x512","type":"image/png","purpose":"maskable"}
+  ],
+  "shortcuts": [
+    {"name":"البوصلة","short_name":"بوصلة","description":"فتح البوصلة الفلكية مباشرة","url":"./index.html?page=compass","icons":[{"src":"icons/icon-96x96.png","sizes":"96x96"}]},
+    {"name":"مواقيت الصلاة","short_name":"الصلاة","description":"عرض مواقيت الصلاة اليومية","url":"./index.html?page=prayer","icons":[{"src":"icons/icon-96x96.png","sizes":"96x96"}]},
+    {"name":"الأذكار","short_name":"أذكار","description":"أذكار الصباح والمساء","url":"./index.html?page=azkar","icons":[{"src":"icons/icon-96x96.png","sizes":"96x96"}]},
+    {"name":"القرآن الكريم","short_name":"قرآن","description":"فتح المصحف الشريف","url":"./index.html?page=quran","icons":[{"src":"icons/icon-96x96.png","sizes":"96x96"}]}
+  ],
+  "related_applications": [],
+  "prefer_related_applications": false,
+  "handle_links": "preferred",
+  "launch_handler": {"client_mode":["navigate-existing","auto"]},
+  "edge_side_panel": {},
+  "display_override": ["standalone", "minimal-ui", "browser"]
+}

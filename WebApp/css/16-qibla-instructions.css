@@ -1,0 +1,15 @@
+/* ══════════════════════════════════════════════════════════════════════════════
+   [CSS-O] QIBLA INSTRUCTION CARD
+   ══════════════════════════════════════════════════════════════════════════════ */
+
+/* ═══════════════════════════════════════════
+   QIBLA INSTRUCTION CARD
+═══════════════════════════════════════════ */
+.qi-card{
+  width:100%;background:linear-gradient(135deg,var(--ink3),var(--panel));
+  border:1px solid var(--rim);border-right:3px solid var(--gold);
+  border-radius:var(--radius);padding:13px 15px;
+}
+.qi-card .card-hdr{font-size:.58rem;color:var(--gold);font-family:'JetBrains Mono',monospace;letter-spacing:.08em;text-transform:uppercase;margin-bottom:8px;}
+.qi-body{font-size:.76rem;line-height:1.9;color:var(--txt);}
+

@@ -1,0 +1,1 @@
+Invariants: approved Azkar source bytes unchanged; exactly 10 local MP3 alert files; page remains standalone; index contains route host only; scientific core untouched; manual app testing deferred until all screen transfers finish.

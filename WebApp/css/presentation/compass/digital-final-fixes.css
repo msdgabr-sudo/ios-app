@@ -1,0 +1,209 @@
+/* QiblaAstro — Digital compass final layout fixes
+ * Presentation only. Original calculations, values and onclick handlers remain authoritative.
+ * © 2026 محمد سيد جبر بحيرى — Mohamed SG Behairy. All Rights Reserved.
+ */
+
+/* 1) Keep a clean gap between compass circle and first metric row. */
+#page-compass.qa-digital-dashboard-active>#cvs{
+  margin:-8px auto 2px!important;
+}
+#page-compass.qa-digital-dashboard-active .qa-compass-legacy-grid{
+  padding-top:2px!important;
+}
+
+/* 2) Three-item second row: original GNSS, original confidence output, original calibration. */
+#page-compass.qa-digital-dashboard-active .qa-digital-action-row{
+  clear:both!important;
+  display:grid!important;
+  grid-template-columns:repeat(3,minmax(0,1fr))!important;
+  grid-auto-rows:68px!important;
+  align-items:stretch!important;
+  direction:rtl!important;
+  gap:6px!important;
+  padding:0 10px 4px!important;
+  margin:0!important;
+  width:100%!important;
+  height:72px!important;
+  max-height:72px!important;
+  box-sizing:border-box!important;
+  overflow:hidden!important;
+}
+#page-compass.qa-digital-dashboard-active .qa-digital-action-row>div{
+  width:auto!important;
+  min-width:0!important;
+  height:68px!important;
+  min-height:68px!important;
+  max-height:68px!important;
+  float:none!important;
+  padding:0!important;
+  margin:0!important;
+  overflow:hidden!important;
+  box-sizing:border-box!important;
+}
+#page-compass.qa-digital-dashboard-active .qa-digital-action-row>div>button{
+  width:100%!important;
+  height:68px!important;
+  min-height:68px!important;
+  max-height:68px!important;
+  margin:0!important;
+  padding:4px 4px!important;
+  border-radius:15px!important;
+  border:1px solid rgba(119,165,205,.26)!important;
+  background:linear-gradient(155deg,rgba(9,27,43,.98),rgba(4,14,25,.99))!important;
+  box-shadow:inset 0 1px 0 rgba(255,255,255,.025),0 5px 14px rgba(0,0,0,.14)!important;
+  display:flex!important;
+  flex-direction:column!important;
+  align-items:center!important;
+  justify-content:center!important;
+  text-align:center!important;
+  gap:1px!important;
+  overflow:hidden!important;
+  box-sizing:border-box!important;
+}
+#page-compass.qa-digital-dashboard-active .qa-digital-action-row>div>button>span:first-child{
+  font-size:.92rem!important;
+  line-height:1!important;
+  margin:0!important;
+  max-height:19px!important;
+}
+#page-compass.qa-digital-dashboard-active .qa-digital-action-row>div>button>div{
+  width:100%!important;
+  margin:0!important;
+  padding:0!important;
+  line-height:1.05!important;
+}
+#page-compass.qa-digital-dashboard-active .qa-digital-action-row>div>button>div>div:first-child{
+  font-size:.53rem!important;
+  line-height:1.05!important;
+  margin:0!important;
+  white-space:normal!important;
+}
+#page-compass.qa-digital-dashboard-active .qa-digital-action-row>div>button>div>div:last-child,
+#page-compass.qa-digital-dashboard-active .qa-digital-action-row #gnss-btn-status{
+  font-size:.42rem!important;
+  line-height:1.05!important;
+  margin:1px 0 0!important;
+  white-space:nowrap!important;
+  overflow:hidden!important;
+  text-overflow:ellipsis!important;
+}
+#page-compass.qa-digital-dashboard-active .qa-digital-action-row>div>button>span:last-child{
+  display:none!important;
+}
+
+#page-compass.qa-digital-dashboard-active .qa-digital-confidence-card{
+  width:100%!important;
+  min-width:0!important;
+  height:68px!important;
+  min-height:68px!important;
+  max-height:68px!important;
+  padding:4px 5px!important;
+  border-radius:15px!important;
+  border:1px solid rgba(119,165,205,.26)!important;
+  background:linear-gradient(155deg,rgba(9,27,43,.98),rgba(4,14,25,.99))!important;
+  box-shadow:inset 0 1px 0 rgba(255,255,255,.025),0 5px 14px rgba(0,0,0,.14)!important;
+  color:#E4E9EF!important;
+  display:flex!important;
+  flex-direction:column!important;
+  align-items:center!important;
+  justify-content:center!important;
+  text-align:center!important;
+  gap:1px!important;
+  box-sizing:border-box!important;
+  overflow:hidden!important;
+}
+#page-compass.qa-digital-dashboard-active .qa-digital-confidence-icon{
+  width:18px!important;
+  height:18px!important;
+  min-height:18px!important;
+  border-radius:50%!important;
+  display:grid!important;
+  place-items:center!important;
+  border:1px solid rgba(90,200,250,.26)!important;
+  color:#78BFF2!important;
+  background:rgba(90,200,250,.06)!important;
+  font-size:.65rem!important;
+  line-height:1!important;
+}
+#page-compass.qa-digital-dashboard-active .qa-digital-confidence-body{width:100%!important;min-width:0!important}
+#page-compass.qa-digital-dashboard-active .qa-digital-confidence-body>b{
+  display:block!important;
+  font-size:.50rem!important;
+  line-height:1.05!important;
+  color:#E4E9EF!important;
+  margin:0!important;
+}
+#page-compass.qa-digital-dashboard-active #compass-accuracy{
+  display:block!important;
+  font-size:.41rem!important;
+  line-height:1.05!important;
+  margin:1px 0 0!important;
+  min-height:1em!important;
+  max-height:1.2em!important;
+  white-space:nowrap!important;
+  overflow:hidden!important;
+  text-overflow:ellipsis!important;
+  color:#91A8BA;
+}
+#page-compass.qa-digital-dashboard-active .qa-digital-confidence-track{
+  display:block!important;
+  height:3px!important;
+  width:88%!important;
+  margin:3px auto 0!important;
+  border-radius:99px!important;
+  overflow:hidden!important;
+  background:rgba(126,164,192,.18)!important;
+  direction:rtl!important;
+}
+#page-compass.qa-digital-dashboard-active .qa-digital-confidence-track i{
+  display:block!important;
+  height:100%!important;
+  width:0;
+  margin-left:auto!important;
+  border-radius:99px!important;
+  background:#78BFF2;
+  transition:width .3s ease,background .3s ease;
+}
+#page-compass.qa-digital-dashboard-active .qa-digital-confidence-card[data-state="excellent"] .qa-digital-confidence-track i{background:#63C779}
+#page-compass.qa-digital-dashboard-active .qa-digital-confidence-card[data-state="good"] .qa-digital-confidence-track i{background:#7DB9D8}
+#page-compass.qa-digital-dashboard-active .qa-digital-confidence-card[data-state="fair"] .qa-digital-confidence-track i{background:#C9A85D}
+#page-compass.qa-digital-dashboard-active .qa-digital-confidence-card[data-state="weak"] .qa-digital-confidence-track i{background:#C76868}
+
+/* 3) Preserve enough room for the entire deviation calculator. */
+#page-compass.qa-digital-dashboard-active .qa-deviation-calculator{
+  margin-bottom:8px!important;
+  max-height:170px!important;
+  overflow:hidden!important;
+}
+
+@media (max-height:820px){
+  #page-compass.qa-digital-dashboard-active>#cvs{width:min(98vw,49vh,440px)!important;margin:-6px auto 3px!important}
+  #page-compass.qa-digital-dashboard-active .qa-digital-action-row{grid-auto-rows:62px!important;height:66px!important;max-height:66px!important}
+  #page-compass.qa-digital-dashboard-active .qa-digital-action-row>div,
+  #page-compass.qa-digital-dashboard-active .qa-digital-action-row>div>button,
+  #page-compass.qa-digital-dashboard-active .qa-digital-confidence-card{height:62px!important;min-height:62px!important;max-height:62px!important}
+  #page-compass.qa-digital-dashboard-active .qa-deviation-calculator{max-height:145px!important;margin-bottom:6px!important}
+}
+@media (max-height:700px){
+  #page-compass.qa-digital-dashboard-active>#cvs{width:min(97vw,43vh,380px)!important;margin:-4px auto 4px!important}
+  #page-compass.qa-digital-dashboard-active .qa-digital-action-row{grid-auto-rows:56px!important;height:60px!important;max-height:60px!important;gap:4px!important;padding-left:7px!important;padding-right:7px!important}
+  #page-compass.qa-digital-dashboard-active .qa-digital-action-row>div,
+  #page-compass.qa-digital-dashboard-active .qa-digital-action-row>div>button,
+  #page-compass.qa-digital-dashboard-active .qa-digital-confidence-card{height:56px!important;min-height:56px!important;max-height:56px!important;padding-top:3px!important;padding-bottom:3px!important}
+  #page-compass.qa-digital-dashboard-active .qa-digital-confidence-icon{width:16px!important;height:16px!important;min-height:16px!important;font-size:.58rem!important}
+  #page-compass.qa-digital-dashboard-active #compass-accuracy{font-size:.38rem!important}
+  #page-compass.qa-digital-dashboard-active .qa-deviation-calculator{max-height:128px!important;margin-bottom:5px!important}
+}
+@media (max-height:610px){
+  #page-compass.qa-digital-dashboard-active>#cvs{width:min(94vw,37vh,325px)!important;margin:-2px auto 4px!important}
+  #page-compass.qa-digital-dashboard-active .qa-digital-action-row{grid-auto-rows:50px!important;height:54px!important;max-height:54px!important}
+  #page-compass.qa-digital-dashboard-active .qa-digital-action-row>div,
+  #page-compass.qa-digital-dashboard-active .qa-digital-action-row>div>button,
+  #page-compass.qa-digital-dashboard-active .qa-digital-confidence-card{height:50px!important;min-height:50px!important;max-height:50px!important}
+  #page-compass.qa-digital-dashboard-active .qa-digital-confidence-icon{display:none!important}
+  #page-compass.qa-digital-dashboard-active .qa-deviation-calculator{max-height:112px!important;margin-bottom:4px!important}
+}
+@media (max-width:360px){
+  #page-compass.qa-digital-dashboard-active .qa-digital-action-row{gap:4px!important;padding-left:7px!important;padding-right:7px!important}
+  #page-compass.qa-digital-dashboard-active .qa-digital-confidence-card{border-radius:13px!important}
+}

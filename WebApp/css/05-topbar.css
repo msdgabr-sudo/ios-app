@@ -1,0 +1,29 @@
+/* ══════════════════════════════════════════════════════════════════════════════
+   [CSS-E] TOP BAR & NAVIGATION
+   ══════════════════════════════════════════════════════════════════════════════ */
+
+/* ═══════════════════════════════════════════
+   TOP BAR
+═══════════════════════════════════════════ */
+.topbar{
+  width:100%;max-width:420px;
+  display:flex;align-items:center;justify-content:space-between;
+  padding:12px 16px 6px;
+  position:sticky;top:0;z-index:100;
+  background:linear-gradient(to bottom,var(--ink) 85%,transparent);
+}
+.app-name{
+  font-size:1rem;font-weight:700;
+  background:linear-gradient(90deg,var(--gold-d),var(--gold-l));
+  -webkit-background-clip:text;-webkit-text-fill-color:transparent;
+  letter-spacing:.04em;
+}
+.live-badge{
+  display:flex;align-items:center;gap:5px;
+  font-family:'JetBrains Mono',monospace;font-size:.68rem;color:var(--txt3);
+}
+.live-dot{width:6px;height:6px;border-radius:50%;background:var(--ok);animation:pulse 2s ease infinite;}
+@keyframes pulse{0%,100%{opacity:1}50%{opacity:.35}}
+
+/* Hide topbar only on Home screen (toggled via body.hide-topbar in GT()) */
+body.hide-topbar .topbar{display:none}

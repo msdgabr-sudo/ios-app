@@ -1,0 +1,113 @@
+/*
+ * QiblaAstro — Premium Finish
+ * Final visual unification + performance-safe interaction polish.
+ * © 2026 محمد سيد جبر بحيرى — Mohamed SG Behairy. All Rights Reserved.
+ */
+
+#page-home .qa-info,
+#page-home .qa-systems,
+#page-home .qa-system-card,
+#page-home .qa-service-card,
+#page-home .qa-side-card{
+  border-color:rgba(255,255,255,.105)!important;
+  box-shadow:
+    inset 0 1px 0 rgba(255,255,255,.045),
+    0 7px 20px rgba(0,0,0,.20)!important;
+}
+
+#page-home .qa-system-card,
+#page-home .qa-service-card{
+  transition:transform .16s ease,border-color .18s ease,box-shadow .18s ease,background-color .18s ease!important;
+  -webkit-tap-highlight-color:transparent;
+  touch-action:manipulation;
+}
+
+#page-home .qa-system-card.active,
+#page-home .qa-service-card.verify{
+  border-color:rgba(225,181,76,.50)!important;
+  box-shadow:
+    inset 0 1px 0 rgba(255,255,255,.055),
+    0 0 16px rgba(225,181,76,.075),
+    0 7px 20px rgba(0,0,0,.21)!important;
+}
+
+#page-home .qa-system-card:active,
+#page-home .qa-service-card:active{
+  transform:translateY(1px) scale(.982)!important;
+}
+
+#page-home .qa-system-card:focus-visible,
+#page-home .qa-service-card:focus-visible,
+#page-home .qa-bearing:focus-visible{
+  outline:2px solid rgba(226,181,72,.72)!important;
+  outline-offset:2px!important;
+}
+
+#page-home .qa-system-icon,
+#page-home .qa-service-icon{
+  backface-visibility:hidden;
+  transform:translateZ(0);
+}
+
+#page-home .qa-system-icon img,
+#page-home .qa-service-icon img{
+  image-rendering:auto;
+  filter:drop-shadow(0 3px 6px rgba(0,0,0,.26)) saturate(1.04)!important;
+}
+
+#page-home .qa-system-card strong,
+#page-home .qa-service-card strong{
+  letter-spacing:0!important;
+  text-wrap:balance;
+}
+
+#page-home .qa-system-card small,
+#page-home .qa-service-card small{
+  opacity:.92;
+}
+
+#page-home .qa-info{
+  box-shadow:
+    inset 0 1px 0 rgba(255,255,255,.045),
+    0 8px 22px rgba(0,0,0,.23)!important;
+}
+
+#page-home .qa-bearing>strong{
+  font-variant-numeric:tabular-nums;
+  font-feature-settings:"tnum" 1;
+}
+
+#page-home .qa-prayer em b,
+#page-home .qa-prayer strong{
+  text-shadow:0 0 9px rgba(107,224,145,.16)!important;
+}
+
+/* Keep the 4K hero crisp while avoiding an extra full-screen filter stack. */
+#page-home .qa-sky{
+  will-change:auto!important;
+  backface-visibility:hidden;
+}
+
+/* Mid/low-height phones: reduce GPU-heavy blur without changing composition. */
+@media (max-height:800px){
+  #page-home .qa-side-card,
+  #page-home .qa-system-card,
+  #page-home .qa-service-card{
+    backdrop-filter:blur(8px) saturate(1.04)!important;
+    -webkit-backdrop-filter:blur(8px) saturate(1.04)!important;
+  }
+}
+
+@media (max-height:700px){
+  #page-home .qa-info{
+    backdrop-filter:blur(8px)!important;
+    -webkit-backdrop-filter:blur(8px)!important;
+  }
+}
+
+@media (prefers-reduced-motion:reduce){
+  #page-home .qa-system-card,
+  #page-home .qa-service-card{
+    transform:none!important;
+  }
+}

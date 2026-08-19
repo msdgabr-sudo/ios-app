@@ -1,0 +1,130 @@
+QIBLAASTRO SOFTWARE LICENSE AGREEMENT
+
+Copyright (c) 2026 Mohamed Sayed Gabr Behairy
+Arabic: محمد سيد جبر بحيرى
+All Rights Reserved.
+
+═══════════════════════════════════════════════════════════════════
+
+1. DEFINITIONS
+
+"Software" refers to QiblaAstro v2.0, including but not limited to:
+- Source code (HTML, CSS, JavaScript)
+- Astronomical algorithms and calculations
+- User interface designs and assets
+- Documentation and help content
+- Service Worker and PWA components
+
+"Author" refers to Mohamed Sayed Gabr Behairy.
+
+"User" refers to any individual or entity accessing the Software.
+
+═══════════════════════════════════════════════════════════════════
+
+2. GRANT OF LICENSE
+
+The Author grants Users a limited, non-exclusive, non-transferable,
+revocable license to:
+
+a) Use the Software for personal, non-commercial religious purposes
+b) Install the PWA on personal devices
+c) Share the application URL with others
+d) Use offline functionality as provided
+
+═══════════════════════════════════════════════════════════════════
+
+3. RESTRICTIONS
+
+Users may NOT, without prior written permission from the Author:
+
+a) Copy, reproduce, or distribute the Software in whole or in part
+b) Modify, adapt, translate, or create derivative works
+c) Reverse engineer, decompile, or disassemble the Software
+d) Remove or alter any copyright notices, trademarks, or author credits
+e) Use the Software for commercial purposes
+f) Sublicense, rent, lease, or sell the Software
+g) Use the astronomical algorithms in other applications
+h) Claim ownership or authorship of the Software
+i) Use the Software name, logo, or branding without permission
+
+═══════════════════════════════════════════════════════════════════
+
+4. INTELLECTUAL PROPERTY
+
+All intellectual property rights in the Software remain the exclusive
+property of the Author. This includes:
+
+- VSOP87 + ELP2000 + WMM2025 implementation
+- Custom canvas rendering engine
+- UI/UX design and animations
+- Azkar content curation and presentation
+- Quran module architecture
+- Service Worker caching strategies
+
+═══════════════════════════════════════════════════════════════════
+
+5. OPEN SOURCE COMPONENTS
+
+The Software incorporates the following open-source astronomical data
+and algorithms, used under their respective licenses:
+
+- VSOP87 (Bureau des Longitudes, Paris) — Public Domain
+- ELP2000/82 (Chapront, Touze, Francou) — Academic Use
+- WMM2025 (NOAA/BGS) — Public Domain (US Government)
+- Bennett Refraction Formula — Academic Citation
+
+These components remain subject to their original licenses. The Author's
+proprietary code wrapping these algorithms is protected under this license.
+
+═══════════════════════════════════════════════════════════════════
+
+6. DISCLAIMER OF WARRANTY
+
+THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND,
+EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF
+MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE, AND NONINFRINGEMENT.
+
+The Author does not guarantee the accuracy of qibla direction to the
+degree required for religious obligations. Users should verify with
+local religious authorities.
+
+═══════════════════════════════════════════════════════════════════
+
+7. LIMITATION OF LIABILITY
+
+IN NO EVENT SHALL THE AUTHOR BE LIABLE FOR ANY CLAIM, DAMAGES, OR OTHER
+LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT, OR OTHERWISE, ARISING
+FROM, OUT OF, OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER
+DEALINGS IN THE SOFTWARE.
+
+═══════════════════════════════════════════════════════════════════
+
+8. TERMINATION
+
+This license automatically terminates if you violate any of its terms.
+Upon termination, you must cease all use of the Software and destroy
+all copies in your possession.
+
+═══════════════════════════════════════════════════════════════════
+
+9. GOVERNING LAW
+
+This license shall be governed by and construed in accordance with the
+laws of the Arab Republic of Egypt.
+
+═══════════════════════════════════════════════════════════════════
+
+10. CONTACT
+
+For licensing inquiries, permissions, or questions:
+
+Mohamed Sayed Gabr Behairy
+Email: qiblaastro@protonmail.com
+Website: https://qiblaastro.github.io
+
+═══════════════════════════════════════════════════════════════════
+
+By using QiblaAstro, you acknowledge that you have read, understood,
+and agree to be bound by the terms of this license agreement.
+
+Effective Date: 2026-07-24

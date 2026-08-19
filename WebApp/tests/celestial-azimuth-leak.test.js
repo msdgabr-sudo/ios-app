@@ -1,0 +1,15 @@
+'use strict';
+const assert=require('assert');
+const fs=require('fs');
+const Session=require('../js/astronomical-verification-session.js');
+const ui=fs.readFileSync('js/astronomical-observatory-ui.js','utf8');
+assert(ui.includes('alignmentReady'),'Capture must require a legal aligned observation.');
+assert(!ui.includes('حرّك الهاتف حتى يصل الجرم إلى موضع القبلة'),'Confusing old message must remain removed.');
+const moonOnly={accepted:true,trueCameraHeadingDeg:93.06,qibla:{qiblaBearingDeg:136.04},quality:{overallScore:.8},detection:{confidence:.8},gravity:{quality:.8},celestial:{azimuthDeg:93.10,altitudeDeg:42}};
+assert.strictEqual(Session.mapResult(moonOnly,'moon',{latitude:31.13,longitude:30.12},'auto'),null,'Moon azimuth/camera heading must never become astronomical Qibla without aligned observation.');
+const aligned={accepted:true,trueCameraHeadingDeg:135.72,astronomicalQiblaObservation:{source:'astronomical-qibla-alignment-observation',observedQiblaBearingDeg:135.72,referenceQiblaBearingDeg:136.04,verificationOffsetDeg:.32,reticleResidualDeg:-.08},quality:{overallScore:.82},detection:{confidence:.88},gravity:{quality:.91},celestial:{azimuthDeg:93.10,altitudeDeg:42}};
+const mapped=Session.mapResult(aligned,'moon',{latitude:31.13,longitude:30.12},'auto');
+assert(mapped,'Aligned astronomical observation must be accepted.');
+assert.strictEqual(mapped.observedQiblaBearingDeg,135.72);
+assert.notStrictEqual(mapped.observedQiblaBearingDeg,aligned.celestial.azimuthDeg);
+console.log('Celestial azimuth leakage guard: PASS');

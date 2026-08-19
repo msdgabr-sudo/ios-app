@@ -1,0 +1,120 @@
+/* ══════════════════════════════════════════════════════════════════════════════
+   [CSS-S] SETTINGS PAGE
+   ══════════════════════════════════════════════════════════════════════════════ */
+
+/* ═══════════════════════════════════════════
+   SETTINGS PAGE
+═══════════════════════════════════════════ */
+.settings-section{
+  width:100%;background:var(--panel);border:1px solid var(--rim);
+  border-radius:var(--radius);overflow:hidden;
+}
+.settings-section h4{
+  padding:10px 14px;border-bottom:1px solid var(--rim);
+  font-size:.6rem;color:var(--txt3);font-family:'JetBrains Mono',monospace;
+  letter-spacing:.08em;text-transform:uppercase;
+}
+.setting-row{
+  display:flex;align-items:center;justify-content:space-between;
+  padding:12px 14px;border-bottom:1px solid var(--rim);
+}
+.setting-row:last-child{border-bottom:none;}
+.setting-label{font-size:.82rem;color:var(--txt);}
+.setting-sub{font-size:.65rem;color:var(--txt3);margin-top:1px;}
+.setting-val{
+  font-family:'JetBrains Mono',monospace;font-size:.78rem;
+  color:var(--gold);font-weight:700;
+}
+.accuracy-pill{
+  font-size:.58rem;font-family:'JetBrains Mono',monospace;
+  padding:2px 8px;border-radius:10px;font-weight:700;
+}
+.pill-hi{background:rgba(64,184,112,.15);color:var(--ok);}
+.pill-mid{background:rgba(200,164,74,.15);color:var(--gold);}
+.pill-lo{background:rgba(192,48,64,.15);color:var(--err);}
+
+.copyright-card{
+  width:100%;
+  background:linear-gradient(135deg,#06040E,#0C0818,var(--panel));
+  border:1px solid var(--rim);
+  border-top:2px solid var(--gold);
+  border-radius:var(--radius);
+  padding:18px 16px;
+  text-align:center;
+  position:relative;
+  overflow:hidden;
+}
+.copyright-card::before{
+  content:'';position:absolute;inset:0;
+  background:radial-gradient(ellipse at 50% 0%,rgba(200,164,74,.08),transparent 70%);
+}
+.copyright-seal{
+  font-size:2.2rem;margin-bottom:8px;
+  filter:drop-shadow(0 0 12px rgba(200,164,74,.4));
+}
+.copyright-name{
+  font-size:1.05rem;font-weight:700;
+  background:linear-gradient(90deg,var(--gold-d),var(--gold-l),var(--gold-d));
+  -webkit-background-clip:text;-webkit-text-fill-color:transparent;
+  letter-spacing:.03em;margin-bottom:3px;
+}
+.copyright-name-ar{
+  font-size:.95rem;font-weight:600;color:var(--gold);
+  margin-bottom:10px;opacity:.85;
+}
+.copyright-year{
+  font-family:'JetBrains Mono',monospace;font-size:.7rem;
+  color:var(--txt3);letter-spacing:.06em;margin-bottom:12px;
+}
+.copyright-divider{
+  width:60px;height:1px;background:linear-gradient(90deg,transparent,var(--gold-d),transparent);
+  margin:10px auto;
+}
+.copyright-notice{
+  font-size:.68rem;color:var(--txt3);line-height:1.75;
+}
+.copyright-notice strong{color:var(--txt2);}
+.copyright-algo{
+  margin-top:12px;background:var(--ink2);
+  border-radius:8px;padding:10px 12px;
+  text-align:right;
+}
+.copyright-algo-row{
+  display:flex;justify-content:space-between;align-items:center;
+  padding:3px 0;border-bottom:1px solid rgba(30,46,68,.5);
+  font-size:.62rem;
+}
+.copyright-algo-row:last-child{border-bottom:none;}
+.algo-name{color:var(--txt3);}
+.algo-val{font-family:'JetBrains Mono',monospace;color:var(--gold);font-size:.6rem;}
+
+/* Copyright identity — settings presentation only. */
+.copyright-name{
+  font-size:0;
+  -webkit-text-fill-color:initial;
+  background:none;
+  -webkit-background-clip:initial;
+}
+.copyright-name::after{
+  content:'M.S.Gabr Behairy';
+  display:block;
+  font-size:1.05rem;
+  font-weight:700;
+  color:var(--gold-l);
+  -webkit-text-fill-color:var(--gold-l);
+}
+.copyright-name-ar{
+  display:none !important;
+}
+.copyright-year{
+  font-size:0;
+  white-space:pre-line;
+}
+.copyright-year::after{
+  content:'© 2026 · Qiblalabs · All Rights Reserved\A www.qiblalabs.com';
+  display:block;
+  font-size:.7rem;
+  line-height:1.8;
+  color:var(--txt3);
+  -webkit-text-fill-color:var(--txt3);
+}

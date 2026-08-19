@@ -1,0 +1,31 @@
+/*
+ * QiblaAstro — 4K home background binding
+ * Replaces only the photographic hero asset; live UI remains unchanged.
+ * © 2026 محمد سيد جبر بحيرى — Mohamed SG Behairy. All Rights Reserved.
+ */
+
+#page-home .qa-sky{
+  background-image:
+    linear-gradient(180deg,rgba(0,4,14,.01),rgba(0,4,14,0)),
+    url('../images/home/qibla-bg-4k.webp?v=20260807-020')!important;
+  background-size:100% auto!important;
+  background-position:center 72%!important;
+  background-repeat:no-repeat!important;
+  image-rendering:auto;
+  filter:contrast(1.08) saturate(1.08) brightness(1.02)!important;
+}
+
+/* Keep the high-resolution image sharp without browser zooming. */
+@media (max-width:380px){
+  #page-home .qa-sky{
+    background-size:100% auto!important;
+    background-position:center 72%!important;
+  }
+}
+
+@media (max-height:760px){
+  #page-home .qa-sky{
+    background-size:100% auto!important;
+    background-position:center 72%!important;
+  }
+}

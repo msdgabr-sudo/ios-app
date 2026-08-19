@@ -1,0 +1,130 @@
+/*
+ * QiblaAstro — restrained motion design for the approved home screen
+ * UI-only animation layer. Existing calculations and navigation remain authoritative.
+ * © 2026 محمد سيد جبر بحيرى — Mohamed SG Behairy. All Rights Reserved.
+ */
+
+/* Keep animation work on compositor-friendly properties only. */
+#page-home .qa-arc,
+#page-home .qa-bearing,
+#page-home .qa-side-card,
+#page-home .qa-info,
+#page-home .qa-system-card,
+#page-home .qa-service-card{
+  will-change:transform,filter,opacity;
+  backface-visibility:hidden;
+}
+
+/* Subtle living sky without moving the approved layout. */
+#page-home .qa-sky{
+  animation:qaSkyBreath 12s ease-in-out infinite alternate;
+}
+#page-home .qa-sky::before{
+  content:"";
+  position:absolute;
+  inset:0;
+  pointer-events:none;
+  z-index:2;
+  background:
+    radial-gradient(circle at 18% 24%,rgba(255,255,255,.42) 0 1px,transparent 1.8px),
+    radial-gradient(circle at 76% 17%,rgba(126,205,255,.38) 0 1px,transparent 1.8px),
+    radial-gradient(circle at 88% 38%,rgba(255,255,255,.30) 0 .8px,transparent 1.7px),
+    radial-gradient(circle at 34% 40%,rgba(116,188,255,.28) 0 .8px,transparent 1.7px);
+  opacity:.34;
+  animation:qaStarsDrift 20s linear infinite alternate;
+}
+
+/* Golden compass shimmer. */
+#page-home .qa-arc{
+  animation:qaArcGlow 4.8s ease-in-out infinite;
+}
+#page-home .qa-pointer{
+  animation:qaPointerPulse 2.8s ease-in-out infinite;
+}
+#page-home .qa-bearing>strong{
+  animation:qaBearingGlow 3.8s ease-in-out infinite;
+}
+
+/* Side cards remain stable but feel alive. */
+#page-home .qa-moon-orb{
+  animation:qaMoonFloat 5.8s ease-in-out infinite;
+}
+#page-home .qa-sun-orb{
+  animation:qaSunPulse 4.2s ease-in-out infinite;
+}
+
+/* Dashboard entrance and touch feedback. */
+#page-home .qa-info,
+#page-home .qa-systems,
+#page-home .qa-services{
+  animation:qaPanelReveal .62s cubic-bezier(.2,.8,.2,1) both;
+}
+#page-home .qa-systems{animation-delay:.08s}
+#page-home .qa-services{animation-delay:.14s}
+
+#page-home .qa-system-card,
+#page-home .qa-service-card,
+#page-home .qa-bearing{
+  transition:transform .18s ease,box-shadow .22s ease,border-color .22s ease,filter .22s ease;
+  -webkit-tap-highlight-color:transparent;
+}
+#page-home .qa-system-card:active,
+#page-home .qa-service-card:active,
+#page-home .qa-bearing:active{
+  transform:scale(.965);
+  filter:brightness(1.08);
+}
+
+@keyframes qaSkyBreath{
+  from{filter:contrast(1.16) saturate(1.14) brightness(1.055)}
+  to{filter:contrast(1.20) saturate(1.19) brightness(1.095)}
+}
+@keyframes qaStarsDrift{
+  from{transform:translate3d(-2px,-1px,0);opacity:.26}
+  to{transform:translate3d(3px,2px,0);opacity:.44}
+}
+@keyframes qaArcGlow{
+  0%,100%{filter:drop-shadow(0 0 6px rgba(238,190,75,.20));opacity:.92}
+  50%{filter:drop-shadow(0 0 13px rgba(238,190,75,.42));opacity:1}
+}
+@keyframes qaPointerPulse{
+  0%,100%{transform:translateY(0) scale(1);text-shadow:0 0 10px rgba(217,166,64,.55)}
+  50%{transform:translateY(-2px) scale(1.06);text-shadow:0 0 18px rgba(245,212,119,.85)}
+}
+@keyframes qaBearingGlow{
+  0%,100%{filter:brightness(1);text-shadow:0 0 16px rgba(247,195,73,.38)}
+  50%{filter:brightness(1.08);text-shadow:0 0 25px rgba(247,195,73,.62)}
+}
+@keyframes qaMoonFloat{
+  0%,100%{transform:translateY(0) rotate(-1deg)}
+  50%{transform:translateY(-3px) rotate(1deg)}
+}
+@keyframes qaSunPulse{
+  0%,100%{transform:scale(1);filter:brightness(1)}
+  50%{transform:scale(1.045);filter:brightness(1.12)}
+}
+@keyframes qaPanelReveal{
+  from{opacity:0;transform:translateY(9px)}
+  to{opacity:1;transform:translateY(0)}
+}
+
+/* Accessibility and battery discipline. */
+@media (prefers-reduced-motion:reduce){
+  #page-home .qa-sky,
+  #page-home .qa-sky::before,
+  #page-home .qa-arc,
+  #page-home .qa-pointer,
+  #page-home .qa-bearing>strong,
+  #page-home .qa-moon-orb,
+  #page-home .qa-sun-orb,
+  #page-home .qa-info,
+  #page-home .qa-systems,
+  #page-home .qa-services{
+    animation:none!important;
+  }
+  #page-home .qa-system-card,
+  #page-home .qa-service-card,
+  #page-home .qa-bearing{
+    transition:none!important;
+  }
+}

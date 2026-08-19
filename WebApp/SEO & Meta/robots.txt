@@ -1,0 +1,39 @@
+# Standalone application repository
+# Author: Mohamed Sayed Gabr Behairy
+# (c) 2026 All Rights Reserved
+
+User-agent: *
+Allow: /
+Allow: /index.html
+Allow: /offline.html
+Allow: /manifest.json
+Allow: /site.webmanifest
+Allow: /icons/
+Allow: /images/
+Allow: /css/
+Allow: /js/
+Allow: /quran/
+Allow: /audio/
+
+# Add a Sitemap directive here only after the final public domain is chosen.
+
+Crawl-delay: 1
+
+Disallow: /dev/
+Disallow: /test/
+Disallow: /admin/
+Disallow: /private/
+Disallow: /*.tmp$
+Disallow: /*.log$
+
+User-agent: Googlebot
+Allow: /
+
+User-agent: Bingbot
+Allow: /
+
+User-agent: Applebot
+Allow: /
+
+User-agent: DuckDuckBot
+Allow: /

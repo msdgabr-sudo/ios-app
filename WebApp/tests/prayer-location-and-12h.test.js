@@ -1,0 +1,15 @@
+'use strict';
+const fs=require('fs'),vm=require('vm'),assert=require('assert');
+const locSrc=fs.readFileSync('js/prayer/prayer-location.js','utf8'),fmtSrc=fs.readFileSync('js/prayer/time-format.js','utf8');
+const store={},events=[];const sandbox={console,Intl,Date,Math,localStorage:{getItem:k=>store[k]||null,setItem:(k,v)=>store[k]=String(v),removeItem:k=>delete store[k]},CustomEvent:function(type,opts){this.type=type;this.detail=opts&&opts.detail;},dispatchEvent:e=>{events.push(e);return true;}};sandbox.window=sandbox;sandbox.globalThis=sandbox;vm.createContext(sandbox);
+vm.runInContext('let LAT=30.0444,LON=31.2357;',sandbox);vm.runInContext(locSrc,sandbox);vm.runInContext(fmtSrc,sandbox);
+const L=sandbox.QiblaPrayerLocation,F=sandbox.QiblaPrayerTimeFormat;assert(L&&F);
+assert.strictEqual(F.format12(0),'12:00 ص');assert.strictEqual(F.format12(5.25),'5:15 ص');assert.strictEqual(F.format12(12),'12:00 م');assert.strictEqual(F.format12(19.5),'7:30 م');
+let e=L.effective();assert.strictEqual(e.mode,'auto');assert(Math.abs(e.lat-30.0444)<1e-6);
+L.setCity('sa-makkah');e=L.effective();assert.strictEqual(e.mode,'manual');assert.strictEqual(e.cityId,'sa-makkah');assert.strictEqual(e.timeZone,'Asia/Riyadh');assert(/مكة/.test(e.label));
+const globals=vm.runInContext('({LAT,LON})',sandbox);assert.strictEqual(globals.LAT,30.0444,'manual prayer city must not overwrite global LAT');assert.strictEqual(globals.LON,31.2357,'manual prayer city must not overwrite global LON');
+L.setCity('gb-london');e=L.effective();assert.strictEqual(e.timeZone,'Europe/London');const winter=L.offsetHours(new Date('2026-01-15T12:00:00Z'),e.timeZone),summer=L.offsetHours(new Date('2026-07-15T12:00:00Z'),e.timeZone);assert.strictEqual(winter,0);assert.strictEqual(summer,1,'manual city timezone must honor DST');
+assert(L.search('مصر').length>=5);assert(L.search('New York').some(c=>c.id==='us-newyork'));
+L.setCustom('موقعي',29.9,31.1);e=L.effective();assert.strictEqual(e.mode,'manual');assert.strictEqual(e.label,'موقعي');
+L.setAuto();assert.strictEqual(L.effective().mode,'auto');assert(events.some(e=>e.type==='qiblaastro:prayer-location-change'));
+console.log('Prayer manual location + 12-hour display gate: PASS');

@@ -1,0 +1,11 @@
+'use strict';
+const fs=require('fs');
+const assert=require('assert');
+const s=fs.readFileSync('js/astronomical-verification-session.js','utf8');
+assert(!s.includes("self.phase='ALIGN_QIBLA'"),'Rotation-to-Qibla phase must be removed from capture flow.');
+assert(s.includes("self.phase='CAPTURE_RAW'"),'Stable celestial solve must enter direct raw capture.');
+assert(s.includes('observedQiblaBearingDeg:heading'),'Displayed astronomical value must come from raw solved heading.');
+assert(s.includes('alignmentReady:true'),'Stable raw solve must unlock automatic capture.');
+assert(s.includes("if (this.phase === 'CAPTURE_RAW') return this.latestMappedResult || null;"),'Frozen capture must reuse the raw solved measurement.');
+assert(!s.includes("دوّر الهاتف نحو القبلة"),'Rotation instruction must not remain in the session controller.');
+console.log('RAW OBSERVATION DIRECT CAPTURE: PASS');

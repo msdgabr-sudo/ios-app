@@ -1,0 +1,61 @@
+/* QiblaAstro — Home button icon polish only.
+ * IMPORTANT: this file must not draw card edges, pseudo-panels, highlights or card backgrounds.
+ * Card perimeter treatment lives only in home-header-controls.css.
+ * © 2026 محمد سيد جبر بحيرى — Mohamed SG Behairy. All Rights Reserved.
+ */
+
+#page-home .qa-actions-primary .qa-service-icon img,
+#page-home .qa-actions-grid .qa-service-icon img{
+  width:100%!important;
+  height:100%!important;
+  object-fit:contain!important;
+  transform:scale(1.20)!important;
+  transform-origin:center!important;
+  filter:drop-shadow(0 5px 7px rgba(0,0,0,.42))!important;
+}
+
+#page-home .qa-actions-primary .astro-verify .qa-service-icon{
+  border:0!important;
+  border-radius:0!important;
+  background:none!important;
+  overflow:visible!important;
+  display:flex!important;
+  align-items:center!important;
+  justify-content:center!important;
+  gap:1px!important;
+}
+#page-home .qa-actions-primary .astro-verify .qa-service-icon>img{display:none!important}
+#page-home .qa-actions-primary .astro-verify .qa-service-icon::before,
+#page-home .qa-actions-primary .astro-verify .qa-service-icon::after{
+  content:"";
+  display:block;
+  width:55%!important;
+  height:92%!important;
+  flex:0 0 55%!important;
+  background-repeat:no-repeat!important;
+  background-position:center!important;
+  background-size:contain!important;
+  filter:drop-shadow(0 5px 7px rgba(0,0,0,.44));
+}
+#page-home .qa-actions-primary .astro-verify .qa-service-icon::before{background-image:url('../icons/icon-moon.png')}
+#page-home .qa-actions-primary .astro-verify .qa-service-icon::after{background-image:url('../icons/icon-sun.png')}
+
+#page-home .qa-actions-primary .qa-service-card small,
+#page-home .qa-actions-grid .qa-service-card small{
+  color:#9fc9ff!important;
+  opacity:1!important;
+  font-weight:600!important;
+  text-shadow:0 1px 5px rgba(42,105,190,.24)!important;
+}
+
+/* Safety override: never allow this icon-polish file to create a card overlay. */
+#page-home .qa-actions-primary .qa-service-card::before,
+#page-home .qa-actions-primary .qa-service-card::after,
+#page-home .qa-actions-grid .qa-service-card::before,
+#page-home .qa-actions-grid .qa-service-card::after{
+  content:none!important;
+  display:none!important;
+  background:none!important;
+  border:0!important;
+  box-shadow:none!important;
+}

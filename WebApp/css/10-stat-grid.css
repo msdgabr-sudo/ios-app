@@ -1,0 +1,27 @@
+/* ══════════════════════════════════════════════════════════════════════════════
+   [CSS-I] STAT GRID
+   ══════════════════════════════════════════════════════════════════════════════ */
+
+/* ═══════════════════════════════════════════
+   STAT GRID
+═══════════════════════════════════════════ */
+.grid2{display:grid;grid-template-columns:1fr 1fr;gap:9px;width:100%;}
+.grid3{display:grid;grid-template-columns:1fr 1fr 1fr;gap:8px;width:100%;}
+.grid4{display:grid;grid-template-columns:repeat(4,1fr);gap:7px;width:100%;}
+
+.stat{
+  background:var(--panel);border:1px solid var(--rim);
+  border-radius:var(--radius-sm);padding:10px 11px;
+}
+.stat.s2{grid-column:1/-1;}
+.stat.accent-gold{border-right:3px solid var(--gold);}
+.stat.accent-moon{border-right:3px solid var(--moon);}
+.stat.accent-mag{border-right:3px solid var(--mag);}
+.stat.accent-ok{border-right:3px solid var(--ok);}
+.stat lbl{display:block;font-size:.55rem;color:var(--txt3);font-family:'JetBrains Mono',monospace;letter-spacing:.07em;text-transform:uppercase;margin-bottom:2px;}
+.stat .val{font-family:'JetBrains Mono',monospace;font-weight:700;font-size:1.15rem;color:var(--gold);}
+.stat .val.lg{font-size:1.5rem;}
+.stat .val.sm{font-size:.85rem;}
+.stat .val.xs{font-size:.75rem;}
+.stat .sub{font-size:.6rem;color:var(--txt3);margin-top:1px;}
+

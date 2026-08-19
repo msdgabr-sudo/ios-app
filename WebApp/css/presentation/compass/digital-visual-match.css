@@ -1,0 +1,318 @@
+/*
+ * QiblaAstro — Digital Compass Visual Match
+ * Presentation only. Uses the original digital compass DOM, IDs, onclick handlers and calculation outputs.
+ * No calculations, values, handlers or engine behavior are modified here.
+ * © 2026 محمد سيد جبر بحيرى — Mohamed SG Behairy. All Rights Reserved.
+ */
+
+#page-compass.qa-digital-dashboard-active{
+  --qd-line:rgba(119,165,205,.26);
+  --qd-blue:#78BFF2;
+  --qd-cyan:#5AC8FA;
+  --qd-green:#63C779;
+  --qd-text:#E4E9EF;
+  --qd-muted:#91A8BA;
+  padding-bottom:0!important;
+  background:radial-gradient(circle at 50% 18%,rgba(16,63,108,.18),transparent 42%),#020811;
+  overflow:hidden!important;
+  overscroll-behavior:none!important;
+  scrollbar-width:none;
+  box-sizing:border-box;
+}
+#page-compass.qa-digital-dashboard-active::-webkit-scrollbar{display:none}
+body:has(#page-compass.qa-digital-dashboard-active.active){overflow:hidden!important;overscroll-behavior:none!important;padding-bottom:0!important}
+body:has(#page-compass.qa-digital-dashboard-active.active) .nav,
+body:has(#page-compass.qa-digital-dashboard-active.active) .bottom-nav,
+body:has(#page-compass.qa-digital-dashboard-active.active) .ad-slot{display:none!important;visibility:hidden!important;pointer-events:none!important}
+body:has(#page-compass.qa-digital-dashboard-active.active) .qa-compass-menu-button[hidden]{display:flex!important}
+
+/* Compass: same footprint as astronomical screen, same original canvas. */
+#page-compass.qa-digital-dashboard-active>#cvs{
+  width:min(99vw,58vh,520px)!important;
+  max-width:none!important;
+  height:auto!important;
+  display:block!important;
+  margin:-10px auto -12px!important;
+  filter:drop-shadow(0 9px 20px rgba(0,0,0,.30));
+  flex:0 0 auto!important;
+}
+
+/* The astronomical-only metric row/confidence remain hidden in digital mode. */
+#page-compass.qa-digital-dashboard-active .qa-astro-metrics-row,
+#page-compass.qa-digital-dashboard-active #qa-astro-confidence{display:none!important}
+
+/* Flatten the existing three two-card legacy rows into one three-card digital row.
+   No card is cloned or replaced. */
+#page-compass.qa-digital-dashboard-active .qa-compass-legacy-grid{
+  display:grid!important;
+  grid-template-columns:repeat(3,minmax(0,1fr))!important;
+  direction:rtl!important;
+  gap:6px!important;
+  padding:0 10px 4px!important;
+  margin:0!important;
+}
+#page-compass.qa-digital-dashboard-active .qa-compass-legacy-grid>div{display:contents!important}
+#page-compass.qa-digital-dashboard-active #astro-body-card,
+#page-compass.qa-digital-dashboard-active .qa-compass-legacy-grid>div>div:has(#astro-qibla-value),
+#page-compass.qa-digital-dashboard-active .qa-compass-legacy-grid>div>div:has(#astro-deviation-value){display:none!important}
+
+/* Original digital cards only. */
+#page-compass.qa-digital-dashboard-active #live-compass-card,
+#page-compass.qa-digital-dashboard-active .qa-compass-legacy-grid>div>div:has(#box-qibla),
+#page-compass.qa-digital-dashboard-active .qa-compass-legacy-grid>div>div:has(#box-diff){
+  min-width:0!important;
+  min-height:98px!important;
+  margin:0!important;
+  padding:5px 4px!important;
+  border-radius:16px!important;
+  border:1px solid var(--qd-line)!important;
+  background:linear-gradient(155deg,rgba(11,29,46,.97),rgba(4,13,24,.98))!important;
+  box-shadow:inset 0 1px 0 rgba(255,255,255,.025),0 6px 16px rgba(0,0,0,.17)!important;
+  display:flex!important;
+  flex-direction:column!important;
+  align-items:center!important;
+  justify-content:flex-start!important;
+  text-align:center!important;
+  gap:3px!important;
+  overflow:hidden!important;
+}
+#page-compass.qa-digital-dashboard-active #live-compass-card{cursor:pointer!important}
+#page-compass.qa-digital-dashboard-active .qa-compass-legacy-grid>div>div:has(#box-qibla),
+#page-compass.qa-digital-dashboard-active .qa-compass-legacy-grid>div>div:has(#box-diff){cursor:default!important}
+
+#page-compass.qa-digital-dashboard-active #live-compass-card>div:first-child,
+#page-compass.qa-digital-dashboard-active .qa-compass-legacy-grid>div>div:has(#box-qibla)>div:first-child,
+#page-compass.qa-digital-dashboard-active .qa-compass-legacy-grid>div>div:has(#box-diff)>div:first-child{
+  order:2!important;
+  width:100%!important;
+  display:flex!important;
+  flex-direction:column!important;
+  align-items:center!important;
+  min-width:0!important;
+}
+#page-compass.qa-digital-dashboard-active #live-compass-card>div:last-child,
+#page-compass.qa-digital-dashboard-active .qa-compass-legacy-grid>div>div:has(#box-qibla)>div:last-child,
+#page-compass.qa-digital-dashboard-active .qa-compass-legacy-grid>div>div:has(#box-diff)>div:last-child{
+  order:1!important;
+  width:31px!important;
+  height:31px!important;
+  min-height:31px!important;
+  display:grid!important;
+  place-items:center!important;
+  margin:0!important;
+  font-size:0!important;
+}
+#page-compass.qa-digital-dashboard-active .qa-compass-legacy-grid>div>div:has(#box-qibla)>div:last-child img{
+  width:31px!important;height:31px!important;object-fit:contain!important;display:block!important;
+}
+#page-compass.qa-digital-dashboard-active #live-compass-card>div:last-child{
+  background:url('../../../icons/hm-compass.png') center/contain no-repeat!important;
+}
+#page-compass.qa-digital-dashboard-active .qa-compass-legacy-grid>div>div:has(#box-diff)>div:last-child{
+  background:url('../../../icons/icon-sextant.png') center/contain no-repeat!important;
+}
+
+/* Titles: visual text only; original DOM/value IDs remain untouched. */
+#page-compass.qa-digital-dashboard-active #live-compass-card>div:first-child>div:first-child,
+#page-compass.qa-digital-dashboard-active .qa-compass-legacy-grid>div>div:has(#box-diff)>div:first-child>div:first-child{
+  font-size:0!important;
+}
+#page-compass.qa-digital-dashboard-active #live-compass-card>div:first-child>div:first-child::after{
+  content:'البوصلة الرقمية';
+}
+#page-compass.qa-digital-dashboard-active .qa-compass-legacy-grid>div>div:has(#box-diff)>div:first-child>div:first-child::after{
+  content:'درجة الانحراف';
+}
+#page-compass.qa-digital-dashboard-active #live-compass-card>div:first-child>div:first-child::after,
+#page-compass.qa-digital-dashboard-active .qa-compass-legacy-grid>div>div:has(#box-diff)>div:first-child>div:first-child::after,
+#page-compass.qa-digital-dashboard-active .qa-compass-legacy-grid>div>div:has(#box-qibla)>div:first-child>div:first-child{
+  font-size:.63rem!important;
+  font-weight:700!important;
+  color:var(--qd-text)!important;
+  margin:0 0 1px!important;
+  white-space:nowrap!important;
+}
+
+/* Keep original live outputs visible and untouched. */
+#page-compass.qa-digital-dashboard-active #box-heading,
+#page-compass.qa-digital-dashboard-active #box-qibla,
+#page-compass.qa-digital-dashboard-active #box-diff{
+  display:block!important;
+  visibility:visible!important;
+  font-family:'JetBrains Mono',monospace!important;
+  font-size:1.14rem!important;
+  font-weight:700!important;
+  line-height:1.08!important;
+  color:var(--qd-blue)!important;
+  margin:0!important;
+}
+#page-compass.qa-digital-dashboard-active #live-compass-hint,
+#page-compass.qa-digital-dashboard-active #gnss-badge,
+#page-compass.qa-digital-dashboard-active #box-dir{
+  display:block!important;
+  font-size:.53rem!important;
+  color:var(--qd-cyan)!important;
+  margin-top:1px!important;
+  line-height:1.15!important;
+  white-space:normal!important;
+}
+
+/* Preserve the two original action buttons and their original onclick handlers.
+   CSS only makes them a compact matching row. */
+#page-compass.qa-digital-dashboard-active>div:has(>button[onclick*="showManualCal"]),
+#page-compass.qa-digital-dashboard-active>div:has(>button[onclick*="tryBrowserGPS"]){
+  width:50%!important;
+  padding:0 3px 4px!important;
+  margin:0!important;
+  box-sizing:border-box!important;
+}
+#page-compass.qa-digital-dashboard-active>div:has(>button[onclick*="showManualCal"]){float:left!important}
+#page-compass.qa-digital-dashboard-active>div:has(>button[onclick*="tryBrowserGPS"]){float:right!important}
+#page-compass.qa-digital-dashboard-active>div>button[onclick*="showManualCal"],
+#page-compass.qa-digital-dashboard-active>div>button[onclick*="tryBrowserGPS"]{
+  width:100%!important;
+  min-height:82px!important;
+  margin:0!important;
+  padding:6px 7px!important;
+  border-radius:15px!important;
+  border:1px solid var(--qd-line)!important;
+  background:linear-gradient(155deg,rgba(9,27,43,.98),rgba(4,14,25,.99))!important;
+  color:var(--qd-text)!important;
+  box-shadow:inset 0 1px 0 rgba(255,255,255,.025),0 5px 14px rgba(0,0,0,.14)!important;
+  display:flex!important;
+  flex-direction:column!important;
+  align-items:center!important;
+  justify-content:center!important;
+  gap:3px!important;
+  text-align:center!important;
+  font-family:inherit!important;
+}
+#page-compass.qa-digital-dashboard-active>div>button[onclick*="showManualCal"]>span:first-child,
+#page-compass.qa-digital-dashboard-active>div>button[onclick*="tryBrowserGPS"]>span:first-child{
+  font-size:1.05rem!important;line-height:1!important;margin:0!important;
+}
+#page-compass.qa-digital-dashboard-active>div>button[onclick*="showManualCal"]>div,
+#page-compass.qa-digital-dashboard-active>div>button[onclick*="tryBrowserGPS"]>div{
+  flex:0 0 auto!important;text-align:center!important;width:100%!important;
+}
+#page-compass.qa-digital-dashboard-active>div>button[onclick*="showManualCal"]>div>div:first-child,
+#page-compass.qa-digital-dashboard-active>div>button[onclick*="tryBrowserGPS"]>div>div:first-child{
+  font-size:.61rem!important;color:var(--qd-text)!important;font-weight:700!important;
+}
+#page-compass.qa-digital-dashboard-active>div>button[onclick*="showManualCal"]>div>div:last-child,
+#page-compass.qa-digital-dashboard-active #gnss-btn-status{
+  font-size:.50rem!important;color:var(--qd-muted)!important;margin-top:1px!important;
+}
+#page-compass.qa-digital-dashboard-active>div>button[onclick*="showManualCal"]>span:last-child,
+#page-compass.qa-digital-dashboard-active>div>button[onclick*="tryBrowserGPS"]>span:last-child{display:none!important}
+
+/* The original deviation calculator already carries these classes from the astronomical layout mount.
+   Only mirror the same visual geometry in digital mode. */
+#page-compass.qa-digital-dashboard-active .qa-deviation-calculator{
+  clear:both!important;
+  margin:0 10px 2px!important;
+  padding:6px 8px!important;
+  border-radius:16px!important;
+  border:1px solid var(--qd-line)!important;
+  background:linear-gradient(155deg,rgba(8,24,39,.98),rgba(4,13,23,.99))!important;
+  direction:rtl!important;
+  display:grid!important;
+  grid-template-columns:minmax(0,1.28fr) minmax(110px,.72fr)!important;
+  grid-template-areas:'title title' 'stats radar' 'hint radar' 'slider radar' 'result result'!important;
+  column-gap:8px!important;
+  row-gap:2px!important;
+}
+#page-compass.qa-digital-dashboard-active .qa-calc-title{grid-area:title!important;color:var(--qd-text)!important;font-size:.70rem!important;font-weight:700!important;letter-spacing:0!important;margin:0!important;text-align:center!important}
+#page-compass.qa-digital-dashboard-active .qa-calc-stats{grid-area:stats!important;margin:0!important;gap:5px!important;display:flex!important}
+#page-compass.qa-digital-dashboard-active .qa-calc-stats>div{padding:4px!important;border-radius:9px!important;background:rgba(2,9,17,.58)!important;border:1px solid rgba(118,163,201,.13)!important}
+#page-compass.qa-digital-dashboard-active .qa-calc-stats>div>div:first-child{color:var(--qd-muted)!important;font-size:.47rem!important;margin-bottom:1px!important}
+#page-compass.qa-digital-dashboard-active #dev-deg,
+#page-compass.qa-digital-dashboard-active #dev-km{font-size:1.04rem!important;color:var(--qd-blue)!important;font-weight:700!important}
+#page-compass.qa-digital-dashboard-active .qa-calc-hint{grid-area:hint!important;color:var(--qd-muted)!important;font-size:.47rem!important;margin:0!important;text-align:center!important}
+#page-compass.qa-digital-dashboard-active .qa-calc-slider{grid-area:slider!important;margin:0!important;gap:3px!important}
+#page-compass.qa-digital-dashboard-active .qa-calc-slider span{font-size:.52rem!important;color:var(--qd-muted)!important}
+#page-compass.qa-digital-dashboard-active #dev-slider{accent-color:#62A9D8!important;height:3px!important}
+#page-compass.qa-digital-dashboard-active .qa-calc-radar{grid-area:radar!important;width:108px!important;height:104px!important;justify-self:center!important;align-self:center!important;margin:-6px 0!important;border-radius:11px!important;background:rgba(1,8,15,.35)!important;object-fit:contain!important}
+#page-compass.qa-digital-dashboard-active .qa-calc-result{grid-area:result!important;font-size:.56rem!important;color:var(--qd-cyan)!important;margin:0!important;text-align:center!important}
+
+/* Final layout hardening: no extra status row, touch feedback only. */
+#page-compass.qa-digital-dashboard-active #compass-status-msg{display:none!important;height:0!important;min-height:0!important;margin:0!important;padding:0!important;overflow:hidden!important}
+#page-compass.qa-digital-dashboard-active #live-compass-card:active,
+#page-compass.qa-digital-dashboard-active>div>button[onclick*="showManualCal"]:active,
+#page-compass.qa-digital-dashboard-active>div>button[onclick*="tryBrowserGPS"]:active{transform:scale(.985)!important;filter:brightness(1.08)!important}
+
+/* Original manual calibration panel becomes an overlay when its original handler opens it. */
+body:has(#page-compass.qa-digital-dashboard-active.active) #manual-cal-section[style*="display: block"]{
+  position:fixed!important;
+  inset:auto 12px max(12px,env(safe-area-inset-bottom,0px)) 12px!important;
+  z-index:360!important;
+  max-height:min(72vh,620px)!important;
+  overflow:auto!important;
+  margin:0!important;
+  padding:14px!important;
+  border-radius:18px!important;
+  background:linear-gradient(180deg,#0A1A2A,#04101D)!important;
+  box-shadow:0 18px 55px rgba(0,0,0,.65)!important;
+}
+body:has(#page-compass.qa-digital-dashboard-active.active):has(#manual-cal-section[style*="display: block"])::before{
+  content:'';position:fixed;inset:0;z-index:350;background:rgba(0,4,10,.68);backdrop-filter:blur(3px);
+}
+
+@media (max-height:820px){
+  #page-compass.qa-digital-dashboard-active>#cvs{width:min(99vw,52vh,460px)!important}
+  #page-compass.qa-digital-dashboard-active #live-compass-card,
+  #page-compass.qa-digital-dashboard-active .qa-compass-legacy-grid>div>div:has(#box-qibla),
+  #page-compass.qa-digital-dashboard-active .qa-compass-legacy-grid>div>div:has(#box-diff){min-height:88px!important;padding-top:4px!important;padding-bottom:4px!important}
+  #page-compass.qa-digital-dashboard-active>div>button[onclick*="showManualCal"],
+  #page-compass.qa-digital-dashboard-active>div>button[onclick*="tryBrowserGPS"]{min-height:74px!important}
+  #page-compass.qa-digital-dashboard-active .qa-deviation-calculator{padding-top:4px!important;padding-bottom:4px!important;grid-template-columns:minmax(0,1.30fr) minmax(96px,.70fr)!important}
+  #page-compass.qa-digital-dashboard-active .qa-calc-radar{width:94px!important;height:88px!important;margin:-5px 0!important}
+}
+@media (max-height:700px){
+  #page-compass.qa-digital-dashboard-active>#cvs{width:min(98vw,46vh,400px)!important}
+  #page-compass.qa-digital-dashboard-active #live-compass-card,
+  #page-compass.qa-digital-dashboard-active .qa-compass-legacy-grid>div>div:has(#box-qibla),
+  #page-compass.qa-digital-dashboard-active .qa-compass-legacy-grid>div>div:has(#box-diff){min-height:80px!important}
+  #page-compass.qa-digital-dashboard-active>div>button[onclick*="showManualCal"],
+  #page-compass.qa-digital-dashboard-active>div>button[onclick*="tryBrowserGPS"]{min-height:68px!important}
+  #page-compass.qa-digital-dashboard-active .qa-deviation-calculator{grid-template-columns:minmax(0,1.34fr) minmax(84px,.66fr)!important}
+  #page-compass.qa-digital-dashboard-active .qa-calc-radar{width:82px!important;height:76px!important;margin:-4px 0!important}
+}
+@media (max-height:610px){
+  #page-compass.qa-digital-dashboard-active>#cvs{width:min(96vw,40vh,350px)!important;margin:-8px auto -10px!important}
+  #page-compass.qa-digital-dashboard-active #live-compass-card,
+  #page-compass.qa-digital-dashboard-active .qa-compass-legacy-grid>div>div:has(#box-qibla),
+  #page-compass.qa-digital-dashboard-active .qa-compass-legacy-grid>div>div:has(#box-diff){min-height:72px!important;padding-top:3px!important;padding-bottom:3px!important}
+  #page-compass.qa-digital-dashboard-active #box-heading,
+  #page-compass.qa-digital-dashboard-active #box-qibla,
+  #page-compass.qa-digital-dashboard-active #box-diff{font-size:.98rem!important}
+  #page-compass.qa-digital-dashboard-active #live-compass-hint,
+  #page-compass.qa-digital-dashboard-active #gnss-badge,
+  #page-compass.qa-digital-dashboard-active #box-dir{font-size:.47rem!important}
+  #page-compass.qa-digital-dashboard-active>div>button[onclick*="showManualCal"],
+  #page-compass.qa-digital-dashboard-active>div>button[onclick*="tryBrowserGPS"]{min-height:60px!important;padding-top:4px!important;padding-bottom:4px!important}
+  #page-compass.qa-digital-dashboard-active>div>button[onclick*="showManualCal"]>div>div:last-child,
+  #page-compass.qa-digital-dashboard-active #gnss-btn-status{display:none!important}
+  #page-compass.qa-digital-dashboard-active .qa-deviation-calculator{grid-template-columns:minmax(0,1.38fr) minmax(74px,.62fr)!important;padding-top:3px!important;padding-bottom:3px!important}
+  #page-compass.qa-digital-dashboard-active .qa-calc-radar{width:72px!important;height:66px!important;margin:-3px 0!important}
+  #page-compass.qa-digital-dashboard-active .qa-calc-result{font-size:.50rem!important}
+}
+@media (max-height:540px){
+  #page-compass.qa-digital-dashboard-active>#cvs{width:min(94vw,35vh,305px)!important}
+  #page-compass.qa-digital-dashboard-active #live-compass-card,
+  #page-compass.qa-digital-dashboard-active .qa-compass-legacy-grid>div>div:has(#box-qibla),
+  #page-compass.qa-digital-dashboard-active .qa-compass-legacy-grid>div>div:has(#box-diff){min-height:64px!important}
+  #page-compass.qa-digital-dashboard-active #live-compass-card>div:last-child,
+  #page-compass.qa-digital-dashboard-active .qa-compass-legacy-grid>div>div:has(#box-qibla)>div:last-child,
+  #page-compass.qa-digital-dashboard-active .qa-compass-legacy-grid>div>div:has(#box-diff)>div:last-child{width:24px!important;height:24px!important;min-height:24px!important}
+  #page-compass.qa-digital-dashboard-active>div>button[onclick*="showManualCal"],
+  #page-compass.qa-digital-dashboard-active>div>button[onclick*="tryBrowserGPS"]{min-height:54px!important}
+  #page-compass.qa-digital-dashboard-active .qa-calc-hint,
+  #page-compass.qa-digital-dashboard-active .qa-calc-result{display:none!important}
+}
+@media (max-width:360px){
+  #page-compass.qa-digital-dashboard-active .qa-compass-legacy-grid{gap:4px!important;padding-left:7px!important;padding-right:7px!important}
+  #page-compass.qa-digital-dashboard-active #live-compass-card,
+  #page-compass.qa-digital-dashboard-active .qa-compass-legacy-grid>div>div:has(#box-qibla),
+  #page-compass.qa-digital-dashboard-active .qa-compass-legacy-grid>div>div:has(#box-diff){border-radius:13px!important;padding-left:3px!important;padding-right:3px!important}
+}

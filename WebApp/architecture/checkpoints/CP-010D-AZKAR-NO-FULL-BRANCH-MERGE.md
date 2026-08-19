@@ -1,0 +1,1 @@
+Do not merge azkar-stable wholesale. Only the explicit Azkar screen dependency set and audio folder are authorized.

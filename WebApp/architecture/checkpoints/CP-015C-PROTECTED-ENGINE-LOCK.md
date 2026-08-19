@@ -1,0 +1,1 @@
+No protected engine file may change during the reference UI restoration. The compass Host may move the existing canvas/slider nodes but must not clone or recreate them. Presentation restoration must be limited to approved CSS/JS and runtime/service-worker wiring.

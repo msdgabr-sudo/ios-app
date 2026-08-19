@@ -1,0 +1,15 @@
+/* ══════════════════════════════════════════════════════════════════════════════
+   [CSS-J] SECTION HEADERS
+   ══════════════════════════════════════════════════════════════════════════════ */
+
+/* ═══════════════════════════════════════════
+   SECTION HEADER
+═══════════════════════════════════════════ */
+.sec-hdr{
+  width:100%;display:flex;align-items:center;gap:8px;
+  font-size:.6rem;color:var(--txt3);font-family:'JetBrains Mono',monospace;
+  letter-spacing:.08em;text-transform:uppercase;
+  padding:2px 0;
+}
+.sec-hdr::after{content:'';flex:1;height:1px;background:var(--rim);}
+

@@ -1,0 +1,25 @@
+/* ══════════════════════════════════════════════════════════════════════════════
+   [CSS-K] SKY TRACK
+   ══════════════════════════════════════════════════════════════════════════════ */
+
+/* ═══════════════════════════════════════════
+   SKY TRACK
+═══════════════════════════════════════════ */
+.sky-wrap{
+  width:100%;background:var(--panel);border:1px solid var(--rim);
+  border-radius:var(--radius);padding:12px;
+}
+.sky-arc{
+  position:relative;height:54px;
+  background:linear-gradient(to bottom,#020408,#060C16 40%,#0E0806 80%,#030204);
+  border-radius:8px;overflow:hidden;margin-bottom:5px;
+}
+.sky-arc::after{content:'';position:absolute;bottom:14px;left:0;right:0;height:1px;background:linear-gradient(90deg,transparent,var(--rim),transparent);}
+.sky-body{position:absolute;border-radius:50%;transform:translate(-50%,50%);z-index:3;}
+.sky-sun{width:15px;height:15px;background:radial-gradient(circle,#fff,var(--sun) 50%,#E07020);box-shadow:0 0 10px 3px rgba(240,200,60,.5);}
+.sky-moon{width:13px;height:13px;background:radial-gradient(circle,#EEF4FF,var(--moon) 50%,#4060A0);box-shadow:0 0 8px 2px rgba(138,174,240,.4);}
+.sky-body.below{opacity:.18;filter:grayscale(1);}
+.sky-labels{display:flex;justify-content:space-between;font-size:.58rem;color:var(--txt3);font-family:'JetBrains Mono',monospace;}
+.alt-bar{height:5px;border-radius:3px;background:var(--ink2);overflow:hidden;border:1px solid var(--rim);margin-top:5px;}
+.alt-fill{height:100%;border-radius:3px;transition:width .9s ease;}
+

@@ -1,0 +1,185 @@
+/*
+ * QiblaAstro — Reference Parity Home
+ * Presentation-only reconstruction of the approved home composition.
+ * No engine, solver, store, bearing or verification value is modified.
+ *
+ * © 2026 محمد سيد جبر بحيرى — Mohamed SG Behairy. All Rights Reserved.
+ */
+
+#page-home .qa-reference-home{
+  position:relative;
+  isolation:isolate;
+  margin:0 0 14px;
+  color:#f7fbff;
+  overflow:hidden;
+  border-radius:0 0 30px 30px;
+  background:
+    radial-gradient(circle at 50% 27%,rgba(40,98,164,.34),transparent 35%),
+    linear-gradient(180deg,#020711 0%,#06142a 58%,#06101e 100%);
+  box-shadow:0 22px 55px rgba(0,0,0,.34);
+}
+
+#page-home .qa-reference-home::before{
+  content:"";
+  position:absolute;
+  inset:0;
+  pointer-events:none;
+  background-image:
+    radial-gradient(circle,rgba(255,255,255,.62) 0 1px,transparent 1.25px),
+    radial-gradient(circle,rgba(116,198,255,.38) 0 1px,transparent 1.2px);
+  background-size:79px 79px,131px 131px;
+  background-position:7px 13px,43px 51px;
+  opacity:.62;
+  -webkit-mask-image:linear-gradient(#000 0%,rgba(0,0,0,.82) 64%,transparent 100%);
+  mask-image:linear-gradient(#000 0%,rgba(0,0,0,.82) 64%,transparent 100%);
+}
+
+.qa-reference-topbar{
+  position:relative;
+  z-index:5;
+  display:grid;
+  grid-template-columns:44px 1fr 44px;
+  align-items:center;
+  gap:8px;
+  padding:14px 16px 7px;
+}
+.qa-reference-menu,.qa-reference-bell{
+  width:42px;height:42px;border-radius:14px;
+  border:1px solid rgba(150,208,255,.2);
+  background:rgba(4,13,25,.66);
+  display:grid;place-items:center;
+  color:#eaf5ff;font-size:1.35rem;
+  box-shadow:inset 0 1px 0 rgba(255,255,255,.05);
+}
+.qa-reference-brand{text-align:center;line-height:1}
+.qa-reference-brand strong{display:block;font:600 1.58rem/1.05 system-ui,sans-serif;letter-spacing:.03em;color:#fff}
+.qa-reference-brand span{display:block;margin-top:5px;font:600 .58rem/1 system-ui,sans-serif;letter-spacing:.28em;color:#d9b960}
+
+.qa-reference-skyrow{
+  position:relative;z-index:4;
+  display:grid;
+  grid-template-columns:82px minmax(0,1fr) 82px;
+  gap:8px;
+  align-items:start;
+  padding:9px 14px 0;
+}
+.qa-reference-sidecard{
+  min-height:126px;
+  padding:12px 8px;
+  border-radius:20px;
+  border:1px solid rgba(148,207,255,.22);
+  background:linear-gradient(145deg,rgba(19,39,67,.84),rgba(4,12,24,.82));
+  text-align:center;
+  box-shadow:inset 0 1px 0 rgba(255,255,255,.05),0 14px 28px rgba(0,0,0,.22);
+}
+.qa-reference-sidecard .orb{width:48px;height:48px;margin:0 auto 7px;border-radius:50%;display:grid;place-items:center;font-size:2rem}
+.qa-reference-sidecard.moon .orb{background:radial-gradient(circle at 36% 31%,#f7f8fb,#aab5c7 42%,#536277 70%,#1c2738 100%);box-shadow:0 0 20px rgba(190,215,255,.18)}
+.qa-reference-sidecard.sun .orb{background:radial-gradient(circle,#fff7b1 0 17%,#ffc54f 34%,#e77f16 62%,rgba(231,127,22,.12) 66%);box-shadow:0 0 26px rgba(255,177,49,.34)}
+.qa-reference-sidecard b{display:block;font-size:.76rem;color:#f5f8fc}
+.qa-reference-sidecard strong{display:block;margin-top:4px;font:700 1.12rem/1.1 var(--qa-font-numeric);color:#fff}
+.qa-reference-sidecard small{display:block;margin-top:7px;font-size:.56rem;line-height:1.45;color:rgba(229,239,250,.68)}
+
+.qa-reference-center{text-align:center;position:relative;min-height:220px;padding-top:8px}
+.qa-reference-center::before,.qa-reference-center::after{
+  content:"";position:absolute;left:50%;top:21px;transform:translateX(-50%);border-radius:50%;pointer-events:none
+}
+.qa-reference-center::before{width:208px;height:208px;border:1px solid rgba(111,192,255,.35);box-shadow:inset 0 0 32px rgba(48,133,212,.12),0 0 24px rgba(70,160,236,.1)}
+.qa-reference-center::after{width:174px;height:174px;top:38px;border:1px dashed rgba(218,184,91,.38)}
+.qa-reference-bearing-label{position:relative;z-index:2;margin-top:32px;font-size:.74rem;color:#e7ca79}
+.qa-reference-bearing{position:relative;z-index:2;margin-top:3px;font:800 2.45rem/1 var(--qa-font-numeric);color:#e4bc5e;text-shadow:0 0 24px rgba(228,188,94,.2)}
+.qa-reference-accuracy{position:relative;z-index:2;display:inline-flex;align-items:center;gap:5px;margin-top:7px;padding:5px 10px;border:1px solid rgba(78,196,255,.31);border-radius:999px;background:rgba(4,22,40,.56);font-size:.52rem;color:#8ce2ff}
+.qa-reference-pointer{position:absolute;z-index:3;left:50%;top:17px;transform:translateX(-50%);font-size:1.42rem;color:#e7bd59;text-shadow:0 0 16px rgba(231,189,89,.35)}
+
+.qa-reference-earth{
+  position:absolute;z-index:1;left:50%;top:218px;transform:translateX(-50%);
+  width:420px;height:210px;border-radius:50% 50% 0 0/100% 100% 0 0;
+  background:
+    radial-gradient(circle at 46% 24%,rgba(161,218,255,.27),transparent 18%),
+    radial-gradient(circle at 56% 47%,rgba(57,122,105,.66),transparent 24%),
+    radial-gradient(ellipse at 50% 100%,#071429 0%,#123956 52%,#255f85 70%,#86d7ff 76%,transparent 77%);
+  filter:drop-shadow(0 -10px 30px rgba(80,181,255,.18));
+}
+.qa-reference-kaaba{
+  position:absolute;z-index:3;left:50%;top:245px;transform:translateX(-50%) perspective(420px) rotateY(-7deg);
+  width:70px;height:82px;border-radius:3px;
+  background:linear-gradient(120deg,#191919,#020202 65%,#101010);
+  border:1px solid rgba(255,255,255,.08);
+  box-shadow:0 18px 22px rgba(0,0,0,.5),0 0 20px rgba(220,182,76,.14);
+}
+.qa-reference-kaaba::before{content:"";position:absolute;left:0;right:0;top:17px;height:9px;background:linear-gradient(90deg,#8f6a1e,#edcf72 50%,#916b20)}
+.qa-reference-kaaba::after{content:"";position:absolute;right:12px;bottom:8px;width:16px;height:28px;border:1px solid #b38935;border-radius:6px 6px 1px 1px;background:linear-gradient(120deg,#705018,#dfba59 52%,#604313)}
+
+.qa-reference-summary{
+  position:relative;z-index:6;
+  display:grid;grid-template-columns:1fr 1fr 1fr;
+  gap:0;margin:125px 14px 14px;
+  border:1px solid rgba(135,202,255,.27);
+  border-radius:21px;
+  background:linear-gradient(145deg,rgba(15,38,65,.88),rgba(4,13,26,.9));
+  box-shadow:inset 0 1px 0 rgba(255,255,255,.05),0 15px 35px rgba(0,0,0,.28);
+  overflow:hidden;
+}
+.qa-reference-summary > div{min-height:88px;padding:12px 8px;text-align:center;display:flex;flex-direction:column;justify-content:center}
+.qa-reference-summary > div+div{border-inline-start:1px solid rgba(148,206,245,.14)}
+.qa-reference-summary span{font-size:.54rem;color:rgba(221,235,249,.65)}
+.qa-reference-summary strong{margin-top:5px;font-size:.72rem;line-height:1.55;color:#f5f8fc}
+.qa-reference-summary .prayer strong{font-size:.9rem;color:#7ee29a}
+.qa-reference-summary .prayer em{margin-top:3px;font:700 .72rem/1.2 var(--qa-font-numeric);font-style:normal;color:#fff}
+
+#page-home .qa-legacy-home-summary{display:none!important}
+
+/* Match the approved compact four-column instrument dashboard. */
+#page-home .qa-dashboard-grid{
+  grid-template-columns:repeat(4,minmax(0,1fr))!important;
+  gap:8px!important;
+  margin:6px 10px 18px!important;
+}
+#page-home .qa-dashboard-grid>.hm-card{
+  aspect-ratio:.86/1!important;
+  min-height:0!important;
+  padding:9px 5px!important;
+  gap:5px!important;
+  border-radius:16px!important;
+  border-color:rgba(139,204,248,.22)!important;
+  background:linear-gradient(155deg,rgba(16,37,62,.95),rgba(4,13,25,.98))!important;
+  box-shadow:inset 0 1px 0 rgba(255,255,255,.05),0 10px 22px rgba(0,0,0,.22)!important;
+}
+#page-home .qa-dashboard-grid>.hm-card .hm-icon-wrap,
+#page-home .qa-dashboard-grid>.hm-card:first-child>div:first-child>div:first-child{
+  width:52px!important;height:52px!important;flex-basis:52px!important;border-radius:50%!important;
+  margin:0 auto 2px!important;
+}
+#page-home .qa-dashboard-grid>.hm-card .hm-icon-plain{width:42px!important;height:42px!important}
+#page-home .qa-dashboard-grid>.hm-card .hm-t,
+#page-home .qa-dashboard-grid>.hm-card [id$='-t']{font-size:.68rem!important;line-height:1.35!important;color:#e5be68!important}
+#page-home .qa-dashboard-grid>.hm-card .hm-s,
+#page-home .qa-dashboard-grid>.hm-card [id$='-s']{font-size:.47rem!important;line-height:1.45!important;max-width:100%!important}
+#page-home .qa-dashboard-grid>.hm-card .hm-chevron{display:none!important}
+#page-home .qa-dashboard-grid>.hm-card:first-child{border-color:rgba(218,181,82,.38)!important}
+#page-home .qa-dashboard-grid>.hm-card:first-child #hm-qibla-deg{font-size:.72rem!important}
+
+/* Compact system status strip above navigation. */
+#page-home .qa-system-strip{
+  display:grid;grid-template-columns:repeat(3,1fr);gap:0;
+  margin:0 10px 18px;border:1px solid rgba(139,201,242,.2);border-radius:16px;
+  background:rgba(5,15,28,.88);overflow:hidden
+}
+#page-home .qa-system-strip>div{padding:10px 5px;text-align:center}
+#page-home .qa-system-strip>div+div{border-inline-start:1px solid rgba(139,201,242,.13)}
+#page-home .qa-system-strip span{display:block;font-size:.48rem;color:#d5b661}
+#page-home .qa-system-strip strong{display:block;margin-top:3px;font-size:.55rem;color:#dceaf6}
+#page-home .qa-system-strip .ok{color:#71d99a}
+
+@media(max-width:350px){
+  .qa-reference-skyrow{grid-template-columns:69px minmax(0,1fr) 69px;padding-inline:8px}
+  .qa-reference-sidecard{min-height:112px;padding:9px 5px}.qa-reference-sidecard .orb{width:40px;height:40px}
+  .qa-reference-bearing{font-size:2rem}.qa-reference-center::before{width:178px;height:178px}.qa-reference-center::after{width:148px;height:148px}
+  #page-home .qa-dashboard-grid{gap:6px!important;margin-inline:6px!important}
+  #page-home .qa-dashboard-grid>.hm-card{padding:7px 3px!important;border-radius:13px!important}
+  #page-home .qa-dashboard-grid>.hm-card .hm-icon-wrap,#page-home .qa-dashboard-grid>.hm-card:first-child>div:first-child>div:first-child{width:44px!important;height:44px!important;flex-basis:44px!important}
+  #page-home .qa-dashboard-grid>.hm-card .hm-icon-plain{width:36px!important;height:36px!important}
+  #page-home .qa-dashboard-grid>.hm-card .hm-t,#page-home .qa-dashboard-grid>.hm-card [id$='-t']{font-size:.59rem!important}
+  #page-home .qa-dashboard-grid>.hm-card .hm-s,#page-home .qa-dashboard-grid>.hm-card [id$='-s']{font-size:.41rem!important}
+}
+
+@media(prefers-reduced-motion:reduce){.qa-reference-home *,#page-home .qa-dashboard-grid>.hm-card{animation:none!important;transition:none!important}}

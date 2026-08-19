@@ -1,0 +1,51 @@
+<!doctype html>
+<html lang="ar" dir="rtl">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover,user-scalable=no">
+  <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate">
+  <meta http-equiv="Pragma" content="no-cache">
+  <meta http-equiv="Expires" content="0">
+  <title>الأذكار — QiblaAstro</title>
+  <link rel="stylesheet" href="../css/azkar-new.css?v=20260809-0132">
+  <link rel="stylesheet" href="../css/azkar-home-tuning.css?v=20260809-0132">
+  <link rel="stylesheet" href="../css/azkar-reader-tuning.css?v=20260809-0132">
+  <link rel="stylesheet" href="../css/azkar-listen.css?v=20260809-0132">
+  <link rel="stylesheet" href="../css/azkar-final-tuning.css?v=20260815-reading-width1">
+  <link rel="stylesheet" href="../css/reading-full-width-final.css?v=20260815-reading-width1">
+  <style>
+    html,body{width:100%;height:100%;min-height:0;margin:0;overflow:hidden!important;overscroll-behavior:none!important}
+    #azkarApp{width:100%;height:100dvh!important;min-height:100dvh!important;max-height:100dvh!important;overflow:hidden!important;overscroll-behavior:none!important}
+    #azkarApp .az-view{max-height:100dvh!important;overflow:hidden!important}
+    #azkarApp .az-dhikr-scroller{overscroll-behavior:contain}
+    #azAudio .az-audio-status{display:flex!important}
+  </style>
+</head>
+<body>
+  <main id="azkarApp" class="az-app" data-theme="neutral">
+    <section id="azHome" class="az-view is-active" aria-label="أقسام الأذكار">
+      <div class="az-home-ornament" aria-hidden="true"></div>
+      <header class="az-home-head"><span class="az-kicker">QiblaAstro</span><h1>الأذكار</h1><p>ورد هادئ من الأذكار والأدعية</p></header>
+      <button id="azAudioEntry" class="az-audio-entry az-audio-entry-top" type="button"><span class="az-audio-icon" aria-hidden="true">◌</span><span><strong>تنبيه الأذكار بالصوت</strong><small>اختر ذكرًا قصيرًا ليُسمع مرة واحدة كل فترة تحددها</small></span><span class="az-chevron" aria-hidden="true">‹</span></button>
+      <div id="azCategoryGrid" class="az-category-grid"></div>
+      <p class="az-source-note">أذكار الصباح والمساء مُراجعة على «ورد الصباح والمساء من الكتاب والسنة» المأخوذ من «حصن المسلم».</p>
+    </section>
+    <section id="azReader" class="az-view az-reader" aria-label="قارئ الأذكار">
+      <header class="az-reader-head"><button id="azBackHome" class="az-icon-btn az-back-btn" type="button" aria-label="العودة إلى أقسام الأذكار"><span aria-hidden="true">→</span></button><div><span id="azReaderSection" class="az-reader-kicker">أذكار الصباح</span><strong id="azReaderPosition">الذكر 1 من 1</strong></div><span class="az-head-spacer"></span></header>
+      <article id="azDhikrCard" class="az-dhikr-card" tabindex="0" aria-live="polite"><div class="az-card-pattern" aria-hidden="true"></div><div id="azDhikrScroller" class="az-dhikr-scroller"><p id="azDhikrText" class="az-dhikr-text"></p></div><footer class="az-dhikr-source-wrap"><span id="azDhikrVirtue" class="az-dhikr-virtue"></span><span id="azDhikrSource" class="az-dhikr-source"></span></footer></article>
+      <div class="az-reader-foot"><div class="az-reader-meta"><span id="azRepeatLabel">مرة واحدة</span><span id="azReaderIndex">الذكر 1 من 1</span></div><button id="azCounter" class="az-counter" type="button" aria-label="عدد التكرارات المتبقية"><span id="azCounterValue">1</span></button><p class="az-reader-hint">المس الشاشة للعدّ · اسحب من اليسار إلى اليمين للتالي · ومن اليمين إلى اليسار للسابق</p></div>
+    </section>
+    <section id="azAudio" class="az-view az-audio" aria-label="تنبيه الأذكار بالصوت">
+      <header class="az-sub-head"><button id="azAudioBack" class="az-icon-btn az-back-btn" type="button" aria-label="العودة إلى شاشة الأذكار"><span aria-hidden="true">→</span></button><div><span class="az-reader-kicker">تذكير هادئ</span><h2>تنبيه الأذكار بالصوت</h2></div><span class="az-head-spacer"></span></header>
+      <div class="az-audio-panel"><div class="az-audio-mark" aria-hidden="true">◉</div><p class="az-audio-intro">اختر ذكرًا قصيرًا، ثم اختر كل كم دقيقة تريد سماعه مرة واحدة.</p><label class="az-field-label" for="azAudioPhrase">الذكر</label><select id="azAudioPhrase" class="az-select"></select><div class="az-preview-row"><span id="azAudioPreview">سبحان الله</span><button id="azPreviewBtn" type="button" class="az-preview-btn az-speaker-btn" aria-label="استماع إلى الذكر المختار" title="استماع"><span aria-hidden="true">🔊</span></button></div><span class="az-field-label">الفاصل الزمني</span><div id="azIntervals" class="az-interval-grid"></div><button id="azAudioToggle" class="az-primary-btn" type="button">بدء التنبيه</button><div class="az-audio-status" aria-live="polite"><span class="az-status-dot"></span><div><strong id="azAudioState">متوقف</strong><small id="azAudioSummary">اختر الذكر والفاصل الزمني</small></div></div></div>
+    </section>
+  </main>
+  <script src="../js/azkar-data.js?v=20260809-0132"></script>
+  <script src="../js/azkar-verified-overlay.js?v=20260809-0132"></script>
+  <script src="../js/azkar-dua-overlay.js?v=20260809-0132"></script>
+  <script src="../js/azkar-alert-audio-map.js?v=20260809-0132"></script>
+  <script src="../js/azkar-new.js?v=20260809-0132"></script>
+  <script src="../js/azkar-native-reminders.js?v=20260818-native5"></script>
+  <script src="../js/azkar-final-ui.js?v=20260809-0132"></script>
+</body>
+</html>

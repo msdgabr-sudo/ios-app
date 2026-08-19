@@ -1,0 +1,13 @@
+# QiblaAstro Android/TWA secrets and generated outputs
+android-twa/keystore/
+android-twa/*.jks
+android-twa/*.keystore
+android-twa/local.properties
+android-twa/.gradle/
+android-twa/build/
+android-twa/app/build/
+android-twa/app-release-*.apk
+android-twa/app-release-*.aab
+android-twa/*.pem
+android-twa/*.p12
+android-twa/*service-account*.json

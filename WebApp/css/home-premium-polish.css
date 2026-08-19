@@ -1,0 +1,87 @@
+/*
+ * QiblaAstro — Premium Polish
+ * Visual refinement only. No calculation or navigation logic is changed.
+ * © 2026 محمد سيد جبر بحيرى — Mohamed SG Behairy. All Rights Reserved.
+ */
+
+#page-home .qa-hero{
+  box-shadow:0 22px 58px rgba(0,0,0,.58),inset 0 -1px 0 rgba(119,199,255,.08)!important;
+}
+#page-home .qa-sky{
+  filter:contrast(1.22) saturate(1.18) brightness(1.09)!important;
+}
+#page-home .qa-arc{
+  border-color:rgba(239,198,96,.82)!important;
+  box-shadow:0 -4px 20px rgba(231,183,73,.18),inset 0 1px 0 rgba(255,235,177,.1)!important;
+}
+#page-home .qa-arc:after{
+  border-color:rgba(85,177,238,.46)!important;
+}
+#page-home .qa-pointer,
+#page-home .qa-bearing>strong{
+  text-shadow:0 0 9px rgba(255,217,122,.44),0 0 22px rgba(224,165,53,.24)!important;
+}
+#page-home .qa-bearing>em{
+  background:linear-gradient(180deg,rgba(19,95,129,.48),rgba(8,42,66,.42))!important;
+  border-color:rgba(102,219,255,.46)!important;
+  box-shadow:inset 0 1px 0 rgba(255,255,255,.08),0 5px 14px rgba(0,0,0,.18)!important;
+}
+
+#page-home .qa-side-card,
+#page-home .qa-info,
+#page-home .qa-systems,
+#page-home .qa-service-card{
+  border-color:rgba(96,179,229,.34)!important;
+  background-image:linear-gradient(145deg,rgba(255,255,255,.055),transparent 38%)!important;
+  box-shadow:inset 0 1px 0 rgba(255,255,255,.06),0 10px 26px rgba(0,0,0,.28)!important;
+  -webkit-backdrop-filter:blur(15px) saturate(1.08)!important;
+  backdrop-filter:blur(15px) saturate(1.08)!important;
+}
+#page-home .qa-info{
+  background-color:rgba(3,15,29,.94)!important;
+}
+#page-home .qa-systems{
+  background-color:rgba(3,14,27,.95)!important;
+}
+#page-home .qa-service-card{
+  background-color:rgba(4,15,29,.95)!important;
+  transition:transform .16s ease,box-shadow .16s ease,border-color .16s ease!important;
+}
+#page-home .qa-system-card{
+  transition:transform .16s ease,background-color .16s ease!important;
+}
+#page-home .qa-system-card:active,
+#page-home .qa-service-card:active,
+#page-home .qa-bearing:active{
+  transform:scale(.975)!important;
+}
+#page-home .qa-service-card:active{
+  border-color:rgba(232,192,91,.52)!important;
+  box-shadow:inset 0 1px 0 rgba(255,255,255,.08),0 5px 14px rgba(0,0,0,.3)!important;
+}
+#page-home .qa-system-icon,
+#page-home .qa-service-icon{
+  box-shadow:inset 0 1px 0 rgba(255,255,255,.08),0 6px 14px rgba(0,0,0,.26)!important;
+}
+#page-home .qa-system-icon img,
+#page-home .qa-service-icon img{
+  filter:contrast(1.08) saturate(1.08) drop-shadow(0 4px 8px rgba(0,0,0,.42))!important;
+}
+#page-home .qa-system-card strong,
+#page-home .qa-service-card strong{
+  color:#edcd7e!important;
+  text-shadow:0 1px 4px rgba(0,0,0,.45)!important;
+}
+#page-home .qa-system-card small,
+#page-home .qa-service-card small,
+#page-home .qa-info span{
+  color:#c4d2df!important;
+}
+#page-home .qa-prayer strong{
+  text-shadow:0 0 12px rgba(82,236,111,.2)!important;
+}
+
+@media (prefers-reduced-motion:reduce){
+  #page-home .qa-system-card,
+  #page-home .qa-service-card{transition:none!important}
+}

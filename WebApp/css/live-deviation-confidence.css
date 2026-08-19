@@ -1,0 +1,44 @@
+/* QiblaAstro — live deviation confidence presentation only
+ * © 2026 محمد سيد جبر بحيرى — Mohamed SG Behairy. All Rights Reserved. */
+#page-compass .qa-live-confidence-copy,
+#page-compass .qa-live-digital-confidence{
+  width:100%;min-width:0;display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;
+}
+#page-compass .qa-live-confidence-copy>b{
+  font-size:.62rem;line-height:1.1;color:#E4E9EF;margin:0;
+}
+#page-compass .qa-live-confidence-copy>strong,
+#page-compass .qa-live-digital-confidence>strong{
+  display:block;font-family:'JetBrains Mono',monospace;font-size:1rem;line-height:1.05;margin:1px 0 0;color:#91A8BA;
+}
+#page-compass .qa-live-confidence-copy>small,
+#page-compass .qa-live-digital-confidence>small{
+  display:block;font-size:.49rem;line-height:1.1;margin-top:1px;color:#91A8BA;white-space:nowrap;
+}
+#page-compass .qa-live-confidence-track{
+  display:block;position:relative;width:82%;height:4px;margin:4px auto 0;border-radius:99px;overflow:hidden;background:rgba(126,164,192,.18);direction:rtl;
+}
+#page-compass .qa-live-confidence-track i{
+  position:absolute;top:0;bottom:0;right:0;left:auto;width:0;border-radius:99px;background:#91A8BA;transition:width .25s ease,background .25s ease;
+}
+#page-compass [data-live-state="excellent"] .qa-live-confidence-track i,
+#page-compass [data-live-state="good"] .qa-live-confidence-track i{background:#63C779}
+#page-compass [data-live-state="fair"] .qa-live-confidence-track i{background:#C9A85D}
+#page-compass [data-live-state="weak"] .qa-live-confidence-track i{background:#C76868}
+#page-compass [data-live-state="excellent"] .qa-live-confidence-copy>strong,
+#page-compass [data-live-state="excellent"] .qa-live-confidence-copy>small,
+#page-compass [data-live-state="excellent"] .qa-live-digital-confidence>strong,
+#page-compass [data-live-state="excellent"] .qa-live-digital-confidence>small,
+#page-compass [data-live-state="good"] .qa-live-confidence-copy>strong,
+#page-compass [data-live-state="good"] .qa-live-confidence-copy>small,
+#page-compass [data-live-state="good"] .qa-live-digital-confidence>strong,
+#page-compass [data-live-state="good"] .qa-live-digital-confidence>small{color:#63C779}
+#page-compass [data-live-state="fair"] .qa-live-confidence-copy>strong,
+#page-compass [data-live-state="fair"] .qa-live-confidence-copy>small,
+#page-compass [data-live-state="fair"] .qa-live-digital-confidence>strong,
+#page-compass [data-live-state="fair"] .qa-live-digital-confidence>small{color:#C9A85D}
+#page-compass [data-live-state="weak"] .qa-live-confidence-copy>strong,
+#page-compass [data-live-state="weak"] .qa-live-confidence-copy>small,
+#page-compass [data-live-state="weak"] .qa-live-digital-confidence>strong,
+#page-compass [data-live-state="weak"] .qa-live-digital-confidence>small{color:#C76868}
+#page-compass [data-live-state="empty"] .qa-live-confidence-track i{width:0!important;background:transparent}

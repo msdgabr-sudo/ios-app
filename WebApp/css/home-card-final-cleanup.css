@@ -1,0 +1,43 @@
+/*
+ * QiblaAstro — final home service cleanup
+ * Five-card layout aligned with the approved master reference.
+ * © 2026 محمد سيد جبر بحيرى — Mohamed SG Behairy. All Rights Reserved.
+ */
+
+#page-home .qa-services-five{
+  display:grid!important;
+  grid-template-columns:repeat(6,minmax(0,1fr))!important;
+  gap:6px!important;
+}
+#page-home .qa-services-five>.qa-service-card:nth-child(-n+3){grid-column:span 2!important}
+#page-home .qa-services-five>.qa-service-card:nth-child(n+4){grid-column:span 3!important}
+
+/* Settings gets its own premium gold gear instead of the GNSS satellite artwork. */
+#page-home .qa-service-card.settings .qa-service-icon img{display:none!important}
+#page-home .qa-service-card.settings .qa-service-icon{
+  display:grid!important;
+  place-items:center!important;
+  border-radius:50%!important;
+  background:radial-gradient(circle,rgba(237,191,73,.2),rgba(7,24,43,.8) 68%)!important;
+  border:1px solid rgba(221,174,62,.38)!important;
+  box-shadow:0 0 18px rgba(219,169,53,.18)!important;
+}
+#page-home .qa-service-card.settings .qa-service-icon::before{
+  content:"⚙︎";
+  display:block;
+  font-family:Arial,"Noto Sans Arabic",sans-serif;
+  font-size:2.5rem;
+  line-height:1;
+  color:#e9b83f;
+  text-shadow:0 0 10px rgba(242,193,66,.45),0 2px 2px rgba(0,0,0,.8);
+}
+
+@media(max-width:380px){
+  #page-home .qa-services-five{gap:5px!important}
+  #page-home .qa-service-card.settings .qa-service-icon::before{font-size:2.2rem}
+}
+
+@media(max-height:760px){
+  #page-home .qa-services-five{gap:4px!important}
+  #page-home .qa-service-card.settings .qa-service-icon::before{font-size:2rem}
+}

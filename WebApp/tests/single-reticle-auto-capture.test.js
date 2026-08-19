@@ -1,0 +1,12 @@
+'use strict';
+const fs=require('fs');
+const assert=require('assert');
+const ui=fs.readFileSync('js/astronomical-observatory-ui.js','utf8');
+const session=fs.readFileSync('js/astronomical-verification-session.js','utf8');
+assert(!ui.includes("this.target.style.display='none'"),'Original observatory target must remain visible.');
+assert(ui.includes('var targetX=alignmentTarget&&alignmentTarget.visible'),'Original target must be positioned from the Qibla-axis target.');
+assert(ui.includes('var stable=aligned&&quality>='),'Automatic capture must require alignment.');
+assert(!session.includes('data-qibla-axis-reticle'),'Session must not create an additional reticle.');
+assert(!session.includes('_ensureAlignmentReticle'),'Second-reticle creator must be absent.');
+assert(!session.includes('_updateAlignmentReticle'),'Second-reticle updater must be absent.');
+console.log('Original observatory reticle is the single Qibla-axis target.');

@@ -1,0 +1,233 @@
+/* ══════════════════════════════════════════════════════════════════════════════
+   [CSS-W] GEMINI COMPASS SYSTEM
+   ══════════════════════════════════════════════════════════════════════════════ */
+
+/* ══ Gemini Compass System ══ */
+
+/* الحلقة المعدنية الخارجية */
+.compass-outer-ring {
+  position: relative;
+  width: min(92vw, 420px);
+  height: min(92vw, 420px);
+  margin: 0 auto;
+  border-radius: 50%;
+  background: conic-gradient(
+    from 0deg,
+    #2A2A2A 0deg, #5A5A5A 20deg, #8A8A8A 40deg,
+    #C8C8C8 60deg, #E8E8E8 80deg, #F8F8F8 90deg,
+    #E0E0E0 100deg, #B0B0B0 120deg, #787878 140deg,
+    #4A4A4A 160deg, #2A2A2A 180deg,
+    #5A5A5A 200deg, #9A9A9A 220deg, #D0D0D0 240deg,
+    #F0F0F0 260deg, #FFFFFF 270deg, #E8E8E8 280deg,
+    #B8B8B8 300deg, #787878 320deg, #484848 340deg,
+    #2A2A2A 360deg
+  );
+  box-shadow:
+    0 0 0 3px rgba(255,255,255,.08),
+    0 0 20px rgba(0,0,0,.8),
+    inset 0 0 30px rgba(0,0,0,.5),
+    0 8px 32px rgba(0,0,0,.6),
+    0 0 60px rgba(200,164,74,.1);
+  padding: 10px;
+}
+
+/* الحلقة الداخلية الفضية */
+.compass-inner-ring {
+  width: 100%;
+  height: 100%;
+  border-radius: 50%;
+  background: linear-gradient(135deg,
+    #1A1A1A 0%, #3A3A3A 30%,
+    #5A5A5A 50%, #3A3A3A 70%, #1A1A1A 100%);
+  box-shadow:
+    inset 0 2px 8px rgba(255,255,255,.15),
+    inset 0 -2px 8px rgba(0,0,0,.5);
+  padding: 8px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+/* Canvas البوصلة */
+#cvs {
+  border-radius: 50%;
+  display: block;
+  width: 100% !important;
+  height: 100% !important;
+  box-shadow:
+    inset 0 0 40px rgba(0,0,0,.6),
+    0 0 20px rgba(200,164,74,.05);
+}
+
+/* نبضة خضراء عند محاذاة القبلة */
+@keyframes qiblaPulse {
+  0%   { box-shadow: 0 0 0 0 rgba(64,220,120,.7), 0 0 30px rgba(64,220,120,.3); }
+  70%  { box-shadow: 0 0 0 20px rgba(64,220,120,0), 0 0 30px rgba(64,220,120,.1); }
+  100% { box-shadow: 0 0 0 0 rgba(64,220,120,0), 0 0 0 rgba(64,220,120,0); }
+}
+.compass-outer-ring.qibla-aligned {
+  animation: qiblaPulse 1s ease-out infinite;
+  border: 2px solid rgba(64,220,120,.5);
+}
+
+/* مربعات المعلومات */
+.cmp-info-row {
+  display: flex;
+  gap: 6px;
+  padding: 8px 12px;
+  direction: rtl;
+}
+.cmp-box {
+  flex: 1;
+  border-radius: 12px;
+  padding: 10px 8px;
+  text-align: center;
+  backdrop-filter: blur(10px);
+  transition: all .3s;
+}
+.cmp-box-gold {
+  background: rgba(200,164,74,.08);
+  border: 1px solid rgba(200,164,74,.3);
+}
+.cmp-box-blue {
+  background: rgba(138,174,240,.08);
+  border: 1px solid rgba(138,174,240,.3);
+}
+.cmp-box-green {
+  background: rgba(64,184,112,.06);
+  border: 1px solid rgba(64,184,112,.25);
+}
+.cmp-box-label {
+  font-size: .58rem;
+  color: #8AAEF0;
+  margin-bottom: 4px;
+}
+.cmp-box-val {
+  font-family: monospace;
+  font-size: 1.05rem;
+  font-weight: 700;
+  line-height: 1;
+}
+.cmp-box-sub {
+  font-size: .55rem;
+  color: #5A7090;
+  margin-top: 3px;
+}
+
+/* مربع القبلة الكبير */
+.cmp-qibla-big {
+  margin: 6px 12px;
+  padding: 14px 16px;
+  background: linear-gradient(135deg,
+    rgba(200,164,74,.08), rgba(200,164,74,.03));
+  border: 1px solid rgba(200,164,74,.25);
+  border-radius: 16px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  direction: rtl;
+  position: relative;
+  overflow: hidden;
+}
+.cmp-qibla-big::before {
+  content: '';
+  position: absolute;
+  top: 0; left: 0; right: 0;
+  height: 1px;
+  background: linear-gradient(90deg,
+    transparent, rgba(200,164,74,.5), transparent);
+}
+.cmp-qibla-deg {
+  font-family: monospace;
+  font-size: 2.2rem;
+  font-weight: 700;
+  color: #E8C060;
+  line-height: 1;
+  text-shadow: 0 0 20px rgba(200,164,74,.4);
+}
+.cmp-qibla-dir {
+  font-size: .78rem;
+  color: #C8A44A;
+  margin-top: 4px;
+}
+.cmp-qibla-sub {
+  font-size: .6rem;
+  color: #5A7090;
+  margin-top: 2px;
+}
+
+/* GPS/IP زر */
+.cmp-gps-row {
+  display: flex;
+  gap: 8px;
+  padding: 6px 12px;
+  direction: rtl;
+}
+.cmp-gps-btn {
+  flex: 1;
+  padding: 10px;
+  border-radius: 10px;
+  border: 1px solid;
+  font-family: inherit;
+  font-size: .78rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all .15s;
+  text-align: center;
+}
+.cmp-gps-btn:active { transform: scale(.97); }
+.cmp-gps-btn-gps {
+  border-color: rgba(64,184,112,.4);
+  background: rgba(64,184,112,.08);
+  color: #50C880;
+}
+.cmp-gps-btn-ip {
+  border-color: rgba(138,174,240,.3);
+  background: rgba(138,174,240,.06);
+  color: #8AAEF0;
+}
+
+/* دائرة المعايرة */
+.cmp-cal-section {
+  margin: 6px 12px;
+  padding: 14px;
+  background: rgba(255,255,255,.02);
+  border: 1px solid rgba(255,255,255,.07);
+  border-radius: 14px;
+  direction: rtl;
+}
+.cmp-cal-title {
+  font-size: .72rem;
+  color: #C8A44A;
+  font-weight: 700;
+  margin-bottom: 10px;
+  text-align: right;
+}
+.cmp-cal-steps {
+  font-size: .68rem;
+  color: #8AAEF0;
+  line-height: 2;
+  text-align: right;
+}
+.cmp-activate-btn {
+  width: 100%;
+  margin-top: 12px;
+  padding: 14px;
+  border-radius: 12px;
+  border: 2px solid #E8C050;
+  background: linear-gradient(135deg, #8A5A10, #E8C050);
+  color: #000;
+  font-family: inherit;
+  font-size: 1rem;
+  font-weight: 700;
+  cursor: pointer;
+  text-shadow: none;
+  box-shadow: 0 0 20px rgba(232,192,80,.3);
+  transition: all .15s;
+}
+.cmp-activate-btn:active { transform: scale(.98); }
+
+
+
+
+/* تأكد أن المحتوى فوق الـ Aurora */

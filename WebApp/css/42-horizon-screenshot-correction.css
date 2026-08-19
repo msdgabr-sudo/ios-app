@@ -1,0 +1,318 @@
+/*
+ * QiblaAstro — Screenshot Correction Pass
+ * Presentation-only fixes derived from the 2026-08-06 real-phone capture.
+ * No GNSS, astronomical, solver, verification, store, or calculation logic.
+ *
+ * © 2026 محمد سيد جبر بحيرى — Mohamed SG Behairy. All Rights Reserved.
+ */
+
+:root{
+  --qa42-gold:#e6c36c;
+  --qa42-gold-hi:#fff0bd;
+  --qa42-cyan:#75ddff;
+  --qa42-panel:rgba(4,13,26,.91);
+  --qa42-stroke:rgba(128,204,244,.16);
+}
+
+html,body{
+  background:#020611!important;
+  overscroll-behavior-y:none;
+}
+body::before,body::after{
+  opacity:.22!important;
+}
+
+/* Remove the bright cyan outer rails visible in the phone capture. */
+#app,.app-shell,main,#page-home{
+  background:
+    radial-gradient(ellipse at 50% 12%,rgba(25,74,135,.23),transparent 38%),
+    radial-gradient(ellipse at 50% 42%,rgba(9,66,104,.12),transparent 42%),
+    linear-gradient(180deg,#020816 0%,#020610 58%,#01040a 100%)!important;
+}
+#page-home{
+  max-width:none!important;
+  width:100%!important;
+  margin:0!important;
+}
+#page-home > div{
+  width:min(100%,430px)!important;
+  max-width:430px!important;
+  margin-inline:auto!important;
+  padding-inline:10px!important;
+}
+
+/* The generated reference scene is the only home header. */
+#page-home .qa-reference-home{
+  display:block!important;
+  position:relative!important;
+  min-height:500px!important;
+  margin:0!important;
+  overflow:hidden!important;
+  border-radius:0 0 28px 28px!important;
+  background:
+    radial-gradient(circle at 50% 48%,rgba(39,114,179,.22),transparent 31%),
+    radial-gradient(circle at 50% 65%,rgba(114,221,255,.13),transparent 27%),
+    linear-gradient(180deg,rgba(2,8,20,.98),rgba(2,8,18,.94))!important;
+  box-shadow:0 26px 60px rgba(0,0,0,.34)!important;
+}
+#page-home .qa-legacy-home-summary,
+#page-home .hm-header.qa-legacy-home-summary,
+#page-home .hm-divider.qa-legacy-home-summary{
+  display:none!important;
+}
+
+/* Header matching the approved reference. */
+#page-home .qa-reference-topbar{
+  min-height:62px!important;
+  padding:10px 8px 4px!important;
+  display:grid!important;
+  grid-template-columns:42px 1fr 42px!important;
+  align-items:start!important;
+  direction:ltr!important;
+}
+#page-home .qa-reference-brand{
+  align-items:center!important;
+  justify-content:center!important;
+  text-align:center!important;
+}
+#page-home .qa-reference-brand strong{
+  font-size:1.38rem!important;
+  line-height:1!important;
+  color:#fff!important;
+  letter-spacing:.01em!important;
+}
+#page-home .qa-reference-brand span{
+  margin-top:4px!important;
+  font-size:.48rem!important;
+  letter-spacing:.38em!important;
+  color:var(--qa42-gold)!important;
+}
+#page-home .qa-reference-menu,
+#page-home .qa-reference-bell{
+  display:flex!important;
+  align-items:center!important;
+  justify-content:center!important;
+  width:38px!important;
+  height:38px!important;
+  border:0!important;
+  background:transparent!important;
+  box-shadow:none!important;
+  color:rgba(244,249,255,.88)!important;
+  font-size:1.35rem!important;
+}
+
+/* Full astronomical Hero. */
+#page-home .qa-reference-skyrow{
+  position:relative!important;
+  z-index:2!important;
+  min-height:285px!important;
+  margin:0 5px!important;
+  display:grid!important;
+  grid-template-columns:92px minmax(0,1fr) 92px!important;
+  gap:7px!important;
+  align-items:start!important;
+  overflow:visible!important;
+}
+#page-home .qa-reference-skyrow::before{
+  top:3px!important;
+  width:258px!important;
+  height:158px!important;
+  border-color:rgba(230,195,108,.46)!important;
+  opacity:.84!important;
+  filter:drop-shadow(0 0 9px rgba(230,195,108,.13));
+}
+#page-home .qa-reference-skyrow::after{
+  top:24px!important;
+  width:230px!important;
+  color:rgba(215,229,242,.6)!important;
+  font-size:.48rem!important;
+}
+#page-home .qa-reference-sidecard{
+  margin-top:20px!important;
+  min-height:113px!important;
+  border-radius:20px!important;
+  border:1px solid var(--qa42-stroke)!important;
+  background:linear-gradient(150deg,rgba(255,255,255,.055),transparent 42%),rgba(4,13,27,.84)!important;
+  box-shadow:inset 0 1px 0 rgba(255,255,255,.06),0 13px 30px rgba(0,0,0,.26)!important;
+}
+#page-home .qa-reference-sidecard .orb{
+  width:45px!important;
+  height:45px!important;
+}
+#page-home .qa-reference-center{
+  min-height:205px!important;
+  padding-top:29px!important;
+  z-index:7!important;
+}
+#page-home .qa-reference-center::before{
+  top:66%!important;
+  width:225px!important;
+  height:225px!important;
+}
+#page-home .qa-reference-center::after{
+  top:28%!important;
+  height:194px!important;
+}
+#page-home .qa-reference-pointer{
+  font-size:1.18rem!important;
+  color:var(--qa42-gold-hi)!important;
+}
+#page-home .qa-reference-bearing-label{
+  margin-top:13px!important;
+  font-size:.76rem!important;
+  color:var(--qa42-gold)!important;
+}
+#page-home .qa-reference-bearing{
+  margin-top:4px!important;
+  font-size:3.58rem!important;
+  line-height:.94!important;
+  color:var(--qa42-gold-hi)!important;
+}
+#page-home .qa-reference-accuracy{
+  margin-top:10px!important;
+  font-size:.56rem!important;
+}
+
+/* Earth and Kaaba now occupy the visual centre instead of disappearing below it. */
+#page-home .qa-reference-earth{
+  display:block!important;
+  position:absolute!important;
+  left:50%!important;
+  top:226px!important;
+  bottom:auto!important;
+  width:430px!important;
+  height:430px!important;
+  transform:translateX(-50%)!important;
+  z-index:1!important;
+  opacity:1!important;
+  background:
+    radial-gradient(circle at 31% 27%,rgba(157,232,255,.34),transparent 13%),
+    radial-gradient(circle at 46% 39%,rgba(70,139,109,.82),transparent 18%),
+    radial-gradient(circle at 60% 47%,rgba(43,112,145,.82),transparent 25%),
+    radial-gradient(circle at 40% 50%,#226283,#0b2b4e 57%,#020817 75%)!important;
+  box-shadow:inset -68px -58px 92px rgba(0,0,0,.78),inset 26px 17px 54px rgba(126,226,255,.22),0 -14px 52px rgba(117,221,255,.31)!important;
+}
+#page-home .qa-reference-kaaba{
+  display:block!important;
+  position:absolute!important;
+  left:50%!important;
+  top:251px!important;
+  bottom:auto!important;
+  width:82px!important;
+  height:98px!important;
+  transform:translateX(-50%)!important;
+  z-index:9!important;
+  opacity:1!important;
+}
+
+#page-home .qa-reference-summary{
+  position:absolute!important;
+  z-index:12!important;
+  left:10px!important;
+  right:10px!important;
+  bottom:10px!important;
+  margin:0!important;
+  min-height:84px!important;
+  grid-template-columns:1fr 1fr 1.18fr!important;
+  border-radius:22px!important;
+  background:rgba(5,16,31,.91)!important;
+  backdrop-filter:blur(20px)!important;
+  -webkit-backdrop-filter:blur(20px)!important;
+}
+#page-home .qa-reference-summary > div{
+  min-height:84px!important;
+  padding:13px 8px!important;
+}
+#page-home .qa-reference-summary strong{font-size:.73rem!important}
+#page-home .qa-reference-summary .prayer strong{font-size:.87rem!important}
+
+/* Replace the oversized two-column cards from the screenshot. */
+#page-home .qa-dashboard-grid{
+  display:grid!important;
+  grid-template-columns:repeat(4,minmax(0,1fr))!important;
+  gap:8px!important;
+  margin:13px 0 10px!important;
+}
+#page-home .qa-dashboard-grid > .hm-card,
+#page-home .qa-dashboard-grid > .hm-card:last-child:nth-child(odd){
+  min-width:0!important;
+  width:100%!important;
+  min-height:105px!important;
+  aspect-ratio:.86/1!important;
+  grid-column:auto!important;
+  padding:8px 4px!important;
+  border-radius:18px!important;
+  display:flex!important;
+  flex-direction:column!important;
+  justify-content:center!important;
+  align-items:center!important;
+  overflow:hidden!important;
+  background:linear-gradient(150deg,rgba(255,255,255,.055),transparent 38%),rgba(4,13,26,.91)!important;
+}
+#page-home .qa-dashboard-grid > .hm-card .hm-icon-wrap{
+  width:48px!important;
+  height:48px!important;
+  flex:0 0 48px!important;
+  margin:0 auto 5px!important;
+  border-radius:16px!important;
+}
+#page-home .qa-dashboard-grid > .hm-card .hm-icon-plain{
+  width:35px!important;
+  height:35px!important;
+}
+#page-home .qa-dashboard-grid > .hm-card .hm-t,
+#page-home .qa-dashboard-grid > .hm-card [id$='-t']{
+  font-size:.62rem!important;
+  line-height:1.25!important;
+  max-width:100%!important;
+  text-align:center!important;
+}
+#page-home .qa-dashboard-grid > .hm-card .hm-s,
+#page-home .qa-dashboard-grid > .hm-card [id$='-s']{
+  font-size:.42rem!important;
+  line-height:1.25!important;
+  max-width:100%!important;
+  text-align:center!important;
+}
+#page-home .qa-dashboard-grid .hm-chevron{display:none!important}
+
+/* Navigation must remain centred and full width, not shifted to the left. */
+nav.nav,div.nav,.nav{
+  left:50%!important;
+  right:auto!important;
+  bottom:8px!important;
+  width:calc(100% - 16px)!important;
+  max-width:414px!important;
+  transform:translateX(-50%)!important;
+  margin:0!important;
+  min-height:68px!important;
+  overflow-x:auto!important;
+  overflow-y:hidden!important;
+  border-radius:23px!important;
+  background:rgba(3,11,23,.94)!important;
+}
+.nav-item{
+  flex:1 0 58px!important;
+  min-width:58px!important;
+}
+.page.active{
+  padding-bottom:calc(96px + env(safe-area-inset-bottom))!important;
+}
+
+@media(max-width:380px){
+  #page-home .qa-reference-home{min-height:510px!important}
+  #page-home .qa-reference-skyrow{grid-template-columns:78px minmax(0,1fr) 78px!important;gap:4px!important}
+  #page-home .qa-reference-sidecard{padding-inline:4px!important}
+  #page-home .qa-reference-bearing{font-size:2.88rem!important}
+  #page-home .qa-reference-earth{width:390px!important;height:390px!important;top:242px!important}
+  #page-home .qa-reference-kaaba{width:72px!important;height:88px!important;top:268px!important}
+  #page-home .qa-reference-summary{grid-template-columns:1fr 1fr!important}
+  #page-home .qa-reference-summary .prayer{grid-column:1/-1!important;min-height:61px!important}
+  #page-home .qa-dashboard-grid{grid-template-columns:repeat(3,minmax(0,1fr))!important;gap:7px!important}
+  #page-home .qa-dashboard-grid > .hm-card{min-height:96px!important;aspect-ratio:1/1!important}
+}
+
+@media(prefers-reduced-motion:reduce){
+  #page-home .qa-reference-center::before,
+  #page-home .qa-reference-kaaba{animation:none!important}
+}

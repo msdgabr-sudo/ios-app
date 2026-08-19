@@ -1,0 +1,154 @@
+/*
+ * QiblaAstro — Horizon Navigation Phase 5
+ * Presentation-only refinement for the existing bottom navigation and copyright slot.
+ * IDs, click handlers, page routing, and engine contracts remain unchanged.
+ *
+ * © 2026 محمد سيد جبر بحيرى — Mohamed SG Behairy. All Rights Reserved.
+ */
+
+body nav.nav,
+body div.nav,
+body .nav{
+  bottom:calc(48px + env(safe-area-inset-bottom))!important;
+  width:calc(100% - 20px)!important;
+  max-width:400px!important;
+  min-height:68px;
+  padding:7px 6px 6px!important;
+  margin:0 auto;
+  border:1px solid rgba(151,215,251,.15)!important;
+  border-radius:24px 24px 18px 18px;
+  background:
+    linear-gradient(145deg,rgba(255,255,255,.055),transparent 42%),
+    rgba(5,13,24,.9)!important;
+  box-shadow:
+    inset 0 1px 0 rgba(255,255,255,.06),
+    0 16px 40px rgba(0,0,0,.38),
+    0 0 28px rgba(88,215,255,.045);
+  -webkit-backdrop-filter:blur(22px) saturate(125%)!important;
+  backdrop-filter:blur(22px) saturate(125%)!important;
+  overflow:visible;
+}
+
+body .nav::before{
+  content:'';
+  position:absolute;
+  left:14%;right:14%;top:-1px;height:1px;
+  background:linear-gradient(90deg,transparent,rgba(88,215,255,.5),rgba(216,182,91,.46),transparent);
+  pointer-events:none;
+}
+
+body .nav-item{
+  position:relative;
+  min-width:0;
+  padding:5px 3px 6px!important;
+  gap:4px!important;
+  border-radius:17px;
+  color:rgba(210,229,243,.5)!important;
+  transition:transform var(--qa-motion-fast) var(--qa-ease-out),color var(--qa-motion-fast),background var(--qa-motion-fast)!important;
+}
+
+body .nav-item::before{
+  content:'';
+  position:absolute;
+  inset:1px 4px;
+  z-index:-1;
+  border:1px solid transparent;
+  border-radius:15px;
+  background:transparent;
+  transition:inherit;
+}
+
+body .nav-item.active{
+  color:var(--qa-guidance-soft)!important;
+  transform:translateY(-2px);
+}
+
+body .nav-item.active::before{
+  border-color:rgba(216,182,91,.18);
+  background:
+    radial-gradient(circle at 50% 10%,rgba(216,182,91,.14),transparent 58%),
+    rgba(216,182,91,.035);
+  box-shadow:inset 0 1px 0 rgba(255,255,255,.035),0 8px 18px rgba(0,0,0,.18);
+}
+
+body .nav-item:active{
+  transform:scale(.96);
+}
+
+body .nav-icon{
+  font-size:1.28rem!important;
+  line-height:1!important;
+  filter:none!important;
+}
+
+body .nav-icon-img{
+  width:30px!important;
+  height:30px!important;
+  opacity:.58!important;
+  filter:grayscale(.18) drop-shadow(0 4px 7px rgba(0,0,0,.42))!important;
+  transition:opacity var(--qa-motion-fast),filter var(--qa-motion-fast),transform var(--qa-motion-fast)!important;
+}
+
+body .nav-item.active .nav-icon-img{
+  opacity:1!important;
+  transform:translateY(-1px) scale(1.04);
+  filter:drop-shadow(0 0 9px rgba(216,182,91,.34)) drop-shadow(0 4px 7px rgba(0,0,0,.42))!important;
+}
+
+body .nav-lbl{
+  max-width:100%;
+  overflow:hidden;
+  text-overflow:ellipsis;
+  white-space:nowrap;
+  font-family:var(--qa-font-ui)!important;
+  font-size:.56rem!important;
+  line-height:1.15;
+  font-weight:600!important;
+  letter-spacing:0!important;
+}
+
+body .nav-item.active .nav-lbl{
+  text-shadow:0 0 12px rgba(216,182,91,.2);
+}
+
+body .ad-slot{
+  height:48px!important;
+  z-index:99998!important;
+  border-top:0!important;
+  background:
+    linear-gradient(180deg,rgba(3,8,15,.72),rgba(3,8,15,.98))!important;
+  padding:9px 12px calc(6px + env(safe-area-inset-bottom))!important;
+}
+
+body .ad-slot::before{
+  content:'';
+  position:absolute;
+  left:18%;right:18%;top:0;height:1px;
+  background:linear-gradient(90deg,transparent,rgba(151,215,251,.12),transparent);
+}
+
+body .ad-slot span{
+  font-family:var(--qa-font-ui)!important;
+  font-size:.49rem!important;
+  color:rgba(215,231,243,.28)!important;
+  letter-spacing:.035em!important;
+}
+
+body .page.active{
+  padding-bottom:calc(132px + env(safe-area-inset-bottom))!important;
+}
+
+@media (max-width:360px){
+  body nav.nav,body div.nav,body .nav{width:calc(100% - 12px)!important;padding-inline:3px!important}
+  body .nav-icon-img{width:27px!important;height:27px!important}
+  body .nav-lbl{font-size:.51rem!important}
+}
+
+@media (min-width:700px){
+  body nav.nav,body div.nav,body .nav{max-width:430px!important}
+}
+
+@media (prefers-reduced-motion:reduce){
+  body .nav-item,body .nav-icon-img{transition:none!important}
+  body .nav-item.active{transform:none}
+}

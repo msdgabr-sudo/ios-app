@@ -1,0 +1,83 @@
+<!doctype html>
+<html lang="ar" dir="rtl">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<title>A2 Location Acceptance — QiblaAstro</title>
+<style>
+*{box-sizing:border-box}body{margin:0;background:#04101d;color:#edf6ff;font-family:system-ui,-apple-system,"Noto Sans Arabic",sans-serif;padding:18px}.wrap{max-width:720px;margin:auto}.head{padding:16px;border:1px solid #274c69;border-radius:18px;background:#081a2b;margin-bottom:14px}.head h1{font-size:1.15rem;margin:0 0 7px}.head p{font-size:.86rem;line-height:1.7;color:#a9c2d5;margin:0}.controls{display:flex;gap:8px;flex-wrap:wrap;margin:12px 0}.controls button{border:1px solid #477391;background:#0b2539;color:#fff;border-radius:12px;padding:11px 14px;font-weight:700}.controls button:disabled{opacity:.45}.summary{font-weight:800;margin:12px 0;padding:12px;border-radius:12px;background:#081a2b;border:1px solid #274c69}.test{padding:12px 13px;border-radius:14px;background:#071725;border:1px solid #1c3b52;margin:9px 0}.test b{display:block;margin-bottom:5px}.test small{display:block;color:#9bb6ca;line-height:1.55}.pass{border-color:#2d8b68}.pass b{color:#76e0b3}.fail{border-color:#9c4551}.fail b{color:#ff9ba7}.wait b{color:#e9cc72}.grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:8px;margin-top:9px}.cell{background:#06111c;border:1px solid #18334a;border-radius:10px;padding:8px;font-size:.78rem}.note{font-size:.78rem;color:#8fa9bd;line-height:1.6;margin-top:13px}iframe{position:fixed;left:-10000px;top:-10000px;width:390px;height:844px;border:0}
+</style>
+</head>
+<body>
+<div class="wrap">
+  <div class="head">
+    <h1>QiblaAstro A2 — اختبارات الموقع العالمية</h1>
+    <p>هذه الصفحة تشغّل ملفات A2 نفسها داخل بيئة اختبار معزولة. لا تغيّر شاشة البوصلة الرقمية ولا شاشة التحقق الفلكي ولا تحفظ مواقع الاختبار داخل التطبيق.</p>
+  </div>
+  <div class="controls">
+    <button id="run" disabled>تشغيل جميع الاختبارات</button>
+    <button id="reload">إعادة تحميل بيئة الاختبار</button>
+  </div>
+  <div class="summary" id="summary">جارٍ تحميل محركات A2…</div>
+  <div id="results"></div>
+  <div class="note">ملاحظة: الاختبارات افتراضية/برمجية للتحقق من أن النتائج تتغير مع الموقع وأن fallback غير الموثوق لا يُستخدم. اختبار الحساس الفعلي والكاميرا يظل اختبار هاتف حقيقي منفصلًا.</div>
+</div>
+<iframe id="app" src="../index.html?acceptance=a2-location"></iframe>
+<script>
+(function(){
+'use strict';
+const iframe=document.getElementById('app'),run=document.getElementById('run'),reload=document.getElementById('reload'),results=document.getElementById('results'),summary=document.getElementById('summary');
+const sites=[
+ {name:'القاهرة',lat:30.0444,lon:31.2357},
+ {name:'لندن',lat:51.5074,lon:-0.1278},
+ {name:'جاكرتا',lat:-6.2088,lon:106.8456},
+ {name:'نيويورك',lat:40.7128,lon:-74.0060},
+ {name:'سيدني',lat:-33.8688,lon:151.2093}
+];
+function card(title,ok,detail,extra){const d=document.createElement('div');d.className='test '+(ok===true?'pass':ok===false?'fail':'wait');d.innerHTML='<b>'+(ok===true?'PASS — ':ok===false?'FAIL — ':'WAIT — ')+title+'</b><small>'+detail+'</small>'+(extra||'');results.appendChild(d);return ok===true?1:0;}
+function round(x,n=2){return Number(x).toFixed(n)}
+function setLoc(w,s){w.eval('LAT='+Number(s.lat)+';LON='+Number(s.lon)+';');}
+function qAt(w,s){setLoc(w,s);return w.calcQibla();}
+function prayerAt(w,s,date){setLoc(w,s);const e=w.solarEvts(date);const p=w.calcPrayers(e);return p?Object.fromEntries(p.map(x=>[x.n,x.h])):null;}
+function astroAt(w,s,date){setLoc(w,s);return {sun:w.sunPos(date),moon:w.moonPos(date)};}
+function deviationKmAt(w,s,angle){setLoc(w,s);w.drawDeviation(angle);const t=w.document.getElementById('dev-km');return t?t.textContent.trim():'';}
+function kmNum(t){const m=String(t).match(/([0-9]+(?:\.[0-9]+)?)/);return m?Number(m[1]):NaN;}
+function ready(){try{const w=iframe.contentWindow;return !!(w&&w.calcQibla&&w.solarEvts&&w.calcPrayers&&w.sunPos&&w.moonPos&&w.drawDeviation&&w.tryIPGeo);}catch(e){return false}}
+function waitReady(){let n=0;const id=setInterval(()=>{n++;if(ready()){clearInterval(id);run.disabled=false;summary.textContent='جاهز — اضغط «تشغيل جميع الاختبارات».';}else if(n>160){clearInterval(id);summary.textContent='تعذر تحميل المحركات. أعد تحميل بيئة الاختبار.';}},100)}
+reload.onclick=()=>{run.disabled=true;results.innerHTML='';summary.textContent='جارٍ إعادة التحميل…';iframe.src='../index.html?acceptance=a2-location&t='+Date.now();waitReady();};
+run.onclick=async()=>{
+ results.innerHTML='';run.disabled=true;summary.textContent='جارٍ تنفيذ الاختبارات…';
+ const w=iframe.contentWindow;let pass=0,total=0;const now=new Date('2026-08-14T12:00:00Z');
+ try{
+   const qs=sites.map(s=>({name:s.name,q:qAt(w,s)}));
+   const unique=new Set(qs.map(x=>round(x.q,1))).size;
+   total++;pass+=card('اتجاه القبلة يتغير حسب الموقع',unique>=4,'تم حساب QT لخمس مدن مختلفة من نفس calcQibla المستخدم في A2.','<div class="grid">'+qs.map(x=>'<div class="cell">'+x.name+'<br><b>'+round(x.q,2)+'°</b></div>').join('')+'</div>');
+
+   const pc=prayerAt(w,sites[0],now),pl=prayerAt(w,sites[1],now),pj=prayerAt(w,sites[2],now);
+   const prayerDiff=pc&&pl&&pj&&(Math.abs(pc['الظهر']-pl['الظهر'])>.05||Math.abs(pc['الفجر']-pl['الفجر'])>.05)&&(Math.abs(pc['الظهر']-pj['الظهر'])>.05||Math.abs(pc['الفجر']-pj['الفجر'])>.05);
+   total++;pass+=card('مواقيت الصلاة مرتبطة بالموقع',!!prayerDiff,'تم تشغيل solarEvts + calcPrayers مباشرة بعد تغيير LAT/LON.','<div class="grid"><div class="cell">القاهرة — فجر '+(pc?round(pc['الفجر']):'--')+' / ظهر '+(pc?round(pc['الظهر']):'--')+'</div><div class="cell">لندن — فجر '+(pl?round(pl['الفجر']):'--')+' / ظهر '+(pl?round(pl['الظهر']):'--')+'</div><div class="cell">جاكرتا — فجر '+(pj?round(pj['الفجر']):'--')+' / ظهر '+(pj?round(pj['الظهر']):'--')+'</div></div>');
+
+   const ac=astroAt(w,sites[0],now),al=astroAt(w,sites[1],now),as=astroAt(w,sites[4],now);
+   const astroDiff=Math.abs(ac.sun.az-al.sun.az)>.05&&Math.abs(ac.moon.az-al.moon.az)>.05&&Math.abs(ac.sun.alt-as.sun.alt)>.05;
+   total++;pass+=card('فلكي: الشمس والقمر يتغيران حسب الموقع',astroDiff,'تم تشغيل sunPos وmoonPos من محرك A2 نفسه عند نفس اللحظة الزمنية.','<div class="grid"><div class="cell">القاهرة — ☀ '+round(ac.sun.az)+'° / '+round(ac.sun.alt)+'°<br>🌙 '+round(ac.moon.az)+'° / '+round(ac.moon.alt)+'°</div><div class="cell">لندن — ☀ '+round(al.sun.az)+'° / '+round(al.sun.alt)+'°<br>🌙 '+round(al.moon.az)+'° / '+round(al.moon.alt)+'°</div><div class="cell">سيدني — ☀ '+round(as.sun.az)+'° / '+round(as.sun.alt)+'°<br>🌙 '+round(as.moon.az)+'° / '+round(as.moon.alt)+'°</div></div>');
+
+   const dc=deviationKmAt(w,sites[0],1),dl=deviationKmAt(w,sites[1],1),ds=deviationKmAt(w,sites[4],1);const nums=[kmNum(dc),kmNum(dl),kmNum(ds)];
+   const devOk=nums.every(Number.isFinite)&&new Set(nums.map(x=>Math.round(x))).size>=2;
+   total++;pass+=card('حاسبة الانحراف تستخدم مسافة الموقع إلى الكعبة',devOk,'اختبار انحراف 1° في ثلاث قارات؛ يجب ألا يبقى رقم الكيلومترات ثابتًا.','<div class="grid"><div class="cell">القاهرة: '+dc+'</div><div class="cell">لندن: '+dl+'</div><div class="cell">سيدني: '+ds+'</div></div>');
+
+   w.eval('gnssHasTrustedFix=false;gnssSource="unresolved";LAT=12.345678;LON=98.765432;');const before=w.eval('[LAT,LON,gnssSource,gnssHasTrustedFix]');w.tryIPGeo();await new Promise(r=>setTimeout(r,500));const after=w.eval('[LAT,LON,gnssSource,gnssHasTrustedFix]');
+   const noFallback=before[0]===after[0]&&before[1]===after[1]&&after[2]==='unresolved'&&after[3]===false;
+   total++;pass+=card('لا IP ولا رجوع تلقائي للجيزة عند الفشل',noFallback,'تم استدعاء tryIPGeo التوافقي عمدًا، ويجب ألا يغيّر LAT/LON أو ينتج Trusted Fix.','<div class="grid"><div class="cell">قبل: '+before.join(' | ')+'</div><div class="cell">بعد: '+after.join(' | ')+'</div></div>');
+
+   const currentSource=w.eval('gnssSource');
+   total++;pass+=card('بوابة النشر تتطلب GPS/GNSS موثوق',currentSource==='unresolved','بعد اختبار الفشل ظل المصدر unresolved ولم يتحول إلى ip/default.');
+
+   summary.textContent='النتيجة: '+pass+' / '+total+' اختبارات ناجحة'+(pass===total?' ✅':' ⚠️');
+ }catch(e){card('خطأ في بيئة الاختبار',false,String(e&&e.stack||e));summary.textContent='توقف الاختبار بسبب خطأ.';}
+ run.disabled=false;
+};
+iframe.addEventListener('load',waitReady);waitReady();
+})();
+</script>
+</body>
+</html>

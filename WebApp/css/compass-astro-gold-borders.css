@@ -1,0 +1,8 @@
+/* QiblaAstro — Astronomical compass gold borders only
+ * Border color only. No size, spacing, typography, layout, behavior or calculation changes.
+ * © 2026 محمد سيد جبر بحيرى — Mohamed SG Behairy. All Rights Reserved.
+ */
+#page-compass.qa-astro-dashboard-active .qa-astro-metric-card,
+#page-compass.qa-astro-dashboard-active .qa-deviation-calculator{
+  border-color:rgba(214,164,72,.82)!important;
+}

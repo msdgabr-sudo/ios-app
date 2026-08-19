@@ -1,0 +1,37 @@
+{
+  "generatedAt": "2026-08-08T12:58:42.147Z",
+  "indexSha256": "94a70680b89316c913316b386c59108579aa1fa0a5a0293ff457be85f6d1723f",
+  "runtimeModified": false,
+  "pages": [
+    {
+      "id": "page-quran",
+      "file": "pages/quran.html",
+      "bytes": 7596,
+      "lines": 97,
+      "sha256": "7bc4b2fec566f58c419d735310022ab24e823f80f0102c6d4c4341686e02e4b2",
+      "ids": 15,
+      "inlineHandlers": 12,
+      "protectedTokenHit": null
+    },
+    {
+      "id": "page-azkar",
+      "file": "pages/azkar.html",
+      "bytes": 50028,
+      "lines": 122,
+      "sha256": "e2adacb38a202111f1f3c34656ff664a9ee9f616aa8273945b53f34bb034a607",
+      "ids": 17,
+      "inlineHandlers": 91,
+      "protectedTokenHit": null
+    },
+    {
+      "id": "page-serenity",
+      "file": "pages/serenity.html",
+      "bytes": 2815,
+      "lines": 29,
+      "sha256": "e5b8003a374b818e9ab05797058c8dd764bd7717eb65352c7525694b65b90b6e",
+      "ids": 12,
+      "inlineHandlers": 4,
+      "protectedTokenHit": null
+    }
+  ]
+}

@@ -1,0 +1,160 @@
+/* ══════════════════════════════════════════════════════════════════════════════
+   [CSS-F] PAGE SYSTEM
+   Shared application routing/layout shell.
+   This file owns generic .page visibility and mobile-width behavior so
+   standalone screens do not depend on legacy Prayer/Azkar presentation CSS.
+   ══════════════════════════════════════════════════════════════════════════════ */
+
+.page {
+  display: none !important;
+  flex-direction: column;
+  align-items: center;
+  width: 100%;
+  max-width: 420px;
+  padding: 0 12px;
+  gap: 12px;
+  animation: fadeIn .25s ease;
+}
+
+.page.active {
+  display: block !important;
+}
+
+#page-home.active {
+  animation: none !important;
+}
+
+.page.active#page-azkar { display: flex !important; }
+.page.active#page-quran { display: flex !important; }
+.page.active#page-serenity { display: block !important; }
+
+/* Compass readiness gate — presentation only. */
+#page-compass.active:not([data-compass-mounted="true"]),
+#page-compass.active[data-compass-mounted="true"]:not(.qa-digital-dashboard-active):not(.qa-astro-dashboard-active) {
+  visibility: hidden !important;
+  opacity: 0 !important;
+  pointer-events: none !important;
+  background: #020811 !important;
+}
+
+#page-compass.active[data-compass-mounted="true"].qa-digital-dashboard-active,
+#page-compass.active[data-compass-mounted="true"].qa-astro-dashboard-active {
+  visibility: visible !important;
+  opacity: 1 !important;
+  pointer-events: auto !important;
+}
+
+/* Phone acceptance composition:
+   lower ONLY the visual dashboard flow. This does not alter compass dimensions,
+   device heading, QT, WMM, astronomical verification, camera, or calculations. */
+#page-compass.active.qa-digital-dashboard-active,
+#page-compass.active.qa-astro-dashboard-active {
+  padding-top: 48px !important;
+}
+
+/* Digital canvas has late-loaded negative top margins in its visual skin.
+   Override only that visual margin so the compass and its cards sit lower. */
+body[data-qa-active-page="compass"] #page-compass.qa-digital-dashboard-active > #cvs {
+  margin-top: 18px !important;
+}
+
+/* Home remains independently reachable and does not move with the dashboard. */
+#qa-compass-home-button {
+  top: calc(env(safe-area-inset-top,0px) + 46px) !important;
+}
+
+/* Remove the obsolete menu/control under Home completely. */
+.qa-compass-menu-button,
+body[data-qa-active-page="compass"] .qa-compass-menu-button {
+  display: none !important;
+  visibility: hidden !important;
+  opacity: 0 !important;
+  pointer-events: none !important;
+}
+
+body:not([data-qa-active-page="compass"]) #qibla-success,
+body:not([data-qa-active-page="compass"]) #qo-canvas {
+  display: none !important;
+  visibility: hidden !important;
+  pointer-events: none !important;
+}
+
+body.tab-home {
+  width: 100%;
+  min-height: 100vh;
+  min-height: 100dvh;
+  align-items: stretch;
+  background: #01040b !important;
+  overflow-x: hidden;
+}
+
+body.tab-home #page-home {
+  width: 100%;
+  max-width: none;
+  min-height: 100vh;
+  min-height: 100dvh;
+  margin: 0;
+  padding-left: 0 !important;
+  padding-right: 0 !important;
+  align-self: stretch;
+  background: #01040b !important;
+  overflow-x: hidden !important;
+}
+
+body.tab-home #page-home > .qa-home {
+  width: 100% !important;
+  max-width: none !important;
+  margin-left: 0 !important;
+  margin-right: 0 !important;
+  padding-left: 0 !important;
+  padding-right: 0 !important;
+  background: #01040b;
+}
+
+/* Lower the complete Home row stack from the date/prayer strip downward.
+   Normal flow moves the date strip and every service row together. */
+@media (max-width: 480px) {
+  body.tab-home #page-home #qa-home .qa-info {
+    margin-top: 14px !important;
+  }
+
+  body.tab-home #page-home #qa-home .qa-actions-primary .qa-service-card {
+    min-height: 82px !important;
+    height: 82px !important;
+    max-height: 82px !important;
+    padding-top: 4px !important;
+    padding-bottom: 4px !important;
+  }
+  body.tab-home #page-home #qa-home .qa-actions-primary .qa-service-icon {
+    width: 44px !important;
+    height: 44px !important;
+    max-height: 44px !important;
+    margin-bottom: 2px !important;
+  }
+}
+
+/* GNSS owns its full dark surface so the body background cannot appear as an
+   unrelated black tail after the last GNSS card. Keep only content-required
+   vertical scrolling; no artificial bottom spacer is introduced. */
+body[data-qa-active-page="gnss"],
+body[data-qa-active-page="gnss"] #page-gnss.active {
+  background: linear-gradient(180deg,#020811 0%,#03101a 46%,#020811 100%) !important;
+}
+body[data-qa-active-page="gnss"] #page-gnss.active {
+  min-height: 100dvh !important;
+  margin: 0 auto !important;
+  padding-bottom: max(18px,env(safe-area-inset-bottom,0px)) !important;
+  overflow-x: hidden !important;
+}
+
+html:has(body.tab-home),
+body.tab-home,
+body.tab-home #page-home,
+body.tab-home #page-home > .qa-home {
+  background-color: #01040b !important;
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(6px); }
+  to { opacity: 1; transform: none; }
+}

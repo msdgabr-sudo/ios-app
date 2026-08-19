@@ -1,0 +1,104 @@
+/*
+ * QiblaAstro — final home polish
+ * UI-only finishing layer for the approved premium reference.
+ * © 2026 محمد سيد جبر بحيرى — Mohamed SG Behairy. All Rights Reserved.
+ */
+
+#page-home .qa-info,
+#page-home .qa-systems,
+#page-home .qa-service-card,
+#page-home .qa-system-card{
+  border-color:rgba(255,255,255,.11)!important;
+  background:linear-gradient(180deg,rgba(10,24,44,.78),rgba(5,14,28,.82))!important;
+  box-shadow:inset 0 1px 0 rgba(255,255,255,.045),0 8px 26px rgba(0,0,0,.22)!important;
+  backdrop-filter:blur(14px) saturate(1.08)!important;
+  -webkit-backdrop-filter:blur(14px) saturate(1.08)!important;
+}
+
+#page-home .qa-system-card.active,
+#page-home .qa-service-card.verify{
+  border-color:rgba(219,173,69,.48)!important;
+  box-shadow:inset 0 1px 0 rgba(255,255,255,.055),0 0 18px rgba(219,173,69,.08),0 8px 26px rgba(0,0,0,.22)!important;
+}
+
+#page-home .qa-system-icon,
+#page-home .qa-service-icon{
+  filter:drop-shadow(0 4px 8px rgba(0,0,0,.30)) saturate(1.06)!important;
+}
+
+#page-home .qa-system-card strong,
+#page-home .qa-service-card strong{
+  color:rgba(255,255,255,.94)!important;
+  text-shadow:0 1px 6px rgba(0,0,0,.35)!important;
+  font-weight:700!important;
+}
+
+#page-home .qa-system-card small,
+#page-home .qa-service-card small{
+  color:rgba(201,214,230,.68)!important;
+}
+
+#page-home .qa-info{
+  overflow:hidden!important;
+}
+#page-home .qa-info>div+div{
+  border-inline-start:1px solid rgba(255,255,255,.07)!important;
+}
+#page-home .qa-info span{
+  color:rgba(210,221,234,.72)!important;
+}
+#page-home .qa-info strong{
+  color:#fff!important;
+  text-shadow:0 1px 5px rgba(0,0,0,.30)!important;
+}
+#page-home .qa-prayer strong,
+#page-home .qa-prayer em b{
+  color:#8ee7aa!important;
+}
+
+#page-home .qa-services-five{
+  align-items:stretch!important;
+}
+#page-home .qa-services-five .qa-service-card{
+  min-height:101px!important;
+}
+#page-home .qa-services-five .qa-service-card:nth-child(4),
+#page-home .qa-services-five .qa-service-card:nth-child(5){
+  min-height:104px!important;
+}
+
+#page-home .qa-service-card.settings .qa-service-icon{
+  position:relative;
+}
+#page-home .qa-service-card.settings .qa-service-icon img{
+  display:none!important;
+}
+#page-home .qa-service-card.settings .qa-service-icon:before{
+  content:"⚙";
+  display:grid;
+  place-items:center;
+  width:100%;
+  height:100%;
+  font-size:2.15rem;
+  line-height:1;
+  color:#d8ae4f;
+  text-shadow:0 0 12px rgba(216,174,79,.28);
+}
+
+#page-home .qa-system-card:active,
+#page-home .qa-service-card:active{
+  transform:scale(.985)!important;
+}
+
+@media (max-width:380px){
+  #page-home .qa-services-five .qa-service-card{min-height:94px!important}
+  #page-home .qa-services-five .qa-service-card:nth-child(4),
+  #page-home .qa-services-five .qa-service-card:nth-child(5){min-height:97px!important}
+  #page-home .qa-service-card.settings .qa-service-icon:before{font-size:1.95rem}
+}
+
+@media (max-height:760px){
+  #page-home .qa-services-five .qa-service-card{min-height:86px!important}
+  #page-home .qa-services-five .qa-service-card:nth-child(4),
+  #page-home .qa-services-five .qa-service-card:nth-child(5){min-height:89px!important}
+}

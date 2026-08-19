@@ -1,0 +1,1 @@
+Verified approved source identity before execution: branch azkar-stable, commit 37c9dc9ea4a851c1561e2ea6bfce4b88f470b4eb, commit message `fix: force fresh Azkar assets after audio and UI update`. Transfer remains byte-for-byte for the approved page/assets plus an application-only host.

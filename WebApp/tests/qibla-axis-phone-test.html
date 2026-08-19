@@ -1,0 +1,55 @@
+<!doctype html>
+<html lang="ar" dir="rtl">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<meta name="theme-color" content="#04111c">
+<title>QiblaAstro — اختبار محور القبلة الفلكي</title>
+<style>
+:root{color-scheme:dark;--bg:#04111c;--panel:#0b2131;--line:#28516a;--cyan:#63edff;--gold:#e1c36d;--ok:#65d69a;--bad:#ff8d8d;--muted:#9eb8c8}
+*{box-sizing:border-box}body{margin:0;min-height:100vh;background:radial-gradient(circle at 50% 0,#15384d 0,var(--bg) 46%);color:#f7fbfd;font-family:system-ui,-apple-system,"Segoe UI",Tahoma,sans-serif}
+main{width:min(920px,100%);margin:auto;padding:14px 12px 40px}.title{text-align:center;color:var(--gold);font-size:1.35rem;margin:6px 0}.sub{text-align:center;color:var(--muted);font-size:.8rem;margin-bottom:12px}.notice{padding:10px 12px;border:1px solid #80652c;background:#2a2314;border-radius:14px;font-size:.8rem;line-height:1.7;margin-bottom:10px}
+.controls,.cards{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:8px;margin-bottom:10px}.control,.card{background:rgba(11,33,49,.94);border:1px solid var(--line);border-radius:13px;padding:9px}.cards{grid-template-columns:repeat(3,minmax(0,1fr))}label,.k{display:block;color:var(--muted);font-size:.68rem;margin-bottom:5px}select,input,button{width:100%;border:1px solid #416779;border-radius:10px;background:#071925;color:#fff;padding:10px;font:inherit}button{font-weight:800}#start{background:linear-gradient(135deg,#ae852c,#ead27d);color:#151107;border:0}#stop{background:#351d25}.v{font-weight:800;line-height:1.5;word-break:break-word}.ok{color:var(--ok)}.bad{color:var(--bad)}
+.camera{position:relative;overflow:hidden;border:1px solid var(--line);border-radius:18px;background:#000;aspect-ratio:3/4;margin-bottom:10px}video{width:100%;height:100%;object-fit:cover;display:block}canvas{position:absolute;inset:0;width:100%;height:100%;pointer-events:none}#analysis{display:none}.hud{position:absolute;inset:0;pointer-events:none}.axis{position:absolute;top:7%;bottom:7%;width:2px;background:linear-gradient(transparent,var(--cyan),transparent);filter:drop-shadow(0 0 7px var(--cyan));transform:translateX(-50%);left:50%;opacity:.9}.axis:before{content:"محور القبلة";position:absolute;top:4px;left:7px;white-space:nowrap;color:var(--cyan);font-size:.68rem}.target{position:absolute;top:50%;left:50%;width:72px;height:72px;border:2px solid var(--cyan);border-radius:50%;transform:translate(-50%,-50%);box-shadow:0 0 18px rgba(99,237,255,.7),inset 0 0 16px rgba(99,237,255,.25)}.target:before,.target:after{content:"";position:absolute;background:var(--cyan)}.target:before{left:-18px;right:-18px;top:50%;height:1px}.target:after{top:-18px;bottom:-18px;left:50%;width:1px}.target.aligned{border-color:var(--ok);box-shadow:0 0 24px rgba(101,214,154,.95),inset 0 0 20px rgba(101,214,154,.35)}.target.aligned:before,.target.aligned:after{background:var(--ok)}.guide{position:absolute;left:50%;bottom:4%;transform:translateX(-50%);min-width:72%;text-align:center;padding:7px 10px;border-radius:999px;background:rgba(2,10,16,.72);border:1px solid rgba(99,237,255,.32);font-size:.76rem}.logbox{background:#02090e;border:1px solid var(--line);border-radius:13px;padding:9px}.logtitle{color:var(--gold);font-weight:800;margin-bottom:6px}pre{direction:ltr;text-align:left;white-space:pre-wrap;word-break:break-word;margin:0;max-height:250px;overflow:auto;color:#b9d0dc;font:11px/1.55 ui-monospace,Consolas,monospace}
+@media(max-width:700px){.cards{grid-template-columns:repeat(2,minmax(0,1fr))}.controls{grid-template-columns:1fr}}
+</style>
+</head>
+<body>
+<main>
+<h1 class="title">اختبار محور القبلة الفلكي</h1>
+<div class="sub">Production Pipeline — feature/astronomical-solver-foundation</div>
+<div class="notice"><strong>السلامة:</strong> ابدأ بالقمر. لا تنظر إلى الشمس مباشرة. عند اختبار الشمس استخدم شاشة الهاتف فقط ولفترة قصيرة.</div>
+<section class="controls">
+<div class="control"><label for="body">الجرم</label><select id="body"><option value="moon">القمر</option><option value="sun">الشمس</option></select></div>
+<div class="control"><label for="fov">المجال الأفقي</label><input id="fov" type="number" min="35" max="100" step="0.1" value="65"></div>
+<button id="start">بدء الاختبار</button><button id="stop" disabled>إيقاف</button>
+</section>
+<section class="camera"><video id="video" autoplay muted playsinline></video><canvas id="overlay"></canvas><canvas id="analysis"></canvas><div class="hud"><div id="axis" class="axis"></div><div id="target" class="target"></div><div id="guide" class="guide">بانتظار بدء الرصد</div></div></section>
+<section class="cards">
+<div class="card"><div class="k">الحالة</div><div class="v" id="status">جاهز</div></div>
+<div class="card"><div class="k">الموقع</div><div class="v" id="location">—</div></div>
+<div class="card"><div class="k">سمت الجرم</div><div class="v" id="celestial">—</div></div>
+<div class="card"><div class="k">مرجع القبلة</div><div class="v" id="reference">—</div></div>
+<div class="card"><div class="k">خطأ الهدف</div><div class="v" id="residual">—</div></div>
+<div class="card"><div class="k">القبلة الفلكية المرصودة</div><div class="v" id="observed">—</div></div>
+<div class="card"><div class="k">فرق التحقق</div><div class="v" id="offset">—</div></div>
+<div class="card"><div class="k">جودة الحل</div><div class="v" id="quality">—</div></div>
+<div class="card"><div class="k">مصدر النتيجة</div><div class="v" id="source">—</div></div>
+</section>
+<section class="logbox"><div class="logtitle">Trace</div><pre id="log"></pre></section>
+</main>
+<script src="../js/coordinate-frames.js"></script>
+<script src="../js/world-orientation.js"></script>
+<script src="../js/camera-projection.js"></script>
+<script src="../js/camera-pose.js"></script>
+<script src="../js/gravity-reference.js"></script>
+<script src="../js/astro-qibla-engine.js"></script>
+<script src="../js/verification-quality.js"></script>
+<script src="../js/celestial-detector.js"></script>
+<script src="../js/astronomical-solver.js"></script>
+<script src="../js/qibla-alignment-reticle.js"></script>
+<script src="../js/astronomical-observation-bridge.js"></script>
+<script src="qibla-axis-phone-test.js"></script>
+<script src="qibla-axis-provenance-guard.js"></script>
+</body>
+</html>

@@ -1,0 +1,333 @@
+/*
+ * QiblaAstro — Mega Phase 4: Final Home Polish
+ * Presentation-only correction layer for the approved reference composition.
+ * It preserves all engines, stores, IDs, handlers and live-value ownership.
+ *
+ * © 2026 محمد سيد جبر بحيرى — Mohamed SG Behairy. All Rights Reserved.
+ */
+
+:root{
+  --qa-p4-gold:#e7c46f;
+  --qa-p4-gold-hi:#fff0bd;
+  --qa-p4-cyan:#78e4ff;
+  --qa-p4-green:#76e5b7;
+  --qa-p4-deep:#020611;
+  --qa-p4-panel:rgba(5,13,25,.91);
+}
+
+/* Final viewport rhythm. */
+#page-home > div[style*="max-width:480px"]{
+  width:100%!important;
+  max-width:430px!important;
+  padding:0 10px calc(104px + env(safe-area-inset-bottom))!important;
+}
+#page-home .qa-reference-home{
+  position:relative!important;
+  isolation:isolate!important;
+  overflow:visible!important;
+  margin:0!important;
+}
+#page-home .qa-reference-home::before{
+  content:'';
+  position:absolute;
+  inset:45px -10px auto;
+  height:370px;
+  z-index:-2;
+  pointer-events:none;
+  background:
+    radial-gradient(circle at 50% 42%,rgba(36,116,180,.16),transparent 34%),
+    radial-gradient(circle at 50% 67%,rgba(120,228,255,.10),transparent 29%),
+    radial-gradient(circle at 50% 34%,rgba(231,196,111,.06),transparent 19%);
+  filter:blur(2px);
+}
+
+/* Header parity and cleaner controls. */
+#page-home .qa-reference-topbar{
+  min-height:54px!important;
+  padding:8px 3px 5px!important;
+}
+#page-home .qa-reference-brand{gap:1px!important}
+#page-home .qa-reference-brand strong{
+  font-size:1.18rem!important;
+  font-weight:750!important;
+}
+#page-home .qa-reference-brand span{
+  font-size:.45rem!important;
+  letter-spacing:.34em!important;
+}
+#page-home .qa-reference-menu,
+#page-home .qa-reference-bell{
+  width:32px!important;
+  height:32px!important;
+  border-radius:12px!important;
+  font-size:.9rem!important;
+}
+
+/* Main astronomical tableau. */
+#page-home .qa-reference-skyrow{
+  position:relative!important;
+  display:grid!important;
+  grid-template-columns:94px minmax(0,1fr) 94px!important;
+  align-items:start!important;
+  gap:8px!important;
+  min-height:182px!important;
+  margin-top:4px!important;
+}
+#page-home .qa-reference-skyrow::before{
+  content:'';
+  position:absolute;
+  left:50%;top:8px;
+  width:205px;height:112px;
+  transform:translateX(-50%);
+  border-radius:205px 205px 0 0;
+  border:1px solid rgba(231,196,111,.32);
+  border-bottom:0;
+  background:
+    repeating-conic-gradient(from 270deg at 50% 100%,rgba(120,228,255,.25) 0deg 1deg,transparent 1deg 11deg);
+  -webkit-mask:linear-gradient(#000,transparent 92%);
+  mask:linear-gradient(#000,transparent 92%);
+  opacity:.62;
+  pointer-events:none;
+}
+#page-home .qa-reference-skyrow::after{
+  content:'NW   N   NE';
+  position:absolute;
+  left:50%;top:1px;
+  transform:translateX(-50%);
+  width:180px;
+  text-align:center;
+  white-space:pre;
+  color:rgba(187,220,240,.46);
+  font:500 .42rem/1 var(--qa-font-numeric);
+  letter-spacing:.8em;
+  pointer-events:none;
+}
+
+#page-home .qa-reference-sidecard{
+  min-height:108px!important;
+  padding:10px 6px 9px!important;
+  border-radius:20px!important;
+  backdrop-filter:blur(18px) saturate(120%)!important;
+  -webkit-backdrop-filter:blur(18px) saturate(120%)!important;
+}
+#page-home .qa-reference-sidecard .orb{
+  width:45px!important;
+  height:45px!important;
+  margin-bottom:3px!important;
+}
+#page-home .qa-reference-sidecard b{font-size:.62rem!important}
+#page-home .qa-reference-sidecard strong{font-size:1.02rem!important}
+#page-home .qa-reference-sidecard small{font-size:.46rem!important}
+
+#page-home .qa-reference-center{
+  position:relative!important;
+  z-index:5!important;
+  min-height:155px!important;
+  display:flex!important;
+  flex-direction:column!important;
+  align-items:center!important;
+  justify-content:flex-start!important;
+  padding-top:19px!important;
+}
+#page-home .qa-reference-center::before{
+  top:61%!important;
+  width:190px!important;
+  height:190px!important;
+  border-color:rgba(120,228,255,.22)!important;
+  box-shadow:
+    inset 0 0 34px rgba(120,228,255,.08),
+    0 0 34px rgba(120,228,255,.07)!important;
+  animation:qaP4Ring 14s linear infinite;
+}
+#page-home .qa-reference-center::after{
+  top:37%!important;
+  height:156px!important;
+  opacity:.82!important;
+  background:linear-gradient(180deg,var(--qa-p4-gold-hi),rgba(120,228,255,.38),transparent)!important;
+}
+#page-home .qa-reference-pointer{
+  font-size:1rem!important;
+  line-height:1!important;
+}
+#page-home .qa-reference-bearing-label{
+  margin-top:8px!important;
+  font-size:.61rem!important;
+}
+#page-home .qa-reference-bearing{
+  margin-top:3px!important;
+  font-size:clamp(2.85rem,12.8vw,3.85rem)!important;
+  font-weight:760!important;
+  color:var(--qa-p4-gold-hi)!important;
+}
+#page-home .qa-reference-accuracy{
+  margin-top:7px!important;
+  padding:5px 11px!important;
+  color:var(--qa-p4-green)!important;
+}
+
+/* Earth and Kaaba become the visual anchor. */
+#page-home .qa-reference-earth{
+  width:390px!important;
+  height:390px!important;
+  bottom:-246px!important;
+  background:
+    radial-gradient(circle at 34% 24%,rgba(128,228,255,.24),transparent 15%),
+    radial-gradient(circle at 53% 44%,rgba(73,137,107,.72),transparent 18%),
+    radial-gradient(circle at 39% 52%,rgba(39,103,133,.72),transparent 24%),
+    radial-gradient(circle at 61% 54%,rgba(38,82,126,.72),transparent 23%),
+    radial-gradient(circle at 46% 48%,#1d5575,#0a2341 57%,#020815 74%)!important;
+  box-shadow:
+    inset -58px -48px 76px rgba(0,0,0,.76),
+    inset 24px 15px 48px rgba(110,222,255,.18),
+    0 -12px 42px rgba(120,228,255,.24),
+    0 -2px 8px rgba(255,255,255,.14)!important;
+}
+#page-home .qa-reference-earth::after{
+  content:'';
+  position:absolute;
+  inset:14% 8% auto;
+  height:42%;
+  border-radius:50%;
+  background:
+    linear-gradient(22deg,transparent 46%,rgba(120,228,255,.08) 47% 48%,transparent 49%),
+    linear-gradient(-18deg,transparent 47%,rgba(120,228,255,.07) 48% 49%,transparent 50%);
+  opacity:.8;
+  pointer-events:none;
+}
+#page-home .qa-reference-kaaba{
+  width:78px!important;
+  height:94px!important;
+  bottom:91px!important;
+  z-index:8!important;
+  border-radius:4px!important;
+}
+#page-home .qa-reference-kaaba::before{top:17px!important;height:10px!important}
+#page-home .qa-reference-kaaba::after{right:13px!important;bottom:8px!important;width:18px!important;height:32px!important}
+
+/* Compact combined information panel. */
+#page-home .qa-reference-summary{
+  position:relative!important;
+  z-index:10!important;
+  margin-top:4px!important;
+  padding:0!important;
+  overflow:hidden!important;
+  grid-template-columns:1fr 1fr 1.16fr!important;
+}
+#page-home .qa-reference-summary > div{
+  min-height:61px!important;
+  padding:10px 7px!important;
+}
+#page-home .qa-reference-summary span{font-size:.48rem!important}
+#page-home .qa-reference-summary strong{font-size:.7rem!important;line-height:1.45!important}
+#page-home .qa-reference-summary .prayer strong{font-size:.8rem!important}
+#page-home .qa-reference-summary em{font-size:.58rem!important}
+
+/* Final compact services matrix. */
+#page-home .qa-dashboard-grid{
+  grid-template-columns:repeat(4,minmax(0,1fr))!important;
+  gap:8px!important;
+  margin:11px 0 10px!important;
+}
+#page-home .qa-dashboard-grid > .hm-card,
+#page-home .qa-dashboard-grid > .hm-card:last-child:nth-child(odd){
+  width:100%!important;
+  min-height:96px!important;
+  aspect-ratio:.88/1!important;
+  grid-column:auto!important;
+  display:flex!important;
+  flex-direction:column!important;
+  align-items:center!important;
+  justify-content:center!important;
+  padding:9px 5px!important;
+  border-radius:18px!important;
+  text-align:center!important;
+}
+#page-home .qa-dashboard-grid > .hm-card .hm-icon-wrap,
+#page-home .qa-dashboard-grid > .hm-card:last-child:nth-child(odd) .hm-icon-wrap{
+  width:47px!important;
+  height:47px!important;
+  flex:0 0 47px!important;
+  margin:0 auto 4px!important;
+  border-radius:16px!important;
+}
+#page-home .qa-dashboard-grid > .hm-card .hm-icon-plain{width:34px!important;height:34px!important}
+#page-home .qa-dashboard-grid > .hm-card .hm-t,
+#page-home .qa-dashboard-grid > .hm-card [id$='-t'],
+#page-home .qa-dashboard-grid > .hm-card:last-child:nth-child(odd) .hm-t,
+#page-home .qa-dashboard-grid > .hm-card:last-child:nth-child(odd) [id$='-t']{
+  max-width:100%!important;
+  font-size:.62rem!important;
+  line-height:1.25!important;
+  text-align:center!important;
+}
+#page-home .qa-dashboard-grid > .hm-card .hm-s,
+#page-home .qa-dashboard-grid > .hm-card [id$='-s']{
+  max-width:100%!important;
+  font-size:.43rem!important;
+  line-height:1.25!important;
+  text-align:center!important;
+}
+#page-home .qa-dashboard-grid > .hm-card .hm-chevron{display:none!important}
+
+/* Status and command dock. */
+#page-home .qa-system-strip{
+  min-height:56px!important;
+  margin:8px 0 5px!important;
+  border-radius:17px!important;
+}
+#page-home .qa-system-strip > div{padding:9px 5px!important}
+#page-home .qa-system-strip span{font-size:.43rem!important}
+#page-home .qa-system-strip strong{font-size:.55rem!important}
+
+.nav{
+  left:8px!important;
+  right:8px!important;
+  bottom:8px!important;
+  width:auto!important;
+  max-width:404px!important;
+  min-height:64px!important;
+  border-radius:22px!important;
+  padding:4px 5px calc(4px + env(safe-area-inset-bottom))!important;
+}
+.nav-item{min-width:58px!important;border-radius:17px!important}
+.nav-item.active{
+  background:linear-gradient(180deg,rgba(231,196,111,.13),rgba(231,196,111,.035))!important;
+}
+.nav-item.active::before{top:1px!important;width:38px!important;height:38px!important;border-radius:13px!important}
+.nav-icon-img{width:27px!important;height:27px!important}
+.nav-lbl{font-size:.51rem!important}
+.page.active{padding-bottom:calc(92px + env(safe-area-inset-bottom))!important}
+
+/* Device-specific tuning. */
+@media(max-width:380px){
+  #page-home .qa-reference-skyrow{grid-template-columns:80px minmax(0,1fr) 80px!important;gap:5px!important}
+  #page-home .qa-reference-sidecard{min-height:101px!important;padding-inline:4px!important}
+  #page-home .qa-reference-sidecard .orb{width:39px!important;height:39px!important}
+  #page-home .qa-reference-bearing{font-size:2.58rem!important}
+  #page-home .qa-reference-earth{width:350px!important;height:350px!important;bottom:-218px!important}
+  #page-home .qa-reference-kaaba{width:70px!important;height:85px!important;bottom:86px!important}
+  #page-home .qa-reference-summary{grid-template-columns:1fr 1fr!important}
+  #page-home .qa-reference-summary .prayer{grid-column:1/-1!important}
+  #page-home .qa-dashboard-grid{grid-template-columns:repeat(3,minmax(0,1fr))!important;gap:7px!important}
+  #page-home .qa-dashboard-grid > .hm-card,
+  #page-home .qa-dashboard-grid > .hm-card:last-child:nth-child(odd){min-height:91px!important;aspect-ratio:1/1!important}
+}
+
+@media(min-width:600px){
+  #page-home > div[style*="max-width:480px"]{max-width:560px!important}
+  #page-home .qa-reference-skyrow{grid-template-columns:112px minmax(0,1fr) 112px!important}
+  #page-home .qa-reference-earth{width:450px!important;height:450px!important;bottom:-285px!important}
+  #page-home .qa-dashboard-grid{grid-template-columns:repeat(5,minmax(0,1fr))!important}
+  .nav{max-width:540px!important}
+}
+
+@keyframes qaP4Ring{to{transform:translate(-50%,-50%) rotateX(69deg) rotateZ(360deg)}}
+
+@media(prefers-reduced-motion:reduce){
+  #page-home .qa-reference-center::before{animation:none!important}
+}
+
+@media(update:slow){
+  #page-home .qa-reference-center::before{animation:none!important}
+  #page-home .qa-reference-home::before{filter:none!important}
+}

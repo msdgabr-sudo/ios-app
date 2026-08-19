@@ -1,0 +1,56 @@
+<!doctype html>
+<html lang="ar" dir="rtl">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover,user-scalable=no">
+  <meta name="theme-color" content="#071508">
+  <meta name="google" content="notranslate">
+  <meta http-equiv="Cache-Control" content="no-cache,no-store,must-revalidate">
+  <meta http-equiv="Pragma" content="no-cache">
+  <meta http-equiv="Expires" content="0">
+  <title>القرآن الكريم — QiblaAstro</title>
+  <link rel="stylesheet" href="../css/quran-reader.css?v=20260809-0548cc">
+  <link rel="stylesheet" href="../css/quran-luxe.css?v=20260809-0548cc">
+  <link rel="stylesheet" href="../css/quran-contrast.css?v=20260809-0548cc">
+  <link rel="stylesheet" href="../css/quran-reader-controls.css?v=20260809-0548cc">
+  <link rel="stylesheet" href="../css/quran-reader-center-final.css?v=20260809-0548cc">
+  <link rel="stylesheet" href="../css/quran-experience.css?v=20260815-reading-width1">
+  <link rel="stylesheet" href="../css/quran-khatma-plus.css?v=20260809-0548cc">
+  <link rel="stylesheet" href="../css/reading-full-width-final.css?v=20260815-reading-width1">
+</head>
+<body>
+  <main class="qr-app" id="qrApp">
+    <header class="qr-shell-head"><button class="qr-back" id="qrAppBack" type="button" aria-label="رجوع"><span aria-hidden="true">→</span></button><div class="qr-brand"><span>QiblaAstro</span><strong>القرآن الكريم</strong></div><button class="qr-bookmark-head" id="qrQuickBookmark" type="button" aria-label="استكمال آخر موضع"><span aria-hidden="true">⌑</span></button></header>
+    <section class="qr-home is-active" id="qrHome">
+      <div class="qr-home-title"><span class="qr-title-ornament" aria-hidden="true"></span><small>مصحف للقراءة والمتابعة</small><h1>القرآن الكريم</h1><p>قراءة عثمانية · بحث في الآيات · ختمة وعلامات مرجعية</p></div>
+      <div class="qr-tabs" role="tablist" aria-label="أقسام القرآن"><button class="is-on" data-tab="surahs" type="button">السور</button><button data-tab="juz" type="button">الأجزاء</button><button data-tab="search" type="button">البحث</button><button data-tab="khatma" type="button">ختمتي</button></div>
+      <section class="qr-pane is-on" data-pane="surahs"><button class="qr-resume" id="qrResume" type="button" hidden><span class="qr-resume-mark" aria-hidden="true">⌑</span><span><small>استكمال القراءة</small><strong id="qrResumeText">—</strong></span><b>‹</b></button><div class="qr-list-heading"><span>فهرس السور</span><small>١١٤ سورة</small></div><div class="qr-surah-list" id="qrSurahList"></div></section>
+      <section class="qr-pane" data-pane="juz"><div class="qr-section-head"><span>الأجزاء الثلاثون</span><small>انتقال مباشر إلى بداية الجزء</small></div><div class="qr-juz-grid" id="qrJuzGrid"></div></section>
+      <section class="qr-pane" data-pane="search"><div class="qr-search-lead"><strong>ابحث في القرآن</strong><small>بكلمة أو جزء من آية أو مرجع مباشر مثل 2:255</small></div><div class="qr-search-box"><input id="qrSearchInput" type="search" inputmode="search" placeholder="اكتب ما تتذكره من الآية…" autocomplete="off" spellcheck="false"><button id="qrSearchBtn" type="button" aria-label="بحث">⌕</button></div><p class="qr-search-note">المطابقة تتجاهل التشكيل والفروق الكتابية الشائعة لأغراض البحث فقط؛ النص القرآني المعروض لا يتغير.</p><div class="qr-search-status" id="qrSearchStatus"></div><div class="qr-search-results" id="qrSearchResults"></div></section>
+      <section class="qr-pane" data-pane="khatma"><article class="qr-khatma-card"><div class="qr-khatma-top"><span>ختمتي</span><strong id="qrKhatmaPercent">٠٪</strong></div><div class="qr-progress"><i id="qrKhatmaBar"></i></div><p id="qrKhatmaSummary">ابدأ خطة ختمتك وحدد عدد الصفحات التي تريد قراءتها يوميًا.</p><label class="qr-label" for="qrDailyPages">وردك اليومي المخطط</label><div class="qr-plan-row"><input id="qrDailyPages" type="range" min="1" max="30" value="4"><output id="qrDailyPagesOut">٤ صفحات</output></div><div class="qr-plan-result" id="qrPlanResult"></div><div class="qr-today-box"><span>ما قرأته اليوم فعليًا</span><div><button type="button" data-read="-1">−</button><strong id="qrTodayRead">٠</strong><button type="button" data-read="1">+</button></div><small>إذا قرأت أكثر من خطتك يتغير موعد الختمة تلقائيًا.</small></div><div class="qr-metrics"><div><span>المنجز</span><strong id="qrPagesDone">٠</strong></div><div><span>المتبقي</span><strong id="qrPagesLeft">٦٠٤</strong></div><div><span>المدة المتوقعة</span><strong id="qrDaysLeft">—</strong></div></div><div class="qr-char-card"><span>تقدير الحروف في قراءة اليوم</span><strong id="qrCharEstimate">—</strong><p>تقدير تقني تقريبي للتحفيز فقط، وليس حسابًا للثواب.</p></div><blockquote class="qr-hadith">«مَن قرأ حرفًا من كتابِ اللهِ فله به حسنةٌ، والحسنةُ بعشرِ أمثالِها، لا أقولُ الم حرفٌ، ولكن ألفٌ حرفٌ، ولامٌ حرفٌ، وميمٌ حرفٌ»<cite>عن عبد الله بن مسعود رضي الله عنه — رواه الترمذي (٢٩١٠)</cite></blockquote></article></section>
+    </section>
+    <section class="qr-reader" id="qrReader" aria-label="قارئ القرآن">
+      <header class="qr-reader-head" id="qrReaderHead"><button id="qrReaderBack" type="button" aria-label="العودة للفهرس"><span aria-hidden="true">→</span></button><div><strong id="qrReaderSurah">—</strong><small id="qrReaderMeta">—</small></div><button id="qrReaderBookmark" type="button" aria-label="إضافة علامة مرجعية"><span aria-hidden="true">⌑</span></button></header>
+      <article class="qr-reading-surface" id="qrReadingSurface"><div class="qr-reading-ornament" aria-hidden="true"></div><div class="qr-surah-frame" translate="no"><i aria-hidden="true"></i><span id="qrSurahName">—</span><i aria-hidden="true"></i></div><div class="qr-basmala" id="qrBasmala" translate="no"><span aria-hidden="true"></span>بِسْمِ اللَّهِ الرَّحْمَٰنِ الرَّحِيمِ<span aria-hidden="true"></span></div><div class="qr-text" id="qrText" translate="no"></div></article>
+      <nav class="qr-reader-tools" id="qrReaderTools" aria-label="أدوات القراءة">
+        <button class="qr-reader-tool" id="qrPrevSurah" type="button"><b aria-hidden="true">‹</b><span id="qrPrevSurahName">السورة السابقة</span></button>
+        <div class="qr-reader-center" aria-label="حفظ الموضع وحجم الخط">
+          <button class="qr-font-btn" id="qrFontMinus" type="button" aria-label="تصغير خط القرآن">−</button>
+          <button class="qr-reader-mark" id="qrSavePlace" type="button" aria-label="حفظ موضع القراءة"><span><span class="qr-mark-glyph" aria-hidden="true">⌑</span><small>حفظ الموضع</small></span></button>
+          <button class="qr-font-btn" id="qrFontPlus" type="button" aria-label="تكبير خط القرآن">+</button>
+        </div>
+        <button class="qr-reader-tool" id="qrNextSurah" type="button"><span id="qrNextSurahName">السورة التالية</span><b aria-hidden="true">›</b></button>
+      </nav>
+      <div class="qr-reader-toast" id="qrReaderToast" role="status" aria-live="polite">تم حفظ موضع القراءة</div>
+      <button class="qr-focus-toggle" id="qrFocusToggle" type="button" aria-label="إظهار أو إخفاء شريط القراءة">⌄</button>
+    </section>
+  </main>
+  <script src="../js/quran-reader.js?v=20260809-0548cc"></script>
+  <script src="../js/quran-reader-controls.js?v=20260809-0548cc"></script>
+  <script src="../js/quran-pages.js?v=20260809-0548cc"></script>
+  <script src="../js/quran-experience.js?v=20260809-0548cc"></script>
+  <script src="../js/quran-search-plus.js?v=20260809-0548cc"></script>
+  <script src="../js/quran-khatma-plus.js?v=20260809-0548cc"></script>
+  <script src="../js/quran-reader-meta.js?v=20260809-0548cc"></script>
+</body>
+</html>

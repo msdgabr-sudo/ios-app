@@ -1,0 +1,46 @@
+/* QiblaAstro — layered celestial hero override
+ * © 2026 محمد سيد جبر بحيرى — Mohamed SG Behairy. All Rights Reserved.
+ */
+.qa-hero{min-height:548px;background:linear-gradient(180deg,#01030a 0%,#031127 58%,#020713 100%)}
+.qa-sky{height:372px;overflow:hidden}
+.qa-star-field{opacity:1;background:
+ radial-gradient(circle at 8% 15%,#fff 0 1px,transparent 1.7px),
+ radial-gradient(circle at 18% 34%,#79bfff 0 1px,transparent 1.7px),
+ radial-gradient(circle at 77% 12%,#fff 0 1px,transparent 1.6px),
+ radial-gradient(circle at 89% 31%,#78bcff 0 1px,transparent 1.9px),
+ radial-gradient(circle at 53% 8%,rgba(255,255,255,.9) 0 1px,transparent 1.7px),
+ radial-gradient(circle at 35% 24%,rgba(255,255,255,.75) 0 .8px,transparent 1.5px)}
+.qa-galaxy{position:absolute;left:50%;top:18px;transform:translateX(-50%) rotate(-7deg);width:355px;height:215px;border-radius:50%;z-index:-2;filter:blur(.2px);background:
+ radial-gradient(ellipse at 50% 48%,rgba(222,243,255,.22) 0 3%,rgba(90,160,255,.17) 10%,transparent 34%),
+ conic-gradient(from 32deg at 50% 50%,transparent 0 9%,rgba(69,126,220,.16) 13%,transparent 19% 29%,rgba(138,81,205,.13) 34%,transparent 41% 56%,rgba(51,151,232,.16) 63%,transparent 70% 100%);
+ box-shadow:0 0 42px rgba(51,136,238,.16)}
+.qa-galaxy:before,.qa-galaxy:after,.qa-galaxy i,.qa-galaxy b,.qa-galaxy em{content:"";position:absolute;border-radius:50%;pointer-events:none}
+.qa-galaxy:before{inset:18% 3%;border:2px solid rgba(90,169,255,.16);transform:rotate(18deg);box-shadow:0 0 22px rgba(73,142,230,.15)}
+.qa-galaxy:after{inset:28% 11%;border:1px solid rgba(223,188,105,.18);transform:rotate(-13deg)}
+.qa-galaxy i{inset:35% 19%;border:1px solid rgba(109,185,255,.2);transform:rotate(31deg)}
+.qa-galaxy b{left:49%;top:42%;width:8px;height:8px;background:#fff4c4;box-shadow:0 0 12px #fff,0 0 30px #77baff}
+.qa-galaxy em{left:18%;right:18%;top:43%;height:24px;background:radial-gradient(ellipse,rgba(119,180,255,.22),transparent 70%);filter:blur(7px)}
+.qa-arc{top:23px;width:302px;height:174px;z-index:4}
+.qa-bearing{top:9px}
+.qa-earth{top:190px;width:600px;height:188px;border-radius:50% 50% 0 0;background:
+ radial-gradient(ellipse at 50% 0%,rgba(255,255,255,.98) 0 1%,rgba(95,187,255,.55) 2%,transparent 8%),
+ radial-gradient(ellipse at 50% 72%,#173f68 0 32%,#0b2848 57%,#020713 82%);
+ box-shadow:inset 0 20px 36px rgba(163,225,255,.17),0 -12px 38px rgba(64,168,241,.52)}
+.qa-earth:after{content:"";position:absolute;inset:0;background:
+ radial-gradient(ellipse at 50% 26%,transparent 0 42%,rgba(0,0,0,.18) 75%),
+ linear-gradient(180deg,rgba(106,193,255,.08),rgba(0,0,0,.22));pointer-events:none}
+.qa-earth-glow{position:absolute;left:50%;top:-7px;transform:translateX(-50%);width:76%;height:20px;border-radius:50%;background:radial-gradient(ellipse,#f5fdff 0,rgba(98,191,255,.5) 34%,transparent 72%);filter:blur(2px);z-index:4}
+.qa-land{background:linear-gradient(135deg,rgba(83,119,92,.48),rgba(30,58,49,.36));filter:blur(1px)}
+.land-a{width:122px;height:33px;left:146px;top:90px;transform:rotate(-10deg)}
+.land-b{width:152px;height:40px;right:142px;top:84px;transform:rotate(8deg)}
+.land-c{width:76px;height:23px;left:262px;top:128px;opacity:.35}
+.qa-cloud{background:rgba(215,238,255,.12);filter:blur(9px)}
+.cloud-a{width:190px;height:22px;left:125px;top:40px}.cloud-b{width:210px;height:25px;right:120px;top:55px}
+.qa-kaaba{display:none!important}
+.qa-kaaba-photo{position:absolute;left:50%;top:213px;transform:translateX(-50%);width:128px;height:142px;z-index:12;display:grid;place-items:end center;filter:drop-shadow(0 20px 22px rgba(0,0,0,.72)) drop-shadow(0 0 17px rgba(235,193,93,.15))}
+.qa-kaaba-photo img{display:block;width:125px;height:125px;object-fit:contain;opacity:0;transform:translateY(4px) scale(.96);transition:opacity .25s ease,transform .25s ease;mix-blend-mode:screen}
+.qa-kaaba-photo img.ready{opacity:1;transform:translateY(0) scale(1)}
+.qa-kaaba-photo img.fallback{opacity:0}
+.qa-kaaba-photo span{position:absolute;left:50%;bottom:-3px;transform:translateX(-50%);width:165px;height:32px;border-radius:50%;background:radial-gradient(ellipse,rgba(239,194,91,.28),rgba(64,150,225,.12) 40%,transparent 72%);filter:blur(5px);z-index:-1}
+.qa-info{bottom:8px}
+@media(max-width:380px){.qa-galaxy{width:320px;height:202px}.qa-earth{width:560px}.qa-kaaba-photo{top:219px;width:116px;height:132px}.qa-kaaba-photo img{width:114px;height:114px}}

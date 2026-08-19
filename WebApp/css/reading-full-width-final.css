@@ -1,0 +1,87 @@
+/* QiblaAstro — Quran + Adhkar phone reading width contract
+ * Presentation only. Does not alter Quran/Dhikr content, fonts, counters, or logic.
+ */
+
+/* Quran: make the reading surface use the phone viewport, then keep a small
+   safety gutter only. Verse spans stay inline so reader/bookmark logic is intact. */
+#qrReader{
+  inline-size:100%!important;
+  max-inline-size:none!important;
+  margin-inline:0!important;
+  padding-inline:0!important;
+}
+#qrReader #qrReadingSurface{
+  box-sizing:border-box!important;
+  inline-size:100vw!important;
+  max-inline-size:100vw!important;
+  margin-inline:calc(50% - 50vw)!important;
+  padding-inline:8px!important;
+}
+#qrReader #qrText{
+  box-sizing:border-box!important;
+  display:block!important;
+  inline-size:100%!important;
+  max-inline-size:none!important;
+  margin:0!important;
+  padding:0!important;
+  direction:rtl!important;
+  text-align:justify!important;
+  text-align-last:justify!important;
+  text-justify:inter-word!important;
+  white-space:normal!important;
+  overflow-wrap:normal!important;
+  word-break:normal!important;
+  letter-spacing:normal!important;
+}
+#qrReader #qrText .qr-ayah{
+  display:inline!important;
+  max-inline-size:none!important;
+  margin:0!important;
+  padding:0!important;
+  white-space:normal!important;
+}
+
+/* Adhkar: the card remains visually intact, but the reading column gets nearly
+   the full phone width and the text itself no longer inherits large side gutters. */
+#azReader{
+  box-sizing:border-box!important;
+  inline-size:100%!important;
+  max-inline-size:none!important;
+  margin-inline:0!important;
+  padding-inline:8px!important;
+}
+#azReader #azDhikrCard{
+  box-sizing:border-box!important;
+  inline-size:100%!important;
+  max-inline-size:none!important;
+  margin-inline:0!important;
+  padding-inline:10px!important;
+}
+#azReader #azDhikrScroller{
+  box-sizing:border-box!important;
+  inline-size:100%!important;
+  max-inline-size:none!important;
+  margin-inline:0!important;
+  padding-inline:0!important;
+}
+#azReader #azDhikrText{
+  box-sizing:border-box!important;
+  display:block!important;
+  inline-size:100%!important;
+  max-inline-size:none!important;
+  margin:0!important;
+  padding:0!important;
+  direction:rtl!important;
+  text-align:center!important;
+  text-align-last:center!important;
+  white-space:normal!important;
+  overflow-wrap:normal!important;
+  word-break:normal!important;
+  letter-spacing:normal!important;
+}
+
+@media (max-width:760px){
+  #qrReader #qrReadingSurface{padding-inline:6px!important}
+  #azReader{padding-inline:6px!important}
+  #azReader #azDhikrCard{padding-inline:8px!important}
+}

@@ -1,0 +1,11 @@
+'use strict';
+const fs=require('fs');
+const assert=require('assert');
+const s=fs.readFileSync('js/astronomical-verification-session.js','utf8');
+const u=fs.readFileSync('js/astronomical-observatory-ui.js','utf8');
+assert(s.includes("addEventListener('deviceorientationabsolute'"),'Android absolute orientation event must be observed.');
+assert(s.includes('self.yawTracker.sampleCount>=2'),'Anchor must wait for real orientation samples.');
+assert(/self\.anchorStableCount>=([3-9]|[1-9][0-9]+)/.test(s),'Search must remain active until several stable celestial solves.');
+assert(s.includes("self.phase = 'OBSERVE_CELESTIAL'"),'Retry must restore celestial search.');
+assert(u.includes('تعذر قراءة دوران الهاتف'),'UI must explain unavailable rotation instead of silently stalling.');
+console.log('SEARCH / ANCHOR / ORIENTATION: PASS');

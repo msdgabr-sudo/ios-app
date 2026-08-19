@@ -1,0 +1,170 @@
+/* QiblaAstro — approved reference match, stage 3
+ * Navigation, spacing, typography and luminous finishing only.
+ * No solver, GNSS, prayer, verification or persistence logic.
+ * © 2026 محمد سيد جبر بحيرى — Mohamed SG Behairy. All Rights Reserved.
+ */
+:root{
+  --qa3-gold:#d8ae59;
+  --qa3-gold-hi:#ffe4a1;
+  --qa3-blue:#55b9ee;
+  --qa3-panel:#061325;
+  --qa3-line:rgba(111,177,218,.22);
+}
+
+/* Overall rhythm follows the tall approved phone composition. */
+#page-home > div{padding-bottom:112px!important}
+#page-home .qa-reference-home{margin-bottom:0!important}
+#page-home .qa2-dashboard{padding:10px 10px 28px!important}
+
+/* Header controls: exact light, weight and placement. */
+#page-home .qa-reference-topbar{padding-inline:13px!important}
+#page-home .qa-reference-menu span{
+  display:block!important;width:25px!important;height:2px!important;margin:4px 0!important;
+  border-radius:4px!important;background:rgba(255,255,255,.82)!important;
+  box-shadow:0 0 7px rgba(255,255,255,.08)!important
+}
+#page-home .qa-reference-bell{
+  position:relative!important;font-size:0!important
+}
+#page-home .qa-reference-bell::before{
+  content:'♧';font-size:1.65rem;line-height:1;color:#e9eef4;
+  transform:rotate(180deg);display:block
+}
+#page-home .qa-reference-bell::after{
+  content:'';position:absolute;top:4px;right:3px;width:7px;height:7px;border-radius:50%;
+  background:#f5a62d;box-shadow:0 0 9px rgba(245,166,45,.7)
+}
+
+/* Hero typography and luminous depth. */
+#page-home .qa-reference-brand strong{
+  font-family:Arial,'Noto Sans Arabic',sans-serif!important;font-weight:400!important;
+  text-shadow:0 0 16px rgba(255,255,255,.11)!important
+}
+#page-home .qa-reference-brand span{text-shadow:0 0 11px rgba(216,174,89,.35)!important}
+#page-home .qa-reference-bearing-label{font-weight:650!important;text-shadow:0 0 13px rgba(216,174,89,.25)!important}
+#page-home .qa-reference-bearing{
+  font-family:Arial,'Noto Sans Arabic',sans-serif!important;font-weight:600!important;
+  letter-spacing:-.045em!important;text-shadow:0 0 22px rgba(216,174,89,.32)!important
+}
+#page-home .qa-reference-accuracy{
+  border:1px solid rgba(72,188,232,.27)!important;
+  background:rgba(9,69,101,.38)!important;color:#75daf5!important;
+  box-shadow:inset 0 0 13px rgba(78,197,238,.09),0 0 16px rgba(46,154,203,.08)!important
+}
+#page-home .qa-reference-accuracy::after{content:' ◇';color:#7ce5ff}
+
+/* Side cards: small optical details visible in the reference. */
+#page-home .qa-reference-sidecard b{font-size:.72rem!important;color:#eef1f4!important}
+#page-home .qa-reference-sidecard strong{font-size:.86rem!important;color:#e5eaf0!important}
+#page-home .qa-reference-sidecard small{font-size:.51rem!important;color:rgba(225,232,240,.68)!important}
+#page-home .qa-reference-sidecard.sun .orb{
+  color:#ffd46b!important;text-shadow:0 0 12px #f6a629,0 0 24px rgba(246,166,41,.6)!important
+}
+#page-home .qa-reference-sidecard.moon .orb{
+  background:radial-gradient(circle at 33% 28%,#eef1ef 0 14%,#aeb8c1 35%,#75808c 68%,#39434e 100%)!important;
+  box-shadow:inset -8px -6px 13px rgba(0,0,0,.34),0 0 13px rgba(218,229,238,.18)!important
+}
+
+/* Summary bar separators and prayer emphasis. */
+#page-home .qa-reference-summary{border-color:rgba(99,166,210,.28)!important}
+#page-home .qa-reference-summary>div+div::after{
+  content:'';position:absolute;right:0;top:17%;bottom:17%;width:1px;background:rgba(127,171,203,.17)
+}
+#page-home .qa-reference-summary>div{position:relative!important}
+#page-home .qa-reference-summary span{color:rgba(236,239,244,.78)!important}
+#page-home .qa-reference-summary .prayer strong{color:#6bd26a!important;text-shadow:0 0 10px rgba(88,220,102,.24)!important}
+#page-home .qa-reference-summary .prayer::before{
+  content:'';position:absolute;top:11px;right:12px;width:6px;height:6px;border-radius:50%;
+  background:#59e36b;box-shadow:0 0 10px #59e36b
+}
+
+/* Systems row: denser and visually centred. */
+#page-home .qa2-systems{padding:10px 3px 9px!important;border-radius:22px!important}
+#page-home .qa2-system-card{min-height:108px!important;padding-inline:3px!important}
+#page-home .qa2-system-icon{
+  width:57px!important;height:57px!important;margin-bottom:6px!important;
+  border-color:rgba(115,190,235,.3)!important;
+  box-shadow:inset 0 0 22px rgba(65,157,215,.13),0 0 0 4px rgba(10,35,57,.75),0 9px 18px rgba(0,0,0,.27)!important
+}
+#page-home .qa2-system-copy strong{font-size:.65rem!important;text-shadow:0 0 9px rgba(216,174,89,.15)!important}
+#page-home .qa2-system-copy small{font-size:.46rem!important}
+
+/* Service tiles: approved proportions and icon treatment. */
+#page-home .qa2-services{gap:7px!important;margin-top:9px!important}
+#page-home .qa2-service-card{
+  min-height:121px!important;border-radius:15px!important;padding:8px 4px!important;
+  background:linear-gradient(145deg,rgba(255,255,255,.038),transparent 42%),linear-gradient(180deg,#071629,#04101f)!important
+}
+#page-home .qa2-service-card::before{
+  content:'';position:absolute;inset:0;border-radius:inherit;pointer-events:none;
+  background:linear-gradient(145deg,rgba(255,255,255,.045),transparent 28%);opacity:.8
+}
+#page-home .qa2-service-card{position:relative!important;overflow:hidden!important}
+#page-home .qa2-icon{
+  width:56px!important;height:56px!important;font-size:2.05rem!important;margin-bottom:5px!important;
+  filter:drop-shadow(0 4px 7px rgba(0,0,0,.35))
+}
+#page-home .qa2-service-card strong{font-size:.69rem!important;font-weight:650!important}
+#page-home .qa2-service-card small{font-size:.47rem!important}
+
+/* Status strip. */
+#page-home .qa2-status{margin-top:9px!important;border-radius:17px!important}
+#page-home .qa2-status>div{min-height:61px!important;padding:8px 10px!important}
+#page-home .qa2-status small{font-size:.47rem!important}
+#page-home .qa2-status strong{font-size:.5rem!important}
+
+/* Floating navigation: five equal destinations matching the reference. */
+nav.nav,div.nav,.nav{
+  position:fixed!important;z-index:999!important;left:50%!important;right:auto!important;
+  bottom:max(8px,env(safe-area-inset-bottom))!important;width:calc(100% - 20px)!important;max-width:410px!important;
+  height:72px!important;min-height:72px!important;padding:3px 8px!important;
+  display:flex!important;align-items:stretch!important;justify-content:space-between!important;
+  overflow:hidden!important;border:1px solid rgba(91,147,187,.18)!important;border-radius:31px!important;
+  background:linear-gradient(180deg,rgba(7,20,37,.97),rgba(3,10,20,.98))!important;
+  box-shadow:inset 0 1px 0 rgba(255,255,255,.045),0 14px 42px rgba(0,0,0,.52)!important;
+  backdrop-filter:blur(22px)!important;-webkit-backdrop-filter:blur(22px)!important
+}
+.nav-item{
+  position:relative!important;flex:1 1 20%!important;min-width:0!important;height:66px!important;
+  padding:7px 2px 5px!important;border:0!important;background:transparent!important;
+  display:flex!important;flex-direction:column!important;align-items:center!important;justify-content:center!important;
+  color:rgba(224,231,239,.72)!important;gap:3px!important
+}
+.nav-item+.nav-item::before{
+  content:'';position:absolute;right:0;top:19%;bottom:19%;width:1px;background:rgba(112,157,190,.12)
+}
+.nav-item .nav-icon,.nav-item svg,.nav-item>span:first-child{
+  width:31px!important;height:31px!important;font-size:1.55rem!important;line-height:31px!important;
+  display:grid!important;place-items:center!important;color:#bbc6d3!important;filter:none!important
+}
+.nav-item .nav-label,.nav-item>span:last-child{
+  font-size:.55rem!important;line-height:1!important;color:inherit!important;white-space:nowrap!important
+}
+.nav-item.active{
+  color:var(--qa3-gold-hi)!important;overflow:visible!important
+}
+.nav-item.active::after{
+  content:'';position:absolute;left:50%;top:-9px;width:64px;height:64px;transform:translateX(-50%);
+  border-radius:50%;z-index:-1;border:2px solid rgba(216,174,89,.56);
+  background:radial-gradient(circle at 50% 44%,rgba(216,174,89,.19),rgba(5,15,27,.97) 66%);
+  box-shadow:0 0 0 5px rgba(4,13,25,.92),0 0 24px rgba(216,174,89,.24),inset 0 0 16px rgba(216,174,89,.1)
+}
+.nav-item.active .nav-icon,.nav-item.active svg,.nav-item.active>span:first-child{
+  color:var(--qa3-gold-hi)!important;filter:drop-shadow(0 0 7px rgba(216,174,89,.45))!important
+}
+
+/* Remove excess hidden scrollbar while preserving touch scrolling. */
+html{scrollbar-width:none}body::-webkit-scrollbar{display:none}
+
+@media(max-width:380px){
+  nav.nav,div.nav,.nav{width:calc(100% - 12px)!important;padding-inline:4px!important}
+  .nav-item .nav-label,.nav-item>span:last-child{font-size:.5rem!important}
+  #page-home .qa2-service-card{min-height:108px!important}
+}
+
+@media(prefers-reduced-motion:no-preference){
+  #page-home .qa-reference-bearing{animation:qa3BearingGlow 3.4s ease-in-out infinite}
+  #page-home .qa2-system-card i{animation:qa3StatusPulse 2.1s ease-in-out infinite}
+}
+@keyframes qa3BearingGlow{50%{text-shadow:0 0 31px rgba(216,174,89,.46)}}
+@keyframes qa3StatusPulse{50%{transform:scale(1.2);opacity:.72}}

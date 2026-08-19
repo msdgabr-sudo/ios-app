@@ -1,0 +1,12 @@
+'use strict';
+const fs=require('fs');
+const assert=require('assert');
+const ui=fs.readFileSync('js/astronomical-observatory-ui.js','utf8');
+const session=fs.readFileSync('js/astronomical-verification-session.js','utf8');
+assert(ui.includes("this.target.classList.add('is-tracked')"),'Original tracking visual must remain.');
+assert(ui.includes('this._moveTarget(detection.x/fw,detection.y/fh)'),'Target must follow detected centroid as in proven build.');
+assert(ui.includes('alignmentReady=data.alignmentRequired===false||!!data.alignmentReady'),'Alignment may gate capture only.');
+assert(session.includes('alignmentReady: !!(latestResult && latestResult.qiblaAlignment'),'Session must pass alignment separately.');
+assert(!session.includes('if (alignment && !alignment.aligned) quality = 0'),'Alignment must never zero detector quality.');
+assert(session.includes("observation.source !== 'astronomical-qibla-alignment-observation'"),'Only canonical observation may be stored.');
+console.log('Proven observation and capture layer regression passed.');

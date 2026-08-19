@@ -1,0 +1,38 @@
+/* ══════════════════════════════════════════════════════════════════════════════
+   [CSS-R] GNSS PAGE
+   ══════════════════════════════════════════════════════════════════════════════ */
+
+/* ═══════════════════════════════════════════
+   GNSS PAGE
+═══════════════════════════════════════════ */
+.gnss-hero{
+  width:100%;background:linear-gradient(135deg,#04080C,var(--panel));
+  border:1px solid var(--rim);border-top:2px solid var(--ok);
+  border-radius:var(--radius);padding:13px 15px;text-align:center;
+}
+.gnss-hero h2{font-size:.95rem;color:#80FFB0;margin-bottom:4px;}
+.gnss-hero p{font-size:.73rem;color:var(--txt2);line-height:1.7;}
+
+.constellation-grid{
+  width:100%;display:grid;grid-template-columns:1fr 1fr;gap:8px;
+}
+.const-card{
+  background:var(--panel);border:1px solid var(--rim);border-radius:var(--radius-sm);padding:10px 11px;
+}
+.const-card lbl{display:block;font-size:.56rem;font-family:'JetBrains Mono',monospace;letter-spacing:.06em;text-transform:uppercase;margin-bottom:3px;}
+.const-val{font-family:'JetBrains Mono',monospace;font-weight:700;font-size:.95rem;}
+.const-sub{font-size:.61rem;color:var(--txt3);margin-top:2px;}
+
+.event-item{
+  width:100%;background:var(--ink2);border-radius:var(--radius-sm);
+  padding:10px 12px;margin-bottom:7px;
+}
+.event-title{font-size:.8rem;font-weight:700;margin-bottom:4px;}
+.event-body{font-size:.7rem;color:var(--txt2);line-height:1.78;}
+.event-result{display:inline-block;margin-top:5px;font-size:.68rem;font-family:'JetBrains Mono',monospace;padding:2px 8px;border-radius:5px;}
+
+.acc-item{display:flex;align-items:center;gap:8px;padding:6px 9px;border-radius:7px;background:var(--ink2);margin-bottom:5px;}
+.acc-dot{width:8px;height:8px;border-radius:50%;flex-shrink:0;}
+.acc-name{flex:1;font-size:.7rem;color:var(--txt);}
+.acc-val{font-family:'JetBrains Mono',monospace;font-size:.65rem;font-weight:700;}
+

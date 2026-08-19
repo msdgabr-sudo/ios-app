@@ -1,0 +1,190 @@
+/*
+ * QiblaAstro — Horizon Dashboard Grid
+ * Presentation-only runtime companion. The existing home cards are moved into
+ * a semantic CSS Grid container without replacing their IDs or click handlers.
+ *
+ * © 2026 محمد سيد جبر بحيرى — Mohamed SG Behairy. All Rights Reserved.
+ */
+
+#page-home .qa-dashboard-grid{
+  display:grid!important;
+  grid-template-columns:repeat(2,minmax(0,1fr));
+  gap:12px;
+  width:100%;
+  margin:2px 0 18px;
+  padding:0;
+  direction:rtl;
+}
+
+#page-home .qa-dashboard-grid > .hm-card{
+  width:100%!important;
+  margin:0!important;
+  aspect-ratio:1/1!important;
+  min-width:0!important;
+  min-height:0!important;
+  display:flex!important;
+  flex-direction:column!important;
+  align-items:center!important;
+  justify-content:center!important;
+  gap:9px!important;
+  padding:15px 11px!important;
+  border-radius:24px!important;
+  text-align:center!important;
+  contain:layout paint;
+}
+
+#page-home .qa-dashboard-grid > .hm-card::before{
+  background:
+    radial-gradient(circle at 50% 13%,rgba(88,215,255,.115),transparent 35%),
+    radial-gradient(circle at 50% 108%,rgba(216,182,91,.09),transparent 42%)!important;
+}
+
+#page-home .qa-dashboard-grid > .hm-card::after{
+  right:18%!important;
+  left:18%!important;
+  bottom:0!important;
+  top:auto!important;
+  width:auto!important;
+  height:2px!important;
+  opacity:.72!important;
+}
+
+#page-home .qa-dashboard-grid > .hm-card .hm-icon-wrap{
+  width:68px!important;
+  height:68px!important;
+  flex:0 0 68px!important;
+  margin:0 auto 3px!important;
+  border-radius:22px!important;
+  background:
+    radial-gradient(circle at 38% 28%,rgba(255,255,255,.11),transparent 30%),
+    linear-gradient(145deg,rgba(88,215,255,.09),rgba(216,182,91,.055))!important;
+  box-shadow:
+    inset 0 1px 0 rgba(255,255,255,.09),
+    inset 0 -12px 22px rgba(0,0,0,.18),
+    0 12px 26px rgba(0,0,0,.24),
+    0 0 20px rgba(88,215,255,.08)!important;
+}
+
+#page-home .qa-dashboard-grid > .hm-card .hm-icon-plain{
+  width:50px!important;
+  height:50px!important;
+  object-fit:contain!important;
+}
+
+#page-home .qa-dashboard-grid > .hm-card .hm-t,
+#page-home .qa-dashboard-grid > .hm-card [id$='-t']{
+  font-size:.94rem!important;
+  line-height:1.35!important;
+  text-align:center!important;
+  color:var(--qa-truth)!important;
+}
+
+#page-home .qa-dashboard-grid > .hm-card .hm-s,
+#page-home .qa-dashboard-grid > .hm-card [id$='-s']{
+  max-width:96%;
+  margin:2px auto 0!important;
+  font-size:.61rem!important;
+  line-height:1.55!important;
+  text-align:center!important;
+  color:var(--qa-muted)!important;
+}
+
+#page-home .qa-dashboard-grid > .hm-card .hm-chevron{
+  position:absolute!important;
+  top:10px!important;
+  inset-inline-end:10px!important;
+  width:25px!important;
+  height:25px!important;
+  opacity:.62;
+}
+
+/* Primary compass tile remains square but receives a stronger guidance identity. */
+#page-home .qa-dashboard-grid > .hm-card:first-child{
+  border-color:rgba(216,182,91,.38)!important;
+  background:
+    radial-gradient(circle at 50% 20%,rgba(216,182,91,.16),transparent 37%),
+    linear-gradient(152deg,rgba(18,37,60,.97),rgba(5,13,24,.98))!important;
+  box-shadow:
+    inset 0 1px 0 rgba(255,255,255,.08),
+    0 18px 38px rgba(0,0,0,.28),
+    0 0 30px rgba(216,182,91,.09)!important;
+}
+
+#page-home .qa-dashboard-grid > .hm-card:first-child > div:first-child{
+  display:flex!important;
+  flex-direction:column!important;
+  align-items:center!important;
+  justify-content:center!important;
+  width:100%!important;
+  gap:7px!important;
+}
+
+#page-home .qa-dashboard-grid > .hm-card:first-child > div:first-child > div:first-child{
+  width:70px!important;
+  height:70px!important;
+  flex:0 0 70px!important;
+}
+
+#page-home .qa-dashboard-grid > .hm-card:first-child > div:first-child > div:nth-child(2){
+  width:100%!important;
+  text-align:center!important;
+}
+
+#page-home .qa-dashboard-grid > .hm-card:first-child > div:first-child > div:last-child{
+  position:static!important;
+  display:flex!important;
+  justify-content:center!important;
+  margin-top:1px!important;
+}
+
+#page-home .qa-dashboard-grid > .hm-card:first-child > div:nth-child(2),
+#page-home .qa-dashboard-grid > .hm-card:first-child > div:nth-child(3){
+  display:none!important;
+}
+
+#page-home .qa-dashboard-grid > .hm-card:first-child #hm-qibla-deg{
+  font-size:1.12rem!important;
+  color:var(--qa-guidance-soft)!important;
+  text-shadow:0 0 18px rgba(216,182,91,.18)!important;
+}
+
+#page-home .qa-dashboard-grid > .hm-card:active{
+  transform:scale(.972)!important;
+}
+
+@media (max-width:360px){
+  #page-home .qa-dashboard-grid{gap:8px}
+  #page-home .qa-dashboard-grid > .hm-card{
+    padding:12px 8px!important;
+    border-radius:20px!important;
+  }
+  #page-home .qa-dashboard-grid > .hm-card .hm-icon-wrap{
+    width:58px!important;
+    height:58px!important;
+    flex-basis:58px!important;
+    border-radius:19px!important;
+  }
+  #page-home .qa-dashboard-grid > .hm-card .hm-icon-plain{
+    width:43px!important;
+    height:43px!important;
+  }
+  #page-home .qa-dashboard-grid > .hm-card .hm-t,
+  #page-home .qa-dashboard-grid > .hm-card [id$='-t']{
+    font-size:.82rem!important;
+  }
+  #page-home .qa-dashboard-grid > .hm-card .hm-s,
+  #page-home .qa-dashboard-grid > .hm-card [id$='-s']{
+    font-size:.55rem!important;
+  }
+}
+
+@media (min-width:600px){
+  #page-home .qa-dashboard-grid{
+    grid-template-columns:repeat(3,minmax(0,1fr));
+    gap:14px;
+  }
+}
+
+@media (prefers-reduced-motion:reduce){
+  #page-home .qa-dashboard-grid > .hm-card{transition:none!important}
+}

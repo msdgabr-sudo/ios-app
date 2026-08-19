@@ -1,0 +1,14 @@
+'use strict';
+const fs=require('fs'),assert=require('assert');
+const syncSrc=fs.readFileSync('js/runtime/trusted-location-dependent-sync.js','utf8');
+const locationLabelSrc=fs.readFileSync('js/presentation/location-label.js','utf8');
+const deviationSrc=fs.readFileSync('js/17-deviation.js','utf8');
+for(const forbidden of ['calcQibla(','drawCompass(','activateCompass(','deviceHeading=','startProductionVerification(','astronomical-solver','camera-projection'])assert(!syncSrc.includes(forbidden),`prayer runtime must not call protected path: ${forbidden}`);
+for(const required of ['js/runtime/local-timezone-adapter.js?v=20260814-timezone1','js/prayer/calculation-methods.js?v=20260814-global-prayer2','js/prayer/prayer-settings.js?v=20260814-global-prayer1','js/prayer/prayer-location.js?v=20260814-prayer-location2','js/prayer/time-format.js?v=20260814-prayer-12h1','js/runtime/trusted-location-dependent-sync.js?v=20260814-prayer-runtime6','js/presentation/prayer/location-settings-ui.js?v=20260814-prayer-location2'])assert(locationLabelSrc.includes(required),`missing prayer dependency: ${required}`);
+assert(syncSrc.includes('js/17-deviation.js?v=20260814-location-aware-runtime2'));
+assert(/function\s+deviationBaseDistanceKm\s*\(/.test(deviationSrc));assert(!/const\s+R\s*=\s*(?:1296|1300)\b/.test(deviationSrc));
+assert(syncSrc.includes("root.addEventListener('qiblaastro:prayer-location-change'"));
+assert(syncSrc.includes("l.mode==='manual'"));
+assert(syncSrc.includes('LAT=Number(l.lat);LON=Number(l.lon)')&&syncSrc.includes('LAT=oldLat')&&syncSrc.includes('LON=oldLon'),'manual prayer calculation must restore global coordinates synchronously');
+console.log('Trusted/manual prayer runtime dependency gate: PASS');
+console.log('Verified: protected compass/Qibla/verification paths untouched; manual prayer coordinates are isolated');

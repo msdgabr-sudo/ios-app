@@ -1,0 +1,142 @@
+/*
+ * QiblaAstro — Horizon Home Header Refinement
+ * Presentation-only layer. Existing IDs, values and click handlers remain authoritative.
+ *
+ * © 2026 محمد سيد جبر بحيرى — Mohamed SG Behairy. All Rights Reserved.
+ */
+
+#page-home .hm-header{
+  position:relative!important;
+  margin:12px 0 14px!important;
+  padding:15px 14px 13px!important;
+  border:1px solid rgba(146,211,250,.13)!important;
+  border-radius:24px!important;
+  overflow:hidden;
+  background:
+    radial-gradient(circle at 12% 0%,rgba(88,215,255,.08),transparent 34%),
+    radial-gradient(circle at 88% 100%,rgba(216,182,91,.06),transparent 34%),
+    linear-gradient(145deg,rgba(255,255,255,.045),transparent 42%),
+    rgba(7,16,29,.72)!important;
+  box-shadow:inset 0 1px 0 rgba(255,255,255,.045),0 15px 38px rgba(0,0,0,.2)!important;
+  -webkit-backdrop-filter:blur(18px) saturate(116%);
+  backdrop-filter:blur(18px) saturate(116%);
+}
+
+#page-home .hm-header::before{
+  content:'';
+  position:absolute;
+  inset:0;
+  pointer-events:none;
+  background:linear-gradient(90deg,transparent,rgba(88,215,255,.14),rgba(216,182,91,.12),transparent);
+  height:1px;
+  top:0;
+}
+
+#page-home #hm-lang-btn{
+  top:12px!important;
+  left:12px!important;
+  min-height:30px;
+  padding:6px 11px!important;
+  border:1px solid rgba(88,215,255,.18)!important;
+  background:rgba(5,14,25,.56)!important;
+  color:var(--qa-science-soft)!important;
+  font-family:var(--qa-font-ui)!important;
+  font-size:.58rem!important;
+  box-shadow:inset 0 1px 0 rgba(255,255,255,.04),0 7px 18px rgba(0,0,0,.18);
+  -webkit-backdrop-filter:blur(12px);
+  backdrop-filter:blur(12px);
+}
+
+#page-home .hm-header img[src*='hm-logo']{
+  height:58px!important;
+  width:72px!important;
+  filter:drop-shadow(0 8px 16px rgba(0,0,0,.34)) drop-shadow(0 0 12px rgba(216,182,91,.16))!important;
+}
+
+#page-home #hm-title-ar{
+  margin-top:0!important;
+  font:700 1.46rem/1.2 var(--qa-font-content)!important;
+  background:linear-gradient(180deg,#fff5d4,#d8b65b)!important;
+  -webkit-background-clip:text!important;
+  background-clip:text!important;
+  color:transparent!important;
+}
+
+#page-home #hm-title-en{
+  margin-top:4px!important;
+  font:700 .58rem/1 var(--qa-font-ui)!important;
+  letter-spacing:.22em!important;
+  color:var(--qa-guidance)!important;
+  opacity:.9;
+}
+
+#page-home #hm-subtitle{
+  margin-top:6px!important;
+  font:500 .59rem/1.55 var(--qa-font-ui)!important;
+  color:var(--qa-muted)!important;
+}
+
+#page-home .hm-header>div>div[style*='justify-content:center'][style*='border-radius:12px']{
+  margin-top:12px!important;
+  padding:8px 9px!important;
+  border:1px solid rgba(145,211,250,.11)!important;
+  border-radius:16px!important;
+  background:rgba(4,12,22,.48)!important;
+  box-shadow:inset 0 1px 0 rgba(255,255,255,.025);
+}
+
+#page-home #hm-date-greg,#page-home #hm-date-hijri{
+  font-family:var(--qa-font-numeric)!important;
+  font-size:.86rem!important;
+  font-variant-numeric:tabular-nums;
+}
+
+#page-home #hm-date-greg{color:var(--qa-truth)!important}
+#page-home #hm-date-hijri{color:var(--qa-guidance-soft)!important}
+
+#page-home .hm-header div[onclick*="GT('prayer')"]{
+  position:relative;
+  margin-top:9px!important;
+  min-height:58px;
+  padding:9px 13px!important;
+  border:1px solid rgba(216,182,91,.22)!important;
+  border-radius:17px!important;
+  background:
+    linear-gradient(145deg,rgba(216,182,91,.055),transparent 45%),
+    rgba(7,14,23,.64)!important;
+  box-shadow:inset 0 1px 0 rgba(255,255,255,.035),0 9px 22px rgba(0,0,0,.17);
+  transition:transform var(--qa-motion-fast) var(--qa-ease-out),border-color var(--qa-motion-fast);
+}
+
+#page-home .hm-header div[onclick*="GT('prayer')"]:active{
+  transform:scale(.986);
+  border-color:rgba(216,182,91,.38)!important;
+}
+
+#page-home #hm-next-p-label{
+  color:var(--qa-muted)!important;
+  font:600 .55rem/1.4 var(--qa-font-ui)!important;
+}
+
+#page-home #hm-next-p{
+  color:var(--qa-guidance-soft)!important;
+  font:700 .94rem/1.35 var(--qa-font-ui)!important;
+}
+
+#page-home .hm-live-dot{
+  width:6px!important;
+  height:6px!important;
+  background:var(--qa-trust)!important;
+  box-shadow:0 0 10px rgba(109,224,178,.85)!important;
+}
+
+@media (max-width:380px){
+  #page-home .hm-header{padding:13px 10px 11px!important;border-radius:21px!important}
+  #page-home #hm-lang-btn{top:9px!important;left:9px!important;padding:5px 8px!important}
+  #page-home #hm-title-ar{font-size:1.32rem!important}
+  #page-home #hm-date-greg,#page-home #hm-date-hijri{font-size:.76rem!important}
+}
+
+@media (prefers-reduced-motion:reduce){
+  #page-home .hm-live-dot{animation:none!important}
+}

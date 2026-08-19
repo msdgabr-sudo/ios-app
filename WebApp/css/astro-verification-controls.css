@@ -1,0 +1,17 @@
+/* QiblaAstro — astronomical verification controls, presentation only */
+#page-compass.qa-astro-dashboard-active .qa-astro-confidence[data-qa-verification-controls="1"]{display:grid!important;grid-template-columns:repeat(3,minmax(0,1fr))!important;gap:6px!important;padding:0!important;margin:0 10px 4px!important;background:transparent!important;border:0!important;box-shadow:none!important;direction:rtl!important}
+#page-compass.qa-astro-dashboard-active .qa-astro-confidence[data-qa-verification-controls="1"]>.qa-verify-action,
+#page-compass.qa-astro-dashboard-active .qa-astro-confidence[data-qa-verification-controls="1"]>.qa-last-reading,
+#page-compass.qa-astro-dashboard-active .qa-astro-confidence[data-qa-verification-controls="1"]>.qa-confidence-compact{min-width:0;min-height:72px;border:1px solid var(--qa-line);border-radius:14px;background:linear-gradient(155deg,rgba(9,27,43,.97),rgba(4,14,25,.99));display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;padding:6px 4px;box-sizing:border-box;color:var(--qa-text);box-shadow:inset 0 1px 0 rgba(255,255,255,.025),0 5px 14px rgba(0,0,0,.14)}
+#page-compass.qa-astro-dashboard-active .qa-verify-action{font-family:inherit;cursor:pointer;appearance:none;-webkit-appearance:none}
+#page-compass.qa-astro-dashboard-active .qa-verify-action:active{transform:scale(.98)}
+#page-compass.qa-astro-dashboard-active .qa-verify-action:disabled{opacity:.58;cursor:default;transform:none}
+#page-compass.qa-astro-dashboard-active .qa-verify-body-icon,#page-compass.qa-astro-dashboard-active .qa-row-icon{font-size:1.15rem;line-height:1;color:var(--qa-blue);margin-bottom:3px}
+#page-compass.qa-astro-dashboard-active .qa-verify-action b,#page-compass.qa-astro-dashboard-active .qa-last-reading b,#page-compass.qa-astro-dashboard-active .qa-confidence-compact b{display:block;font-size:.60rem;color:var(--qa-text);line-height:1.1}
+#page-compass.qa-astro-dashboard-active .qa-verify-action small,#page-compass.qa-astro-dashboard-active .qa-last-reading small,#page-compass.qa-astro-dashboard-active .qa-confidence-compact small{display:block;font-size:.48rem;color:var(--qa-muted);line-height:1.15;margin-top:2px;white-space:normal}
+#page-compass.qa-astro-dashboard-active .qa-last-reading strong,#page-compass.qa-astro-dashboard-active .qa-confidence-compact strong{display:block;font-size:.69rem;color:var(--qa-blue);line-height:1.1;margin-top:2px}
+#page-compass.qa-astro-dashboard-active .qa-astro-verify-card{pointer-events:none!important}
+#page-compass.qa-astro-dashboard-active .qa-astro-verify-card #astro-body-value{font-family:'JetBrains Mono',monospace!important;font-size:1.14rem!important;font-weight:700!important;color:var(--qa-blue)!important}
+#page-compass.qa-astro-dashboard-active .qa-astro-verify-card #astro-body-hint{font-family:inherit!important;font-size:.53rem!important;color:var(--qa-cyan)!important}
+#page-compass.qa-astro-dashboard-active .qa-astro-confidence[data-state="stale"]>.qa-last-reading,#page-compass.qa-astro-dashboard-active .qa-astro-confidence[data-state="stale"]>.qa-confidence-compact{border-color:rgba(201,168,93,.32)}
+@media(max-height:700px){#page-compass.qa-astro-dashboard-active .qa-astro-confidence[data-qa-verification-controls="1"]>*{min-height:62px;padding:4px 3px}}

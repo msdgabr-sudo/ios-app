@@ -1,0 +1,70 @@
+<!doctype html>
+<html lang="ar" dir="rtl">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+  <meta name="theme-color" content="#07131f">
+  <title>QiblaAstro — اختبار التحقق الفلكي</title>
+  <style>
+    :root{color-scheme:dark;--gold:#d7b55b;--bg:#06111c;--panel:#0d1e2d;--line:#294154;--ok:#65d69a;--bad:#ff8d8d;--muted:#9fb3c2}
+    *{box-sizing:border-box}body{margin:0;background:radial-gradient(circle at top,#132b3d 0,#06111c 48%);color:#f4f7f9;font-family:system-ui,-apple-system,"Segoe UI",Tahoma,sans-serif;min-height:100vh}
+    main{width:min(980px,100%);margin:auto;padding:16px 14px 40px}.title{text-align:center;margin:8px 0 4px;color:var(--gold);font-size:1.4rem}.sub{text-align:center;color:var(--muted);font-size:.85rem;margin-bottom:14px}
+    .warning{border:1px solid #8c6b2f;background:#2b2414;padding:11px;border-radius:14px;font-size:.83rem;line-height:1.7;margin-bottom:12px}.warning strong{color:#ffd983}
+    .controls,.cards{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:9px}.controls{margin-bottom:12px}.control{background:var(--panel);border:1px solid var(--line);border-radius:13px;padding:10px}
+    label{display:block;color:var(--muted);font-size:.72rem;margin-bottom:5px}select,input,button{width:100%;border-radius:10px;border:1px solid #3d5668;background:#0a1722;color:#fff;padding:11px;font:inherit}
+    button{font-weight:700;cursor:pointer}#start{background:linear-gradient(135deg,#b18a31,#e1c36d);color:#12100a;border:0}#stop{background:#341d24;border-color:#75404e}button:disabled{opacity:.45;cursor:not-allowed}
+    .camera{position:relative;background:#000;border:1px solid var(--line);border-radius:18px;overflow:hidden;aspect-ratio:16/9;margin-bottom:12px}video{width:100%;height:100%;object-fit:cover;display:block}#overlay{position:absolute;inset:0;width:100%;height:100%;pointer-events:none}.reticle{position:absolute;left:50%;top:50%;width:42px;height:42px;transform:translate(-50%,-50%);border:1px solid rgba(255,255,255,.45);border-radius:50%}.reticle:before,.reticle:after{content:"";position:absolute;background:rgba(255,255,255,.45)}.reticle:before{width:54px;height:1px;left:-7px;top:20px}.reticle:after{height:54px;width:1px;top:-7px;left:20px}
+    .cards{grid-template-columns:repeat(3,minmax(0,1fr));margin-bottom:12px}.card{background:rgba(13,30,45,.88);border:1px solid var(--line);border-radius:14px;padding:10px;min-height:74px}.k{font-size:.67rem;color:var(--muted);margin-bottom:5px}.v{font-size:1rem;font-weight:750;word-break:break-word;line-height:1.55}.ok{color:var(--ok)}.bad{color:var(--bad)}
+    .logbox{background:#03090e;border:1px solid var(--line);border-radius:14px;padding:10px}.logtitle{color:var(--gold);font-weight:700;margin-bottom:7px}pre{direction:ltr;text-align:left;white-space:pre-wrap;word-break:break-word;margin:0;max-height:260px;overflow:auto;color:#bcd0dc;font:12px/1.55 ui-monospace,SFMono-Regular,Consolas,monospace}
+    #analysisCanvas{display:none}@media(max-width:700px){.cards{grid-template-columns:repeat(2,minmax(0,1fr))}.controls{grid-template-columns:1fr}.camera{aspect-ratio:3/4}}
+  </style>
+</head>
+<body>
+<main>
+  <h1 class="title">اختبار التحقق الفلكي دون بوصلة</h1>
+  <div class="sub">QiblaAstro — صفحة هندسية معزولة عن التطبيق العامل</div>
+  <div class="warning"><strong>تنبيه سلامة:</strong> ابدأ بالقمر. لا تنظر إلى الشمس مباشرة، ولا توجه عينك عبر الكاميرا نحوها. اختبار الشمس يكون لفترة قصيرة ومن شاشة الهاتف فقط.</div>
+
+  <section class="controls">
+    <div class="control"><label for="body">الجرم المستخدم</label><select id="body"><option value="moon">القمر — المفضل للاختبار</option><option value="sun">الشمس</option></select></div>
+    <div class="control"><label for="fov">المجال الأفقي للكاميرا</label><input id="fov" type="number" min="30" max="110" step="0.1" value="65"></div>
+    <button id="start">بدء الاختبار ومنح الأذونات</button><button id="stop" disabled>إيقاف الاختبار</button>
+  </section>
+
+  <section class="camera"><video id="video" autoplay muted playsinline></video><canvas id="overlay"></canvas><canvas id="analysisCanvas"></canvas><div class="reticle"></div></section>
+
+  <section class="cards">
+    <div class="card"><div class="k">الحالة</div><div class="v" id="status">جاهز</div></div>
+    <div class="card"><div class="k">الموقع</div><div class="v" id="location">—</div></div>
+    <div class="card"><div class="k">الجاذبية</div><div class="v" id="gravity">—</div></div>
+    <div class="card"><div class="k">اكتشاف الجرم</div><div class="v" id="detection">—</div></div>
+    <div class="card"><div class="k">سمت / ارتفاع الجرم</div><div class="v" id="celestial">—</div></div>
+    <div class="card"><div class="k">اتجاه الكاميرا الحقيقي</div><div class="v" id="heading">—</div></div>
+    <div class="card"><div class="k">اتجاه القبلة المستقل</div><div class="v" id="qibla">—</div></div>
+    <div class="card"><div class="k">الانحراف عن القبلة</div><div class="v" id="deviation">—</div></div>
+    <div class="card"><div class="k">جودة الرصد</div><div class="v" id="quality">—</div></div>
+  </section>
+
+  <section class="logbox"><div class="logtitle">سجل الاختبار</div><pre id="log"></pre></section>
+</main>
+<script src="../js/coordinate-frames.js"></script>
+<script src="../js/world-orientation.js"></script>
+<script src="../js/camera-projection.js"></script>
+<script src="../js/camera-pose.js"></script>
+<script src="../js/gravity-reference.js"></script>
+<script src="phone-gravity-runtime-fix.js"></script>
+<script src="../js/astro-qibla-engine.js"></script>
+<script src="../js/verification-quality.js"></script>
+<script src="phone-quality-profile.js"></script>
+<script src="../js/celestial-detector.js"></script>
+<script src="phone-celestial-detector-adapter.js"></script>
+<script src="phone-centroid-refinement.js"></script>
+<script src="../js/astronomical-solver.js"></script>
+<script src="../js/astronomical-observation-bridge.js"></script>
+<script src="phone-observation-runtime-fix.js"></script>
+<script src="phone-terminal-state-latch.js"></script>
+<script src="phone-auto-overlay-fix.js"></script>
+<script src="phone-result-guidance.js"></script>
+<script src="astronomical-solver-phone-test.js"></script>
+</body>
+</html>

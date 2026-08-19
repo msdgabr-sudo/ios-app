@@ -1,0 +1,357 @@
+/*
+ * QiblaAstro — Horizon Mega Phase 1
+ * Reference-driven Hero reconstruction. Presentation only.
+ * No GNSS, astronomical solver, verification store or raw result mutation.
+ *
+ * © 2026 محمد سيد جبر بحيرى — Mohamed SG Behairy. All Rights Reserved.
+ */
+
+/* Full-width cosmic stage, closer to the approved reference composition. */
+#page-home .qa-reference-home{
+  position:relative;
+  isolation:isolate;
+  min-height:690px;
+  margin:0 -8px 18px;
+  overflow:hidden;
+  border-radius:0 0 34px 34px;
+  color:#f8fbff;
+  background:
+    radial-gradient(circle at 50% 24%,rgba(25,78,145,.34),transparent 28%),
+    radial-gradient(ellipse at 50% 62%,rgba(23,101,154,.30),transparent 34%),
+    linear-gradient(180deg,#020713 0%,#06132a 48%,#020711 100%);
+  box-shadow:0 24px 60px rgba(0,0,0,.32),inset 0 -1px 0 rgba(115,202,255,.12);
+}
+
+#page-home .qa-reference-home::before{
+  content:'';
+  position:absolute;
+  inset:0;
+  pointer-events:none;
+  opacity:.82;
+  background-image:
+    radial-gradient(circle,rgba(255,255,255,.88) 0 1px,transparent 1.4px),
+    radial-gradient(circle,rgba(126,201,255,.52) 0 1px,transparent 1.45px),
+    radial-gradient(circle,rgba(255,226,159,.38) 0 1px,transparent 1.6px);
+  background-size:67px 67px,103px 103px,151px 151px;
+  background-position:0 0,23px 41px,71px 17px;
+  mask-image:linear-gradient(to bottom,#000 0%,rgba(0,0,0,.88) 70%,transparent 100%);
+}
+
+#page-home .qa-reference-home::after{
+  content:'';
+  position:absolute;
+  left:50%;
+  top:151px;
+  width:430px;
+  height:430px;
+  transform:translateX(-50%);
+  border-radius:50%;
+  pointer-events:none;
+  background:
+    repeating-conic-gradient(from -22deg,rgba(233,194,96,.48) 0 1deg,transparent 1deg 7.5deg),
+    radial-gradient(circle,transparent 0 47%,rgba(96,196,255,.22) 47.3% 47.8%,transparent 48.1% 58%,rgba(226,190,93,.28) 58.2% 58.6%,transparent 59%);
+  -webkit-mask-image:radial-gradient(circle,transparent 0 47%,#000 47.5% 60%,transparent 60.5%);
+  mask-image:radial-gradient(circle,transparent 0 47%,#000 47.5% 60%,transparent 60.5%);
+  opacity:.74;
+  filter:drop-shadow(0 0 14px rgba(89,188,255,.12));
+}
+
+#page-home .qa-reference-topbar{
+  position:relative;
+  z-index:8;
+  display:grid;
+  grid-template-columns:46px 1fr 46px;
+  align-items:center;
+  padding:18px 20px 7px;
+}
+
+#page-home .qa-reference-menu,
+#page-home .qa-reference-bell{
+  width:42px;
+  height:42px;
+  border:0;
+  background:transparent;
+  color:#eef5ff;
+  font-size:1.65rem;
+  display:grid;
+  place-items:center;
+  opacity:.92;
+}
+
+#page-home .qa-reference-brand{
+  display:flex;
+  flex-direction:column;
+  align-items:center;
+  gap:2px;
+  direction:ltr;
+}
+
+#page-home .qa-reference-brand strong{
+  font:600 1.52rem/1.05 var(--qa-font-ui);
+  letter-spacing:.02em;
+  color:#fff;
+}
+
+#page-home .qa-reference-brand span{
+  font:700 .68rem/1 var(--qa-font-ui);
+  letter-spacing:.32em;
+  color:#d7b257;
+}
+
+#page-home .qa-reference-skyrow{
+  position:relative;
+  z-index:6;
+  min-height:338px;
+  display:grid;
+  grid-template-columns:94px minmax(0,1fr) 94px;
+  align-items:start;
+  gap:8px;
+  padding:15px 17px 0;
+}
+
+#page-home .qa-reference-sidecard{
+  min-height:132px;
+  padding:12px 9px;
+  border-radius:22px;
+  border:1px solid rgba(121,194,244,.20);
+  background:linear-gradient(145deg,rgba(255,255,255,.06),transparent 36%),rgba(5,15,31,.76);
+  box-shadow:inset 0 1px 0 rgba(255,255,255,.07),0 12px 28px rgba(0,0,0,.25);
+  backdrop-filter:blur(15px);
+  text-align:center;
+  display:flex;
+  flex-direction:column;
+  align-items:center;
+  justify-content:center;
+  gap:5px;
+}
+
+#page-home .qa-reference-sidecard .orb{
+  width:48px;
+  height:48px;
+  display:grid;
+  place-items:center;
+  border-radius:50%;
+  font-size:1.8rem;
+  box-shadow:0 0 24px rgba(255,255,255,.12),inset 0 0 18px rgba(255,255,255,.09);
+}
+
+#page-home .qa-reference-sidecard.moon .orb{
+  background:radial-gradient(circle at 35% 30%,#dce6f2,#738195 52%,#2b3441 74%);
+}
+
+#page-home .qa-reference-sidecard.sun .orb{
+  color:#ffe37d;
+  background:radial-gradient(circle,#fff6bf 0 18%,#ffc84f 35%,rgba(255,171,43,.24) 64%,transparent 66%);
+  text-shadow:0 0 16px #ffba38;
+}
+
+#page-home .qa-reference-sidecard b{font-size:.82rem;color:#f5f8fd}
+#page-home .qa-reference-sidecard strong{font:700 1rem/1 var(--qa-font-numeric);color:#f8fbff}
+#page-home .qa-reference-sidecard small{font-size:.55rem;color:rgba(219,235,249,.67)}
+
+#page-home .qa-reference-center{
+  position:relative;
+  min-height:302px;
+  text-align:center;
+  display:flex;
+  flex-direction:column;
+  align-items:center;
+  padding-top:36px;
+  cursor:pointer;
+}
+
+#page-home .qa-reference-center::before,
+#page-home .qa-reference-center::after{
+  content:'';
+  position:absolute;
+  left:50%;
+  border-radius:50% 50% 0 0;
+  border-top:1px solid rgba(231,194,94,.54);
+  border-left:1px solid rgba(231,194,94,.20);
+  border-right:1px solid rgba(231,194,94,.20);
+  transform:translateX(-50%);
+  pointer-events:none;
+}
+
+#page-home .qa-reference-center::before{top:20px;width:245px;height:155px}
+#page-home .qa-reference-center::after{top:34px;width:211px;height:130px;border-color:rgba(83,187,244,.32)}
+
+#page-home .qa-reference-pointer{
+  position:relative;
+  z-index:4;
+  color:#e8bd57;
+  font-size:1.45rem;
+  filter:drop-shadow(0 0 9px rgba(234,190,84,.64));
+}
+
+#page-home .qa-reference-bearing-label{
+  position:relative;
+  z-index:4;
+  margin-top:22px;
+  font:700 1.08rem/1.25 var(--qa-font-content);
+  color:#f0d893;
+}
+
+#page-home .qa-reference-bearing{
+  position:relative;
+  z-index:4;
+  margin-top:6px;
+  font:700 clamp(2.75rem,12vw,4.35rem)/.95 var(--qa-font-numeric);
+  color:#efc45d;
+  text-shadow:0 0 23px rgba(231,187,73,.22);
+  direction:ltr;
+}
+
+#page-home .qa-reference-accuracy{
+  position:relative;
+  z-index:4;
+  margin-top:13px;
+  padding:7px 15px;
+  border-radius:999px;
+  border:1px solid rgba(86,204,255,.26);
+  background:rgba(10,40,66,.48);
+  color:#8fe1ff;
+  font-size:.58rem;
+  box-shadow:0 0 20px rgba(66,188,246,.12);
+}
+
+#page-home .qa-reference-earth{
+  position:absolute;
+  z-index:2;
+  left:50%;
+  top:315px;
+  width:590px;
+  height:330px;
+  transform:translateX(-50%);
+  border-radius:50% 50% 0 0/74% 74% 0 0;
+  background:
+    radial-gradient(ellipse at 45% 8%,rgba(151,226,255,.94),rgba(63,150,211,.34) 6%,transparent 9%),
+    radial-gradient(ellipse at 32% 31%,rgba(149,190,151,.66),transparent 17%),
+    radial-gradient(ellipse at 64% 27%,rgba(120,172,128,.50),transparent 16%),
+    linear-gradient(180deg,#256ca5 0%,#0b3156 38%,#051326 72%);
+  border-top:2px solid rgba(153,229,255,.74);
+  box-shadow:0 -11px 34px rgba(82,190,255,.55),inset 0 23px 42px rgba(147,220,255,.14),inset 0 -80px 110px rgba(0,0,0,.70);
+  overflow:hidden;
+}
+
+#page-home .qa-reference-earth::before{
+  content:'';
+  position:absolute;
+  inset:0;
+  opacity:.48;
+  background:
+    repeating-radial-gradient(ellipse at 50% 0%,transparent 0 31px,rgba(171,224,255,.12) 32px 33px),
+    repeating-linear-gradient(90deg,transparent 0 70px,rgba(171,224,255,.08) 71px 72px);
+}
+
+#page-home .qa-reference-earth::after{
+  content:'';
+  position:absolute;
+  left:0;right:0;top:-3px;height:32px;
+  background:linear-gradient(180deg,rgba(150,230,255,.55),rgba(74,189,255,.13),transparent);
+  filter:blur(4px);
+}
+
+#page-home .qa-reference-kaaba{
+  position:absolute;
+  z-index:5;
+  left:50%;
+  top:349px;
+  width:88px;
+  height:105px;
+  transform:translateX(-50%) perspective(520px) rotateY(-8deg);
+  border-radius:3px;
+  cursor:pointer;
+  background:linear-gradient(115deg,#252525,#060606 56%,#161616);
+  border:1px solid rgba(255,255,255,.10);
+  box-shadow:0 30px 34px rgba(0,0,0,.48),0 0 24px rgba(230,189,78,.14),inset 9px 0 18px rgba(255,255,255,.03),inset -12px 0 19px rgba(0,0,0,.62);
+}
+
+#page-home .qa-reference-kaaba::before{
+  content:'';
+  position:absolute;
+  left:0;right:0;top:22px;height:12px;
+  background:linear-gradient(90deg,#74531a,#e4c269 46%,#7d5d20);
+  box-shadow:0 0 10px rgba(224,188,88,.26);
+}
+
+#page-home .qa-reference-kaaba::after{
+  content:'';
+  position:absolute;
+  right:14px;
+  bottom:8px;
+  width:21px;
+  height:37px;
+  border-radius:8px 8px 1px 1px;
+  border:1px solid #c69e47;
+  background:linear-gradient(110deg,#7b5719,#e7c86d 52%,#694713);
+}
+
+#page-home .qa-reference-summary{
+  position:relative;
+  z-index:9;
+  display:grid;
+  grid-template-columns:1fr 1fr 1.15fr;
+  margin:0 17px 14px;
+  min-height:112px;
+  border:1px solid rgba(105,193,246,.30);
+  border-radius:24px;
+  overflow:hidden;
+  background:linear-gradient(145deg,rgba(255,255,255,.055),transparent 38%),rgba(7,23,44,.87);
+  backdrop-filter:blur(18px);
+  box-shadow:inset 0 1px 0 rgba(255,255,255,.08),0 17px 35px rgba(0,0,0,.26);
+}
+
+#page-home .qa-reference-summary>div{
+  min-width:0;
+  padding:15px 10px;
+  display:flex;
+  flex-direction:column;
+  align-items:center;
+  justify-content:center;
+  gap:7px;
+  text-align:center;
+  border-inline-start:1px solid rgba(145,211,249,.12);
+}
+#page-home .qa-reference-summary>div:first-child{border-inline-start:0}
+#page-home .qa-reference-summary span{font-size:.62rem;color:rgba(219,235,249,.72)}
+#page-home .qa-reference-summary strong{font-size:.82rem;line-height:1.45;color:#f3f7fc;text-wrap:balance}
+#page-home .qa-reference-summary .prayer strong{color:#80e48e;font-size:1rem}
+#page-home .qa-reference-summary em{font:600 .63rem/1.4 var(--qa-font-numeric);font-style:normal;color:#f3f6fb;direction:ltr}
+
+/* Compact system gateway strip placed before the square service cards. */
+#page-home .qa-system-strip{
+  display:grid!important;
+  grid-template-columns:repeat(3,minmax(0,1fr));
+  margin:13px 0 15px!important;
+  border:1px solid rgba(117,195,244,.20)!important;
+  border-radius:18px!important;
+  background:rgba(5,17,31,.84)!important;
+  overflow:hidden;
+}
+#page-home .qa-system-strip>div{padding:11px 7px!important;border-inline-start:1px solid rgba(141,205,244,.12);text-align:center!important}
+#page-home .qa-system-strip>div:first-child{border-inline-start:0}
+#page-home .qa-system-strip span{display:block;font-size:.52rem;color:rgba(217,233,247,.58);margin-bottom:5px}
+#page-home .qa-system-strip strong{display:block;font-size:.63rem;color:#f5d477;line-height:1.4}
+#page-home .qa-system-strip .ok{color:#71dda3!important}
+
+@media (max-width:380px){
+  #page-home .qa-reference-home{min-height:655px}
+  #page-home .qa-reference-skyrow{grid-template-columns:82px minmax(0,1fr) 82px;padding-inline:10px}
+  #page-home .qa-reference-sidecard{min-height:120px;border-radius:18px;padding:9px 6px}
+  #page-home .qa-reference-sidecard .orb{width:42px;height:42px}
+  #page-home .qa-reference-earth{width:530px;top:304px}
+  #page-home .qa-reference-kaaba{top:339px;width:80px;height:96px}
+  #page-home .qa-reference-summary{margin-inline:10px;grid-template-columns:1fr 1fr}
+  #page-home .qa-reference-summary .prayer{grid-column:1 / -1;border-top:1px solid rgba(145,211,249,.12)}
+}
+
+@media (min-width:600px){
+  #page-home .qa-reference-home{min-height:740px;border-radius:0 0 42px 42px}
+  #page-home .qa-reference-skyrow{grid-template-columns:118px minmax(0,1fr) 118px;padding-inline:30px}
+  #page-home .qa-reference-earth{width:710px;height:370px}
+}
+
+@media (prefers-reduced-motion:reduce){
+  #page-home .qa-reference-home::before{opacity:.48}
+}

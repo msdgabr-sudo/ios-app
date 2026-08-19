@@ -1,0 +1,28 @@
+/* ══════════════════════════════════════════════════════════════════════════════
+   [CSS-C] RESET & BASE STYLES
+   ══════════════════════════════════════════════════════════════════════════════ */
+
+/* ═══════════════════════════════════════════
+   RESET & BASE
+═══════════════════════════════════════════ */
+*{margin:0;padding:0;box-sizing:border-box;-webkit-tap-highlight-color:transparent;}
+html{
+  font-size:16px;background:var(--ink);
+  overscroll-behavior:none;
+  overscroll-behavior-y:none;
+  overscroll-behavior-x:none;
+  height:100%;
+}
+body{
+  background:var(--ink);color:var(--txt);
+  font-family:'Noto Naskh Arabic',serif;
+  min-height:100vh;min-height:100dvh;
+  display:flex;flex-direction:column;align-items:center;
+  padding:0 0 80px;overflow-x:hidden;
+  overscroll-behavior:none;
+  overscroll-behavior-y:none;
+  overscroll-behavior-x:none;
+}
+
+/* استثناء: الشاشة الرئيسية عندها padding-bottom كافي جواها بالفعل (page-home) */
+body.tab-home{padding-bottom:0}

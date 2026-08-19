@@ -1,0 +1,67 @@
+/* QiblaAstro — بوصلة القبلة الفلكية */
+/* Astronomical Qibla Compass */
+
+═══════════════════════════════════════════════════════════════
+  TEAM
+═══════════════════════════════════════════════════════════════
+
+Developer & Astronomical Algorithms: Mohamed Sayed Gabr Behairy
+Arabic: محمد سيد جبر بحيرى
+Location: Egypt
+Role: Lead Developer, Astronomical Engineer, UI/UX Designer
+Email: qiblaastro@protonmail.com
+Website: https://qiblaastro.github.io
+
+═══════════════════════════════════════════════════════════════
+  TECHNOLOGY
+═══════════════════════════════════════════════════════════════
+
+Frontend: HTML5, CSS3, Vanilla JavaScript (ES6+)
+Canvas API: 2D Compass Rendering, Star Maps, Shadow Dial
+Astronomical Algorithms:
+  - VSOP87 (Meeus Ch.25) — Solar Position
+  - ELP2000/82 (Meeus Ch.47) — Lunar Position
+  - WMM2025 (NOAA/BGS) — Magnetic Declination
+  - Bennett Formula — Atmospheric Refraction
+  - IERS Chandler Wobble — Polar Motion
+Prayer Times: Muslim World League Method
+GNSS: GPS, GLONASS, Galileo, BeiDou (multi-constellation)
+
+═══════════════════════════════════════════════════════════════
+  THANKS
+═══════════════════════════════════════════════════════════════
+
+Jean Meeus — Astronomical Algorithms (Willmann-Bell, 1998)
+NOAA / British Geological Survey — World Magnetic Model 2025
+IERS — Earth Orientation Parameters
+Chapront, Touze, Francou — ELP2000/82 Lunar Theory
+Bennett — Atmospheric Refraction in Marine Navigation
+
+═══════════════════════════════════════════════════════════════
+  STANDARDS
+═══════════════════════════════════════════════════════════════
+
+W3C HTML5, CSS3, ECMAScript 2024
+Progressive Web App (PWA) Standards
+Web App Manifest v1
+Service Worker API
+Web Share API
+Clipboard API
+Device Orientation API
+Geolocation API
+Notifications API
+
+═══════════════════════════════════════════════════════════════
+  LAST UPDATE
+═══════════════════════════════════════════════════════════════
+
+2026-07-24
+
+═══════════════════════════════════════════════════════════════
+  LICENSE
+═══════════════════════════════════════════════════════════════
+
+© 2026 Mohamed Sayed Gabr Behairy. All Rights Reserved.
+See LICENSE file for full terms.
+
+═══════════════════════════════════════════════════════════════

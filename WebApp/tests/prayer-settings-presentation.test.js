@@ -1,0 +1,10 @@
+'use strict';
+const fs=require('fs'),assert=require('assert');
+const html=fs.readFileSync('pages/prayer.html','utf8'),css=fs.readFileSync('css/presentation/prayer/settings-overrides.css','utf8'),screen=fs.readFileSync('js/presentation/prayer/screen.js','utf8'),locUI=fs.readFileSync('js/presentation/prayer/location-settings-ui.js','utf8');
+assert(html.includes('qa-prayer-details open'),'prayer timing settings must be visible by default');
+assert(!html.includes('qa-prayer-details-toggle'),'collapsible prayer settings toggle must be removed');
+assert(html.includes('qa-prayer-location-settings-open')&&html.includes('qa-calculation-settings-open'));
+assert(css.includes('overflow-y:auto')&&css.includes('-webkit-overflow-scrolling:touch')&&css.includes('100dvh'),'bottom sheet must use internal mobile scrolling');
+assert(screen.includes('QiblaPrayerTimeFormat')&&screen.includes('format12'),'prayer screen must use 12-hour formatter');
+assert(locUI.includes('اختيار مدينة يدويًا')&&locUI.includes('data-city-search')&&locUI.includes('data-custom-lat')&&locUI.includes('data-custom-lon'));
+console.log('Prayer settings presentation gate: PASS');

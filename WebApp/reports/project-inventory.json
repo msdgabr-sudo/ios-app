@@ -1,0 +1,2038 @@
+{
+  "generatedAt": "2026-08-08T12:40:44.116Z",
+  "branch": "new",
+  "commit": "e075275be312912138709c4188f4ac6c92be824b",
+  "fileCount": 366,
+  "totalBytes": 73461795,
+  "totalHuman": "70.06 MB",
+  "indexHtml": {
+    "bytes": 353532,
+    "human": "345.25 KB",
+    "lines": 5473
+  },
+  "byExtension": {
+    ".png": {
+      "files": 53,
+      "bytes": 40334525
+    },
+    ".mp3": {
+      "files": 6,
+      "bytes": 29317972
+    },
+    ".json": {
+      "files": 115,
+      "bytes": 2215104
+    },
+    ".js": {
+      "files": 101,
+      "bytes": 669032
+    },
+    ".html": {
+      "files": 5,
+      "bytes": 372348
+    },
+    ".css": {
+      "files": 52,
+      "bytes": 349488
+    },
+    ".woff2": {
+      "files": 1,
+      "bytes": 86520
+    },
+    ".md": {
+      "files": 10,
+      "bytes": 56192
+    },
+    ".yml": {
+      "files": 13,
+      "bytes": 22373
+    },
+    ".jpg": {
+      "files": 1,
+      "bytes": 20224
+    },
+    "[no-ext]": {
+      "files": 2,
+      "bytes": 5851
+    },
+    ".txt": {
+      "files": 2,
+      "bytes": 4736
+    },
+    ".webmanifest": {
+      "files": 1,
+      "bytes": 4009
+    },
+    ".xml": {
+      "files": 2,
+      "bytes": 1977
+    },
+    ".ico": {
+      "files": 1,
+      "bytes": 809
+    },
+    ".svg": {
+      "files": 1,
+      "bytes": 635
+    }
+  },
+  "largestFiles": [
+    {
+      "path": "audio/سورة تبارك خالد الجليل.mp3",
+      "bytes": 8666535,
+      "ext": ".mp3"
+    },
+    {
+      "path": "audio/سورة تبارك شعبان الصياد.mp3",
+      "bytes": 7335314,
+      "ext": ".mp3"
+    },
+    {
+      "path": "audio/جئت بابك ساجدا.mp3",
+      "bytes": 4319478,
+      "ext": ".mp3"
+    },
+    {
+      "path": "audio/صلى على سيد الثقلين.mp3",
+      "bytes": 4259003,
+      "ext": ".mp3"
+    },
+    {
+      "path": "1784808506356.png",
+      "bytes": 2665909,
+      "ext": ".png"
+    },
+    {
+      "path": "images/1784590231216.png",
+      "bytes": 2665909,
+      "ext": ".png"
+    },
+    {
+      "path": "audio/يامنقذى فى شدتى.mp3",
+      "bytes": 2660556,
+      "ext": ".mp3"
+    },
+    {
+      "path": "images/1784590231243.png",
+      "bytes": 2506596,
+      "ext": ".png"
+    },
+    {
+      "path": "images/1784590231268.png",
+      "bytes": 2393675,
+      "ext": ".png"
+    },
+    {
+      "path": "audio/سبحت لله فى العش الطيور.mp3",
+      "bytes": 2077086,
+      "ext": ".mp3"
+    },
+    {
+      "path": "images/1784590231231.png",
+      "bytes": 1922285,
+      "ext": ".png"
+    },
+    {
+      "path": "icons/icon-1024x1024.png",
+      "bytes": 1908018,
+      "ext": ".png"
+    },
+    {
+      "path": "images/1784808776667.png",
+      "bytes": 1897183,
+      "ext": ".png"
+    },
+    {
+      "path": "images/c3bde3b3-7717-49b9-a5af-ec37f149d087.png",
+      "bytes": 1854214,
+      "ext": ".png"
+    },
+    {
+      "path": "images/1784590231198.png",
+      "bytes": 1822171,
+      "ext": ".png"
+    },
+    {
+      "path": "images/1784590231258.png",
+      "bytes": 1463531,
+      "ext": ".png"
+    },
+    {
+      "path": "icons/apple-splash-iphone5.png",
+      "bytes": 1343488,
+      "ext": ".png"
+    },
+    {
+      "path": "icons/icon-kaaba.png",
+      "bytes": 1261523,
+      "ext": ".png"
+    },
+    {
+      "path": "icons/hm-quran.png",
+      "bytes": 1021086,
+      "ext": ".png"
+    },
+    {
+      "path": "icons/hm-compass.png",
+      "bytes": 914358,
+      "ext": ".png"
+    },
+    {
+      "path": "icons/apple-splash-ipadPro12.png",
+      "bytes": 911878,
+      "ext": ".png"
+    },
+    {
+      "path": "icons/icon-moon.png",
+      "bytes": 895015,
+      "ext": ".png"
+    },
+    {
+      "path": "icons/hm-logo.png",
+      "bytes": 891336,
+      "ext": ".png"
+    },
+    {
+      "path": "icons/icon-sun.png",
+      "bytes": 834120,
+      "ext": ".png"
+    },
+    {
+      "path": "icons/apple-splash-ipadPro11.png",
+      "bytes": 778017,
+      "ext": ".png"
+    }
+  ],
+  "files": [
+    {
+      "path": ".github/workflows/astronomical-solver-tests.yml",
+      "bytes": 2333,
+      "ext": ".yml"
+    },
+    {
+      "path": ".github/workflows/field-test-readiness.yml",
+      "bytes": 2372,
+      "ext": ".yml"
+    },
+    {
+      "path": ".github/workflows/fix-capture-finalization-deadlock.yml",
+      "bytes": 1723,
+      "ext": ".yml"
+    },
+    {
+      "path": ".github/workflows/fix-record-contract-mismatch.yml",
+      "bytes": 2216,
+      "ext": ".yml"
+    },
+    {
+      "path": ".github/workflows/fix-single-reticle-auto-capture.yml",
+      "bytes": 2062,
+      "ext": ".yml"
+    },
+    {
+      "path": ".github/workflows/inject-reference-home-direct.yml",
+      "bytes": 2329,
+      "ext": ".yml"
+    },
+    {
+      "path": ".github/workflows/modularize-index-new.yml",
+      "bytes": 1645,
+      "ext": ".yml"
+    },
+    {
+      "path": ".github/workflows/project-inventory-new.yml",
+      "bytes": 945,
+      "ext": ".yml"
+    },
+    {
+      "path": ".github/workflows/protected-core-integrity.yml",
+      "bytes": 1157,
+      "ext": ".yml"
+    },
+    {
+      "path": ".github/workflows/remove-legacy-astronomical-glue.yml",
+      "bytes": 1536,
+      "ext": ".yml"
+    },
+    {
+      "path": ".github/workflows/repair-record-display-e2e.yml",
+      "bytes": 1814,
+      "ext": ".yml"
+    },
+    {
+      "path": ".github/workflows/static.yml",
+      "bytes": 1250,
+      "ext": ".yml"
+    },
+    {
+      "path": ".github/workflows/test-post-verification-live-compass.yml",
+      "bytes": 991,
+      "ext": ".yml"
+    },
+    {
+      "path": "1784808506356.png",
+      "bytes": 2665909,
+      "ext": ".png"
+    },
+    {
+      "path": "architecture/PROTECTED_CORE_CONSTITUTION.md",
+      "bytes": 3144,
+      "ext": ".md"
+    },
+    {
+      "path": "ASTRONOMICAL_PIPELINE_AUDIT.md",
+      "bytes": 5213,
+      "ext": ".md"
+    },
+    {
+      "path": "ASTRONOMICAL_QIBLA_MEASUREMENT_CONTRACT.md",
+      "bytes": 2514,
+      "ext": ".md"
+    },
+    {
+      "path": "audio/.gitkeep",
+      "bytes": 1,
+      "ext": "[no-ext]"
+    },
+    {
+      "path": "audio/جئت بابك ساجدا.mp3",
+      "bytes": 4319478,
+      "ext": ".mp3"
+    },
+    {
+      "path": "audio/سبحت لله فى العش الطيور.mp3",
+      "bytes": 2077086,
+      "ext": ".mp3"
+    },
+    {
+      "path": "audio/سورة تبارك خالد الجليل.mp3",
+      "bytes": 8666535,
+      "ext": ".mp3"
+    },
+    {
+      "path": "audio/سورة تبارك شعبان الصياد.mp3",
+      "bytes": 7335314,
+      "ext": ".mp3"
+    },
+    {
+      "path": "audio/صلى على سيد الثقلين.mp3",
+      "bytes": 4259003,
+      "ext": ".mp3"
+    },
+    {
+      "path": "audio/يامنقذى فى شدتى.mp3",
+      "bytes": 2660556,
+      "ext": ".mp3"
+    },
+    {
+      "path": "browserconfig.xml",
+      "bytes": 555,
+      "ext": ".xml"
+    },
+    {
+      "path": "css/01-variables.css",
+      "bytes": 1032,
+      "ext": ".css"
+    },
+    {
+      "path": "css/02-sky-backgrounds.css",
+      "bytes": 4364,
+      "ext": ".css"
+    },
+    {
+      "path": "css/03-reset-base.css",
+      "bytes": 1497,
+      "ext": ".css"
+    },
+    {
+      "path": "css/04-splash.css",
+      "bytes": 2551,
+      "ext": ".css"
+    },
+    {
+      "path": "css/05-topbar.css",
+      "bytes": 1639,
+      "ext": ".css"
+    },
+    {
+      "path": "css/06-navigation.css",
+      "bytes": 2737,
+      "ext": ".css"
+    },
+    {
+      "path": "css/07-pages.css",
+      "bytes": 897,
+      "ext": ".css"
+    },
+    {
+      "path": "css/08-compass-canvas.css",
+      "bytes": 917,
+      "ext": ".css"
+    },
+    {
+      "path": "css/09-qibla-hero.css",
+      "bytes": 1726,
+      "ext": ".css"
+    },
+    {
+      "path": "css/10-stat-grid.css",
+      "bytes": 1792,
+      "ext": ".css"
+    },
+    {
+      "path": "css/11-section-headers.css",
+      "bytes": 1069,
+      "ext": ".css"
+    },
+    {
+      "path": "css/12-sky-track.css",
+      "bytes": 1985,
+      "ext": ".css"
+    },
+    {
+      "path": "css/13-prayer-times.css",
+      "bytes": 2550,
+      "ext": ".css"
+    },
+    {
+      "path": "css/14-night-page.css",
+      "bytes": 3417,
+      "ext": ".css"
+    },
+    {
+      "path": "css/15-device-compass.css",
+      "bytes": 2015,
+      "ext": ".css"
+    },
+    {
+      "path": "css/16-qibla-instructions.css",
+      "bytes": 1228,
+      "ext": ".css"
+    },
+    {
+      "path": "css/17-calibration.css",
+      "bytes": 1138,
+      "ext": ".css"
+    },
+    {
+      "path": "css/18-tips.css",
+      "bytes": 1295,
+      "ext": ".css"
+    },
+    {
+      "path": "css/19-gnss.css",
+      "bytes": 2355,
+      "ext": ".css"
+    },
+    {
+      "path": "css/20-settings.css",
+      "bytes": 3600,
+      "ext": ".css"
+    },
+    {
+      "path": "css/21-utility.css",
+      "bytes": 1098,
+      "ext": ".css"
+    },
+    {
+      "path": "css/22-azkar.css",
+      "bytes": 42034,
+      "ext": ".css"
+    },
+    {
+      "path": "css/24-gemini-compass.css",
+      "bytes": 5673,
+      "ext": ".css"
+    },
+    {
+      "path": "css/27-animations.css",
+      "bytes": 2427,
+      "ext": ".css"
+    },
+    {
+      "path": "css/28-astronomical-observatory.css",
+      "bytes": 11706,
+      "ext": ".css"
+    },
+    {
+      "path": "css/29-horizon-design-system.css",
+      "bytes": 13203,
+      "ext": ".css"
+    },
+    {
+      "path": "css/30-horizon-compass-instruments.css",
+      "bytes": 6712,
+      "ext": ".css"
+    },
+    {
+      "path": "css/31-horizon-home-header.css",
+      "bytes": 4575,
+      "ext": ".css"
+    },
+    {
+      "path": "css/32-horizon-navigation.css",
+      "bytes": 4262,
+      "ext": ".css"
+    },
+    {
+      "path": "css/33-horizon-mega-interface.css",
+      "bytes": 9726,
+      "ext": ".css"
+    },
+    {
+      "path": "css/34-horizon-square-dashboard.css",
+      "bytes": 4483,
+      "ext": ".css"
+    },
+    {
+      "path": "css/35-horizon-dashboard-grid.css",
+      "bytes": 5511,
+      "ext": ".css"
+    },
+    {
+      "path": "css/36-horizon-dashboard-polish.css",
+      "bytes": 6412,
+      "ext": ".css"
+    },
+    {
+      "path": "css/36-horizon-reference-parity.css",
+      "bytes": 10168,
+      "ext": ".css"
+    },
+    {
+      "path": "css/37-horizon-hero-mega-phase1.css",
+      "bytes": 11205,
+      "ext": ".css"
+    },
+    {
+      "path": "css/37-horizon-reference-home.css",
+      "bytes": 11143,
+      "ext": ".css"
+    },
+    {
+      "path": "css/38-approved-reference-layout.css",
+      "bytes": 13301,
+      "ext": ".css"
+    },
+    {
+      "path": "css/39-horizon-mega-phase2-dashboard-nav.css",
+      "bytes": 11855,
+      "ext": ".css"
+    },
+    {
+      "path": "css/40-horizon-mega-phase3-identity-motion.css",
+      "bytes": 10565,
+      "ext": ".css"
+    },
+    {
+      "path": "css/41-horizon-mega-phase4-final-polish.css",
+      "bytes": 11534,
+      "ext": ".css"
+    },
+    {
+      "path": "css/42-horizon-mega-phase5-cross-page-finish.css",
+      "bytes": 10169,
+      "ext": ".css"
+    },
+    {
+      "path": "css/42-horizon-screenshot-correction.css",
+      "bytes": 10136,
+      "ext": ".css"
+    },
+    {
+      "path": "css/43-reference-match-stage1.css",
+      "bytes": 9176,
+      "ext": ".css"
+    },
+    {
+      "path": "css/44-reference-dashboard-stage2.css",
+      "bytes": 4772,
+      "ext": ".css"
+    },
+    {
+      "path": "css/45-reference-navigation-polish-stage3.css",
+      "bytes": 9008,
+      "ext": ".css"
+    },
+    {
+      "path": "css/46-reference-home-rebuild-stage4.css",
+      "bytes": 10088,
+      "ext": ".css"
+    },
+    {
+      "path": "css/47-phone-reference-final-stage5.css",
+      "bytes": 5144,
+      "ext": ".css"
+    },
+    {
+      "path": "css/home-final.css",
+      "bytes": 9693,
+      "ext": ".css"
+    },
+    {
+      "path": "css/presentation/compass/astro-dashboard.css",
+      "bytes": 15247,
+      "ext": ".css"
+    },
+    {
+      "path": "css/presentation/compass/digital-final-fixes.css",
+      "bytes": 9381,
+      "ext": ".css"
+    },
+    {
+      "path": "css/presentation/compass/digital-visual-match.css",
+      "bytes": 19276,
+      "ext": ".css"
+    },
+    {
+      "path": "css/style.css",
+      "bytes": 1,
+      "ext": ".css"
+    },
+    {
+      "path": "FINAL_SUMMARY.md",
+      "bytes": 8795,
+      "ext": ".md"
+    },
+    {
+      "path": "fonts/KFGQPC-Uthmanic-ScriptHAFS.woff2",
+      "bytes": 86520,
+      "ext": ".woff2"
+    },
+    {
+      "path": "icons/apple-splash-ipad.png",
+      "bytes": 335461,
+      "ext": ".png"
+    },
+    {
+      "path": "icons/apple-splash-ipadPro11.png",
+      "bytes": 778017,
+      "ext": ".png"
+    },
+    {
+      "path": "icons/apple-splash-ipadPro12.png",
+      "bytes": 911878,
+      "ext": ".png"
+    },
+    {
+      "path": "icons/apple-splash-iphone12.png",
+      "bytes": 199940,
+      "ext": ".png"
+    },
+    {
+      "path": "icons/apple-splash-iphone14p.png",
+      "bytes": 466556,
+      "ext": ".png"
+    },
+    {
+      "path": "icons/apple-splash-iphone15p.png",
+      "bytes": 470177,
+      "ext": ".png"
+    },
+    {
+      "path": "icons/apple-splash-iphone5.png",
+      "bytes": 1343488,
+      "ext": ".png"
+    },
+    {
+      "path": "icons/apple-splash-iphone6.png",
+      "bytes": 145716,
+      "ext": ".png"
+    },
+    {
+      "path": "icons/apple-splash-iphoneX.png",
+      "bytes": 557253,
+      "ext": ".png"
+    },
+    {
+      "path": "icons/apple-splash-iphoneXR.png",
+      "bytes": 241056,
+      "ext": ".png"
+    },
+    {
+      "path": "icons/apple-splash-iphoneXS.png",
+      "bytes": 521656,
+      "ext": ".png"
+    },
+    {
+      "path": "icons/apple-touch-icon.png",
+      "bytes": 42818,
+      "ext": ".png"
+    },
+    {
+      "path": "icons/favicon.ico",
+      "bytes": 809,
+      "ext": ".ico"
+    },
+    {
+      "path": "icons/hm-astronomy.png",
+      "bytes": 405184,
+      "ext": ".png"
+    },
+    {
+      "path": "icons/hm-azkar.png",
+      "bytes": 571909,
+      "ext": ".png"
+    },
+    {
+      "path": "icons/hm-compass.png",
+      "bytes": 914358,
+      "ext": ".png"
+    },
+    {
+      "path": "icons/hm-gnss.png",
+      "bytes": 627169,
+      "ext": ".png"
+    },
+    {
+      "path": "icons/hm-logo.png",
+      "bytes": 891336,
+      "ext": ".png"
+    },
+    {
+      "path": "icons/hm-prayer.png",
+      "bytes": 459441,
+      "ext": ".png"
+    },
+    {
+      "path": "icons/hm-quran.png",
+      "bytes": 1021086,
+      "ext": ".png"
+    },
+    {
+      "path": "icons/hm-serenity.png",
+      "bytes": 731574,
+      "ext": ".png"
+    },
+    {
+      "path": "icons/icon-1024x1024.png",
+      "bytes": 1908018,
+      "ext": ".png"
+    },
+    {
+      "path": "icons/icon-120x120.png",
+      "bytes": 30757,
+      "ext": ".png"
+    },
+    {
+      "path": "icons/icon-128x128.png",
+      "bytes": 34868,
+      "ext": ".png"
+    },
+    {
+      "path": "icons/icon-144x144.png",
+      "bytes": 43882,
+      "ext": ".png"
+    },
+    {
+      "path": "icons/icon-152x152.png",
+      "bytes": 48642,
+      "ext": ".png"
+    },
+    {
+      "path": "icons/icon-167x167.png",
+      "bytes": 58404,
+      "ext": ".png"
+    },
+    {
+      "path": "icons/icon-180x180.png",
+      "bytes": 67175,
+      "ext": ".png"
+    },
+    {
+      "path": "icons/icon-192x192.png",
+      "bytes": 76173,
+      "ext": ".png"
+    },
+    {
+      "path": "icons/icon-384x384.png",
+      "bytes": 291072,
+      "ext": ".png"
+    },
+    {
+      "path": "icons/icon-512x512.png",
+      "bytes": 508824,
+      "ext": ".png"
+    },
+    {
+      "path": "icons/icon-72x72.png",
+      "bytes": 11662,
+      "ext": ".png"
+    },
+    {
+      "path": "icons/icon-96x96.png",
+      "bytes": 20167,
+      "ext": ".png"
+    },
+    {
+      "path": "icons/icon-kaaba.png",
+      "bytes": 1261523,
+      "ext": ".png"
+    },
+    {
+      "path": "icons/icon-maskable-512x512.png",
+      "bytes": 50706,
+      "ext": ".png"
+    },
+    {
+      "path": "icons/icon-moon.png",
+      "bytes": 895015,
+      "ext": ".png"
+    },
+    {
+      "path": "icons/icon-sextant.png",
+      "bytes": 423322,
+      "ext": ".png"
+    },
+    {
+      "path": "icons/icon-sun.png",
+      "bytes": 834120,
+      "ext": ".png"
+    },
+    {
+      "path": "icons/maskable/icon-maskable-192x192.png",
+      "bytes": 50706,
+      "ext": ".png"
+    },
+    {
+      "path": "icons/maskable/icon-maskable-512x512.png",
+      "bytes": 335461,
+      "ext": ".png"
+    },
+    {
+      "path": "icons/mstile-144x144.png",
+      "bytes": 43882,
+      "ext": ".png"
+    },
+    {
+      "path": "icons/nav-home.png",
+      "bytes": 593364,
+      "ext": ".png"
+    },
+    {
+      "path": "icons/nav-settings.png",
+      "bytes": 461319,
+      "ext": ".png"
+    },
+    {
+      "path": "icons/safari-pinned-tab.svg",
+      "bytes": 635,
+      "ext": ".svg"
+    },
+    {
+      "path": "images/1784590231198.png",
+      "bytes": 1822171,
+      "ext": ".png"
+    },
+    {
+      "path": "images/1784590231216.png",
+      "bytes": 2665909,
+      "ext": ".png"
+    },
+    {
+      "path": "images/1784590231231.png",
+      "bytes": 1922285,
+      "ext": ".png"
+    },
+    {
+      "path": "images/1784590231243.png",
+      "bytes": 2506596,
+      "ext": ".png"
+    },
+    {
+      "path": "images/1784590231258.png",
+      "bytes": 1463531,
+      "ext": ".png"
+    },
+    {
+      "path": "images/1784590231268.png",
+      "bytes": 2393675,
+      "ext": ".png"
+    },
+    {
+      "path": "images/1784590231279.jpg",
+      "bytes": 20224,
+      "ext": ".jpg"
+    },
+    {
+      "path": "images/1784808776667.png",
+      "bytes": 1897183,
+      "ext": ".png"
+    },
+    {
+      "path": "images/c3bde3b3-7717-49b9-a5af-ec37f149d087.png",
+      "bytes": 1854214,
+      "ext": ".png"
+    },
+    {
+      "path": "images/IMG_20260721_020626.png",
+      "bytes": 694467,
+      "ext": ".png"
+    },
+    {
+      "path": "images/IMG_20260721_020842.png",
+      "bytes": 763450,
+      "ext": ".png"
+    },
+    {
+      "path": "index.html",
+      "bytes": 353532,
+      "ext": ".html"
+    },
+    {
+      "path": "JAVASCRIPT_RUNTIME_AUDIT.md",
+      "bytes": 9199,
+      "ext": ".md"
+    },
+    {
+      "path": "js/01-inertia.js",
+      "bytes": 9165,
+      "ext": ".js"
+    },
+    {
+      "path": "js/02-adhan.js",
+      "bytes": 7687,
+      "ext": ".js"
+    },
+    {
+      "path": "js/03-azkar-engine.js",
+      "bytes": 4872,
+      "ext": ".js"
+    },
+    {
+      "path": "js/04-core.js",
+      "bytes": 3435,
+      "ext": ".js"
+    },
+    {
+      "path": "js/05-gnss.js",
+      "bytes": 6344,
+      "ext": ".js"
+    },
+    {
+      "path": "js/06-navigation.js",
+      "bytes": 2284,
+      "ext": ".js"
+    },
+    {
+      "path": "js/07-settings.js",
+      "bytes": 1105,
+      "ext": ".js"
+    },
+    {
+      "path": "js/08-share.js",
+      "bytes": 1694,
+      "ext": ".js"
+    },
+    {
+      "path": "js/09-faq.js",
+      "bytes": 3983,
+      "ext": ".js"
+    },
+    {
+      "path": "js/10-astronomy.js",
+      "bytes": 9873,
+      "ext": ".js"
+    },
+    {
+      "path": "js/100-reference-dashboard-stage2.js",
+      "bytes": 5478,
+      "ext": ".js"
+    },
+    {
+      "path": "js/101-reference-home-rebuild-stage4.js",
+      "bytes": 5485,
+      "ext": ".js"
+    },
+    {
+      "path": "js/11-prayer.js",
+      "bytes": 6090,
+      "ext": ".js"
+    },
+    {
+      "path": "js/12-compass-canvas.js",
+      "bytes": 19866,
+      "ext": ".js"
+    },
+    {
+      "path": "js/13-polaris.js",
+      "bytes": 3560,
+      "ext": ".js"
+    },
+    {
+      "path": "js/14-shadow.js",
+      "bytes": 3191,
+      "ext": ".js"
+    },
+    {
+      "path": "js/15-polar-drift.js",
+      "bytes": 3251,
+      "ext": ".js"
+    },
+    {
+      "path": "js/16-map.js",
+      "bytes": 4348,
+      "ext": ".js"
+    },
+    {
+      "path": "js/17-deviation.js",
+      "bytes": 2772,
+      "ext": ".js"
+    },
+    {
+      "path": "js/18-sky-bg.js",
+      "bytes": 10130,
+      "ext": ".js"
+    },
+    {
+      "path": "js/19-main-loop.js",
+      "bytes": 899,
+      "ext": ".js"
+    },
+    {
+      "path": "js/20-device-compass.js",
+      "bytes": 15932,
+      "ext": ".js"
+    },
+    {
+      "path": "js/21-quran.js",
+      "bytes": 18087,
+      "ext": ".js"
+    },
+    {
+      "path": "js/22-init.js",
+      "bytes": 44910,
+      "ext": ".js"
+    },
+    {
+      "path": "js/99-misc.js",
+      "bytes": 2130,
+      "ext": ".js"
+    },
+    {
+      "path": "js/astro-qibla-engine.js",
+      "bytes": 9860,
+      "ext": ".js"
+    },
+    {
+      "path": "js/astro-verification.js",
+      "bytes": 17510,
+      "ext": ".js"
+    },
+    {
+      "path": "js/astronomical-observation-bridge.js",
+      "bytes": 13647,
+      "ext": ".js"
+    },
+    {
+      "path": "js/astronomical-observatory-ui.js",
+      "bytes": 19494,
+      "ext": ".js"
+    },
+    {
+      "path": "js/astronomical-solver.js",
+      "bytes": 17366,
+      "ext": ".js"
+    },
+    {
+      "path": "js/astronomical-trace.js",
+      "bytes": 4051,
+      "ext": ".js"
+    },
+    {
+      "path": "js/astronomical-verification-session.js",
+      "bytes": 26067,
+      "ext": ".js"
+    },
+    {
+      "path": "js/astronomical-verification-store.js",
+      "bytes": 6635,
+      "ext": ".js"
+    },
+    {
+      "path": "js/astronomical/loader.js",
+      "bytes": 2295,
+      "ext": ".js"
+    },
+    {
+      "path": "js/astronomical/module-manifest.js",
+      "bytes": 2668,
+      "ext": ".js"
+    },
+    {
+      "path": "js/astronomical/README.md",
+      "bytes": 2321,
+      "ext": ".md"
+    },
+    {
+      "path": "js/camera-engine.js",
+      "bytes": 1632,
+      "ext": ".js"
+    },
+    {
+      "path": "js/camera-pose.js",
+      "bytes": 11748,
+      "ext": ".js"
+    },
+    {
+      "path": "js/camera-projection.js",
+      "bytes": 12317,
+      "ext": ".js"
+    },
+    {
+      "path": "js/celestial-detector.js",
+      "bytes": 11382,
+      "ext": ".js"
+    },
+    {
+      "path": "js/celestial-live-calibration.js",
+      "bytes": 7391,
+      "ext": ".js"
+    },
+    {
+      "path": "js/celestial-solver.js",
+      "bytes": 1221,
+      "ext": ".js"
+    },
+    {
+      "path": "js/compass-cards.js",
+      "bytes": 11172,
+      "ext": ".js"
+    },
+    {
+      "path": "js/coordinate-frames.js",
+      "bytes": 12455,
+      "ext": ".js"
+    },
+    {
+      "path": "js/gravity-reference.js",
+      "bytes": 15627,
+      "ext": ".js"
+    },
+    {
+      "path": "js/home-final.js",
+      "bytes": 6024,
+      "ext": ".js"
+    },
+    {
+      "path": "js/integration.js",
+      "bytes": 29142,
+      "ext": ".js"
+    },
+    {
+      "path": "js/position-provider.js",
+      "bytes": 4978,
+      "ext": ".js"
+    },
+    {
+      "path": "js/post-verification-live-compass.js",
+      "bytes": 6091,
+      "ext": ".js"
+    },
+    {
+      "path": "js/presentation/compass/astro-dashboard.js",
+      "bytes": 10864,
+      "ext": ".js"
+    },
+    {
+      "path": "js/presentation/compass/mode-view.js",
+      "bytes": 5812,
+      "ext": ".js"
+    },
+    {
+      "path": "js/qibla-alignment-reticle.js",
+      "bytes": 7936,
+      "ext": ".js"
+    },
+    {
+      "path": "js/qibla-card-runtime.js",
+      "bytes": 4590,
+      "ext": ".js"
+    },
+    {
+      "path": "js/system-check.js",
+      "bytes": 3313,
+      "ext": ".js"
+    },
+    {
+      "path": "js/verification-quality.js",
+      "bytes": 19766,
+      "ext": ".js"
+    },
+    {
+      "path": "js/world-orientation.js",
+      "bytes": 10958,
+      "ext": ".js"
+    },
+    {
+      "path": "Legal & Security/LICENSE",
+      "bytes": 5850,
+      "ext": "[no-ext]"
+    },
+    {
+      "path": "Legal & Security/SECURITY.md",
+      "bytes": 1748,
+      "ext": ".md"
+    },
+    {
+      "path": "manifest.json",
+      "bytes": 4076,
+      "ext": ".json"
+    },
+    {
+      "path": "offline.html",
+      "bytes": 3658,
+      "ext": ".html"
+    },
+    {
+      "path": "PROJECT_CONTEXT.md",
+      "bytes": 14479,
+      "ext": ".md"
+    },
+    {
+      "path": "quran/1.json",
+      "bytes": 1193,
+      "ext": ".json"
+    },
+    {
+      "path": "quran/10.json",
+      "bytes": 49435,
+      "ext": ".json"
+    },
+    {
+      "path": "quran/100.json",
+      "bytes": 1553,
+      "ext": ".json"
+    },
+    {
+      "path": "quran/101.json",
+      "bytes": 1447,
+      "ext": ".json"
+    },
+    {
+      "path": "quran/102.json",
+      "bytes": 1168,
+      "ext": ".json"
+    },
+    {
+      "path": "quran/103.json",
+      "bytes": 627,
+      "ext": ".json"
+    },
+    {
+      "path": "quran/104.json",
+      "bytes": 1293,
+      "ext": ".json"
+    },
+    {
+      "path": "quran/105.json",
+      "bytes": 873,
+      "ext": ".json"
+    },
+    {
+      "path": "quran/106.json",
+      "bytes": 711,
+      "ext": ".json"
+    },
+    {
+      "path": "quran/107.json",
+      "bytes": 1050,
+      "ext": ".json"
+    },
+    {
+      "path": "quran/108.json",
+      "bytes": 483,
+      "ext": ".json"
+    },
+    {
+      "path": "quran/109.json",
+      "bytes": 913,
+      "ext": ".json"
+    },
+    {
+      "path": "quran/11.json",
+      "bytes": 51574,
+      "ext": ".json"
+    },
+    {
+      "path": "quran/110.json",
+      "bytes": 687,
+      "ext": ".json"
+    },
+    {
+      "path": "quran/111.json",
+      "bytes": 789,
+      "ext": ".json"
+    },
+    {
+      "path": "quran/112.json",
+      "bytes": 554,
+      "ext": ".json"
+    },
+    {
+      "path": "quran/113.json",
+      "bytes": 751,
+      "ext": ".json"
+    },
+    {
+      "path": "quran/114.json",
+      "bytes": 795,
+      "ext": ".json"
+    },
+    {
+      "path": "quran/12.json",
+      "bytes": 47882,
+      "ext": ".json"
+    },
+    {
+      "path": "quran/13.json",
+      "bytes": 23006,
+      "ext": ".json"
+    },
+    {
+      "path": "quran/14.json",
+      "bytes": 23180,
+      "ext": ".json"
+    },
+    {
+      "path": "quran/15.json",
+      "bytes": 20866,
+      "ext": ".json"
+    },
+    {
+      "path": "quran/16.json",
+      "bytes": 51740,
+      "ext": ".json"
+    },
+    {
+      "path": "quran/17.json",
+      "bytes": 43629,
+      "ext": ".json"
+    },
+    {
+      "path": "quran/18.json",
+      "bytes": 43273,
+      "ext": ".json"
+    },
+    {
+      "path": "quran/19.json",
+      "bytes": 27595,
+      "ext": ".json"
+    },
+    {
+      "path": "quran/2.json",
+      "bytes": 166555,
+      "ext": ".json"
+    },
+    {
+      "path": "quran/20.json",
+      "bytes": 37615,
+      "ext": ".json"
+    },
+    {
+      "path": "quran/21.json",
+      "bytes": 34290,
+      "ext": ".json"
+    },
+    {
+      "path": "quran/22.json",
+      "bytes": 34861,
+      "ext": ".json"
+    },
+    {
+      "path": "quran/23.json",
+      "bytes": 31171,
+      "ext": ".json"
+    },
+    {
+      "path": "quran/24.json",
+      "bytes": 36690,
+      "ext": ".json"
+    },
+    {
+      "path": "quran/25.json",
+      "bytes": 25829,
+      "ext": ".json"
+    },
+    {
+      "path": "quran/26.json",
+      "bytes": 42256,
+      "ext": ".json"
+    },
+    {
+      "path": "quran/27.json",
+      "bytes": 32185,
+      "ext": ".json"
+    },
+    {
+      "path": "quran/28.json",
+      "bytes": 38656,
+      "ext": ".json"
+    },
+    {
+      "path": "quran/29.json",
+      "bytes": 28075,
+      "ext": ".json"
+    },
+    {
+      "path": "quran/3.json",
+      "bytes": 96291,
+      "ext": ".json"
+    },
+    {
+      "path": "quran/30.json",
+      "bytes": 23093,
+      "ext": ".json"
+    },
+    {
+      "path": "quran/31.json",
+      "bytes": 14440,
+      "ext": ".json"
+    },
+    {
+      "path": "quran/32.json",
+      "bytes": 10477,
+      "ext": ".json"
+    },
+    {
+      "path": "quran/33.json",
+      "bytes": 36585,
+      "ext": ".json"
+    },
+    {
+      "path": "quran/34.json",
+      "bytes": 23528,
+      "ext": ".json"
+    },
+    {
+      "path": "quran/35.json",
+      "bytes": 21093,
+      "ext": ".json"
+    },
+    {
+      "path": "quran/36.json",
+      "bytes": 21350,
+      "ext": ".json"
+    },
+    {
+      "path": "quran/37.json",
+      "bytes": 30008,
+      "ext": ".json"
+    },
+    {
+      "path": "quran/38.json",
+      "bytes": 21765,
+      "ext": ".json"
+    },
+    {
+      "path": "quran/39.json",
+      "bytes": 32081,
+      "ext": ".json"
+    },
+    {
+      "path": "quran/4.json",
+      "bytes": 102464,
+      "ext": ".json"
+    },
+    {
+      "path": "quran/40.json",
+      "bytes": 33581,
+      "ext": ".json"
+    },
+    {
+      "path": "quran/41.json",
+      "bytes": 22158,
+      "ext": ".json"
+    },
+    {
+      "path": "quran/42.json",
+      "bytes": 23140,
+      "ext": ".json"
+    },
+    {
+      "path": "quran/43.json",
+      "bytes": 25047,
+      "ext": ".json"
+    },
+    {
+      "path": "quran/44.json",
+      "bytes": 11094,
+      "ext": ".json"
+    },
+    {
+      "path": "quran/45.json",
+      "bytes": 13868,
+      "ext": ".json"
+    },
+    {
+      "path": "quran/46.json",
+      "bytes": 17200,
+      "ext": ".json"
+    },
+    {
+      "path": "quran/47.json",
+      "bytes": 15932,
+      "ext": ".json"
+    },
+    {
+      "path": "quran/48.json",
+      "bytes": 15990,
+      "ext": ".json"
+    },
+    {
+      "path": "quran/49.json",
+      "bytes": 9808,
+      "ext": ".json"
+    },
+    {
+      "path": "quran/5.json",
+      "bytes": 76493,
+      "ext": ".json"
+    },
+    {
+      "path": "quran/50.json",
+      "bytes": 10897,
+      "ext": ".json"
+    },
+    {
+      "path": "quran/51.json",
+      "bytes": 11539,
+      "ext": ".json"
+    },
+    {
+      "path": "quran/52.json",
+      "bytes": 9867,
+      "ext": ".json"
+    },
+    {
+      "path": "quran/53.json",
+      "bytes": 11049,
+      "ext": ".json"
+    },
+    {
+      "path": "quran/54.json",
+      "bytes": 11177,
+      "ext": ".json"
+    },
+    {
+      "path": "quran/55.json",
+      "bytes": 13019,
+      "ext": ".json"
+    },
+    {
+      "path": "quran/56.json",
+      "bytes": 14086,
+      "ext": ".json"
+    },
+    {
+      "path": "quran/57.json",
+      "bytes": 16136,
+      "ext": ".json"
+    },
+    {
+      "path": "quran/58.json",
+      "bytes": 13044,
+      "ext": ".json"
+    },
+    {
+      "path": "quran/59.json",
+      "bytes": 12522,
+      "ext": ".json"
+    },
+    {
+      "path": "quran/6.json",
+      "bytes": 82772,
+      "ext": ".json"
+    },
+    {
+      "path": "quran/60.json",
+      "bytes": 9757,
+      "ext": ".json"
+    },
+    {
+      "path": "quran/61.json",
+      "bytes": 6278,
+      "ext": ".json"
+    },
+    {
+      "path": "quran/62.json",
+      "bytes": 5020,
+      "ext": ".json"
+    },
+    {
+      "path": "quran/63.json",
+      "bytes": 5280,
+      "ext": ".json"
+    },
+    {
+      "path": "quran/64.json",
+      "bytes": 7223,
+      "ext": ".json"
+    },
+    {
+      "path": "quran/65.json",
+      "bytes": 7862,
+      "ext": ".json"
+    },
+    {
+      "path": "quran/66.json",
+      "bytes": 7087,
+      "ext": ".json"
+    },
+    {
+      "path": "quran/67.json",
+      "bytes": 9280,
+      "ext": ".json"
+    },
+    {
+      "path": "quran/68.json",
+      "bytes": 9754,
+      "ext": ".json"
+    },
+    {
+      "path": "quran/69.json",
+      "bytes": 8824,
+      "ext": ".json"
+    },
+    {
+      "path": "quran/7.json",
+      "bytes": 93268,
+      "ext": ".json"
+    },
+    {
+      "path": "quran/70.json",
+      "bytes": 7583,
+      "ext": ".json"
+    },
+    {
+      "path": "quran/71.json",
+      "bytes": 6813,
+      "ext": ".json"
+    },
+    {
+      "path": "quran/72.json",
+      "bytes": 7820,
+      "ext": ".json"
+    },
+    {
+      "path": "quran/73.json",
+      "bytes": 5905,
+      "ext": ".json"
+    },
+    {
+      "path": "quran/74.json",
+      "bytes": 8530,
+      "ext": ".json"
+    },
+    {
+      "path": "quran/75.json",
+      "bytes": 5779,
+      "ext": ".json"
+    },
+    {
+      "path": "quran/76.json",
+      "bytes": 7609,
+      "ext": ".json"
+    },
+    {
+      "path": "quran/77.json",
+      "bytes": 7048,
+      "ext": ".json"
+    },
+    {
+      "path": "quran/78.json",
+      "bytes": 6186,
+      "ext": ".json"
+    },
+    {
+      "path": "quran/79.json",
+      "bytes": 6478,
+      "ext": ".json"
+    },
+    {
+      "path": "quran/8.json",
+      "bytes": 34965,
+      "ext": ".json"
+    },
+    {
+      "path": "quran/80.json",
+      "bytes": 5154,
+      "ext": ".json"
+    },
+    {
+      "path": "quran/81.json",
+      "bytes": 3797,
+      "ext": ".json"
+    },
+    {
+      "path": "quran/82.json",
+      "bytes": 2814,
+      "ext": ".json"
+    },
+    {
+      "path": "quran/83.json",
+      "bytes": 5932,
+      "ext": ".json"
+    },
+    {
+      "path": "quran/84.json",
+      "bytes": 3737,
+      "ext": ".json"
+    },
+    {
+      "path": "quran/85.json",
+      "bytes": 3692,
+      "ext": ".json"
+    },
+    {
+      "path": "quran/86.json",
+      "bytes": 2255,
+      "ext": ".json"
+    },
+    {
+      "path": "quran/87.json",
+      "bytes": 2613,
+      "ext": ".json"
+    },
+    {
+      "path": "quran/88.json",
+      "bytes": 3406,
+      "ext": ".json"
+    },
+    {
+      "path": "quran/89.json",
+      "bytes": 4765,
+      "ext": ".json"
+    },
+    {
+      "path": "quran/9.json",
+      "bytes": 70285,
+      "ext": ".json"
+    },
+    {
+      "path": "quran/90.json",
+      "bytes": 2899,
+      "ext": ".json"
+    },
+    {
+      "path": "quran/91.json",
+      "bytes": 2112,
+      "ext": ".json"
+    },
+    {
+      "path": "quran/92.json",
+      "bytes": 2798,
+      "ext": ".json"
+    },
+    {
+      "path": "quran/93.json",
+      "bytes": 1518,
+      "ext": ".json"
+    },
+    {
+      "path": "quran/94.json",
+      "bytes": 1028,
+      "ext": ".json"
+    },
+    {
+      "path": "quran/95.json",
+      "bytes": 1327,
+      "ext": ".json"
+    },
+    {
+      "path": "quran/96.json",
+      "bytes": 2559,
+      "ext": ".json"
+    },
+    {
+      "path": "quran/97.json",
+      "bytes": 981,
+      "ext": ".json"
+    },
+    {
+      "path": "quran/98.json",
+      "bytes": 2823,
+      "ext": ".json"
+    },
+    {
+      "path": "quran/99.json",
+      "bytes": 1340,
+      "ext": ".json"
+    },
+    {
+      "path": "README-PWA.md",
+      "bytes": 4672,
+      "ext": ".md"
+    },
+    {
+      "path": "README.md",
+      "bytes": 4107,
+      "ext": ".md"
+    },
+    {
+      "path": "reference-preview.html",
+      "bytes": 1896,
+      "ext": ".html"
+    },
+    {
+      "path": "scripts/check-protected-core.js",
+      "bytes": 2114,
+      "ext": ".js"
+    },
+    {
+      "path": "scripts/fix-record-contract-mismatch.js",
+      "bytes": 798,
+      "ext": ".js"
+    },
+    {
+      "path": "scripts/fix-record-display-e2e.js",
+      "bytes": 2435,
+      "ext": ".js"
+    },
+    {
+      "path": "scripts/project-inventory.js",
+      "bytes": 3164,
+      "ext": ".js"
+    },
+    {
+      "path": "scripts/refactor-index-modular.js",
+      "bytes": 3131,
+      "ext": ".js"
+    },
+    {
+      "path": "scripts/remove-legacy-astronomical-glue.js",
+      "bytes": 1738,
+      "ext": ".js"
+    },
+    {
+      "path": "SEO & Meta/humans.txt",
+      "bytes": 3918,
+      "ext": ".txt"
+    },
+    {
+      "path": "SEO & Meta/robots.txt",
+      "bytes": 818,
+      "ext": ".txt"
+    },
+    {
+      "path": "SEO & Meta/sitemap[1].xml",
+      "bytes": 1422,
+      "ext": ".xml"
+    },
+    {
+      "path": "service-worker.js",
+      "bytes": 7381,
+      "ext": ".js"
+    },
+    {
+      "path": "site.webmanifest",
+      "bytes": 4009,
+      "ext": ".webmanifest"
+    },
+    {
+      "path": "tests/anchor-acceptance-deadlock.test.js",
+      "bytes": 1104,
+      "ext": ".js"
+    },
+    {
+      "path": "tests/astronomical-app-wiring.test.js",
+      "bytes": 7319,
+      "ext": ".js"
+    },
+    {
+      "path": "tests/astronomical-observation-bridge.test.js",
+      "bytes": 2805,
+      "ext": ".js"
+    },
+    {
+      "path": "tests/astronomical-observatory-ui.test.js",
+      "bytes": 2621,
+      "ext": ".js"
+    },
+    {
+      "path": "tests/astronomical-qibla-semantic-mapping.test.js",
+      "bytes": 2028,
+      "ext": ".js"
+    },
+    {
+      "path": "tests/astronomical-solver-phone-test.html",
+      "bytes": 6671,
+      "ext": ".html"
+    },
+    {
+      "path": "tests/astronomical-solver-phone-test.js",
+      "bytes": 12209,
+      "ext": ".js"
+    },
+    {
+      "path": "tests/astronomical-solver.integration.test.js",
+      "bytes": 6317,
+      "ext": ".js"
+    },
+    {
+      "path": "tests/astronomical-trace.test.js",
+      "bytes": 2303,
+      "ext": ".js"
+    },
+    {
+      "path": "tests/astronomical-verification-session.test.js",
+      "bytes": 10457,
+      "ext": ".js"
+    },
+    {
+      "path": "tests/astronomical/module-boundary.test.js",
+      "bytes": 1734,
+      "ext": ".js"
+    },
+    {
+      "path": "tests/capture-finalization-deadlock.test.js",
+      "bytes": 685,
+      "ext": ".js"
+    },
+    {
+      "path": "tests/celestial-azimuth-leak.test.js",
+      "bytes": 1577,
+      "ext": ".js"
+    },
+    {
+      "path": "tests/compass-cards-canonical.test.js",
+      "bytes": 2723,
+      "ext": ".js"
+    },
+    {
+      "path": "tests/field-test-readiness.test.js",
+      "bytes": 4571,
+      "ext": ".js"
+    },
+    {
+      "path": "tests/isolated-capture-pipeline.test.js",
+      "bytes": 1880,
+      "ext": ".js"
+    },
+    {
+      "path": "tests/phone-auto-overlay-fix.js",
+      "bytes": 6787,
+      "ext": ".js"
+    },
+    {
+      "path": "tests/phone-celestial-detector-adapter.js",
+      "bytes": 4467,
+      "ext": ".js"
+    },
+    {
+      "path": "tests/phone-centroid-refinement.js",
+      "bytes": 3319,
+      "ext": ".js"
+    },
+    {
+      "path": "tests/phone-gravity-runtime-fix.js",
+      "bytes": 2207,
+      "ext": ".js"
+    },
+    {
+      "path": "tests/phone-observation-runtime-fix.js",
+      "bytes": 3195,
+      "ext": ".js"
+    },
+    {
+      "path": "tests/phone-quality-profile.js",
+      "bytes": 1493,
+      "ext": ".js"
+    },
+    {
+      "path": "tests/phone-result-guidance.js",
+      "bytes": 4545,
+      "ext": ".js"
+    },
+    {
+      "path": "tests/phone-terminal-state-latch.js",
+      "bytes": 14384,
+      "ext": ".js"
+    },
+    {
+      "path": "tests/post-verification-live-compass-isolation.test.js",
+      "bytes": 4538,
+      "ext": ".js"
+    },
+    {
+      "path": "tests/presentation/scientific-write-barrier.test.js",
+      "bytes": 1616,
+      "ext": ".js"
+    },
+    {
+      "path": "tests/proven-observation-layer.test.js",
+      "bytes": 1054,
+      "ext": ".js"
+    },
+    {
+      "path": "tests/qibla-alignment-reticle.test.js",
+      "bytes": 1334,
+      "ext": ".js"
+    },
+    {
+      "path": "tests/qibla-axis-phone-test.html",
+      "bytes": 6591,
+      "ext": ".html"
+    },
+    {
+      "path": "tests/qibla-axis-phone-test.js",
+      "bytes": 12271,
+      "ext": ".js"
+    },
+    {
+      "path": "tests/qibla-axis-provenance-guard.js",
+      "bytes": 1379,
+      "ext": ".js"
+    },
+    {
+      "path": "tests/qibla-card-runtime.test.js",
+      "bytes": 2540,
+      "ext": ".js"
+    },
+    {
+      "path": "tests/raw-observation-direct-capture.test.js",
+      "bytes": 911,
+      "ext": ".js"
+    },
+    {
+      "path": "tests/record-contract-mismatch.test.js",
+      "bytes": 1687,
+      "ext": ".js"
+    },
+    {
+      "path": "tests/record-display-e2e.test.js",
+      "bytes": 3333,
+      "ext": ".js"
+    },
+    {
+      "path": "tests/reticle-capture-handshake.test.js",
+      "bytes": 1278,
+      "ext": ".js"
+    },
+    {
+      "path": "tests/retired-runtime-removal.test.js",
+      "bytes": 914,
+      "ext": ".js"
+    },
+    {
+      "path": "tests/search-anchor-orientation.test.js",
+      "bytes": 854,
+      "ext": ".js"
+    },
+    {
+      "path": "tests/single-reticle-auto-capture.test.js",
+      "bytes": 941,
+      "ext": ".js"
+    },
+    {
+      "path": "tests/tracking-lock-removal.test.js",
+      "bytes": 968,
+      "ext": ".js"
+    },
+    {
+      "path": "tests/two-stage-astronomical-capture.test.js",
+      "bytes": 1340,
+      "ext": ".js"
+    }
+  ]
+}

@@ -1,0 +1,33 @@
+/* QiblaAstro — final safe tuning layered over the stable Azkar build */
+#azHome{height:100dvh;overflow-y:auto;overflow-x:hidden;-webkit-overflow-scrolling:touch;overscroll-behavior-y:contain;padding-bottom:calc(28px + env(safe-area-inset-bottom))}
+#azReader{overflow:hidden}
+.az-dhikr-card{height:min(71vh,720px)!important}
+.az-dhikr-scroller{overflow:hidden!important}
+.az-audio-footnote{display:none!important}
+
+/* Back controls: clearer touch target, same visual language */
+.az-back-btn{width:48px!important;height:48px!important;min-width:48px!important;border-radius:16px!important;border:1px solid rgba(255,255,255,.22)!important;background:rgba(255,255,255,.10)!important;box-shadow:0 8px 24px rgba(0,0,0,.10),inset 0 1px 0 rgba(255,255,255,.16)!important;display:grid!important;place-items:center!important;font-size:25px!important;font-weight:800!important;line-height:1!important;backdrop-filter:blur(10px);-webkit-backdrop-filter:blur(10px);transition:transform .16s ease,background .16s ease,border-color .16s ease}
+.az-back-btn:active{transform:scale(.94);background:rgba(255,255,255,.16)!important}
+.az-back-btn:focus-visible{outline:2px solid currentColor;outline-offset:3px}
+
+/* Reader screens intentionally contain no playback control. */
+#azReader .az-listen-current{display:none!important}
+
+/* Reminder preview is a speaker, not a text button. */
+.az-preview-row{align-items:center}
+.az-speaker-btn{width:52px!important;height:52px!important;min-width:52px!important;padding:0!important;border-radius:18px!important;display:grid!important;place-items:center!important;font-size:20px!important;font-weight:800!important;letter-spacing:0!important;box-shadow:0 8px 22px rgba(0,0,0,.10)!important;transition:transform .16s ease,filter .16s ease,opacity .16s ease}
+.az-speaker-btn span{transform:translateY(-1px)}
+.az-speaker-btn:active:not(:disabled){transform:scale(.94)}
+.az-speaker-btn:disabled{opacity:.42;filter:saturate(.55)}
+
+/* Final phone reading-width contract: applied in the last Azkar stylesheet so
+   no earlier max-width/padding/text-wrap rule can re-narrow the dhikr. */
+#azReader,.az-dhikr-card,.az-dhikr-scroller,.az-dhikr-text{box-sizing:border-box!important;width:100%!important;max-width:none!important}
+#azReader{margin:0!important;padding-left:4px!important;padding-right:4px!important}
+.az-dhikr-card{margin-left:0!important;margin-right:0!important;padding-left:8px!important;padding-right:8px!important}
+.az-dhikr-scroller{padding-left:0!important;padding-right:0!important}
+.az-dhikr-text{margin:0!important;padding:0!important;direction:rtl!important;text-align:center!important;text-align-last:center!important;white-space:normal!important;text-wrap:wrap!important}
+
+@media(max-width:560px){.az-dhikr-card{height:70vh!important}.az-back-btn{width:46px!important;height:46px!important;min-width:46px!important;border-radius:15px!important}}
+@media(max-height:850px){.az-dhikr-card{height:68vh!important}}
+@media(max-height:760px){.az-dhikr-card{height:66vh!important}}

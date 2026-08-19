@@ -1,0 +1,74 @@
+/*
+ * QiblaAstro — final hero reference match
+ * UI-only tuning for the approved premium reference.
+ * © 2026 محمد سيد جبر بحيرى — Mohamed SG Behairy. All Rights Reserved.
+ */
+
+/* Keep the 4K master sharp while giving the Kaaba stronger visual presence. */
+#page-home .qa-sky{
+  background-size:104% auto!important;
+  background-position:center 70%!important;
+  filter:contrast(1.10) saturate(1.09) brightness(1.025)!important;
+}
+
+/* Refine the direction arc and create more breathing room around the Kaaba. */
+#page-home .qa-arc{
+  top:-8px!important;
+  width:344px!important;
+  height:204px!important;
+  border-color:rgba(235,188,77,.78)!important;
+  filter:drop-shadow(0 0 10px rgba(238,190,75,.30))!important;
+}
+#page-home .qa-arc:after{
+  height:176px!important;
+  border-color:rgba(79,157,225,.42)!important;
+}
+#page-home .qa-bearing{
+  top:-35px!important;
+}
+#page-home .qa-bearing>strong{
+  font-size:2.68rem!important;
+  letter-spacing:-.03em!important;
+  text-shadow:0 0 14px rgba(247,195,73,.38),0 2px 12px rgba(0,0,0,.48)!important;
+}
+#page-home .qa-bearing>em{
+  margin-top:3px!important;
+}
+
+/* Match the approved reference: side cards higher and tighter to the arc. */
+#page-home .qa-side-card{
+  top:0!important;
+  min-height:112px!important;
+  backdrop-filter:blur(14px) saturate(1.08)!important;
+  -webkit-backdrop-filter:blur(14px) saturate(1.08)!important;
+}
+
+/* A restrained atmospheric halo behind the lower hero, without touching live UI. */
+#page-home .qa-sky:before{
+  content:"";
+  position:absolute;
+  left:7%;
+  right:7%;
+  bottom:1px;
+  height:92px;
+  pointer-events:none;
+  z-index:1;
+  background:radial-gradient(ellipse at 50% 100%,rgba(92,190,255,.19) 0%,rgba(34,118,196,.10) 38%,transparent 72%);
+  filter:blur(5px);
+}
+
+@media (max-width:380px){
+  #page-home .qa-sky{background-size:105% auto!important;background-position:center 70%!important}
+  #page-home .qa-arc{top:-7px!important;width:312px!important;height:186px!important}
+  #page-home .qa-bearing{top:-32px!important}
+  #page-home .qa-bearing>strong{font-size:2.48rem!important}
+  #page-home .qa-side-card{top:0!important;min-height:106px!important}
+}
+
+@media (max-height:760px){
+  #page-home .qa-sky{background-size:104% auto!important;background-position:center 70%!important}
+  #page-home .qa-arc{top:-7px!important;width:300px!important;height:179px!important}
+  #page-home .qa-bearing{top:-31px!important}
+  #page-home .qa-bearing>strong{font-size:2.36rem!important}
+  #page-home .qa-side-card{top:0!important;min-height:100px!important}
+}

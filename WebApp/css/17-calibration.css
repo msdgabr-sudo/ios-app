@@ -1,0 +1,15 @@
+/* ══════════════════════════════════════════════════════════════════════════════
+   [CSS-P] CALIBRATION PAGE
+   ══════════════════════════════════════════════════════════════════════════════ */
+
+/* ═══════════════════════════════════════════
+   CALIBRATE PAGE
+═══════════════════════════════════════════ */
+.cal-hero{
+  width:100%;background:linear-gradient(135deg,#0C0A04,var(--panel));
+  border:1px solid var(--rim);border-top:2px solid var(--sun);
+  border-radius:var(--radius);padding:13px 15px;text-align:center;
+}
+.cal-hero h2{font-size:.95rem;color:var(--sun);margin-bottom:4px;}
+.cal-hero p{font-size:.73rem;color:var(--txt2);line-height:1.7;}
+

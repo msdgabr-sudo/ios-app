@@ -1,0 +1,303 @@
+/*
+ * QiblaAstro — home layout lock candidate
+ * UI-only overrides. Existing engines remain authoritative.
+ * © 2026 محمد سيد جبر بحيرى — Mohamed SG Behairy. All Rights Reserved.
+ */
+
+/* Keep the home page visually self-contained. */
+#page-home,
+#page-home .qa-home{
+  padding-bottom:0!important;
+}
+#page-home{
+  overflow-y:auto!important;
+  overscroll-behavior-y:contain;
+}
+#page-home .qa-status{
+  display:none!important;
+}
+
+/* HERO — raise the celestial scene and reduce dead vertical space. */
+#page-home .qa-hero{
+  min-height:526px!important;
+  margin:0!important;
+  border-radius:0 0 26px 26px!important;
+}
+#page-home .qa-top{
+  height:68px!important;
+  min-height:68px!important;
+  padding:3px 10px 1px!important;
+}
+#page-home .qa-brand b{
+  font-size:1.68rem!important;
+  line-height:1!important;
+}
+#page-home .qa-brand span{
+  margin-top:3px!important;
+}
+#page-home .qa-sky{
+  height:382px!important;
+  background-size:132% auto!important;
+  background-position:center 87%!important;
+  filter:contrast(1.2) saturate(1.18) brightness(1.09)!important;
+}
+#page-home .qa-arc{
+  top:-4px!important;
+  width:338px!important;
+  height:201px!important;
+  border-width:1.5px!important;
+  filter:drop-shadow(0 0 9px rgba(238,190,75,.28));
+}
+#page-home .qa-arc:after{
+  height:174px!important;
+}
+#page-home .qa-bearing{
+  top:-18px!important;
+}
+#page-home .qa-bearing>span:nth-of-type(2){
+  margin-top:24px!important;
+}
+#page-home .qa-bearing>strong{
+  margin-top:4px!important;
+  font-size:3.12rem!important;
+}
+#page-home .qa-bearing>em{
+  margin-top:6px!important;
+}
+#page-home .qa-side-card{
+  top:4px!important;
+  min-height:116px!important;
+  padding:7px 6px!important;
+  border-radius:18px!important;
+}
+#page-home .qa-moon-orb,
+#page-home .qa-sun-orb{
+  width:42px!important;
+  height:42px!important;
+}
+#page-home .qa-info{
+  bottom:0!important;
+  min-height:70px!important;
+  border-radius:16px!important;
+}
+#page-home .qa-info>div{
+  padding:3px 4px!important;
+}
+#page-home .qa-info span{
+  font-size:.52rem!important;
+}
+#page-home .qa-info strong{
+  margin-top:3px!important;
+  font-size:.66rem!important;
+}
+#page-home .qa-prayer strong{
+  font-size:.9rem!important;
+}
+
+/* Systems row — compact height but maintain icon presence. */
+#page-home .qa-systems{
+  margin-top:-6px!important;
+  transform:none!important;
+  border-radius:17px!important;
+}
+#page-home .qa-system-card{
+  min-height:84px!important;
+  padding:4px 3px!important;
+}
+#page-home .qa-system-icon{
+  width:43px!important;
+  height:43px!important;
+  margin-bottom:2px!important;
+}
+#page-home .qa-system-card strong{
+  font-size:.57rem!important;
+  line-height:1.1!important;
+}
+#page-home .qa-system-card small{
+  font-size:.35rem!important;
+  line-height:1.12!important;
+  margin-top:2px!important;
+}
+#page-home .qa-system-card i{
+  right:7px!important;
+  bottom:11px!important;
+  width:6px!important;
+  height:6px!important;
+}
+
+/* Services — larger visual tiles, pulled upward and tightly packed. */
+#page-home .qa-services{
+  margin-top:3px!important;
+  gap:5px!important;
+  transform:none!important;
+}
+#page-home .qa-service-card{
+  min-height:94px!important;
+  padding:5px 4px!important;
+  border-radius:16px!important;
+}
+#page-home .qa-service-icon{
+  width:48px!important;
+  height:48px!important;
+  margin-bottom:3px!important;
+}
+#page-home .qa-service-card strong{
+  font-size:.6rem!important;
+  line-height:1.12!important;
+}
+#page-home .qa-service-card small{
+  font-size:.37rem!important;
+  line-height:1.14!important;
+  margin-top:2px!important;
+}
+
+/* Hide navigation only on the active home page. */
+body.qa-home-active [data-qa-hidden-on-home="1"],
+body.qa-home-active .bottom-nav,
+body.qa-home-active #bottom-nav,
+body.qa-home-active .bottom-navigation,
+body.qa-home-active .nav-bottom{
+  display:none!important;
+  visibility:hidden!important;
+  pointer-events:none!important;
+}
+
+@media (max-width:380px){
+  #page-home .qa-hero{min-height:500px!important}
+  #page-home .qa-top{height:63px!important;min-height:63px!important}
+  #page-home .qa-sky{height:363px!important;background-size:136% auto!important;background-position:center 88%!important}
+  #page-home .qa-arc{top:-6px!important;width:306px!important;height:183px!important}
+  #page-home .qa-bearing{top:-20px!important}
+  #page-home .qa-side-card{top:2px!important;min-height:108px!important;width:78px!important}
+  #page-home .qa-info{min-height:65px!important}
+  #page-home .qa-systems{margin-top:-7px!important}
+  #page-home .qa-system-card{min-height:78px!important}
+  #page-home .qa-system-icon{width:39px!important;height:39px!important}
+  #page-home .qa-system-card strong{font-size:.53rem!important}
+  #page-home .qa-system-card small{font-size:.32rem!important}
+  #page-home .qa-services{margin-top:2px!important;gap:4px!important}
+  #page-home .qa-service-card{min-height:86px!important}
+  #page-home .qa-service-icon{width:43px!important;height:43px!important}
+  #page-home .qa-service-card strong{font-size:.55rem!important}
+  #page-home .qa-service-card small{font-size:.33rem!important}
+}
+
+/* Short Android screens: prioritise a one-screen dashboard. */
+@media (max-height:760px){
+  #page-home .qa-hero{min-height:472px!important}
+  #page-home .qa-top{height:58px!important;min-height:58px!important;padding-top:1px!important}
+  #page-home .qa-brand b{font-size:1.5rem!important}
+  #page-home .qa-sky{height:344px!important;background-size:138% auto!important;background-position:center 89%!important}
+  #page-home .qa-arc{top:-8px!important;width:296px!important;height:178px!important}
+  #page-home .qa-bearing{top:-22px!important}
+  #page-home .qa-bearing>strong{font-size:2.76rem!important}
+  #page-home .qa-side-card{top:0!important;min-height:102px!important}
+  #page-home .qa-info{min-height:61px!important}
+  #page-home .qa-info>div{padding:2px 3px!important}
+  #page-home .qa-systems{margin-top:-8px!important}
+  #page-home .qa-system-card{min-height:70px!important;padding:3px 2px!important}
+  #page-home .qa-system-icon{width:34px!important;height:34px!important;margin-bottom:1px!important}
+  #page-home .qa-system-card strong{font-size:.49rem!important}
+  #page-home .qa-system-card small{font-size:.3rem!important}
+  #page-home .qa-services{margin-top:1px!important;gap:4px!important}
+  #page-home .qa-service-card{min-height:76px!important;padding:3px!important}
+  #page-home .qa-service-icon{width:37px!important;height:37px!important;margin-bottom:1px!important}
+  #page-home .qa-service-card strong{font-size:.5rem!important}
+  #page-home .qa-service-card small{font-size:.3rem!important}
+}
+
+/* v5.51 — protect the Kaaba focal point and raise/enlarge dashboard cards. */
+#page-home .qa-bearing{
+  top:-31px!important;
+  z-index:6!important;
+}
+#page-home .qa-bearing>span:nth-of-type(2){
+  margin-top:15px!important;
+}
+#page-home .qa-bearing>strong{
+  margin-top:0!important;
+  font-size:2.76rem!important;
+  line-height:.94!important;
+}
+#page-home .qa-bearing>em{
+  margin-top:4px!important;
+  transform:translateY(-2px);
+}
+#page-home .qa-sky{
+  background-position:center 84%!important;
+}
+#page-home .qa-info{
+  transform:translateY(-16px)!important;
+  z-index:8!important;
+}
+#page-home .qa-systems{
+  margin-top:-24px!important;
+  min-height:96px!important;
+}
+#page-home .qa-system-card{
+  min-height:94px!important;
+  padding:6px 4px!important;
+}
+#page-home .qa-system-icon{
+  width:49px!important;
+  height:49px!important;
+}
+#page-home .qa-system-card strong{
+  font-size:.61rem!important;
+}
+#page-home .qa-system-card small{
+  font-size:.37rem!important;
+}
+#page-home .qa-services{
+  margin-top:-5px!important;
+  gap:6px!important;
+}
+#page-home .qa-service-card{
+  min-height:104px!important;
+  padding:7px 5px!important;
+}
+#page-home .qa-service-icon{
+  width:52px!important;
+  height:52px!important;
+}
+#page-home .qa-service-card strong{
+  font-size:.64rem!important;
+}
+#page-home .qa-service-card small{
+  font-size:.39rem!important;
+}
+
+@media (max-width:380px){
+  #page-home .qa-bearing{top:-29px!important}
+  #page-home .qa-bearing>strong{font-size:2.55rem!important}
+  #page-home .qa-info{transform:translateY(-13px)!important}
+  #page-home .qa-systems{margin-top:-21px!important;min-height:89px!important}
+  #page-home .qa-system-card{min-height:87px!important}
+  #page-home .qa-system-icon{width:45px!important;height:45px!important}
+  #page-home .qa-services{margin-top:-4px!important;gap:5px!important}
+  #page-home .qa-service-card{min-height:96px!important}
+  #page-home .qa-service-icon{width:47px!important;height:47px!important}
+}
+
+@media (max-height:760px){
+  #page-home .qa-bearing{top:-30px!important}
+  #page-home .qa-bearing>strong{font-size:2.42rem!important}
+  #page-home .qa-info{transform:translateY(-12px)!important}
+  #page-home .qa-systems{margin-top:-20px!important;min-height:82px!important}
+  #page-home .qa-system-card{min-height:80px!important;padding:4px 3px!important}
+  #page-home .qa-system-icon{width:41px!important;height:41px!important}
+  #page-home .qa-services{margin-top:-3px!important;gap:4px!important}
+  #page-home .qa-service-card{min-height:88px!important;padding:5px 4px!important}
+  #page-home .qa-service-icon{width:43px!important;height:43px!important}
+}
+
+/* v5.52 — move only the background image downward; keep every overlay fixed. */
+#page-home .qa-sky{
+  background-position:center 72%!important;
+}
+@media (max-width:380px){
+  #page-home .qa-sky{background-position:center 72%!important}
+}
+@media (max-height:760px){
+  #page-home .qa-sky{background-position:center 72%!important}
+}

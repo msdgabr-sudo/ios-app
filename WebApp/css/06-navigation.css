@@ -1,0 +1,75 @@
+/* ══════════════════════════════════════════════════════════════════════════════
+   [CSS-E2] NAVIGATION
+   Legacy bottom navigation remains in source for compatibility. Home is the
+   application navigation hub; internal screens use one viewport-owned Home.
+   ══════════════════════════════════════════════════════════════════════════════ */
+.nav{
+  position:fixed;bottom:60px;left:50%;transform:translateX(-50%);
+  width:100%;max-width:420px;z-index:200;
+  background:rgba(10,16,24,.95);
+  backdrop-filter:blur(16px);-webkit-backdrop-filter:blur(16px);
+  border-top:1px solid var(--rim);display:flex;
+}
+.nav-item{flex:1;display:flex;flex-direction:column;align-items:center;padding:8px 4px;cursor:pointer;gap:3px;border:none;background:none;color:var(--txt3);font-family:'Noto Naskh Arabic',serif}
+.nav-item.active{color:var(--gold)}
+.nav-icon{font-size:1.5rem;line-height:1}
+.nav-icon-img{width:36px;height:36px;object-fit:contain;filter:drop-shadow(0 2px 4px rgba(0,0,0,.4));opacity:.75;transition:all .18s}
+.nav-lbl{font-size:.7rem;letter-spacing:.02em;font-weight:500}
+.nav-item.active .nav-icon{filter:drop-shadow(0 0 8px var(--gold))}
+.nav-item.active .nav-icon-img{opacity:1;filter:drop-shadow(0 0 6px var(--gold)) drop-shadow(0 2px 4px rgba(0,0,0,.4))}
+.ad-slot{position:fixed;bottom:0;left:50%;transform:translateX(-50%);width:100%;max-width:420px;height:60px;z-index:199;background:rgba(6,10,16,.98);border-top:1px solid rgba(255,255,255,.05);display:flex;align-items:center;justify-content:center;padding-bottom:env(safe-area-inset-bottom)}
+.ad-slot span{font-size:.56rem;color:rgba(255,255,255,.25);letter-spacing:.02em;font-family:'Noto Naskh Arabic',serif}
+
+/* Home is the single navigation hub: internal screens never show legacy chrome. */
+body.tab-home .nav,body.tab-home .ad-slot,body.tab-home .bottom-nav,
+body.qa-internal-screen .nav,body.qa-internal-screen .ad-slot,body.qa-internal-screen .bottom-nav{display:none!important}
+
+/* One predictable mobile navigation action.
+   IMPORTANT: fixed to the application viewport, not to individual page layouts. */
+.qa-internal-home{
+  position:fixed!important;
+  top:calc(env(safe-area-inset-top,0px) + 12px)!important;
+  right:max(14px,calc((100vw - 420px)/2 + 14px))!important;
+  left:auto!important;
+  width:48px!important;height:48px!important;min-width:48px!important;min-height:48px!important;
+  margin:0!important;padding:0!important;
+  display:flex!important;align-items:center!important;justify-content:center!important;
+  z-index:1000!important;
+  border:1px solid rgba(200,164,74,.72)!important;
+  border-radius:15px!important;
+  background:rgba(8,17,25,.88)!important;
+  color:#d7b45a!important;
+  box-shadow:0 5px 18px rgba(0,0,0,.24)!important;
+  backdrop-filter:blur(10px);-webkit-backdrop-filter:blur(10px);
+  font:700 30px/1 system-ui,sans-serif!important;
+  cursor:pointer;-webkit-tap-highlight-color:transparent;
+}
+.qa-internal-home:active{transform:scale(.96)}
+
+/* Once the legacy 120px bottom chrome is gone, pages own the viewport themselves. */
+body.qa-internal-screen .page.active{
+  min-height:100dvh!important;
+  padding-bottom:max(16px,env(safe-area-inset-bottom,0px))!important;
+  box-sizing:border-box!important;
+}
+
+/* Prevent legacy page rules from reserving space for removed bottom navigation. */
+body.qa-internal-screen main,
+body.qa-internal-screen .page.active>main{
+  margin-bottom:0!important;
+}
+
+/* Light surfaces. */
+body.qa-internal-screen #page-prayer .qa-internal-home,
+body.qa-internal-screen #page-azkar .qa-internal-home{
+  background:rgba(255,252,244,.94)!important;
+  color:#9a7624!important;
+  border-color:rgba(154,118,36,.55)!important;
+}
+
+/* Quran surface. */
+body.qa-internal-screen #page-quran .qa-internal-home{
+  background:rgba(20,48,25,.94)!important;
+  color:#e4c66c!important;
+  border-color:rgba(228,198,108,.55)!important;
+}

@@ -1,0 +1,16 @@
+/* QiblaAstro — Azkar reader final gesture/layout tuning */
+#azReader{touch-action:none;overscroll-behavior:none;overflow:hidden;padding-bottom:10px}
+.az-reader-head{height:64px}
+.az-dhikr-card{isolation:isolate;touch-action:none;height:min(69vh,700px)!important}
+.az-dhikr-scroller{overflow:hidden!important;scrollbar-width:none;overscroll-behavior:none;touch-action:none;padding-inline:18px;padding-top:8px;padding-bottom:10px}
+.az-dhikr-scroller::-webkit-scrollbar{display:none}
+.az-dhikr-text{max-height:100%;overflow:hidden}
+.az-dhikr-source-wrap{min-height:58px;padding-top:10px}
+.az-reader-foot{margin-top:7px}
+.az-reader-hint{font-weight:600;letter-spacing:.01em;margin-top:5px}
+.az-counter{user-select:none;-webkit-user-select:none}
+@media(max-width:560px){.az-dhikr-card{height:68vh!important}.az-reader-head{height:62px}.az-reader-foot{margin-top:6px}}
+@media(max-height:850px){.az-dhikr-card{height:66vh!important}.az-reader-head{height:60px}.az-counter{width:72px;height:72px}.az-reader-hint{font-size:.65rem}}
+@media(max-height:760px){.az-dhikr-card{height:64vh!important}.az-reader-head{height:56px}.az-dhikr-scroller{padding-inline:14px}.az-reader-hint{margin-top:3px;font-size:.63rem}}
+@media(max-width:390px){.az-dhikr-scroller{padding-inline:14px}.az-reader-hint{font-size:.64rem}}
+@media(prefers-reduced-motion:reduce){.az-reader-hint{transition:none}}

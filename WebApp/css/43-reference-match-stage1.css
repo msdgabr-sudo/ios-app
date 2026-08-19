@@ -1,0 +1,226 @@
+/*
+ * QiblaAstro — Approved Reference Match · Stage 1
+ * Visual presentation only. No solver, GNSS, prayer, astronomical or verification logic is changed.
+ * © 2026 محمد سيد جبر بحيرى — Mohamed SG Behairy. All Rights Reserved.
+ */
+
+:root{
+  --qa43-bg:#020713;
+  --qa43-panel:rgba(5,15,30,.93);
+  --qa43-line:rgba(132,198,240,.22);
+  --qa43-gold:#e7c46d;
+  --qa43-gold-hi:#ffe9a7;
+  --qa43-blue:#7bbce8;
+  --qa43-green:#60d879;
+}
+
+#page-home > div{
+  width:min(100%,430px)!important;
+  max-width:430px!important;
+  padding:0 12px 108px!important;
+}
+
+#page-home .qa-reference-home{
+  min-height:545px!important;
+  margin-inline:-12px!important;
+  border-radius:0!important;
+  background:
+    radial-gradient(circle at 50% 38%,rgba(35,107,180,.24),transparent 27%),
+    radial-gradient(circle at 50% 63%,rgba(91,180,224,.18),transparent 29%),
+    linear-gradient(180deg,#020713 0%,#031026 56%,#020814 100%)!important;
+}
+
+#page-home .qa-reference-home::before{
+  content:"";
+  position:absolute;
+  inset:0;
+  pointer-events:none;
+  opacity:.7;
+  background-image:
+    radial-gradient(circle at 8% 17%,#fff 0 1px,transparent 1.6px),
+    radial-gradient(circle at 18% 7%,#8fd3ff 0 1px,transparent 1.5px),
+    radial-gradient(circle at 73% 11%,#fff 0 1px,transparent 1.4px),
+    radial-gradient(circle at 91% 22%,#6fc9ff 0 1px,transparent 1.6px),
+    radial-gradient(circle at 14% 43%,#fff 0 1px,transparent 1.6px),
+    radial-gradient(circle at 83% 39%,#fff 0 1px,transparent 1.4px),
+    radial-gradient(circle at 61% 28%,#79cfff 0 1px,transparent 1.6px);
+}
+
+#page-home .qa-reference-topbar{
+  padding:14px 18px 0!important;
+  min-height:76px!important;
+}
+#page-home .qa-reference-brand strong{font-size:1.55rem!important;font-weight:500!important}
+#page-home .qa-reference-brand span{font-size:.52rem!important;letter-spacing:.43em!important}
+#page-home .qa-reference-menu{align-items:flex-start!important;padding-top:4px!important}
+#page-home .qa-reference-menu span{width:25px!important;height:2px!important;margin:3px 0!important;background:#f1f4f7!important;border-radius:4px!important}
+#page-home .qa-reference-bell{
+  font-size:0!important;
+  position:relative!important;
+}
+#page-home .qa-reference-bell::before{
+  content:"♧";
+  font-size:1.7rem;
+  transform:rotate(180deg);
+  color:#e9eef3;
+}
+#page-home .qa-reference-bell::after{
+  content:"";
+  position:absolute;
+  top:1px;right:2px;
+  width:7px;height:7px;border-radius:50%;
+  background:#f5a631;
+  box-shadow:0 0 8px rgba(245,166,49,.8);
+}
+
+#page-home .qa-reference-skyrow{
+  min-height:310px!important;
+  grid-template-columns:92px minmax(0,1fr) 92px!important;
+  gap:4px!important;
+}
+#page-home .qa-reference-skyrow::before{
+  top:0!important;
+  width:294px!important;
+  height:183px!important;
+  border:1px solid rgba(211,179,102,.46)!important;
+  box-shadow:
+    0 0 0 8px rgba(78,145,199,.05),
+    0 0 0 17px rgba(78,145,199,.045),
+    0 0 24px rgba(70,145,216,.2)!important;
+}
+#page-home .qa-reference-skyrow::after{
+  width:253px!important;
+  top:29px!important;
+  letter-spacing:.12em!important;
+}
+
+#page-home .qa-reference-sidecard{
+  margin-top:27px!important;
+  min-height:116px!important;
+  padding:12px 8px!important;
+  border-radius:17px!important;
+  border-color:rgba(124,181,229,.22)!important;
+  background:linear-gradient(145deg,rgba(255,255,255,.045),transparent 45%),rgba(4,12,25,.88)!important;
+}
+#page-home .qa-reference-sidecard b{font-size:.78rem!important;color:#e8edf3!important}
+#page-home .qa-reference-sidecard strong{font-size:1rem!important;color:#dfe6ee!important}
+#page-home .qa-reference-sidecard small{font-size:.58rem!important;color:#aab8c9!important}
+#page-home .qa-reference-sidecard .orb{width:48px!important;height:48px!important}
+#page-home .qa-reference-sidecard.sun .orb{font-size:2.2rem!important;color:#ffc44f!important;filter:drop-shadow(0 0 10px rgba(255,179,42,.75))}
+#page-home .qa-reference-sidecard.moon .orb{
+  background:
+    radial-gradient(circle at 33% 30%,rgba(255,255,255,.9),transparent 5%),
+    radial-gradient(circle at 63% 55%,rgba(62,75,91,.62),transparent 11%),
+    radial-gradient(circle at 42% 62%,rgba(83,96,110,.55),transparent 9%),
+    radial-gradient(circle at 42% 38%,#d9e1e8,#75808d 73%,#313a46)!important;
+}
+
+#page-home .qa-reference-center{padding-top:25px!important;min-height:225px!important}
+#page-home .qa-reference-pointer{font-size:1.5rem!important;text-shadow:0 0 12px rgba(255,214,112,.85)}
+#page-home .qa-reference-bearing-label{font-size:.92rem!important;margin-top:19px!important}
+#page-home .qa-reference-bearing{font-size:3.95rem!important;letter-spacing:-.04em!important}
+#page-home .qa-reference-accuracy{
+  border:1px solid rgba(76,188,235,.35)!important;
+  background:rgba(15,68,99,.38)!important;
+  color:#84dcf7!important;
+  border-radius:18px!important;
+  padding:5px 15px!important;
+  box-shadow:0 0 18px rgba(60,174,220,.16)!important;
+}
+
+#page-home .qa-reference-earth{
+  top:245px!important;
+  width:510px!important;
+  height:280px!important;
+  border-radius:50% 50% 0 0!important;
+  background:
+    radial-gradient(ellipse at 26% 45%,rgba(163,220,217,.48),transparent 10%),
+    radial-gradient(ellipse at 39% 55%,rgba(57,130,105,.88),transparent 14%),
+    radial-gradient(ellipse at 61% 48%,rgba(61,132,156,.9),transparent 18%),
+    radial-gradient(ellipse at 50% 63%,#1d5675,#0c2949 55%,#031022 73%)!important;
+  box-shadow:
+    inset 0 30px 45px rgba(154,222,255,.16),
+    inset 0 -76px 80px rgba(0,0,0,.84),
+    0 -11px 36px rgba(94,194,245,.32)!important;
+}
+#page-home .qa-reference-kaaba{
+  top:285px!important;
+  width:77px!important;
+  height:92px!important;
+  filter:drop-shadow(0 16px 19px rgba(0,0,0,.65))!important;
+}
+#page-home .qa-reference-kaaba::before{
+  box-shadow:inset 0 0 0 1px rgba(255,255,255,.04),0 0 13px rgba(226,188,84,.17)!important;
+}
+
+#page-home .qa-reference-summary{
+  bottom:9px!important;
+  left:13px!important;
+  right:13px!important;
+  min-height:90px!important;
+  border:1px solid rgba(99,178,225,.28)!important;
+  border-radius:20px!important;
+  background:linear-gradient(180deg,rgba(11,31,55,.94),rgba(4,14,29,.96))!important;
+  box-shadow:inset 0 1px 0 rgba(255,255,255,.04),0 12px 25px rgba(0,0,0,.34)!important;
+}
+#page-home .qa-reference-summary > div:not(:last-child){border-left:1px solid rgba(126,171,209,.18)!important}
+#page-home .qa-reference-summary span{font-size:.62rem!important;color:#d8e0e9!important}
+#page-home .qa-reference-summary strong{font-size:.8rem!important;color:#eef1f4!important}
+#page-home .qa-reference-summary .prayer strong{color:#66dc7e!important;font-size:1rem!important}
+#page-home .qa-reference-summary em{font-size:.67rem!important;color:#d7e0ea!important}
+
+#page-home .qa-dashboard-grid{
+  border:1px solid rgba(88,171,224,.34)!important;
+  border-radius:18px!important;
+  padding:8px!important;
+  gap:8px!important;
+  background:rgba(3,13,27,.82)!important;
+  box-shadow:inset 0 1px 0 rgba(255,255,255,.03),0 13px 28px rgba(0,0,0,.25)!important;
+}
+#page-home .qa-dashboard-grid>.hm-card{
+  min-height:116px!important;
+  aspect-ratio:auto!important;
+  border-radius:14px!important;
+  border-color:rgba(126,171,209,.22)!important;
+  background:linear-gradient(145deg,rgba(255,255,255,.045),transparent 42%),rgba(5,15,29,.88)!important;
+}
+#page-home .qa-dashboard-grid>.hm-card .hm-icon-wrap{width:54px!important;height:54px!important;flex-basis:54px!important}
+#page-home .qa-dashboard-grid>.hm-card .hm-icon-plain{width:43px!important;height:43px!important}
+#page-home .qa-dashboard-grid>.hm-card .hm-t,
+#page-home .qa-dashboard-grid>.hm-card [id$='-t']{font-size:.68rem!important;color:var(--qa43-gold)!important}
+#page-home .qa-dashboard-grid>.hm-card .hm-s,
+#page-home .qa-dashboard-grid>.hm-card [id$='-s']{font-size:.5rem!important;color:#aeb9c8!important}
+
+#page-home .qa-system-strip{
+  min-height:52px!important;
+  border:1px solid rgba(112,164,205,.2)!important;
+  border-radius:16px!important;
+  background:rgba(3,12,25,.87)!important;
+  margin:0 0 9px!important;
+}
+#page-home .qa-system-strip>div{padding:8px 5px!important}
+#page-home .qa-system-strip span{font-size:.49rem!important;color:#d6b965!important}
+#page-home .qa-system-strip strong{font-size:.53rem!important;color:#dfe7ef!important}
+#page-home .qa-system-strip strong.ok{color:#62d879!important}
+
+nav.nav,div.nav,.nav{
+  min-height:72px!important;
+  border:1px solid rgba(105,163,204,.19)!important;
+  background:rgba(3,12,25,.97)!important;
+  box-shadow:0 -8px 30px rgba(0,0,0,.48),inset 0 1px 0 rgba(255,255,255,.035)!important;
+}
+.nav-item.active{
+  color:var(--qa43-gold)!important;
+  background:radial-gradient(circle at 50% 43%,rgba(204,156,55,.2),transparent 57%)!important;
+}
+.nav-item.active .nav-icon-img{
+  transform:scale(1.13)!important;
+  filter:drop-shadow(0 0 8px rgba(232,191,89,.52))!important;
+}
+
+@media(max-width:390px){
+  #page-home .qa-reference-skyrow{grid-template-columns:80px minmax(0,1fr) 80px!important}
+  #page-home .qa-reference-bearing{font-size:3.28rem!important}
+  #page-home .qa-reference-earth{width:455px!important}
+  #page-home .qa-dashboard-grid{grid-template-columns:repeat(3,minmax(0,1fr))!important}
+}

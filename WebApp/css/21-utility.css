@@ -1,0 +1,16 @@
+/* ══════════════════════════════════════════════════════════════════════════════
+   [CSS-T] UTILITY CLASSES
+   ══════════════════════════════════════════════════════════════════════════════ */
+
+/* ═══════════════════════════════════════════
+   UTILITY
+═══════════════════════════════════════════ */
+.w100{width:100%;}
+.row{display:flex;align-items:center;gap:8px;}
+@media(prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important;}}
+
+#page-home{padding-top:0}
+.nav{overflow-x:auto;scrollbar-width:none}
+.nav::-webkit-scrollbar{display:none}
+.nav .nav-item{flex:0 0 auto;min-width:56px}
+

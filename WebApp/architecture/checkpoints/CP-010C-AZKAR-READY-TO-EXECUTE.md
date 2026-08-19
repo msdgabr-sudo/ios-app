@@ -1,0 +1,1 @@
+Guarded Azkar transfer workflow and trigger are staged. The next operation must execute from an isolated validation branch and PR, never by merging the full azkar-stable branch.

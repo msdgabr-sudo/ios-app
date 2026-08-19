@@ -1,0 +1,94 @@
+/* QiblaAstro — Prayer approved-reference refinements
+ * Presentation only. Safe to replace independently from prayer logic.
+ * © 2026 محمد سيد جبر بحيرى — Mohamed SG Behairy. All Rights Reserved.
+ */
+#page-prayer .qa-prayer-brand{display:none}
+#page-prayer .qa-prayer-masthead{padding-top:12px;min-height:156px;margin-bottom:-38px}
+#page-prayer .qa-prayer-topline{margin-top:12px}
+#page-prayer .qa-day-track{height:76px}
+#page-prayer .qa-day-track-labels{inset:31px 0 auto;align-items:flex-start;gap:2px}
+#page-prayer .qa-track-item{width:16.666%;text-align:center;display:flex;flex-direction:column;gap:2px;color:#545149;font-weight:700;line-height:1.2}
+#page-prayer .qa-track-item b{font-family:'Noto Naskh Arabic',serif;font-size:.57rem;font-weight:700}
+#page-prayer .qa-track-item small{font-family:'JetBrains Mono',monospace;font-size:.49rem;color:#969188;direction:ltr}
+#page-prayer .qa-track-item.active b,#page-prayer .qa-track-item.active small{color:var(--green)}
+#page-prayer .qa-prayer-svg{width:22px;height:22px;display:block;overflow:visible}
+#page-prayer .qa-prayer-icon{font-family:inherit;color:#826a38;transition:transform .18s ease,background .18s ease,border-color .18s ease}
+#page-prayer .qa-prayer-icon.active{color:var(--green);background:#f2faf3;border-color:#dceee0;transform:scale(1.04)}
+#page-prayer .qa-prayer-row:nth-child(1) .qa-prayer-icon{color:#7358b3}
+#page-prayer .qa-prayer-row:nth-child(2) .qa-prayer-icon{color:#d57627}
+#page-prayer .qa-prayer-row:nth-child(3) .qa-prayer-icon{color:#d49a19}
+#page-prayer .qa-prayer-row:nth-child(4) .qa-prayer-icon{color:#5b9f72}
+#page-prayer .qa-prayer-row:nth-child(5) .qa-prayer-icon{color:#159447}
+#page-prayer .qa-prayer-row:nth-child(6) .qa-prayer-icon{color:#3977c6}
+#page-prayer .qa-prayer-bell{display:flex;align-items:center;justify-content:center;min-width:44px;min-height:44px;font-size:.9rem;font-weight:700;transition:transform .14s ease,box-shadow .14s ease,border-color .14s ease}
+#page-prayer .qa-prayer-bell .qa-prayer-svg{width:19px;height:19px}
+#page-prayer .qa-prayer-bell.mode-notification{color:#3b78bd;background:#f7fbff;border-color:#dce8f4}
+#page-prayer .qa-prayer-bell.sun{color:#d48b25;background:#fffaf4;border-color:#f0e4d3}
+#page-prayer .qa-prayer-bell:active{transform:scale(.92)}
+#page-prayer .qa-prayer-bell:disabled{cursor:default;opacity:.78;background:#fffaf4}
+#page-prayer .qa-prayer-row.next{box-shadow:inset -3px 0 0 rgba(21,148,71,.68),0 5px 16px rgba(21,148,71,.045)}
+#page-prayer .qa-prayer-row.next .qa-prayer-name small{color:#6fa47c}
+#page-prayer .qa-quick-setting{min-height:74px;position:relative;transition:transform .14s ease,box-shadow .14s ease,border-color .14s ease,background .14s ease;-webkit-tap-highlight-color:transparent}
+#page-prayer .qa-quick-setting:hover{border-color:#e1dbcf;background:#fffefa;box-shadow:0 6px 16px rgba(91,73,43,.055)}
+#page-prayer .qa-quick-setting:active{transform:scale(.98);box-shadow:none}
+#page-prayer .qa-quick-setting b{font-size:.68rem}
+#page-prayer .qa-quick-setting small{font-size:.5rem}
+#page-prayer .qa-chevron{width:9px;height:9px;border-left:1.8px solid #aaa49a;border-bottom:1.8px solid #aaa49a;transform:rotate(45deg);display:block;margin-inline-start:1px;transition:transform .16s ease,border-color .16s ease}
+#page-prayer .qa-quick-setting:hover .qa-chevron{border-color:#777168;transform:translateX(-1px) rotate(45deg)}
+#page-prayer .qa-adhan-actions{border-top:1px solid #f0ece5;margin-top:10px;padding-top:11px;display:flex;gap:8px;flex-wrap:wrap}
+#page-prayer .qa-adhan-actions button{min-height:44px;min-width:88px;transition:transform .14s ease,box-shadow .14s ease,border-color .14s ease;-webkit-tap-highlight-color:transparent}
+#page-prayer .qa-adhan-actions button:active{transform:scale(.97)}
+#page-prayer .qa-adhan-live-status{min-height:18px;margin-top:7px;padding:0 4px;text-align:center;color:#7c776e;font-size:.54rem;line-height:1.5}
+#page-prayer .qa-audio-readiness{margin:10px 0 2px;padding:10px 11px;border:1px solid #e7e2d8;border-radius:14px;background:#fbfaf7;display:grid;grid-template-columns:10px 1fr auto;align-items:center;gap:9px;transition:background .16s ease,border-color .16s ease}
+#page-prayer .qa-audio-readiness-dot{width:8px;height:8px;border-radius:50%;background:#c8a24e;box-shadow:0 0 0 4px rgba(200,162,78,.09)}
+#page-prayer .qa-audio-readiness-copy{min-width:0}
+#page-prayer .qa-audio-readiness-copy b{display:block;font-size:.61rem;color:#3f3b34;line-height:1.45}
+#page-prayer .qa-audio-readiness-copy small{display:block;font-size:.5rem;color:#8c867c;line-height:1.55;margin-top:1px}
+#page-prayer .qa-audio-readiness button{min-height:38px;border:1px solid #ddd6ca;border-radius:11px;background:#fff;color:#5f594f;padding:0 11px;font-family:inherit;font-size:.54rem;font-weight:700;cursor:pointer}
+#page-prayer .qa-audio-readiness[data-state="ready"]{background:#f4fbf5;border-color:#d4ead8}
+#page-prayer .qa-audio-readiness[data-state="ready"] .qa-audio-readiness-dot{background:#159447;box-shadow:0 0 0 4px rgba(21,148,71,.09)}
+#page-prayer .qa-audio-readiness[data-state="ready"] .qa-audio-readiness-copy b{color:#137e3d}
+#page-prayer .qa-audio-readiness[data-state="working"]{opacity:.82}
+#page-prayer .qa-audio-readiness button:active{transform:scale(.97)}
+#page-prayer .qa-prayer-location strong{font-family:'Noto Naskh Arabic',serif;font-size:1rem}
+#page-prayer .qa-prayer-location small{line-height:1.65}
+#page-prayer .qa-prayer-next-label{font-size:.76rem}
+#page-prayer .qa-prayer-next-name{font-size:2.55rem}
+#page-prayer .qa-prayer-next-time{font-size:2.86rem;letter-spacing:.01em}
+#page-prayer .qa-section-title{font-size:1.08rem}
+#page-prayer .qa-prayer-name{font-size:1rem}
+#page-prayer .qa-prayer-time{font-size:1rem}
+#page-prayer .qa-bottom-sheet{overscroll-behavior:contain;padding-inline:14px;padding-bottom:calc(18px + env(safe-area-inset-bottom));scrollbar-width:none}
+#page-prayer .qa-bottom-sheet::-webkit-scrollbar{display:none}
+#page-prayer .qa-sheet-head{display:grid;grid-template-columns:44px 1fr 44px;gap:8px;align-items:center;padding:2px 0 12px}
+#page-prayer .qa-sheet-heading{text-align:right;min-width:0}
+#page-prayer .qa-sheet-heading b{font-size:.93rem;line-height:1.4}
+#page-prayer .qa-sheet-heading small{font-size:.56rem;line-height:1.5;margin-top:2px}
+#page-prayer .qa-sheet-back,#page-prayer .qa-sheet-close{width:44px;height:44px;border-radius:13px;border:1px solid #ebe6dc;background:#faf8f3;color:#6f6a61;display:flex;align-items:center;justify-content:center;cursor:pointer;transition:transform .14s ease,background .14s ease,border-color .14s ease;-webkit-tap-highlight-color:transparent}
+#page-prayer .qa-sheet-back[hidden]{visibility:hidden;display:flex!important;pointer-events:none}
+#page-prayer .qa-sheet-close{font-size:1.18rem;font-weight:400;line-height:1}
+#page-prayer .qa-sheet-back>span{width:9px;height:9px;border-right:1.8px solid #777168;border-top:1.8px solid #777168;transform:rotate(45deg);display:block}
+#page-prayer .qa-sheet-back:active,#page-prayer .qa-sheet-close:active{transform:scale(.92)}
+#page-prayer .qa-sheet-body{display:flex;flex-direction:column;gap:8px;padding:2px 0 4px}
+#page-prayer .qa-sheet-option{min-height:64px;border:1px solid #ece7de!important;border-radius:15px;background:#fff;padding:10px 12px!important;box-shadow:0 2px 7px rgba(81,66,42,.025);transition:transform .14s ease,border-color .14s ease,background .14s ease,box-shadow .14s ease;-webkit-tap-highlight-color:transparent}
+#page-prayer .qa-sheet-option:hover{border-color:#ded8cc!important;background:#fffefa;box-shadow:0 5px 14px rgba(81,66,42,.045)}
+#page-prayer .qa-sheet-option:active{transform:scale(.985);box-shadow:none}
+#page-prayer .qa-sheet-option.selected{background:linear-gradient(90deg,#f4fbf5,#fbfefb);border-color:#cfe7d4!important;box-shadow:inset -3px 0 0 rgba(21,148,71,.72),0 4px 13px rgba(21,148,71,.045)}
+#page-prayer .qa-sheet-option.selected b{color:#137e3d}
+#page-prayer .qa-sheet-option[disabled]{opacity:.48;cursor:not-allowed;background:#faf9f6;box-shadow:none}
+#page-prayer .qa-sheet-option b{font-size:.72rem;line-height:1.45}
+#page-prayer .qa-sheet-option small{font-size:.54rem!important;line-height:1.55;margin-top:3px!important}
+#page-prayer .qa-sheet-option .qa-radio{width:21px;height:21px;border:1.5px solid #aaa59b;background:#fff;box-shadow:inset 0 0 0 3px #fff;transition:border-width .14s ease,border-color .14s ease,background .14s ease;flex:0 0 auto}
+#page-prayer .qa-sheet-option.selected .qa-radio{border:6px solid var(--green);background:#fff}
+#page-prayer .qa-sheet-nav{cursor:pointer}
+#page-prayer .qa-sheet-arrow{width:9px;height:9px;border-left:1.8px solid #aaa49a;border-bottom:1.8px solid #aaa49a;transform:rotate(45deg);display:block;margin-inline-start:5px;transition:transform .14s ease,border-color .14s ease;flex:0 0 auto}
+#page-prayer .qa-sheet-nav:hover .qa-sheet-arrow{border-color:#777168;transform:translateX(-1px) rotate(45deg)}
+#page-prayer .qa-sheet-test{min-height:44px;border-radius:14px!important;font-weight:700;transition:transform .14s ease,background .14s ease;-webkit-tap-highlight-color:transparent}
+#page-prayer .qa-sheet-test:active{transform:scale(.985)}
+#page-prayer .qa-sheet-note{background:#faf8f3;border:1px solid #eee9e0;border-radius:13px;padding:10px 12px!important;margin-top:2px;line-height:1.75!important}
+#page-prayer button:focus{outline:none}
+#page-prayer button:focus-visible{outline:2px solid rgba(21,148,71,.42);outline-offset:2px}
+#page-prayer .qa-prayer-bell:focus-visible{outline-offset:3px}
+@media(prefers-reduced-motion:reduce){#page-prayer *,#page-prayer *::before,#page-prayer *::after{animation-duration:.001ms!important;animation-iteration-count:1!important;transition-duration:.001ms!important;scroll-behavior:auto!important}}
+@media(max-width:560px){#page-prayer .qa-prayer-masthead{min-height:142px}#page-prayer .qa-day-track-labels{gap:0}#page-prayer .qa-track-item b{font-size:.52rem}#page-prayer .qa-track-item small{font-size:.44rem}#page-prayer .qa-prayer-next-name{font-size:2.35rem}#page-prayer .qa-prayer-next-time{font-size:2.55rem}#page-prayer .qa-sheet-option{min-height:62px}}
+@media(max-width:390px){#page-prayer .qa-track-item b{font-size:.47rem}#page-prayer .qa-track-item small{font-size:.4rem}#page-prayer .qa-prayer-row{grid-template-columns:44px 1fr 58px 44px;gap:4px}#page-prayer .qa-prayer-name{font-size:.91rem}#page-prayer .qa-prayer-time{font-size:.9rem}#page-prayer .qa-prayer-svg{width:20px;height:20px}#page-prayer .qa-sheet-head{grid-template-columns:44px 1fr 44px}#page-prayer .qa-adhan-actions button{flex:1 1 30%}#page-prayer .qa-audio-readiness{grid-template-columns:10px 1fr}#page-prayer .qa-audio-readiness button{grid-column:2;justify-self:start}}

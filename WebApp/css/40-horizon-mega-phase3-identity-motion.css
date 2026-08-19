@@ -1,0 +1,316 @@
+/*
+ * QiblaAstro — Mega Phase 3: Visual Identity & Motion
+ * Presentation-only layer. It does not calculate, store or mutate GNSS or
+ * astronomical results and preserves every existing runtime contract.
+ *
+ * © 2026 محمد سيد جبر بحيرى — Mohamed SG Behairy. All Rights Reserved.
+ */
+
+:root{
+  --qa-phase3-gold:#e0bc63;
+  --qa-phase3-gold-soft:#f4dfa2;
+  --qa-phase3-cyan:#6bdcff;
+  --qa-phase3-ink:#030813;
+  --qa-phase3-panel:rgba(7,17,31,.86);
+  --qa-phase3-stroke:rgba(143,210,244,.16);
+}
+
+/* Calm the legacy aurora so the approved reference scene remains dominant. */
+body::before{
+  opacity:.34!important;
+  animation-duration:22s!important;
+  background:
+    radial-gradient(ellipse at 18% 0%,rgba(43,103,188,.38),transparent 42%),
+    radial-gradient(ellipse at 84% 8%,rgba(69,30,132,.32),transparent 38%),
+    linear-gradient(180deg,#060b18 0%,#030711 68%,#02050b 100%)!important;
+}
+body::after{
+  height:48vh!important;
+  opacity:.42!important;
+  animation-duration:30s!important;
+  background:
+    radial-gradient(ellipse at 50% 4%,rgba(95,68,182,.32),transparent 48%),
+    radial-gradient(ellipse at 50% 45%,rgba(20,88,150,.2),transparent 58%)!important;
+}
+
+/* Reference screen frame and spacing. */
+#page-home{
+  background:
+    radial-gradient(circle at 50% 0%,rgba(48,79,159,.13),transparent 30%),
+    linear-gradient(180deg,rgba(2,6,14,.12),rgba(2,5,11,.72))!important;
+}
+#page-home > div[style*="max-width:480px"]{
+  max-width:430px!important;
+  padding-inline:10px!important;
+  padding-bottom:calc(120px + env(safe-area-inset-bottom))!important;
+}
+
+/* Premium product identity. */
+#page-home .qa-reference-topbar{
+  min-height:58px!important;
+  padding:8px 4px 6px!important;
+  border-bottom:1px solid rgba(255,255,255,.045)!important;
+}
+#page-home .qa-reference-brand strong{
+  font-size:1.14rem!important;
+  letter-spacing:.01em!important;
+  color:#fff!important;
+  text-shadow:0 0 22px rgba(107,220,255,.14)!important;
+}
+#page-home .qa-reference-brand span{
+  color:var(--qa-phase3-gold)!important;
+  font-size:.47rem!important;
+  letter-spacing:.31em!important;
+}
+#page-home .qa-reference-menu,
+#page-home .qa-reference-bell{
+  width:34px!important;
+  height:34px!important;
+  border:1px solid rgba(142,205,239,.13)!important;
+  background:linear-gradient(145deg,rgba(255,255,255,.055),rgba(4,11,22,.52))!important;
+  color:rgba(231,243,255,.78)!important;
+  box-shadow:inset 0 1px 0 rgba(255,255,255,.06),0 7px 18px rgba(0,0,0,.2)!important;
+}
+
+/* Refined celestial side instruments. */
+#page-home .qa-reference-sidecard{
+  min-height:112px!important;
+  padding:12px 8px 10px!important;
+  border-radius:21px!important;
+  border-color:rgba(130,204,244,.18)!important;
+  background:
+    linear-gradient(150deg,rgba(255,255,255,.06),transparent 38%),
+    radial-gradient(circle at 50% 12%,rgba(107,220,255,.13),transparent 45%),
+    rgba(5,14,27,.83)!important;
+  box-shadow:inset 0 1px 0 rgba(255,255,255,.07),0 16px 30px rgba(0,0,0,.27)!important;
+}
+#page-home .qa-reference-sidecard.sun{
+  border-color:rgba(224,188,99,.23)!important;
+  background:
+    linear-gradient(150deg,rgba(255,255,255,.06),transparent 38%),
+    radial-gradient(circle at 50% 10%,rgba(224,188,99,.17),transparent 48%),
+    rgba(12,14,22,.86)!important;
+}
+#page-home .qa-reference-sidecard .orb{
+  width:43px!important;
+  height:43px!important;
+  filter:drop-shadow(0 0 12px currentColor)!important;
+}
+#page-home .qa-reference-sidecard strong{
+  font-size:1.01rem!important;
+  font-family:var(--qa-font-numeric)!important;
+}
+#page-home .qa-reference-sidecard small{
+  max-width:90px;
+  white-space:nowrap;
+  overflow:hidden;
+  text-overflow:ellipsis;
+}
+
+/* Central bearing hierarchy, arc and guidance light. */
+#page-home .qa-reference-center{
+  cursor:pointer;
+  padding-top:5px!important;
+}
+#page-home .qa-reference-center::before{
+  content:'';
+  position:absolute;
+  left:50%;top:53%;
+  width:170px;height:170px;
+  border-radius:50%;
+  transform:translate(-50%,-50%) rotateX(69deg);
+  border:1px solid rgba(107,220,255,.18);
+  box-shadow:inset 0 0 28px rgba(107,220,255,.08),0 0 28px rgba(107,220,255,.06);
+  pointer-events:none;
+}
+#page-home .qa-reference-center::after{
+  content:'';
+  position:absolute;
+  left:50%;top:47%;
+  width:2px;height:138px;
+  transform:translateX(-50%);
+  background:linear-gradient(180deg,rgba(244,223,162,.88),rgba(107,220,255,.26),transparent);
+  box-shadow:0 0 14px rgba(224,188,99,.28);
+  opacity:.7;
+  pointer-events:none;
+}
+#page-home .qa-reference-pointer{
+  color:var(--qa-phase3-gold-soft)!important;
+  filter:drop-shadow(0 0 12px rgba(224,188,99,.55));
+  animation:qaPhase3Pointer 2.8s ease-in-out infinite;
+}
+#page-home .qa-reference-bearing-label{
+  margin-top:3px!important;
+  color:rgba(221,237,250,.7)!important;
+  font-size:.63rem!important;
+}
+#page-home .qa-reference-bearing{
+  margin-top:5px!important;
+  font-size:clamp(2.6rem,12vw,3.75rem)!important;
+  line-height:.96!important;
+  letter-spacing:-.07em!important;
+  color:#fff4cb!important;
+  text-shadow:0 0 12px rgba(224,188,99,.34),0 0 34px rgba(224,188,99,.16)!important;
+}
+#page-home .qa-reference-accuracy{
+  margin-top:9px!important;
+  padding:5px 10px!important;
+  border-radius:999px!important;
+  border:1px solid rgba(97,218,170,.18)!important;
+  background:rgba(18,72,55,.16)!important;
+  color:#7ee7bd!important;
+  font-size:.51rem!important;
+}
+
+/* Earth atmosphere and Kaaba depth. */
+#page-home .qa-reference-earth{
+  filter:saturate(1.1) contrast(1.06)!important;
+  box-shadow:
+    inset -52px -42px 70px rgba(0,0,0,.75),
+    inset 20px 12px 42px rgba(100,210,255,.17),
+    0 -8px 34px rgba(107,220,255,.19),
+    0 -2px 7px rgba(255,255,255,.12)!important;
+}
+#page-home .qa-reference-earth::before{
+  content:'';
+  position:absolute;
+  inset:-5px;
+  border-radius:50%;
+  border-top:2px solid rgba(135,224,255,.4);
+  box-shadow:0 -7px 24px rgba(107,220,255,.2);
+}
+#page-home .qa-reference-kaaba{
+  filter:drop-shadow(0 22px 22px rgba(0,0,0,.7)) drop-shadow(0 0 17px rgba(224,188,99,.22))!important;
+  animation:qaPhase3Kaaba 5.8s ease-in-out infinite;
+}
+#page-home .qa-reference-kaaba::before{
+  box-shadow:0 0 13px rgba(224,188,99,.22)!important;
+}
+
+/* Combined information surface. */
+#page-home .qa-reference-summary{
+  margin-top:7px!important;
+  border-radius:22px!important;
+  border-color:rgba(135,204,241,.15)!important;
+  background:
+    linear-gradient(150deg,rgba(255,255,255,.055),transparent 38%),
+    rgba(5,14,27,.88)!important;
+  box-shadow:inset 0 1px 0 rgba(255,255,255,.055),0 16px 36px rgba(0,0,0,.24)!important;
+}
+#page-home .qa-reference-summary > div{
+  min-height:64px!important;
+}
+#page-home .qa-reference-summary span{
+  color:rgba(190,218,239,.57)!important;
+}
+#page-home .qa-reference-summary strong{
+  color:#f6fbff!important;
+}
+#page-home .qa-reference-summary .prayer strong,
+#page-home .qa-reference-summary .prayer em{
+  color:var(--qa-phase3-gold-soft)!important;
+}
+
+/* Service instruments read as a coherent product family. */
+#page-home .qa-dashboard-grid{
+  margin-top:13px!important;
+  gap:9px!important;
+}
+#page-home .qa-dashboard-grid > .hm-card{
+  min-height:104px!important;
+  border-radius:20px!important;
+  background:
+    linear-gradient(150deg,rgba(255,255,255,.055),transparent 37%),
+    radial-gradient(circle at 50% 0%,rgba(var(--qa-card-accent),.095),transparent 47%),
+    rgba(5,14,27,.9)!important;
+  box-shadow:inset 0 1px 0 rgba(255,255,255,.06),0 12px 26px rgba(0,0,0,.24)!important;
+}
+#page-home .qa-dashboard-grid > .hm-card .hm-icon-wrap{
+  width:52px!important;
+  height:52px!important;
+  flex-basis:52px!important;
+  border-radius:17px!important;
+}
+#page-home .qa-dashboard-grid > .hm-card .hm-icon-plain{
+  width:38px!important;
+  height:38px!important;
+}
+#page-home .qa-dashboard-grid > .hm-card .hm-t,
+#page-home .qa-dashboard-grid > .hm-card [id$='-t']{
+  font-size:.72rem!important;
+  line-height:1.35!important;
+}
+#page-home .qa-dashboard-grid > .hm-card .hm-s,
+#page-home .qa-dashboard-grid > .hm-card [id$='-s']{
+  font-size:.49rem!important;
+  line-height:1.4!important;
+}
+
+/* Status strip and bottom navigation. */
+#page-home .qa-system-strip{
+  margin-top:11px!important;
+  border-radius:18px!important;
+  border:1px solid rgba(113,213,174,.13)!important;
+  background:linear-gradient(150deg,rgba(50,180,130,.055),transparent 46%),rgba(5,14,25,.88)!important;
+}
+.nav{
+  min-height:67px!important;
+  border:1px solid rgba(137,205,242,.12)!important;
+  border-bottom:0!important;
+  border-radius:24px 24px 0 0!important;
+  background:rgba(4,11,22,.9)!important;
+  box-shadow:0 -16px 42px rgba(0,0,0,.38),inset 0 1px 0 rgba(255,255,255,.05)!important;
+}
+.nav-item{
+  position:relative!important;
+  min-width:0!important;
+  padding:8px 2px 7px!important;
+  gap:3px!important;
+}
+.nav-item.active::before{
+  content:'';
+  position:absolute;
+  top:3px;left:50%;
+  width:42px;height:42px;
+  transform:translateX(-50%);
+  border-radius:15px;
+  background:radial-gradient(circle,rgba(224,188,99,.17),transparent 70%);
+  border:1px solid rgba(224,188,99,.13);
+  pointer-events:none;
+}
+.nav-icon-img{width:29px!important;height:29px!important}
+.nav-icon{font-size:1.22rem!important}
+.nav-lbl{font-size:.55rem!important}
+.nav-item.active .nav-lbl{color:var(--qa-phase3-gold-soft)!important}
+.ad-slot{display:none!important}
+.page.active{padding-bottom:calc(88px + env(safe-area-inset-bottom))!important}
+
+@keyframes qaPhase3Pointer{
+  0%,100%{transform:translateY(0);opacity:.88}
+  50%{transform:translateY(-4px);opacity:1}
+}
+@keyframes qaPhase3Kaaba{
+  0%,100%{transform:translate(-50%,0)}
+  50%{transform:translate(-50%,-4px)}
+}
+
+@media(max-width:360px){
+  #page-home .qa-reference-skyrow{grid-template-columns:82px minmax(0,1fr) 82px!important;gap:5px!important}
+  #page-home .qa-reference-sidecard{min-height:102px!important;padding-inline:5px!important}
+  #page-home .qa-reference-bearing{font-size:2.52rem!important}
+  #page-home .qa-reference-summary{grid-template-columns:1fr 1fr!important}
+  #page-home .qa-reference-summary .prayer{grid-column:1/-1!important}
+  #page-home .qa-dashboard-grid{gap:7px!important}
+  #page-home .qa-dashboard-grid > .hm-card{min-height:94px!important}
+}
+
+@media(min-width:600px){
+  #page-home > div[style*="max-width:480px"]{max-width:560px!important}
+  #page-home .qa-dashboard-grid{grid-template-columns:repeat(4,minmax(0,1fr))!important}
+}
+
+@media(prefers-reduced-motion:reduce){
+  #page-home .qa-reference-pointer,
+  #page-home .qa-reference-kaaba{animation:none!important}
+  body::before,body::after{animation:none!important}
+}

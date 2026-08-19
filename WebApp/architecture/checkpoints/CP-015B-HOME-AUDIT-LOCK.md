@@ -1,0 +1,1 @@
+Home qa-home markup and home-single-screen-cards.css match the approved reference. qa-status is hidden by approved CSS. Current correction scope prioritizes missing/miswired compass presentation stack; Home bottom chrome remains hidden through body.tab-home rules.

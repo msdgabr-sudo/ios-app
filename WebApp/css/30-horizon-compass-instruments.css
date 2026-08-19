@@ -1,0 +1,237 @@
+/*
+ * QiblaAstro — Horizon Compass Instruments
+ * Presentation-only refinements for the compass page.
+ * Existing IDs, click handlers, calculations and stores remain authoritative.
+ *
+ * © 2026 محمد سيد جبر بحيرى — Mohamed SG Behairy. All Rights Reserved.
+ */
+
+#page-compass {
+  --qa-compass-card: rgba(6, 16, 29, .82);
+  --qa-compass-card-strong: rgba(5, 13, 24, .93);
+  --qa-compass-line: rgba(148, 213, 250, .14);
+  --qa-compass-gap: 9px;
+  background:
+    radial-gradient(circle at 50% 2%, rgba(88, 215, 255, .07), transparent 27%),
+    radial-gradient(circle at 85% 34%, rgba(216, 182, 91, .045), transparent 25%);
+}
+
+#page-compass > canvas#cvs {
+  position: relative;
+  z-index: 1;
+  max-width: 420px !important;
+  padding: 7px;
+  border: 1px solid rgba(148, 213, 250, .12);
+  background:
+    radial-gradient(circle, rgba(88, 215, 255, .045), transparent 62%),
+    rgba(2, 8, 15, .42);
+  box-shadow:
+    inset 0 0 42px rgba(88, 215, 255, .035),
+    0 22px 52px rgba(0, 0, 0, .28),
+    0 0 36px rgba(88, 215, 255, .055);
+}
+
+/* The existing card grid is preserved; only its visual system changes. */
+#page-compass > div[style*="padding:6px 12px"] {
+  gap: var(--qa-compass-gap) !important;
+  padding: 10px 12px 16px !important;
+}
+
+#page-compass > div[style*="padding:6px 12px"] > div {
+  gap: var(--qa-compass-gap) !important;
+}
+
+#page-compass > div[style*="padding:6px 12px"] > div > div,
+#live-compass-card,
+#astro-body-card {
+  position: relative;
+  isolation: isolate;
+  overflow: hidden;
+  min-height: 102px;
+  padding: 14px !important;
+  border: 1px solid var(--qa-compass-line) !important;
+  border-radius: 21px !important;
+  background:
+    linear-gradient(145deg, rgba(255, 255, 255, .052), transparent 46%),
+    var(--qa-compass-card) !important;
+  box-shadow:
+    inset 0 1px 0 rgba(255, 255, 255, .05),
+    0 14px 32px rgba(0, 0, 0, .22) !important;
+  -webkit-backdrop-filter: blur(17px) saturate(116%);
+  backdrop-filter: blur(17px) saturate(116%);
+  transition:
+    transform 160ms cubic-bezier(.2,.72,.2,1),
+    border-color 160ms ease,
+    box-shadow 160ms ease,
+    background 160ms ease;
+}
+
+#page-compass > div[style*="padding:6px 12px"] > div > div::before,
+#live-compass-card::before,
+#astro-body-card::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  z-index: -1;
+  pointer-events: none;
+  background:
+    radial-gradient(circle at 12% 0%, rgba(88, 215, 255, .075), transparent 37%),
+    radial-gradient(circle at 94% 100%, rgba(216, 182, 91, .055), transparent 34%);
+}
+
+#page-compass > div[style*="padding:6px 12px"] > div > div::after,
+#live-compass-card::after,
+#astro-body-card::after {
+  content: '';
+  position: absolute;
+  right: 0;
+  top: 17%;
+  bottom: 17%;
+  width: 2px;
+  border-radius: 9px;
+  background: linear-gradient(180deg, transparent, rgba(88, 215, 255, .58), transparent);
+  opacity: .62;
+}
+
+#live-compass-card {
+  border-color: rgba(88, 215, 255, .22) !important;
+}
+
+#astro-body-card {
+  border-color: rgba(232, 200, 80, .22) !important;
+}
+
+#astro-body-card::after,
+#page-compass div:has(#box-qibla)::after,
+#page-compass div:has(#astro-qibla-value)::after {
+  background: linear-gradient(180deg, transparent, rgba(216, 182, 91, .72), transparent) !important;
+}
+
+#page-compass div:has(#box-diff)::after {
+  background: linear-gradient(180deg, transparent, rgba(109, 224, 178, .7), transparent) !important;
+}
+
+#live-compass-card:active,
+#astro-body-card:active {
+  transform: scale(.982);
+  background:
+    linear-gradient(145deg, rgba(255, 255, 255, .065), transparent 46%),
+    var(--qa-compass-card-strong) !important;
+  box-shadow:
+    inset 0 1px 0 rgba(255, 255, 255, .065),
+    0 8px 21px rgba(0, 0, 0, .23) !important;
+}
+
+#page-compass > div[style*="padding:6px 12px"] > div > div > div:first-child {
+  min-width: 0;
+}
+
+#page-compass > div[style*="padding:6px 12px"] > div > div > div:last-child {
+  display: grid;
+  place-items: center;
+  width: 42px;
+  height: 42px;
+  flex: 0 0 42px;
+  border-radius: 15px;
+  border: 1px solid rgba(148, 213, 250, .12);
+  background: linear-gradient(145deg, rgba(255,255,255,.055), rgba(5,14,25,.35));
+  box-shadow: inset 0 1px 0 rgba(255,255,255,.04), 0 8px 18px rgba(0,0,0,.18);
+  font-size: 1.45rem !important;
+}
+
+#page-compass > div[style*="padding:6px 12px"] img {
+  filter: drop-shadow(0 5px 8px rgba(0, 0, 0, .42));
+}
+
+#page-compass #box-heading,
+#page-compass #astro-body-value,
+#page-compass #box-qibla,
+#page-compass #astro-qibla-value,
+#page-compass #box-diff {
+  margin-top: 7px;
+  font-family: var(--qa-font-numeric) !important;
+  font-variant-numeric: tabular-nums;
+  letter-spacing: -.045em;
+  text-shadow: 0 0 18px currentColor;
+}
+
+#page-compass #box-heading,
+#page-compass #box-qibla,
+#page-compass #box-diff {
+  font-size: clamp(1.35rem, 5.4vw, 1.7rem) !important;
+}
+
+#page-compass #astro-body-value,
+#page-compass #astro-qibla-value {
+  font-size: clamp(1.18rem, 4.9vw, 1.5rem) !important;
+}
+
+#page-compass #live-compass-hint,
+#page-compass #astro-body-hint,
+#page-compass #gnss-badge,
+#page-compass #astro-qibla-hint,
+#page-compass #box-dir {
+  display: block;
+  max-width: 100%;
+  margin-top: 7px !important;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  font-family: var(--qa-font-ui) !important;
+  font-size: .61rem !important;
+  line-height: 1.35;
+  color: var(--qa-muted) !important;
+}
+
+#page-compass #gnss-badge,
+#page-compass #astro-qibla-hint {
+  color: var(--qa-science-soft) !important;
+}
+
+#page-compass #astro-body-label,
+#page-compass div:has(#box-qibla) > div:first-child > div:first-child,
+#page-compass div:has(#astro-qibla-value) > div:first-child > div:first-child {
+  color: var(--qa-guidance-soft) !important;
+}
+
+#page-compass #live-compass-card > div:first-child > div:first-child {
+  color: var(--qa-science-soft) !important;
+}
+
+#page-compass div:has(#box-diff) > div:first-child > div:first-child {
+  color: var(--qa-trust) !important;
+}
+
+@media (max-width: 380px) {
+  #page-compass > div[style*="padding:6px 12px"] {
+    padding-inline: 8px !important;
+    gap: 7px !important;
+  }
+
+  #page-compass > div[style*="padding:6px 12px"] > div {
+    gap: 7px !important;
+  }
+
+  #page-compass > div[style*="padding:6px 12px"] > div > div,
+  #live-compass-card,
+  #astro-body-card {
+    min-height: 96px;
+    padding: 11px !important;
+    border-radius: 18px !important;
+  }
+
+  #page-compass > div[style*="padding:6px 12px"] > div > div > div:last-child {
+    width: 36px;
+    height: 36px;
+    flex-basis: 36px;
+    border-radius: 13px;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  #live-compass-card,
+  #astro-body-card,
+  #page-compass > div[style*="padding:6px 12px"] > div > div {
+    transition: none !important;
+  }
+}

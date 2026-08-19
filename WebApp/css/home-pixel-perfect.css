@@ -1,0 +1,66 @@
+/*
+ * QiblaAstro — Pixel Perfect Home Lock
+ * Final alignment + performance-safe refinements.
+ * © 2026 محمد سيد جبر بحيرى — Mohamed SG Behairy. All Rights Reserved.
+ */
+
+#page-home .qa-home{max-width:480px;margin:0 auto!important}
+#page-home .qa-top,
+#page-home .qa-info,
+#page-home .qa-systems,
+#page-home .qa-services{box-sizing:border-box!important}
+
+/* Stable alignment across common Android/iPhone widths. */
+#page-home .qa-info{left:8px!important;right:8px!important;width:auto!important}
+#page-home .qa-systems,
+#page-home .qa-services{margin-left:8px!important;margin-right:8px!important}
+
+/* Keep icon/text rhythm consistent without extra layout cost. */
+#page-home .qa-system-card,
+#page-home .qa-service-card{
+  contain:layout paint style;
+  will-change:auto!important;
+  transform:translateZ(0);
+}
+#page-home .qa-system-icon img,
+#page-home .qa-service-icon img{
+  display:block;
+  width:100%;height:100%;object-fit:contain;
+}
+
+/* Reduce expensive blur on low-height screens while keeping the premium look. */
+@media (max-height:760px){
+  #page-home .qa-side-card,
+  #page-home .qa-system-card,
+  #page-home .qa-service-card{
+    backdrop-filter:blur(9px)!important;
+    -webkit-backdrop-filter:blur(9px)!important;
+  }
+}
+
+/* Extra-short screens: preserve the approved composition with minimal scroll. */
+@media (max-height:700px){
+  #page-home .qa-hero{min-height:452px!important}
+  #page-home .qa-sky{height:326px!important}
+  #page-home .qa-info{transform:translateY(-10px)!important}
+  #page-home .qa-systems{margin-top:-18px!important}
+  #page-home .qa-system-card{min-height:76px!important}
+  #page-home .qa-system-icon{width:39px!important;height:39px!important}
+  #page-home .qa-services{margin-top:-2px!important;gap:4px!important}
+  #page-home .qa-service-card{min-height:84px!important}
+  #page-home .qa-service-icon{width:41px!important;height:41px!important}
+}
+
+/* Wide phones: avoid over-expanding the visual dashboard. */
+@media (min-width:430px){
+  #page-home .qa-home{padding-left:4px!important;padding-right:4px!important}
+  #page-home .qa-arc{max-width:352px!important}
+}
+
+@media (prefers-reduced-motion:reduce){
+  #page-home *,#page-home *:before,#page-home *:after{
+    animation-duration:.001ms!important;
+    animation-iteration-count:1!important;
+    transition-duration:.001ms!important;
+  }
+}

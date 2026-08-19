@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+  <title>QiblaAstro Reference Preview</title>
+  <style>
+    html,body{margin:0;width:100%;height:100%;overflow:hidden;background:#020611}
+    #app-frame{display:block;width:100%;height:100%;border:0;background:#020611}
+    #status{position:fixed;inset:0;display:grid;place-items:center;background:#020611;color:#e8c878;font-family:sans-serif;z-index:9}
+  </style>
+</head>
+<body>
+  <div id="status">جاري تحميل واجهة QiblaAstro الجديدة…</div>
+  <iframe id="app-frame" src="index.html?v=reference-direct-20260806-2208" title="QiblaAstro"></iframe>
+  <script>
+  (function(){
+    var frame=document.getElementById('app-frame');
+    var status=document.getElementById('status');
+    frame.addEventListener('load',function(){
+      try{
+        var doc=frame.contentDocument;
+        var win=frame.contentWindow;
+        [
+          'css/46-reference-home-rebuild-stage4.css?v=20260806-2208',
+          'css/47-reference-mobile-lock-stage5.css?v=20260806-2208'
+        ].forEach(function(href){
+          var link=doc.createElement('link');
+          link.rel='stylesheet';
+          link.href=href;
+          doc.head.appendChild(link);
+        });
+        var script=doc.createElement('script');
+        script.src='js/101-reference-home-rebuild-stage4.js?v=20260806-2208';
+        script.onload=function(){status.style.display='none';};
+        script.onerror=function(){status.textContent='تعذّر تحميل ملف الواجهة الجديدة';};
+        doc.body.appendChild(script);
+        win.setTimeout(function(){status.style.display='none';},2500);
+      }catch(e){
+        status.textContent='تعذّر تفعيل المعاينة: '+e.message;
+      }
+    });
+  })();
+  </script>
+</body>
+</html>

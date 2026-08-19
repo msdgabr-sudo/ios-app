@@ -1,0 +1,61 @@
+/* QiblaAstro — Home header + premium outer bevel home-card edges
+ * UI-only. No compass / astronomical verification engine changes.
+ * © 2026 محمد سيد جبر بحيرى — Mohamed SG Behairy. All Rights Reserved. */
+
+#page-home .qa-top{position:relative!important;display:block!important}
+#page-home .qa-top .qa-brand{position:absolute!important;left:50%!important;right:auto!important;top:50%!important;transform:translate(-50%,-50%)!important;width:max-content!important;max-width:58%!important;margin:0!important;text-align:center!important;z-index:19!important;pointer-events:none!important}
+#page-home .qa-top .qa-brand b,#page-home .qa-top .qa-brand span{display:block!important;text-align:center!important;white-space:nowrap!important}
+#page-home .qa-settings-top,#page-home .qa-language-top{position:absolute;top:50%;transform:translateY(-50%);width:42px;height:42px;border:1px solid rgba(222,177,74,.28);border-radius:13px;background:linear-gradient(180deg,rgba(17,32,52,.72),rgba(6,15,29,.78));color:#d8ae4f;display:flex;align-items:center;justify-content:center;z-index:20;box-shadow:inset 0 1px 0 rgba(255,255,255,.045),0 5px 14px rgba(0,0,0,.20);-webkit-tap-highlight-color:transparent;touch-action:manipulation}
+#page-home .qa-settings-top{right:11px;left:auto}
+#page-home .qa-settings-top span{font-size:1.55rem;line-height:1;filter:drop-shadow(0 0 6px rgba(216,174,79,.20))}
+#page-home .qa-language-top{left:11px;right:auto;gap:3px;direction:ltr}
+#page-home .qa-language-top .qa-lang-globe{font-size:1.15rem;line-height:1;color:#d8ae4f}
+#page-home .qa-language-top b{font-size:.58rem;line-height:1;color:#f1d687;font-weight:800;letter-spacing:.02em}
+#page-home .qa-settings-top:active,#page-home .qa-language-top:active{transform:translateY(-50%) scale(.96)}
+#page-home .qa-info{transform:translateY(-22px)!important}
+@media (max-width:380px){#page-home .qa-settings-top,#page-home .qa-language-top{width:38px;height:38px;border-radius:12px}#page-home .qa-settings-top{right:8px}#page-home .qa-language-top{left:8px}#page-home .qa-settings-top span{font-size:1.4rem}#page-home .qa-top .qa-brand{max-width:56%!important}#page-home .qa-info{transform:translateY(-19px)!important}}
+@media (max-height:760px){#page-home .qa-settings-top,#page-home .qa-language-top{width:36px;height:36px}#page-home .qa-info{transform:translateY(-17px)!important}}
+
+/* Date + Gregorian + next-prayer remain one framed block. */
+#page-home .qa-info{overflow:hidden!important;border:1px solid rgba(137,153,169,.50)!important;border-radius:20px!important;box-shadow:0 0 0 1px rgba(8,19,31,.96),inset 0 1px 0 rgba(236,242,247,.14),inset 0 -1px 0 rgba(0,0,0,.38),0 7px 16px rgba(0,0,0,.22)!important}
+
+/* HOME CARDS — pronounced perimeter bevel only.
+ * Four perimeter layers create physical thickness without any panel/stripe inside.
+ * Surface/background, dimensions, icons and text remain untouched. */
+#page-home .qa-actions-primary>.qa-service-card,
+#page-home .qa-actions-grid>.qa-service-card{
+  position:relative!important;
+  overflow:hidden!important;
+  border:2px solid rgba(164,184,201,.88)!important;
+  outline:1px solid rgba(20,39,57,.98)!important;
+  outline-offset:2px!important;
+  box-shadow:
+    0 0 0 1px rgba(91,119,143,.62),
+    0 0 0 3px rgba(13,31,49,.94),
+    inset 0 2px 0 rgba(244,249,252,.48),
+    inset 1px 0 0 rgba(190,208,221,.20),
+    inset -1px 0 0 rgba(14,27,40,.55),
+    inset 0 -3px 0 rgba(7,17,28,.88),
+    0 8px 14px rgba(0,0,0,.34)!important;
+}
+
+/* Upper perimeter catches more light; lower edge stays dark/heavy.
+ * No pseudo-element is allowed, preventing the previous inner horizontal capsule. */
+#page-home .qa-actions-primary>.qa-service-card::before,
+#page-home .qa-actions-primary>.qa-service-card::after,
+#page-home .qa-actions-grid>.qa-service-card::before,
+#page-home .qa-actions-grid>.qa-service-card::after{content:none!important;display:none!important;width:0!important;height:0!important;inset:auto!important;background:none!important;border:0!important;outline:0!important;box-shadow:none!important;opacity:0!important}
+
+#page-home .qa-actions-primary .qa-service-icon,
+#page-home .qa-actions-grid .qa-service-icon{border:0!important;outline:0!important;background:transparent!important;background-image:none!important;box-shadow:none!important}
+#page-home .qa-actions-primary .qa-service-icon::before,
+#page-home .qa-actions-primary .qa-service-icon::after,
+#page-home .qa-actions-grid .qa-service-icon::before,
+#page-home .qa-actions-grid .qa-service-icon::after{content:none!important;display:none!important;background:none!important;border:0!important;box-shadow:none!important}
+
+#page-home .qa-actions-primary>.qa-service-card:active,
+#page-home .qa-actions-grid>.qa-service-card:active{
+  transform:translateY(1px)!important;
+  border-color:rgba(145,166,184,.78)!important;
+  box-shadow:0 0 0 1px rgba(72,97,119,.52),0 0 0 2px rgba(10,26,42,.92),inset 0 2px 5px rgba(0,0,0,.40),inset 0 -1px 0 rgba(199,214,225,.12),0 3px 7px rgba(0,0,0,.30)!important;
+}

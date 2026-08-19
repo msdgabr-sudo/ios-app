@@ -1,0 +1,27 @@
+/* QiblaAstro Quran — immersive reading + saved marks */
+.qr-reader-head{transition:transform .24s ease,opacity .24s ease,visibility .24s ease}
+.qr-reader.is-immersive:not(.is-tools) .qr-reader-head{transform:translateY(-115%);opacity:0;visibility:hidden;pointer-events:none}
+.qr-reader.is-tools .qr-reader-head{transform:translateY(0);opacity:1;visibility:visible}
+.qr-text{font-size:calc(1.53rem * var(--qr-user-font-scale,1))!important;transition:font-size .16s ease}
+
+.qr-marks-panel{margin:12px 0 16px;padding:13px;border:1px solid rgba(238,206,118,.3);border-radius:20px;background:linear-gradient(145deg,rgba(18,53,22,.9),rgba(4,20,7,.92));box-shadow:0 9px 26px rgba(0,0,0,.13)}
+.qr-marks-panel[hidden]{display:none!important}
+.qr-marks-head{display:flex;align-items:center;justify-content:space-between;margin-bottom:9px;padding:0 3px}
+.qr-marks-head strong{font-size:1.08rem;color:#f6d77d;font-weight:900}.qr-marks-head small{font-size:.78rem;color:rgba(255,249,232,.8);font-weight:700}
+.qr-marks-list{display:grid;gap:7px}.qr-mark-item{display:grid;grid-template-columns:auto 1fr auto;align-items:center;gap:9px;min-height:58px;padding:8px 9px;border:1px solid rgba(232,200,120,.18);border-radius:15px;background:rgba(2,15,5,.52)}
+.qr-mark-open{appearance:none;border:0;background:transparent;color:inherit;text-align:right;padding:0;min-width:0}.qr-mark-open strong{display:block;color:#fff5d2;font-size:.98rem;font-weight:800}.qr-mark-open small{display:block;margin-top:3px;color:rgba(255,249,232,.76);font-size:.74rem}.qr-mark-gem{width:34px;height:34px;display:grid;place-items:center;color:#efd173;border:1px solid rgba(232,200,120,.36);transform:rotate(45deg);border-radius:8px;background:rgba(232,200,120,.07)}.qr-mark-gem span{transform:rotate(-45deg);font-size:.68rem}.qr-mark-delete{width:34px;height:34px;border:1px solid rgba(232,200,120,.16);border-radius:10px;background:transparent;color:rgba(255,249,232,.6);font-size:1rem}.qr-mark-delete:active{background:rgba(232,200,120,.1);color:#ffe3a0}
+.qr-bookmark-head.is-marked{border-color:rgba(255,225,145,.75)!important;color:#ffe29a!important;box-shadow:0 0 0 4px rgba(232,200,120,.07),inset 0 0 0 1px rgba(255,255,255,.025)!important}
+.qr-bookmark-head.is-marked span{filter:drop-shadow(0 0 7px rgba(239,207,119,.35))}
+
+.qr-search-hint{margin:9px 0 0;padding:9px 11px;border-radius:13px;border:1px solid rgba(232,200,120,.16);background:rgba(232,200,120,.065);color:rgba(255,249,232,.78);font-size:.78rem;line-height:1.7}
+
+/* Final phone reading-width contract: this stylesheet loads after the base/luxe
+   layers, so parent and text geometry are fixed here once, without changing
+   Quran content or reader behaviour. */
+.qr-reader,.qr-reading-surface,.qr-text{box-sizing:border-box!important;width:100%!important;max-width:none!important}
+.qr-reader{margin:0!important;padding-inline:0!important}
+.qr-reading-surface{margin-inline:0!important;padding-left:2px!important;padding-right:2px!important}
+.qr-text{margin:0!important;padding-inline:0!important;direction:rtl!important;text-align:justify!important;text-align-last:justify!important;text-justify:inter-word!important;white-space:normal!important}
+.qr-text .qr-ayah{display:inline!important;white-space:normal!important}
+
+@media(max-width:390px){.qr-text{font-size:calc(1.43rem * var(--qr-user-font-scale,1))!important}.qr-marks-panel{padding:11px}.qr-marks-head strong{font-size:1.02rem}.qr-mark-open strong{font-size:.92rem}.qr-mark-open small{font-size:.7rem}}

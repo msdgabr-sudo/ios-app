@@ -1,0 +1,70 @@
+<!doctype html>
+<html lang="ar" dir="rtl">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+  <meta name="theme-color" content="#07110d">
+  <title>اختبار WMM2025 المعتمد</title>
+  <style>
+    :root{color-scheme:dark;font-family:"Noto Sans Arabic",system-ui,sans-serif;background:#07110d;color:#f4f1e8}
+    *{box-sizing:border-box}body{margin:0;min-height:100vh;padding:24px 16px;background:radial-gradient(circle at top,#183b2a,#07110d 52%)}
+    main{width:min(720px,100%);margin:auto}.card{padding:20px;margin:14px 0;border:1px solid #52745f;border-radius:18px;background:#0d1b15e8;box-shadow:0 12px 35px #0006}
+    h1{margin:.2rem 0;color:#e6d298;font-size:1.7rem}h2{margin:.2rem 0 1rem;font-size:1.05rem;color:#dce9df}
+    p{line-height:1.8;color:#c5d2c9}.status{font-weight:800;font-size:1.08rem}.pass{color:#77e39a}.fail{color:#ff8d8d}.wait{color:#e6d298}
+    button{width:100%;padding:14px;border:0;border-radius:13px;background:#d7bd70;color:#10150f;font:inherit;font-weight:800;cursor:pointer}
+    button:disabled{opacity:.55;cursor:wait}dl{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin:0}dt{color:#9db1a3}dd{margin:0;text-align:left;font-family:ui-monospace,monospace;color:#fff}
+    small{display:block;margin-top:14px;line-height:1.7;color:#91a298}code{direction:ltr;unicode-bidi:embed}
+  </style>
+</head>
+<body>
+<main>
+  <section class="card">
+    <h1>اختبار WMM2025 المعتمد</h1>
+    <p>هذه الصفحة تقرأ المحرك النهائي نفسه المستخدم في التطبيق. لا تعدّل اتجاه القبلة <code>QT</code>، ولا البوصلة، ولا الكاميرا، ولا التحقق الفلكي.</p>
+    <div id="engine-status" class="status wait">جارٍ فحص المحرك…</div>
+  </section>
+  <section class="card">
+    <h2>اختبار GPS/GNSS الحقيقي</h2>
+    <p>اضغط الزر واسمح بالموقع. لن تُنشر قيمة الانحراف إلا من إحداثيات الجهاز الموثوقة.</p>
+    <button id="gps-test" type="button">ابدأ اختبار الموقع</button>
+    <p id="gps-status" class="status wait">لم يبدأ الاختبار بعد.</p>
+    <dl id="result" hidden>
+      <dt>خط العرض</dt><dd id="lat">—</dd><dt>خط الطول</dt><dd id="lon">—</dd>
+      <dt>دقة GPS</dt><dd id="accuracy">—</dd><dt>الانحراف D</dt><dd id="declination">—</dd>
+      <dt>شدة المجال الأفقي H</dt><dd id="horizontal">—</dd><dt>حالة المجال</dt><dd id="field-status">—</dd>
+      <dt>السنة العشرية</dt><dd id="year">—</dd>
+    </dl>
+    <small>النجاح هنا يثبت عمل WMM2025 مع GPS في المتصفح. اختبار اتجاه الهاتف المصحح يُستكمل من شاشة البوصلة الرئيسية على الهاتف نفسه.</small>
+  </section>
+</main>
+<script src="../js/geomag/wmm2025.js"></script>
+<script src="../js/geomag/wmm2025-runtime.js"></script>
+<script>
+(function(){
+  'use strict';
+  var engineStatus=document.getElementById('engine-status'),button=document.getElementById('gps-test'),gpsStatus=document.getElementById('gps-status');
+  function text(id,value){document.getElementById(id).textContent=value;}
+  function state(el,kind,message){el.className='status '+kind;el.textContent=message;}
+  try{
+    var checks=window.QiblaWMM2025.selfTest(),passed=checks.filter(function(item){return item.pass;}).length;
+    if(passed!==checks.length)throw new Error('self-test '+passed+'/'+checks.length);
+    if(!window.QiblaWMM2025Runtime||typeof window.QiblaWMM2025Runtime.evaluateTrustedFix!=='function')throw new Error('runtime unavailable');
+    state(engineStatus,'pass','نجاح المحرك: '+passed+'/'+checks.length+' اختبارات داخلية — الدرجة والرتبة 12');
+  }catch(error){state(engineStatus,'fail','فشل تحميل المحرك: '+error.message);button.disabled=true;}
+  button.addEventListener('click',function(){
+    if(!navigator.geolocation){state(gpsStatus,'fail','هذا المتصفح لا يدعم تحديد الموقع.');return;}
+    button.disabled=true;state(gpsStatus,'wait','جارٍ انتظار إشارة GPS/GNSS…');
+    navigator.geolocation.getCurrentPosition(function(position){
+      var c=position.coords;
+      var result=window.QiblaWMM2025Runtime.evaluateTrustedFix({trusted:true,source:'gps',latitude:c.latitude,longitude:c.longitude,altitudeMeters:Number.isFinite(c.altitude)?c.altitude:0,date:new Date()});
+      if(!result.publish){state(gpsStatus,'fail','لم تُنشر القيمة: '+result.status+' / '+result.reason);button.disabled=false;return;}
+      text('lat',result.latitude.toFixed(6)+'°');text('lon',result.longitude.toFixed(6)+'°');text('accuracy',Math.round(c.accuracy)+' م');
+      text('declination',(result.declinationDeg>=0?'+':'')+result.declinationDeg.toFixed(6)+'°');text('horizontal',result.horizontalNt.toFixed(2)+' nT');
+      text('field-status',result.status);text('year',result.decimalYear.toFixed(6));document.getElementById('result').hidden=false;
+      state(gpsStatus,result.status==='normal'?'pass':'wait','نجاح: قُبل GPS الموثوق وحُسب WMM2025 دون مصدر IP.');button.disabled=false;
+    },function(error){state(gpsStatus,'fail','تعذر الحصول على GPS: '+error.message);button.disabled=false;},{enableHighAccuracy:true,timeout:30000,maximumAge:0});
+  });
+})();
+</script>
+</body>
+</html>

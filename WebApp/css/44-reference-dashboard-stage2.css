@@ -1,0 +1,29 @@
+/* QiblaAstro — approved reference dashboard, stage 2
+ * © 2026 محمد سيد جبر بحيرى — Mohamed SG Behairy. All Rights Reserved.
+ */
+#page-home .qa2-dashboard{width:min(100%,430px);margin:0 auto;padding:12px 10px 24px;position:relative;z-index:5}
+#page-home .qa2-dashboard button{font:inherit;color:inherit;-webkit-tap-highlight-color:transparent}
+#page-home .qa2-systems{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:0;padding:11px 5px;border:1px solid rgba(91,183,235,.34);border-radius:23px;background:linear-gradient(180deg,rgba(7,26,48,.95),rgba(3,13,27,.96));box-shadow:inset 0 1px 0 rgba(255,255,255,.07),0 18px 40px rgba(0,0,0,.26);overflow:hidden}
+#page-home .qa2-system-card{position:relative;min-width:0;min-height:110px;padding:4px 7px 5px;border:0;border-left:1px solid rgba(116,171,207,.13);background:transparent;display:flex;flex-direction:column;align-items:center;justify-content:flex-start;cursor:pointer}
+#page-home .qa2-system-card:last-child{border-left:0}
+#page-home .qa2-system-icon{width:58px;height:58px;border-radius:50%;display:grid;place-items:center;margin:0 auto 7px;font-size:2rem;color:#efd38b;background:radial-gradient(circle at 34% 28%,rgba(137,216,255,.2),transparent 25%),linear-gradient(145deg,#0d2945,#061425);border:1px solid rgba(121,205,255,.37);box-shadow:inset 0 0 20px rgba(78,165,223,.12),0 7px 18px rgba(0,0,0,.3)}
+#page-home .qa2-system-copy{display:flex;flex-direction:column;align-items:center;min-width:0}
+#page-home .qa2-system-copy strong{color:#e7c878;font-size:.68rem;line-height:1.25;white-space:normal;text-align:center}
+#page-home .qa2-system-copy small{color:rgba(231,239,247,.72);font-size:.48rem;line-height:1.45;text-align:center;margin-top:3px}
+#page-home .qa2-system-card i{position:absolute;right:9px;bottom:42px;width:7px;height:7px;border-radius:50%;background:#5df16d;box-shadow:0 0 10px #5df16d}
+#page-home .qa2-services{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:8px;margin-top:10px}
+#page-home .qa2-service-card{min-width:0;min-height:126px;padding:10px 5px 9px;border:1px solid rgba(103,157,194,.25);border-radius:16px;background:linear-gradient(150deg,rgba(255,255,255,.04),transparent 38%),rgba(4,14,27,.92);box-shadow:inset 0 1px 0 rgba(255,255,255,.05),0 10px 22px rgba(0,0,0,.2);display:flex;flex-direction:column;align-items:center;justify-content:center;cursor:pointer;transition:transform .18s ease,border-color .18s ease}
+#page-home .qa2-service-card:active{transform:scale(.96);border-color:rgba(230,195,108,.55)}
+#page-home .qa2-icon{width:58px;height:58px;display:grid;place-items:center;margin-bottom:6px;font-size:2.15rem;line-height:1;color:#e9c879;text-shadow:0 0 14px rgba(230,195,108,.25)}
+#page-home .qa2-service-card strong{font-size:.72rem;color:#e5c477;line-height:1.25;text-align:center}
+#page-home .qa2-service-card small{font-size:.49rem;color:rgba(227,235,243,.67);line-height:1.35;text-align:center;margin-top:4px}
+#page-home .qa2-service-card.verify .qa2-icon{border:1px solid rgba(230,195,108,.5);border-radius:50%;background:radial-gradient(circle,rgba(230,195,108,.11),transparent 68%)}
+#page-home .qa2-status{display:grid;grid-template-columns:1fr .86fr 1.2fr;gap:0;margin-top:10px;border:1px solid rgba(99,153,190,.2);border-radius:18px;background:rgba(3,12,24,.94);overflow:hidden;box-shadow:inset 0 1px 0 rgba(255,255,255,.04)}
+#page-home .qa2-status>div{min-width:0;min-height:66px;padding:10px 8px;display:flex;align-items:center;gap:8px;border-left:1px solid rgba(111,166,201,.12)}
+#page-home .qa2-status>div:last-child{border-left:0}
+#page-home .qa2-status-icon{font-size:1.55rem;color:#c9d4e1;flex:0 0 auto}.qa2-status-icon.gold{color:#e5c06e!important}.qa2-status-icon.ok{width:33px;height:33px;border:1px solid #8dd86e;border-radius:11px;display:grid;place-items:center;color:#8fe977!important;font-size:1rem!important}
+#page-home .qa2-status span span{display:flex;flex-direction:column;min-width:0}
+#page-home .qa2-status small{display:block;color:#d9b96f;font-size:.48rem;white-space:nowrap}
+#page-home .qa2-status strong{display:block;color:#dce4ec;font-size:.52rem;line-height:1.35;margin-top:3px;font-weight:500}
+#page-home .qa2-status>div:last-child strong{color:#79d36f}
+@media(max-width:380px){#page-home .qa2-systems{grid-template-columns:repeat(2,minmax(0,1fr));gap:8px}#page-home .qa2-system-card{border:1px solid rgba(111,166,201,.12)!important;border-radius:14px;min-height:100px}#page-home .qa2-services{grid-template-columns:repeat(3,minmax(0,1fr))}#page-home .qa2-service-card{min-height:112px}#page-home .qa2-status{grid-template-columns:1fr}#page-home .qa2-status>div{border-left:0;border-bottom:1px solid rgba(111,166,201,.12)}#page-home .qa2-status>div:last-child{border-bottom:0}}

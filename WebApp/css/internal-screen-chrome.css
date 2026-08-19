@@ -1,0 +1,161 @@
+/* QiblaAstro — internal fullscreen navigation shell
+ * Presentation only. Legacy top/bottom chrome stays in DOM but is hidden on internal screens.
+ * © 2026 محمد سيد جبر بحيرى — Mohamed SG Behairy. All Rights Reserved. */
+body.qa-internal-chromeless .topbar,
+body.qa-internal-chromeless .nav,
+body.qa-internal-chromeless .bottom-nav,
+body.qa-internal-chromeless .ad-slot{
+  display:none!important;
+}
+
+#qa-internal-home-button{
+  position:fixed!important;
+  top:calc(env(safe-area-inset-top,0px) + 12px)!important;
+  right:max(14px,calc((100vw - 420px)/2 + 14px))!important;
+  left:auto!important;
+  z-index:1000!important;
+  width:48px!important;
+  height:48px!important;
+  min-width:48px!important;
+  min-height:48px!important;
+  padding:0!important;
+  margin:0!important;
+  border-radius:15px!important;
+  border:1px solid rgba(216,174,76,.82)!important;
+  background:linear-gradient(145deg,rgba(31,25,13,.94),rgba(8,14,23,.96))!important;
+  color:#D8AE4C!important;
+  box-shadow:0 7px 18px rgba(0,0,0,.26),inset 0 1px 0 rgba(255,226,150,.15)!important;
+  display:grid!important;
+  place-items:center!important;
+  cursor:pointer!important;
+  -webkit-tap-highlight-color:transparent;
+}
+#qa-internal-home-button:active{transform:translateY(2px) scale(.98);filter:brightness(1.08)}
+#qa-internal-home-button[hidden]{display:none!important}
+
+body.qa-internal-chromeless .page.active{
+  min-height:100dvh!important;
+  padding-bottom:max(12px,env(safe-area-inset-bottom,0px))!important;
+  box-sizing:border-box!important;
+}
+body.qa-internal-chromeless .page.active>main,
+body.qa-internal-chromeless .page.active main{
+  margin-bottom:0!important;
+}
+
+/* Every light/sky presentation owns its full viewport surface. This prevents the
+   application body's dark background from appearing below short screen content. */
+body[data-qa-active-page="prayer"],
+body[data-qa-active-internal-screen="prayer"]{
+  background:#f7f4ee!important;
+}
+body[data-qa-active-page="prayer"] #page-prayer.active,
+body[data-qa-active-internal-screen="prayer"] #page-prayer.active{
+  min-height:100dvh!important;
+  background:linear-gradient(180deg,#f2eee6 0,#faf8f3 270px,#f7f4ee 100%)!important;
+}
+
+body[data-qa-active-page="night"],
+body[data-qa-active-internal-screen="night"]{
+  background:#a9daf1!important;
+}
+body[data-qa-active-page="night"] #page-night.active,
+body[data-qa-active-internal-screen="night"] #page-night.active{
+  min-height:100dvh!important;
+  background:#a9daf1!important;
+}
+
+/* Serenity is deliberately a one-screen composition. The generic internal-page
+   bottom padding previously made 100dvh + padding and created needless page scroll.
+   Keep the page itself fixed to the viewport; selection sheets retain their own
+   internal scrolling. */
+body[data-qa-active-page="serenity"],
+body[data-qa-active-internal-screen="serenity"]{
+  height:100dvh!important;
+  min-height:100dvh!important;
+  max-height:100dvh!important;
+  overflow:hidden!important;
+  overscroll-behavior:none!important;
+  background:#fbf5ea!important;
+}
+body[data-qa-active-page="serenity"] #page-serenity.active,
+body[data-qa-active-internal-screen="serenity"] #page-serenity.active{
+  width:100%!important;
+  height:100dvh!important;
+  min-height:100dvh!important;
+  max-height:100dvh!important;
+  padding:0!important;
+  margin:0!important;
+  overflow:hidden!important;
+  overscroll-behavior:none!important;
+  background:radial-gradient(circle at 15% 0%,rgba(199,163,96,.12),transparent 25%),radial-gradient(circle at 85% 8%,rgba(104,159,174,.08),transparent 24%),linear-gradient(180deg,#fbf5ea 0%,#fffaf2 62%,#f3ead9 100%)!important;
+}
+
+/* Screen-aware surfaces: same geometry, native visual language. */
+body[data-qa-active-internal-screen="prayer"] #qa-internal-home-button,
+body[data-qa-active-internal-screen="azkar"] #qa-internal-home-button{
+  background:rgba(255,252,244,.94)!important;
+  color:#9A7624!important;
+  border-color:rgba(154,118,36,.55)!important;
+}
+body[data-qa-active-internal-screen="quran"] #qa-internal-home-button{
+  background:rgba(20,48,25,.94)!important;
+  color:#E4C66C!important;
+  border-color:rgba(228,198,108,.55)!important;
+}
+
+/* Falaki uses the same semantic Home icon as the other application screens.
+   Keep the compact sky-native surface and position, but never replace Home by a
+   back arrow because the action returns directly to the application Home screen. */
+body[data-qa-active-internal-screen="night"] #qa-internal-home-button{
+  top:calc(env(safe-area-inset-top,0px) + 14px)!important;
+  left:max(12px,calc((100vw - 760px)/2 + 12px))!important;
+  right:auto!important;
+  width:38px!important;
+  height:38px!important;
+  min-width:38px!important;
+  min-height:38px!important;
+  border-radius:50%!important;
+  background:rgba(238,249,255,.86)!important;
+  color:#315f7d!important;
+  border:1px solid rgba(49,95,125,.22)!important;
+  box-shadow:0 6px 18px rgba(24,60,90,.14)!important;
+  backdrop-filter:blur(10px)!important;
+  -webkit-backdrop-filter:blur(10px)!important;
+}
+body[data-qa-active-internal-screen="night"] #qa-internal-home-button svg{
+  display:block!important;
+  width:21px!important;
+  height:21px!important;
+}
+body[data-qa-active-internal-screen="night"] #qa-internal-home-button::before{
+  content:none!important;
+  display:none!important;
+}
+body[data-qa-active-internal-screen="night"] #qa-internal-home-button:active{
+  transform:scale(.94)!important;
+  filter:none!important;
+}
+
+/* Serenity owns no second Home control: restyle the single shared button to the screen language. */
+body[data-qa-active-internal-screen="serenity"] #qa-internal-home-button{
+  width:48px!important;
+  height:48px!important;
+  min-width:48px!important;
+  min-height:48px!important;
+  border-radius:17px!important;
+  background:linear-gradient(145deg,rgba(255,253,248,.98),rgba(247,234,209,.98))!important;
+  color:#315f49!important;
+  border:1px solid rgba(191,145,64,.58)!important;
+  box-shadow:0 8px 20px rgba(96,72,34,.12),inset 0 1px 0 rgba(255,255,255,.9)!important;
+}
+body[data-qa-active-internal-screen="serenity"] #qa-internal-home-button svg{
+  width:22px!important;
+  height:22px!important;
+  filter:drop-shadow(0 1px 0 rgba(255,255,255,.65));
+}
+body[data-qa-active-internal-screen="serenity"] #qa-internal-home-button:active{
+  transform:translateY(1px) scale(.97)!important;
+  background:linear-gradient(145deg,#f7ead1,#fffdf8)!important;
+  filter:none!important;
+}

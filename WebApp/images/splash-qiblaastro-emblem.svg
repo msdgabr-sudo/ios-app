@@ -1,0 +1,50 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 640 640" role="img" aria-label="QiblaAstro 3D emblem">
+<defs>
+ <radialGradient id="core" cx="38%" cy="27%" r="78%"><stop stop-color="#27262a"/><stop offset=".42" stop-color="#0d0d12"/><stop offset="1" stop-color="#010207"/></radialGradient>
+ <linearGradient id="gold" x1=".12" y1=".04" x2=".9" y2=".96"><stop stop-color="#fff5bc"/><stop offset=".12" stop-color="#f9d66f"/><stop offset=".31" stop-color="#9b570c"/><stop offset=".47" stop-color="#f5bd42"/><stop offset=".62" stop-color="#6e3906"/><stop offset=".79" stop-color="#d99520"/><stop offset="1" stop-color="#ffe28a"/></linearGradient>
+ <linearGradient id="edge" x1="0" y1="0" x2="0" y2="1"><stop stop-color="#6d3907"/><stop offset=".48" stop-color="#281303"/><stop offset="1" stop-color="#080402"/></linearGradient>
+ <linearGradient id="band" x1="0" y1="0" x2="1" y2="1"><stop stop-color="#fff0a1"/><stop offset=".2" stop-color="#c57c15"/><stop offset=".46" stop-color="#fff09a"/><stop offset=".7" stop-color="#8b4a08"/><stop offset="1" stop-color="#e9ae35"/></linearGradient>
+ <linearGradient id="kaabaTop" x1="0" y1="0" x2="1" y2="1"><stop stop-color="#39373a"/><stop offset=".55" stop-color="#111116"/><stop offset="1" stop-color="#030306"/></linearGradient>
+ <linearGradient id="kaabaLeft" x1="0" x2="1"><stop stop-color="#17171b"/><stop offset="1" stop-color="#050507"/></linearGradient>
+ <linearGradient id="kaabaRight" x1="0" x2="1"><stop stop-color="#08080b"/><stop offset="1" stop-color="#010102"/></linearGradient>
+ <filter id="drop" x="-50%" y="-50%" width="200%" height="220%"><feGaussianBlur in="SourceAlpha" stdDeviation="12" result="b"/><feOffset dx="2" dy="18" result="o"/><feColorMatrix in="o" values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 .82 0"/><feMerge><feMergeNode/><feMergeNode in="SourceGraphic"/></feMerge></filter>
+ <filter id="softGlow" x="-80%" y="-80%" width="260%" height="260%"><feGaussianBlur stdDeviation="5" result="b"/><feMerge><feMergeNode in="b"/><feMergeNode in="SourceGraphic"/></feMerge></filter>
+</defs>
+<ellipse cx="315" cy="566" rx="202" ry="29" fill="#000" opacity=".55"/>
+<g filter="url(#drop)">
+ <!-- deep extruded rim -->
+ <circle cx="305" cy="311" r="226" fill="url(#edge)" stroke="#140a02" stroke-width="9"/>
+ <circle cx="305" cy="294" r="226" fill="url(#core)" stroke="url(#gold)" stroke-width="31"/>
+ <circle cx="305" cy="294" r="207" fill="none" stroke="#fff0a1" stroke-width="2.4" opacity=".58"/>
+ <circle cx="305" cy="294" r="188" fill="none" stroke="#4b2808" stroke-width="8"/>
+ <circle cx="305" cy="294" r="164" fill="none" stroke="#bd7b1d" stroke-width="3" opacity=".66"/>
+ <circle cx="305" cy="294" r="129" fill="none" stroke="#875514" stroke-width="2" opacity=".62"/>
+ <g stroke="#a66d1b" opacity=".4" stroke-width="1.8"><path d="M305 132v324M143 294h324M190 179l230 230M190 409l230-230"/><circle cx="305" cy="294" r="94" fill="none"/></g>
+ <g fill="url(#gold)" stroke="#5d3307" stroke-width="2.5"><circle cx="305" cy="134" r="14"/><circle cx="145" cy="294" r="14"/><circle cx="465" cy="294" r="14"/><path d="M305 99l10 24-10-6-10 6z"/></g>
+ <!-- raised central bezel -->
+ <circle cx="305" cy="303" r="99" fill="#160b02" opacity=".92"/>
+ <circle cx="305" cy="294" r="96" fill="#050609" stroke="url(#gold)" stroke-width="10"/>
+ <circle cx="305" cy="294" r="86" fill="none" stroke="#fff1a2" stroke-width="1.8" opacity=".45"/>
+ <!-- 3D Kaaba -->
+ <g transform="translate(239 226)">
+  <polygon points="4,37 69,4 132,31 65,64" fill="url(#kaabaTop)" stroke="#e0ac48" stroke-width="3"/>
+  <polygon points="4,37 65,64 65,137 4,110" fill="url(#kaabaLeft)" stroke="#b27619" stroke-width="3"/>
+  <polygon points="65,64 132,31 132,105 65,137" fill="url(#kaabaRight)" stroke="#80500e" stroke-width="3"/>
+  <path d="M6 58l59 25 64-31v21L65 104 6 78z" fill="url(#band)"/>
+  <path d="M10 60l55 22 60-28" fill="none" stroke="#fff0a0" stroke-width="2" opacity=".7"/>
+  <rect x="18" y="80" width="23" height="41" rx="2" fill="#b87518" stroke="#f8d36d" stroke-width="2"/>
+  <path d="M67 68v64" stroke="#fff" stroke-width="1.2" opacity=".14"/>
+  <g fill="#e8bd55"><circle cx="14" cy="68" r="2"/><circle cx="29" cy="74" r="2"/><circle cx="84" cy="69" r="2"/><circle cx="102" cy="60" r="2"/><circle cx="117" cy="53" r="2"/></g>
+ </g>
+ <!-- orbital Q: shadow/extrusion then polished face -->
+ <path d="M112 450C47 401 61 305 125 226c82-101 222-153 354-127 87 17 130 66 120 118-16 86-157 143-272 199-92 44-121 79-80 109 46 34 156 27 258 6 57-12 96-8 135 9-107 47-240 81-345 70-80-8-136-38-139-82-5-63 94-115 208-169 123-59 223-106 236-163 7-29-20-52-68-61-109-21-239 25-320 106-60 60-87 133-51 181 19 24 50 37 87 40z" fill="none" stroke="#351902" stroke-width="24" stroke-linecap="round" stroke-linejoin="round" transform="translate(0 10)" opacity=".92"/>
+ <path d="M112 450C47 401 61 305 125 226c82-101 222-153 354-127 87 17 130 66 120 118-16 86-157 143-272 199-92 44-121 79-80 109 46 34 156 27 258 6 57-12 96-8 135 9-107 47-240 81-345 70-80-8-136-38-139-82-5-63 94-115 208-169 123-59 223-106 236-163 7-29-20-52-68-61-109-21-239 25-320 106-60 60-87 133-51 181 19 24 50 37 87 40z" fill="none" stroke="url(#gold)" stroke-width="18" stroke-linecap="round" stroke-linejoin="round"/>
+ <path d="M128 438C71 393 83 319 136 247" fill="none" stroke="#fff2ad" stroke-width="3" stroke-linecap="round" opacity=".65"/>
+ <path d="M500 529c54-14 96-17 140 11-31 14-69 25-106 35z" fill="#351902" transform="translate(0 9)"/>
+ <path d="M500 529c54-14 96-17 140 11-31 14-69 25-106 35z" fill="url(#gold)"/>
+ <!-- metallic highlights -->
+ <path d="M176 133c69-57 166-76 253-48" fill="none" stroke="#fff5bd" stroke-width="5" stroke-linecap="round" opacity=".55"/>
+ <path d="M165 459c42 48 99 68 158 69" fill="none" stroke="#6d3705" stroke-width="5" opacity=".7"/>
+</g>
+<circle cx="305" cy="294" r="244" fill="none" stroke="#ffd86a" stroke-width="1.4" opacity=".32" filter="url(#softGlow)"/>
+</svg>

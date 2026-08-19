@@ -1,0 +1,126 @@
+/*
+ * QiblaAstro — Astronomical Compass Dashboard final composition
+ * Presentation only. Existing handlers and calculation engines are untouched.
+ * © 2026 محمد سيد جبر بحيرى — Mohamed SG Behairy. All Rights Reserved.
+ */
+#page-compass.qa-astro-dashboard-active{
+  --qa-panel:#071321;--qa-panel-2:#091827;--qa-line:rgba(119,165,205,.26);
+  --qa-blue:#78BFF2;--qa-cyan:#5AC8FA;--qa-green:#63C779;--qa-text:#E4E9EF;--qa-muted:#91A8BA;
+  padding-bottom:0!important;background:radial-gradient(circle at 50% 18%,rgba(16,63,108,.18),transparent 42%),#020811;
+  scrollbar-width:none;overflow:hidden!important;overscroll-behavior:none;box-sizing:border-box;
+}
+#page-compass.qa-astro-dashboard-active::-webkit-scrollbar{display:none}
+body.qa-astro-fullscreen-mode .nav,body.qa-astro-fullscreen-mode .ad-slot{display:none!important;visibility:hidden!important;pointer-events:none!important}
+body.qa-astro-fullscreen-mode{padding-bottom:0!important;overflow:hidden!important;overscroll-behavior:none}
+#page-compass.qa-astro-dashboard-active>.qa-astro-compass-canvas{
+  width:min(99vw,58vh,520px)!important;max-width:none!important;height:auto!important;margin:-10px auto -12px!important;
+  filter:drop-shadow(0 9px 20px rgba(0,0,0,.30));flex:0 0 auto!important;
+}
+#page-compass.qa-astro-dashboard-active .qa-compass-legacy-grid{display:none!important}
+#page-compass.qa-astro-dashboard-active .qa-obsolete-control-row,#page-compass.qa-astro-dashboard-active [aria-hidden="true"].qa-obsolete-control-row{display:none!important;height:0!important;margin:0!important;padding:0!important;overflow:hidden!important}
+#page-compass.qa-astro-dashboard-active .qa-compass-status{display:none!important}
+.qa-astro-metrics-row{display:none}
+#page-compass.qa-astro-dashboard-active .qa-astro-metrics-row{display:grid!important;grid-template-columns:repeat(3,minmax(0,1fr));direction:rtl;gap:6px;padding:0 10px 4px;flex:0 0 auto}
+#page-compass.qa-astro-dashboard-active .qa-astro-metric-card{
+  min-width:0;min-height:98px;padding:5px 4px!important;border-radius:16px!important;border:1px solid var(--qa-line)!important;
+  background:linear-gradient(155deg,rgba(11,29,46,.97),rgba(4,13,24,.98))!important;box-shadow:inset 0 1px 0 rgba(255,255,255,.025),0 6px 16px rgba(0,0,0,.17)!important;
+  display:flex!important;flex-direction:column!important;align-items:center!important;justify-content:flex-start!important;text-align:center!important;gap:3px!important;overflow:hidden
+}
+#page-compass.qa-astro-dashboard-active .qa-astro-metric-card>div:first-child{order:2;width:100%;display:flex;flex-direction:column;align-items:center;min-width:0}
+#page-compass.qa-astro-dashboard-active .qa-astro-metric-card>div:last-child{order:1!important;font-size:0!important;height:32px;display:flex;align-items:center;justify-content:center}
+#page-compass.qa-astro-dashboard-active .qa-astro-metric-card>div:last-child img{width:31px!important;height:31px!important;object-fit:contain!important}
+#page-compass.qa-astro-dashboard-active .qa-astro-metric-card div[id$="label"],#page-compass.qa-astro-dashboard-active .qa-astro-metric-card>div:first-child>div:first-child{font-size:.63rem!important;font-weight:700!important;color:var(--qa-text)!important;margin:0 0 1px!important;white-space:nowrap}
+#page-compass.qa-astro-dashboard-active #astro-body-hint,#page-compass.qa-astro-dashboard-active #astro-qibla-value,#page-compass.qa-astro-dashboard-active #astro-deviation-value{font-family:'JetBrains Mono',monospace!important;font-size:1.14rem!important;font-weight:700!important;line-height:1.08!important;color:var(--qa-blue)!important;margin:0!important}
+#page-compass.qa-astro-dashboard-active #astro-body-hint{font-family:inherit!important;font-size:.68rem!important;color:var(--qa-green)!important;white-space:normal!important}
+#page-compass.qa-astro-dashboard-active #astro-body-value{color:var(--qa-blue)!important}
+#page-compass.qa-astro-dashboard-active #astro-qibla-hint,#page-compass.qa-astro-dashboard-active #astro-deviation-hint{font-size:.53rem!important;color:var(--qa-cyan)!important;margin-top:1px!important;line-height:1.15!important;white-space:normal}
+#page-compass.qa-astro-dashboard-active .qa-astro-qibla-card{border-color:rgba(125,183,229,.30)!important}
+#page-compass.qa-astro-dashboard-active .qa-astro-deviation-card{border-color:rgba(99,199,121,.25)!important}
+
+#page-compass.qa-astro-dashboard-active .qa-astro-confidence{
+  margin:0 10px 4px;padding:6px 9px;border:1px solid var(--qa-line);border-radius:15px;background:linear-gradient(145deg,rgba(9,27,43,.97),rgba(4,14,25,.99));
+  display:grid;grid-template-columns:1.25fr .75fr;gap:9px;align-items:center;direction:rtl;box-shadow:inset 0 1px 0 rgba(255,255,255,.02),0 5px 14px rgba(0,0,0,.14);flex:0 0 auto
+}
+#page-compass.qa-astro-dashboard-active .qa-confidence-main{display:grid;grid-template-columns:auto 1fr;gap:7px;align-items:center;min-width:0}
+#page-compass.qa-astro-dashboard-active .qa-confidence-icon{width:31px;height:31px;border-radius:50%;display:grid;place-items:center;border:1px solid rgba(90,200,250,.26);color:var(--qa-blue);background:rgba(90,200,250,.06);font-size:1rem}
+#page-compass.qa-astro-dashboard-active .qa-confidence-main b{display:block;color:var(--qa-text);font-size:.65rem;margin-bottom:1px}
+#page-compass.qa-astro-dashboard-active .qa-confidence-main strong{display:block;color:var(--qa-blue);font-size:.69rem;font-weight:700}
+#page-compass.qa-astro-dashboard-active .qa-confidence-main small{display:block;color:var(--qa-muted);font-size:.49rem;margin-top:1px;white-space:nowrap}
+#page-compass.qa-astro-dashboard-active .qa-confidence-score{text-align:center;min-width:0}
+#page-compass.qa-astro-dashboard-active .qa-confidence-score>span{display:block;color:var(--qa-muted);font-size:.47rem}
+#page-compass.qa-astro-dashboard-active .qa-confidence-score>strong{display:inline-block;color:var(--qa-blue);font-family:'JetBrains Mono',monospace;font-size:1rem;line-height:1.08;margin-inline-end:4px}
+#page-compass.qa-astro-dashboard-active .qa-confidence-score>b{color:var(--qa-muted);font-size:.52rem}
+#page-compass.qa-astro-dashboard-active .qa-confidence-track{height:3px;background:rgba(126,164,192,.18);border-radius:4px;overflow:hidden;margin-top:3px}
+#page-compass.qa-astro-dashboard-active .qa-confidence-track i{display:block;height:100%;width:0;background:var(--qa-blue);border-radius:4px;transition:width .35s ease,background .35s ease}
+#page-compass.qa-astro-dashboard-active .qa-astro-confidence[data-state="excellent"] .qa-confidence-track i,#page-compass.qa-astro-dashboard-active .qa-astro-confidence[data-state="excellent"] .qa-confidence-score>b{background:var(--qa-green);color:var(--qa-green)}
+#page-compass.qa-astro-dashboard-active .qa-astro-confidence[data-state="good"] .qa-confidence-track i{background:#7DB9D8}
+#page-compass.qa-astro-dashboard-active .qa-astro-confidence[data-state="fair"] .qa-confidence-track i{background:#C9A85D}
+#page-compass.qa-astro-dashboard-active .qa-astro-confidence[data-state="stale"] .qa-confidence-track i{background:#C76868}
+
+#page-compass.qa-astro-dashboard-active .qa-deviation-calculator{
+  margin:0 10px 2px!important;padding:6px 8px!important;border-radius:16px!important;border:1px solid var(--qa-line)!important;background:linear-gradient(155deg,rgba(8,24,39,.98),rgba(4,13,23,.99))!important;direction:rtl!important;
+  display:grid!important;grid-template-columns:minmax(0,1.28fr) minmax(110px,.72fr)!important;grid-template-areas:'title title' 'stats radar' 'hint radar' 'slider radar' 'result result'!important;column-gap:8px!important;row-gap:2px!important;flex:0 0 auto
+}
+#page-compass.qa-astro-dashboard-active .qa-calc-title{grid-area:title!important;color:var(--qa-text)!important;font-size:.70rem!important;font-weight:700!important;letter-spacing:0!important;margin:0!important;text-align:center!important}
+#page-compass.qa-astro-dashboard-active .qa-calc-stats{grid-area:stats!important;margin:0!important;gap:5px!important;display:flex!important}
+#page-compass.qa-astro-dashboard-active .qa-calc-stats>div{padding:4px!important;border-radius:9px!important;background:rgba(2,9,17,.58)!important;border:1px solid rgba(118,163,201,.13)!important}
+#page-compass.qa-astro-dashboard-active .qa-calc-stats>div>div:first-child{color:var(--qa-muted)!important;font-size:.47rem!important;margin-bottom:1px!important}
+#page-compass.qa-astro-dashboard-active #dev-deg,#page-compass.qa-astro-dashboard-active #dev-km{font-size:1.04rem!important;color:var(--qa-blue)!important;font-weight:700!important}
+#page-compass.qa-astro-dashboard-active .qa-calc-hint{grid-area:hint!important;color:var(--qa-muted)!important;font-size:.47rem!important;margin:0!important;text-align:center!important}
+#page-compass.qa-astro-dashboard-active .qa-calc-slider{grid-area:slider!important;margin:0!important;gap:3px!important}
+#page-compass.qa-astro-dashboard-active .qa-calc-slider span{font-size:.52rem!important;color:var(--qa-muted)!important}
+#page-compass.qa-astro-dashboard-active #dev-slider{accent-color:#62A9D8!important;height:3px!important}
+#page-compass.qa-astro-dashboard-active .qa-calc-radar{grid-area:radar!important;width:108px!important;height:104px!important;justify-self:center!important;align-self:center!important;margin:-6px 0!important;border-radius:11px!important;background:rgba(1,8,15,.35);object-fit:contain!important}
+#page-compass.qa-astro-dashboard-active .qa-calc-result{grid-area:result!important;font-size:.56rem!important;color:var(--qa-cyan)!important;margin:0!important;text-align:center!important}
+
+.qa-compass-menu-button{position:fixed;right:12px;left:auto;top:calc(env(safe-area-inset-top,0px) + 68px);z-index:320;width:42px;height:42px;border-radius:13px;border:1px solid rgba(120,191,242,.35);background:linear-gradient(145deg,rgba(11,31,49,.96),rgba(4,13,23,.98));box-shadow:0 8px 22px rgba(0,0,0,.30),inset 0 1px 0 rgba(255,255,255,.04);display:flex;flex-direction:column;align-items:center;justify-content:center;gap:4px;padding:0}
+.qa-compass-menu-button[hidden]{display:none!important}
+.qa-compass-menu-button span{display:block;width:19px;height:2px;border-radius:2px;background:#DCE8F2;box-shadow:0 0 6px rgba(120,191,242,.28)}
+.qa-compass-drawer{position:fixed;inset:0;z-index:330;pointer-events:none;visibility:hidden}
+.qa-compass-drawer.open{pointer-events:auto;visibility:visible}
+.qa-drawer-backdrop{position:absolute;inset:0;background:rgba(0,4,10,.62);backdrop-filter:blur(3px);opacity:0;transition:opacity .22s ease}
+.qa-compass-drawer.open .qa-drawer-backdrop{opacity:1}
+.qa-drawer-panel{position:absolute;top:0;right:0;left:auto;width:min(78vw,300px);height:100%;padding:calc(env(safe-area-inset-top,0px) + 18px) 14px calc(env(safe-area-inset-bottom,0px) + 16px);background:linear-gradient(180deg,#081727 0%,#03101c 100%);border-left:1px solid rgba(120,191,242,.25);border-right:0;box-shadow:-14px 0 34px rgba(0,0,0,.42);transform:translateX(102%);transition:transform .24s ease;display:flex;flex-direction:column;direction:rtl}
+.qa-compass-drawer.open .qa-drawer-panel{transform:translateX(0)}
+.qa-drawer-head{display:flex;align-items:center;justify-content:space-between;padding:5px 2px 13px;border-bottom:1px solid rgba(120,191,242,.14)}
+.qa-drawer-head>div{text-align:right}.qa-drawer-head b{display:block;color:#E4E9EF;font-size:1rem}.qa-drawer-head small{display:block;color:#78BFF2;font-size:.58rem;margin-top:1px}
+.qa-drawer-head>button{width:34px;height:34px;border-radius:50%;border:1px solid rgba(120,191,242,.22);background:rgba(120,191,242,.06);color:#DCE8F2;font-size:1.35rem;line-height:1}
+.qa-drawer-panel nav{display:grid;gap:5px;margin-top:12px}
+.qa-drawer-panel nav button{border:1px solid transparent;background:transparent;color:#B8C8D5;border-radius:12px;padding:10px 11px;display:flex;align-items:center;gap:10px;font-family:inherit;font-size:.80rem;text-align:right}
+.qa-drawer-panel nav button.current{color:#78BFF2;background:rgba(120,191,242,.08);border-color:rgba(120,191,242,.18)}
+.qa-drawer-panel nav button:active{transform:scale(.985);background:rgba(120,191,242,.10)}
+.qa-drawer-foot{margin-top:auto;padding-top:12px;border-top:1px solid rgba(120,191,242,.10);font-size:.48rem;color:#698398;text-align:center;direction:ltr}
+
+@media (max-height:820px){
+ #page-compass.qa-astro-dashboard-active>.qa-astro-compass-canvas{width:min(99vw,52vh,460px)!important}
+ #page-compass.qa-astro-dashboard-active .qa-astro-metric-card{min-height:88px;padding-top:4px!important;padding-bottom:4px!important}
+ #page-compass.qa-astro-dashboard-active .qa-astro-metric-card>div:last-child{height:27px}
+ #page-compass.qa-astro-dashboard-active .qa-astro-metric-card>div:last-child img{width:27px!important;height:27px!important}
+ #page-compass.qa-astro-dashboard-active #astro-qibla-value,#page-compass.qa-astro-dashboard-active #astro-deviation-value{font-size:.98rem!important}
+ #page-compass.qa-astro-dashboard-active .qa-astro-confidence{padding-top:5px;padding-bottom:5px}
+ #page-compass.qa-astro-dashboard-active .qa-deviation-calculator{padding-top:4px!important;padding-bottom:4px!important;grid-template-columns:minmax(0,1.30fr) minmax(96px,.70fr)!important}
+ #page-compass.qa-astro-dashboard-active .qa-calc-radar{width:94px!important;height:88px!important;margin:-5px 0!important}
+}
+@media (max-height:700px){
+ #page-compass.qa-astro-dashboard-active>.qa-astro-compass-canvas{width:min(98vw,46vh,400px)!important}
+ #page-compass.qa-astro-dashboard-active .qa-astro-metric-card{min-height:80px}
+ #page-compass.qa-astro-dashboard-active .qa-confidence-main small{display:none}
+ #page-compass.qa-astro-dashboard-active .qa-deviation-calculator{grid-template-columns:minmax(0,1.34fr) minmax(84px,.66fr)!important}
+ #page-compass.qa-astro-dashboard-active .qa-calc-radar{width:82px!important;height:76px!important;margin:-4px 0!important}
+ .qa-compass-menu-button{top:calc(env(safe-area-inset-top,0px) + 58px);width:38px;height:38px}
+}
+@media (max-height:610px){
+ #page-compass.qa-astro-dashboard-active>.qa-astro-compass-canvas{width:min(94vw,40vh,350px)!important}
+ #page-compass.qa-astro-dashboard-active .qa-astro-metric-card{min-height:74px}
+ #page-compass.qa-astro-dashboard-active .qa-deviation-calculator{grid-template-columns:minmax(0,1.38fr) minmax(74px,.62fr)!important}
+ #page-compass.qa-astro-dashboard-active .qa-calc-radar{width:72px!important;height:66px!important;margin:-3px 0!important}
+ #page-compass.qa-astro-dashboard-active .qa-confidence-icon{width:27px;height:27px}
+}
+@media (max-width:360px){
+ #page-compass.qa-astro-dashboard-active .qa-astro-metrics-row{gap:4px;padding-left:7px;padding-right:7px}
+ #page-compass.qa-astro-dashboard-active .qa-astro-metric-card{border-radius:13px!important;padding-left:3px!important;padding-right:3px!important}
+ #page-compass.qa-astro-dashboard-active .qa-astro-metric-card>div:first-child>div:first-child{font-size:.57rem!important}
+ #page-compass.qa-astro-dashboard-active #astro-qibla-hint,#page-compass.qa-astro-dashboard-active #astro-deviation-hint{font-size:.49rem!important}
+ #page-compass.qa-astro-dashboard-active .qa-astro-confidence{grid-template-columns:1.15fr .85fr;padding-left:7px;padding-right:7px}
+ .qa-drawer-panel{width:min(84vw,285px)}
+}

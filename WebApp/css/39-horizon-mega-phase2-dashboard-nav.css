@@ -1,0 +1,303 @@
+/*
+ * QiblaAstro — Horizon Mega Phase 2
+ * Dense service dashboard, stronger icon stages, system telemetry and premium navigation.
+ * Presentation only: engines, values, stores, IDs and handlers remain unchanged.
+ *
+ * © 2026 محمد سيد جبر بحيرى — Mohamed SG Behairy. All Rights Reserved.
+ */
+
+/* ─────────────────────────────────────────────────────────────────────────────
+   SERVICE MATRIX — closer to the approved reference density
+───────────────────────────────────────────────────────────────────────────── */
+#page-home .qa-dashboard-grid{
+  grid-template-columns:repeat(4,minmax(0,1fr))!important;
+  gap:8px!important;
+  padding:0 1px!important;
+  margin:10px 0 13px!important;
+}
+
+#page-home .qa-dashboard-grid > .hm-card,
+#page-home .qa-dashboard-grid > .hm-card:last-child:nth-child(odd){
+  width:100%!important;
+  min-height:0!important;
+  aspect-ratio:.82/1!important;
+  margin:0!important;
+  padding:9px 4px 8px!important;
+  border-radius:18px!important;
+  display:flex!important;
+  flex-direction:column!important;
+  align-items:center!important;
+  justify-content:center!important;
+  gap:6px!important;
+  grid-column:auto!important;
+  text-align:center!important;
+  overflow:hidden!important;
+}
+
+#page-home .qa-dashboard-grid > .hm-card::before{
+  background:
+    linear-gradient(155deg,rgba(255,255,255,.065),transparent 31%),
+    radial-gradient(circle at 50% 6%,rgba(var(--qa-card-accent),.15),transparent 38%)!important;
+}
+
+#page-home .qa-dashboard-grid > .hm-card::after{
+  right:22%!important;
+  left:22%!important;
+  bottom:0!important;
+  width:auto!important;
+  height:1px!important;
+  opacity:.88!important;
+}
+
+#page-home .qa-dashboard-grid > .hm-card .hm-icon-wrap,
+#page-home .qa-dashboard-grid > .hm-card:last-child:nth-child(odd) .hm-icon-wrap{
+  width:48px!important;
+  height:48px!important;
+  flex:0 0 48px!important;
+  margin:0 auto 1px!important;
+  border-radius:15px!important;
+}
+
+#page-home .qa-dashboard-grid > .hm-card .hm-icon-wrap::after{
+  inset:-4px!important;
+  border-radius:17px!important;
+}
+
+#page-home .qa-dashboard-grid > .hm-card .hm-icon-plain{
+  width:34px!important;
+  height:34px!important;
+}
+
+#page-home .qa-dashboard-grid > .hm-card .hm-t,
+#page-home .qa-dashboard-grid > .hm-card [id$='-t'],
+#page-home .qa-dashboard-grid > .hm-card:last-child:nth-child(odd) .hm-t,
+#page-home .qa-dashboard-grid > .hm-card:last-child:nth-child(odd) [id$='-t']{
+  max-width:100%!important;
+  margin:0!important;
+  font-size:.69rem!important;
+  line-height:1.35!important;
+  text-align:center!important;
+  white-space:normal!important;
+}
+
+#page-home .qa-dashboard-grid > .hm-card .hm-s,
+#page-home .qa-dashboard-grid > .hm-card [id$='-s'],
+#page-home .qa-dashboard-grid > .hm-card:last-child:nth-child(odd) .hm-s,
+#page-home .qa-dashboard-grid > .hm-card:last-child:nth-child(odd) [id$='-s']{
+  max-width:96%!important;
+  margin:0 auto!important;
+  font-size:.48rem!important;
+  line-height:1.35!important;
+  text-align:center!important;
+  -webkit-line-clamp:1!important;
+}
+
+#page-home .qa-dashboard-grid > .hm-card .hm-chevron{
+  display:none!important;
+}
+
+/* Primary compass service remains visually first but uses the same compact language. */
+#page-home .qa-dashboard-grid > .hm-card:first-child{
+  border-color:rgba(226,190,89,.42)!important;
+  background:
+    radial-gradient(circle at 50% 12%,rgba(226,190,89,.18),transparent 42%),
+    linear-gradient(155deg,rgba(24,36,52,.98),rgba(5,12,22,.99))!important;
+}
+
+#page-home .qa-dashboard-grid > .hm-card:first-child > div:first-child{
+  display:flex!important;
+  flex-direction:column!important;
+  align-items:center!important;
+  justify-content:center!important;
+  gap:5px!important;
+  width:100%!important;
+}
+
+#page-home .qa-dashboard-grid > .hm-card:first-child > div:first-child > div:first-child{
+  width:52px!important;
+  height:52px!important;
+  flex:0 0 52px!important;
+}
+
+#page-home .qa-dashboard-grid > .hm-card:first-child > div:first-child > div:nth-child(2){
+  width:100%!important;
+  text-align:center!important;
+}
+
+#page-home .qa-dashboard-grid > .hm-card:first-child > div:first-child > div:last-child{
+  position:static!important;
+  display:flex!important;
+  justify-content:center!important;
+  margin:0!important;
+}
+
+#page-home .qa-dashboard-grid > .hm-card:first-child #hm-qibla-deg{
+  font-size:.82rem!important;
+  line-height:1!important;
+}
+
+/* Remove visual weight from old inline sub-sections in the compass gateway. */
+#page-home .qa-dashboard-grid > .hm-card:first-child > div:nth-child(2),
+#page-home .qa-dashboard-grid > .hm-card:first-child > div:nth-child(3){display:none!important}
+
+/* ─────────────────────────────────────────────────────────────────────────────
+   SYSTEM TELEMETRY — compact reference-like strip
+───────────────────────────────────────────────────────────────────────────── */
+#page-home .qa-system-strip{
+  display:grid!important;
+  grid-template-columns:repeat(3,minmax(0,1fr))!important;
+  gap:0!important;
+  margin:3px 0 12px!important;
+  padding:0!important;
+  border:1px solid rgba(122,191,230,.14)!important;
+  border-radius:16px!important;
+  overflow:hidden!important;
+  background:linear-gradient(180deg,rgba(10,22,36,.91),rgba(5,12,22,.94))!important;
+  box-shadow:inset 0 1px 0 rgba(255,255,255,.045),0 12px 28px rgba(0,0,0,.22)!important;
+}
+
+#page-home .qa-system-strip > div{
+  min-width:0!important;
+  padding:10px 5px 9px!important;
+  text-align:center!important;
+  border-inline-start:1px solid rgba(135,201,239,.09)!important;
+}
+#page-home .qa-system-strip > div:first-child{border-inline-start:0!important}
+#page-home .qa-system-strip span{
+  display:block!important;
+  margin-bottom:5px!important;
+  font-size:.48rem!important;
+  color:rgba(207,228,244,.48)!important;
+}
+#page-home .qa-system-strip strong{
+  display:block!important;
+  overflow:hidden!important;
+  text-overflow:ellipsis!important;
+  white-space:nowrap!important;
+  font-size:.58rem!important;
+  color:#d7ecf8!important;
+}
+#page-home .qa-system-strip strong.ok{color:#72ddb2!important}
+
+/* ─────────────────────────────────────────────────────────────────────────────
+   NAVIGATION — reference-like floating command dock without hiding routes
+───────────────────────────────────────────────────────────────────────────── */
+nav.nav,div.nav,.nav{
+  bottom:10px!important;
+  width:calc(100% - 18px)!important;
+  max-width:402px!important;
+  min-height:66px!important;
+  padding:7px 6px calc(7px + env(safe-area-inset-bottom))!important;
+  gap:2px!important;
+  border:1px solid rgba(129,193,230,.16)!important;
+  border-radius:23px!important;
+  background:
+    linear-gradient(155deg,rgba(255,255,255,.045),transparent 34%),
+    rgba(5,12,22,.94)!important;
+  box-shadow:0 20px 42px rgba(0,0,0,.42),inset 0 1px 0 rgba(255,255,255,.055)!important;
+  overflow-x:auto!important;
+  overflow-y:visible!important;
+  scrollbar-width:none!important;
+}
+nav.nav::-webkit-scrollbar,div.nav::-webkit-scrollbar,.nav::-webkit-scrollbar{display:none}
+
+.nav-item{
+  position:relative!important;
+  min-width:52px!important;
+  flex:1 0 52px!important;
+  padding:5px 2px 4px!important;
+  gap:3px!important;
+  border-radius:16px!important;
+  color:rgba(204,224,239,.48)!important;
+}
+
+.nav-item::before{
+  content:'';
+  position:absolute;
+  inset:2px 5px;
+  z-index:-1;
+  border-radius:14px;
+  background:transparent;
+  transition:background .18s ease,box-shadow .18s ease;
+}
+
+.nav-item.active{
+  color:#f0d487!important;
+  transform:translateY(-4px)!important;
+}
+.nav-item.active::before{
+  background:linear-gradient(160deg,rgba(226,190,89,.18),rgba(226,190,89,.035))!important;
+  box-shadow:0 0 20px rgba(226,190,89,.12),inset 0 1px 0 rgba(255,255,255,.07)!important;
+}
+
+.nav-icon{font-size:1.2rem!important}
+.nav-icon-img{
+  width:27px!important;
+  height:27px!important;
+  opacity:.64!important;
+}
+.nav-item.active .nav-icon-img{
+  opacity:1!important;
+  filter:drop-shadow(0 0 8px rgba(226,190,89,.58)) drop-shadow(0 4px 6px rgba(0,0,0,.42))!important;
+}
+.nav-lbl{
+  font-size:.52rem!important;
+  line-height:1.15!important;
+  white-space:nowrap!important;
+}
+
+/* Copyright slot is visually absorbed so the dock matches the reference footprint. */
+.ad-slot{
+  height:18px!important;
+  bottom:0!important;
+  z-index:199!important;
+  background:transparent!important;
+  border:0!important;
+  pointer-events:none!important;
+}
+.ad-slot span{font-size:.43rem!important;color:rgba(255,255,255,.16)!important}
+.page.active{padding-bottom:105px!important}
+
+/* ─────────────────────────────────────────────────────────────────────────────
+   MICRO-INTERACTIONS
+───────────────────────────────────────────────────────────────────────────── */
+@keyframes qaPhase2Glow{
+  0%,100%{box-shadow:inset 0 1px 0 rgba(255,255,255,.07),0 15px 34px rgba(0,0,0,.25),0 0 18px rgba(var(--qa-card-accent),.07)}
+  50%{box-shadow:inset 0 1px 0 rgba(255,255,255,.08),0 17px 38px rgba(0,0,0,.27),0 0 25px rgba(var(--qa-card-accent),.13)}
+}
+#page-home .qa-dashboard-grid > .hm-card:nth-child(-n+4){animation:qaPhase2Glow 5.5s ease-in-out infinite}
+#page-home .qa-dashboard-grid > .hm-card:nth-child(2){animation-delay:.7s}
+#page-home .qa-dashboard-grid > .hm-card:nth-child(3){animation-delay:1.4s}
+#page-home .qa-dashboard-grid > .hm-card:nth-child(4){animation-delay:2.1s}
+
+@media (max-width:360px){
+  #page-home .qa-dashboard-grid{gap:6px!important}
+  #page-home .qa-dashboard-grid > .hm-card,
+  #page-home .qa-dashboard-grid > .hm-card:last-child:nth-child(odd){
+    padding:7px 3px!important;
+    border-radius:15px!important;
+  }
+  #page-home .qa-dashboard-grid > .hm-card .hm-icon-wrap{
+    width:42px!important;height:42px!important;flex-basis:42px!important;border-radius:13px!important;
+  }
+  #page-home .qa-dashboard-grid > .hm-card .hm-icon-plain{width:29px!important;height:29px!important}
+  #page-home .qa-dashboard-grid > .hm-card .hm-t,
+  #page-home .qa-dashboard-grid > .hm-card [id$='-t']{font-size:.59rem!important}
+  #page-home .qa-dashboard-grid > .hm-card .hm-s,
+  #page-home .qa-dashboard-grid > .hm-card [id$='-s']{font-size:.43rem!important}
+  .nav-item{min-width:48px!important;flex-basis:48px!important}
+}
+
+@media (min-width:600px){
+  #page-home .qa-dashboard-grid{
+    grid-template-columns:repeat(5,minmax(0,1fr))!important;
+    gap:10px!important;
+  }
+  #page-home .qa-dashboard-grid > .hm-card,
+  #page-home .qa-dashboard-grid > .hm-card:last-child:nth-child(odd){aspect-ratio:1/1!important}
+}
+
+@media (prefers-reduced-motion:reduce){
+  #page-home .qa-dashboard-grid > .hm-card{animation:none!important;transition:none!important}
+  .nav-item,.nav-item::before{transition:none!important}
+}

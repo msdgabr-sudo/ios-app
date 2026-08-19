@@ -1,0 +1,80 @@
+/*
+ * QiblaAstro — Horizon Design System Foundation
+ * Presentation-only layer. It must not modify GNSS, astronomical engines,
+ * verification records, or runtime data contracts.
+ *
+ * © 2026 محمد سيد جبر بحيرى — Mohamed SG Behairy. All Rights Reserved.
+ */
+
+:root {
+  --qa-cosmos-950:#03060c;--qa-cosmos-900:#07101d;--qa-cosmos-850:#0a1424;--qa-cosmos-800:#0e1a2e;
+  --qa-surface-glass:rgba(10,22,38,.62);--qa-surface-glass-strong:rgba(7,16,29,.82);
+  --qa-guidance:#d8b65b;--qa-guidance-soft:#f0d992;--qa-science:#58d7ff;--qa-science-soft:#9eeaff;
+  --qa-trust:#6de0b2;--qa-warning:#f0b566;--qa-danger:#ff7f87;--qa-truth:#f7fbff;--qa-muted:rgba(222,237,250,.64);
+  --qa-line-subtle:rgba(164,218,255,.13);--qa-line-active:rgba(88,215,255,.42);--qa-line-guidance:rgba(216,182,91,.44);
+  --qa-glow-science:0 0 28px rgba(88,215,255,.18);--qa-glow-guidance:0 0 34px rgba(216,182,91,.2);
+  --qa-radius-xs:10px;--qa-radius-sm:14px;--qa-radius-md:20px;--qa-radius-lg:28px;--qa-radius-xl:38px;
+  --qa-space-1:4px;--qa-space-2:8px;--qa-space-3:12px;--qa-space-4:16px;--qa-space-5:20px;--qa-space-6:24px;--qa-space-8:32px;--qa-space-10:40px;
+  --qa-motion-fast:160ms;--qa-motion-standard:280ms;--qa-motion-slow:560ms;
+  --qa-ease-out:cubic-bezier(.2,.72,.2,1);--qa-ease-soft:cubic-bezier(.25,.8,.25,1);
+  --qa-font-ui:'Noto Sans Arabic',system-ui,-apple-system,sans-serif;
+  --qa-font-content:'Noto Naskh Arabic','Amiri',serif;
+  --qa-font-numeric:'JetBrains Mono',ui-monospace,monospace;
+}
+
+.qa-optical-panel{position:relative;isolation:isolate;overflow:hidden;border:1px solid var(--qa-line-subtle);border-radius:var(--qa-radius-lg);background:linear-gradient(145deg,rgba(255,255,255,.055),transparent 42%),var(--qa-surface-glass);box-shadow:inset 0 1px 0 rgba(255,255,255,.06),0 18px 48px rgba(0,0,0,.22);-webkit-backdrop-filter:blur(18px) saturate(118%);backdrop-filter:blur(18px) saturate(118%)}
+.qa-optical-panel::before{content:'';position:absolute;inset:0;z-index:-1;pointer-events:none;background:radial-gradient(circle at 18% 0%,rgba(88,215,255,.08),transparent 42%),radial-gradient(circle at 84% 100%,rgba(216,182,91,.06),transparent 38%)}
+.qa-instrument-value{font-family:var(--qa-font-numeric);font-variant-numeric:tabular-nums;letter-spacing:-.035em;color:var(--qa-truth);text-shadow:0 0 20px rgba(247,251,255,.08)}
+.qa-instrument-label{font-family:var(--qa-font-ui);color:var(--qa-muted);letter-spacing:.01em}
+.qa-status-dot{width:7px;height:7px;flex:0 0 7px;border-radius:999px;background:currentColor;box-shadow:0 0 12px currentColor}
+.qa-status--ready{color:var(--qa-trust)}.qa-status--science{color:var(--qa-science)}.qa-status--guidance{color:var(--qa-guidance)}.qa-status--warning{color:var(--qa-warning)}.qa-status--error{color:var(--qa-danger)}
+
+.qa-horizon-stage{position:relative;isolation:isolate;min-height:clamp(390px,52svh,580px);overflow:hidden;border-radius:0 0 var(--qa-radius-xl) var(--qa-radius-xl);background:radial-gradient(ellipse at 50% 72%,rgba(21,92,132,.24),transparent 42%),radial-gradient(circle at 50% 38%,rgba(216,182,91,.055),transparent 22%),linear-gradient(180deg,var(--qa-cosmos-950),var(--qa-cosmos-850))}
+.qa-horizon-stage::before,.qa-horizon-stage::after{content:'';position:absolute;pointer-events:none}
+.qa-horizon-stage::before{inset:0;opacity:.7;background-image:radial-gradient(circle,rgba(255,255,255,.55) 0 1px,transparent 1.25px),radial-gradient(circle,rgba(158,234,255,.36) 0 1px,transparent 1.2px);background-position:0 0,31px 47px;background-size:83px 83px,137px 137px;mask-image:linear-gradient(to bottom,#000,transparent 88%)}
+.qa-horizon-stage::after{left:8%;right:8%;bottom:8%;height:1px;background:linear-gradient(90deg,transparent,var(--qa-line-active),var(--qa-line-guidance),transparent);box-shadow:var(--qa-glow-science)}
+.qa-hologram-ring{position:absolute;left:50%;top:52%;width:min(72vw,330px);aspect-ratio:1;border:1px solid rgba(88,215,255,.24);border-radius:50%;transform:translate(-50%,-50%) rotateX(68deg);box-shadow:inset 0 0 30px rgba(88,215,255,.08),0 0 24px rgba(88,215,255,.08)}
+.qa-hologram-ring::before,.qa-hologram-ring::after{content:'';position:absolute;border-radius:inherit}.qa-hologram-ring::before{inset:13%;border:1px dashed rgba(216,182,91,.32)}.qa-hologram-ring::after{inset:31%;border:1px solid rgba(158,234,255,.22)}
+
+/* Phase 1: live Hero composition. Pure presentation; values are mirrored from existing DOM. */
+#page-home .qa-horizon-hero{margin:0 -8px 10px;color:var(--qa-truth)}
+.qa-horizon-hero__top{position:relative;z-index:4;display:flex;align-items:center;justify-content:space-between;padding:18px 18px 0}
+.qa-horizon-brand{text-align:right}.qa-horizon-brand__eyebrow{font:600 .58rem/1 var(--qa-font-ui);letter-spacing:.18em;color:var(--qa-science-soft);opacity:.78}.qa-horizon-brand__title{margin-top:5px;font:700 1.34rem/1.15 var(--qa-font-content);color:var(--qa-truth)}
+.qa-horizon-live{display:flex;align-items:center;gap:7px;padding:7px 10px;border:1px solid rgba(109,224,178,.22);border-radius:999px;background:rgba(5,14,24,.48);font:600 .56rem/1 var(--qa-font-ui);color:var(--qa-trust);-webkit-backdrop-filter:blur(10px);backdrop-filter:blur(10px)}
+.qa-horizon-core{position:absolute;z-index:3;left:50%;top:47%;width:170px;height:200px;transform:translate(-50%,-50%);display:grid;place-items:center;pointer-events:none}
+.qa-horizon-kaaba{position:relative;width:74px;height:90px;transform:perspective(420px) rotateX(-3deg) rotateY(-8deg);filter:drop-shadow(0 22px 26px rgba(0,0,0,.55)) drop-shadow(0 0 18px rgba(216,182,91,.16))}
+.qa-horizon-kaaba__front{position:absolute;inset:0;border-radius:3px;background:linear-gradient(120deg,#171717,#030303 62%,#0d0d0d);border:1px solid rgba(255,255,255,.06);box-shadow:inset 8px 0 18px rgba(255,255,255,.025),inset -8px 0 16px rgba(0,0,0,.65)}
+.qa-horizon-kaaba__front::before{content:'';position:absolute;left:0;right:0;top:18px;height:9px;background:linear-gradient(90deg,#8f6b1d,#f2d378 48%,#9d7927);box-shadow:0 0 12px rgba(216,182,91,.18)}
+.qa-horizon-kaaba__front::after{content:'';position:absolute;right:13px;bottom:9px;width:17px;height:31px;border:1px solid #b88f36;background:linear-gradient(110deg,#83611f,#e5c060 48%,#694a15);border-radius:7px 7px 1px 1px}
+.qa-horizon-earth{position:absolute;z-index:1;left:50%;bottom:-160px;width:360px;height:360px;transform:translateX(-50%);border-radius:50%;background:radial-gradient(circle at 36% 26%,rgba(128,219,255,.2),transparent 16%),radial-gradient(circle at 55% 48%,rgba(83,145,112,.55),transparent 22%),radial-gradient(circle at 42% 52%,#173b5c,#07182d 58%,#020811 72%);box-shadow:inset -35px -32px 52px rgba(0,0,0,.72),inset 18px 12px 34px rgba(100,205,255,.12),0 -10px 44px rgba(88,215,255,.13);border:1px solid rgba(145,225,255,.16)}
+.qa-horizon-earth::before{content:'';position:absolute;inset:-5px;border-radius:50%;border:1px solid rgba(88,215,255,.2);box-shadow:0 0 20px rgba(88,215,255,.12)}
+.qa-horizon-readout{position:absolute;z-index:5;left:16px;right:16px;bottom:24px;display:grid;grid-template-columns:1.15fr .85fr;gap:9px}
+.qa-horizon-readout__primary,.qa-horizon-readout__secondary{min-height:72px;padding:12px 14px;border-radius:18px;border:1px solid var(--qa-line-subtle);background:linear-gradient(145deg,rgba(255,255,255,.055),transparent 52%),rgba(5,14,25,.7);-webkit-backdrop-filter:blur(15px);backdrop-filter:blur(15px)}
+.qa-horizon-readout__label{display:flex;align-items:center;gap:7px;font:600 .56rem/1.2 var(--qa-font-ui);color:var(--qa-muted)}
+.qa-horizon-readout__value{margin-top:8px;font:700 1.36rem/1 var(--qa-font-numeric);direction:ltr;text-align:right;color:var(--qa-guidance-soft)}
+.qa-horizon-readout__secondary .qa-horizon-readout__value{font-size:.72rem;line-height:1.45;color:var(--qa-science-soft);font-family:var(--qa-font-ui);letter-spacing:0}
+.qa-horizon-cta{position:absolute;z-index:6;left:50%;bottom:112px;transform:translateX(-50%);display:flex;align-items:center;gap:8px;padding:9px 15px;border:1px solid rgba(216,182,91,.32);border-radius:999px;background:rgba(7,13,22,.62);color:var(--qa-guidance-soft);font:700 .64rem/1 var(--qa-font-ui);box-shadow:0 9px 28px rgba(0,0,0,.25),0 0 22px rgba(216,182,91,.08);cursor:pointer;-webkit-backdrop-filter:blur(12px);backdrop-filter:blur(12px)}
+.qa-horizon-cta:active{transform:translateX(-50%) scale(.98)}
+.qa-horizon-hero + .hm-header{margin-top:8px}
+
+/* Phase 2: existing home actions become premium instrument modules.
+   Markup, IDs and click handlers remain untouched. */
+#page-home .hm-divider{margin:14px 10px 12px!important;background:linear-gradient(90deg,transparent,rgba(88,215,255,.2),rgba(216,182,91,.35),transparent)!important}
+#page-home .hm-card{position:relative!important;isolation:isolate;overflow:hidden!important;min-height:64px!important;margin:0 0 10px!important;padding:11px 14px!important;gap:13px!important;border:1px solid rgba(150,211,247,.13)!important;border-radius:20px!important;background:linear-gradient(145deg,rgba(255,255,255,.045),transparent 44%),rgba(7,16,29,.76)!important;box-shadow:inset 0 1px 0 rgba(255,255,255,.045),0 12px 30px rgba(0,0,0,.2)!important;-webkit-backdrop-filter:blur(16px) saturate(115%);backdrop-filter:blur(16px) saturate(115%);transition:transform var(--qa-motion-fast) var(--qa-ease-out),border-color var(--qa-motion-fast),background var(--qa-motion-fast),box-shadow var(--qa-motion-fast)}
+#page-home .hm-card::before{content:'';position:absolute;inset:0;z-index:-1;pointer-events:none;background:radial-gradient(circle at 8% 0%,rgba(88,215,255,.075),transparent 36%),radial-gradient(circle at 96% 100%,rgba(216,182,91,.055),transparent 34%)}
+#page-home .hm-card::after{content:'';position:absolute;right:0;top:18%;bottom:18%;width:2px;border-radius:8px;background:linear-gradient(180deg,transparent,rgba(88,215,255,.54),transparent);opacity:.52}
+#page-home .hm-card:active{transform:scale(.986);border-color:rgba(216,182,91,.28)!important;background:linear-gradient(145deg,rgba(255,255,255,.06),transparent 44%),rgba(8,19,34,.88)!important;box-shadow:inset 0 1px 0 rgba(255,255,255,.065),0 7px 20px rgba(0,0,0,.22)!important}
+#page-home .hm-card .hm-icon-wrap{width:46px!important;height:46px!important;border:1px solid rgba(143,213,251,.13);border-radius:16px;background:linear-gradient(145deg,rgba(255,255,255,.055),rgba(7,17,30,.45));box-shadow:inset 0 1px 0 rgba(255,255,255,.04),0 8px 18px rgba(0,0,0,.18)}
+#page-home .hm-card .hm-icon-wrap::before{inset:-9px!important;background:radial-gradient(circle,rgba(88,215,255,.08),transparent 66%)!important}
+#page-home .hm-card .hm-icon-plain{width:34px!important;height:34px!important;filter:drop-shadow(0 5px 8px rgba(0,0,0,.42)) drop-shadow(0 0 8px rgba(88,215,255,.08))!important}
+#page-home .hm-card .hm-t,#page-home .hm-card [id$='-t']{font-family:var(--qa-font-ui)!important;font-size:.94rem!important;font-weight:700!important;color:var(--qa-truth)!important;letter-spacing:0!important}
+#page-home .hm-card .hm-s,#page-home .hm-card [id$='-s']{font-family:var(--qa-font-ui)!important;font-size:.61rem!important;color:var(--qa-muted)!important;line-height:1.5}
+#page-home .hm-card .hm-chevron{display:grid;place-items:center;width:28px;height:28px;border-radius:999px;border:1px solid rgba(88,215,255,.14);background:rgba(88,215,255,.035);color:var(--qa-science-soft)!important;font-size:1rem!important;opacity:.82}
+#page-home .hm-card[onclick*="GT('compass')"]{min-height:122px!important;border-color:rgba(216,182,91,.25)!important;background:radial-gradient(circle at 15% 10%,rgba(216,182,91,.09),transparent 34%),linear-gradient(150deg,rgba(18,36,55,.94),rgba(5,13,24,.94))!important;box-shadow:inset 0 1px 0 rgba(255,255,255,.055),0 16px 38px rgba(0,0,0,.25),0 0 26px rgba(216,182,91,.035)!important}
+#page-home .hm-card[onclick*="GT('compass')"]::after{background:linear-gradient(180deg,transparent,rgba(216,182,91,.72),transparent);opacity:.78}
+#page-home .hm-card[onclick*="GT('compass')"] #hm-qibla-deg{font-family:var(--qa-font-numeric)!important;font-size:1.2rem!important;color:var(--qa-guidance-soft)!important;text-shadow:0 0 18px rgba(216,182,91,.13)}
+#page-home .hm-header{border:1px solid rgba(164,218,255,.08);background:linear-gradient(180deg,rgba(9,23,40,.66),rgba(5,13,23,.34) 68%,transparent)!important;box-shadow:inset 0 1px 0 rgba(255,255,255,.035)}
+
+@media (prefers-reduced-motion:no-preference){.qa-hologram-ring{animation:qa-horizon-breathe 7s var(--qa-ease-soft) infinite alternate}.qa-horizon-earth{animation:qa-earth-breathe 9s ease-in-out infinite alternate}@keyframes qa-horizon-breathe{from{opacity:.72;filter:brightness(.94)}to{opacity:1;filter:brightness(1.08)}}@keyframes qa-earth-breathe{from{transform:translateX(-50%) rotate(-.25deg) scale(1)}to{transform:translateX(-50%) rotate(.25deg) scale(1.006)}}}
+@media (prefers-reduced-motion:reduce){*,*::before,*::after{scroll-behavior:auto!important}.qa-hologram-ring,.qa-horizon-earth{animation:none!important}}
+@media (max-width:480px){.qa-horizon-stage{min-height:min(500px,58svh);border-radius:0 0 30px 30px}.qa-horizon-earth{width:330px;height:330px;bottom:-150px}.qa-horizon-core{top:46%}#page-home .hm-card{border-radius:18px!important;margin-bottom:8px!important}}

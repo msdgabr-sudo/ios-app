@@ -1,0 +1,302 @@
+/* QiblaAstro — Digital compass final layout fixes
+ * Presentation only. Original calculations, values and onclick handlers remain authoritative.
+ * © 2026 محمد سيد جبر بحيرى — Mohamed SG Behairy. All Rights Reserved.
+ */
+
+/* Slightly reduce the compass to free vertical room for the calculator. */
+#page-compass.qa-digital-dashboard-active>#cvs{
+  width:min(97vw,55vh,500px)!important;
+  margin:-7px auto 3px!important;
+}
+#page-compass.qa-digital-dashboard-active .qa-compass-legacy-grid{
+  padding-top:2px!important;
+}
+
+/* First row: same cards, only make their six-card typography easier to read. */
+#page-compass.qa-digital-dashboard-active #live-compass-card>div:first-child>div:first-child::after,
+#page-compass.qa-digital-dashboard-active .qa-compass-legacy-grid>div>div:has(#box-diff)>div:first-child>div:first-child::after,
+#page-compass.qa-digital-dashboard-active .qa-compass-legacy-grid>div>div:has(#box-qibla)>div:first-child>div:first-child{
+  font-size:.72rem!important;
+  line-height:1.12!important;
+}
+#page-compass.qa-digital-dashboard-active #box-heading,
+#page-compass.qa-digital-dashboard-active #box-qibla,
+#page-compass.qa-digital-dashboard-active #box-diff{
+  font-size:1.24rem!important;
+  line-height:1.08!important;
+}
+#page-compass.qa-digital-dashboard-active #live-compass-hint,
+#page-compass.qa-digital-dashboard-active #gnss-badge,
+#page-compass.qa-digital-dashboard-active #box-dir{
+  font-size:.58rem!important;
+  line-height:1.15!important;
+}
+
+/* Second row: medium height, equal cards, centered content. */
+#page-compass.qa-digital-dashboard-active .qa-digital-action-row{
+  clear:both!important;
+  display:grid!important;
+  grid-template-columns:repeat(3,minmax(0,1fr))!important;
+  grid-auto-rows:82px!important;
+  align-items:stretch!important;
+  direction:rtl!important;
+  gap:6px!important;
+  padding:0 10px 4px!important;
+  margin:0!important;
+  width:100%!important;
+  height:86px!important;
+  max-height:86px!important;
+  box-sizing:border-box!important;
+  overflow:hidden!important;
+}
+#page-compass.qa-digital-dashboard-active .qa-digital-action-row>div{
+  width:auto!important;
+  min-width:0!important;
+  height:82px!important;
+  min-height:82px!important;
+  max-height:82px!important;
+  float:none!important;
+  padding:0!important;
+  margin:0!important;
+  overflow:hidden!important;
+  box-sizing:border-box!important;
+}
+#page-compass.qa-digital-dashboard-active .qa-digital-action-row>div>button,
+#page-compass.qa-digital-dashboard-active .qa-digital-confidence-card{
+  width:100%!important;
+  height:82px!important;
+  min-height:82px!important;
+  max-height:82px!important;
+  margin:0!important;
+  padding:6px 6px!important;
+  border-radius:15px!important;
+  border:1px solid rgba(119,165,205,.26)!important;
+  background:linear-gradient(155deg,rgba(9,27,43,.98),rgba(4,14,25,.99))!important;
+  box-shadow:inset 0 1px 0 rgba(255,255,255,.025),0 5px 14px rgba(0,0,0,.14)!important;
+  color:#E4E9EF!important;
+  display:flex!important;
+  flex-direction:column!important;
+  align-items:center!important;
+  justify-content:center!important;
+  text-align:center!important;
+  gap:3px!important;
+  overflow:hidden!important;
+  box-sizing:border-box!important;
+}
+
+/* Force original GNSS/calibration contents to remain visually centered. */
+#page-compass.qa-digital-dashboard-active .qa-digital-action-row>div>button>*{
+  margin-left:auto!important;
+  margin-right:auto!important;
+  text-align:center!important;
+  align-self:center!important;
+}
+#page-compass.qa-digital-dashboard-active .qa-digital-action-row>div>button>span:first-child{
+  display:block!important;
+  font-size:1.08rem!important;
+  line-height:1!important;
+  margin:0 auto 2px!important;
+}
+#page-compass.qa-digital-dashboard-active .qa-digital-action-row>div>button>div{
+  width:100%!important;
+  margin:0!important;
+  padding:0!important;
+  display:flex!important;
+  flex-direction:column!important;
+  align-items:center!important;
+  justify-content:center!important;
+  line-height:1.1!important;
+}
+#page-compass.qa-digital-dashboard-active .qa-digital-action-row>div>button>div>div:first-child{
+  width:100%!important;
+  font-size:.68rem!important;
+  font-weight:700!important;
+  line-height:1.12!important;
+  margin:0!important;
+  white-space:normal!important;
+  text-align:center!important;
+}
+#page-compass.qa-digital-dashboard-active .qa-digital-action-row>div>button>div>div:last-child,
+#page-compass.qa-digital-dashboard-active .qa-digital-action-row #gnss-btn-status{
+  width:100%!important;
+  font-size:.53rem!important;
+  line-height:1.1!important;
+  margin:2px 0 0!important;
+  white-space:nowrap!important;
+  overflow:hidden!important;
+  text-overflow:ellipsis!important;
+  text-align:center!important;
+}
+#page-compass.qa-digital-dashboard-active .qa-digital-action-row>div>button>span:last-child{
+  display:none!important;
+}
+
+#page-compass.qa-digital-dashboard-active .qa-digital-confidence-icon{
+  width:22px!important;
+  height:22px!important;
+  min-height:22px!important;
+  border-radius:50%!important;
+  display:grid!important;
+  place-items:center!important;
+  border:1px solid rgba(90,200,250,.26)!important;
+  color:#78BFF2!important;
+  background:rgba(90,200,250,.06)!important;
+  font-size:.78rem!important;
+  line-height:1!important;
+}
+#page-compass.qa-digital-dashboard-active .qa-digital-confidence-body{
+  width:100%!important;
+  min-width:0!important;
+  display:flex!important;
+  flex-direction:column!important;
+  align-items:center!important;
+  justify-content:center!important;
+}
+#page-compass.qa-digital-dashboard-active .qa-digital-confidence-body>b{
+  display:block!important;
+  font-size:.66rem!important;
+  line-height:1.1!important;
+  color:#E4E9EF!important;
+  margin:0!important;
+}
+#page-compass.qa-digital-dashboard-active #compass-accuracy{
+  display:block!important;
+  width:100%!important;
+  font-size:.50rem!important;
+  line-height:1.12!important;
+  margin:2px 0 0!important;
+  min-height:1.15em!important;
+  white-space:normal!important;
+  overflow:hidden!important;
+  text-overflow:ellipsis!important;
+  text-align:center!important;
+  color:#91A8BA;
+}
+#page-compass.qa-digital-dashboard-active .qa-digital-confidence-track{
+  display:block!important;
+  height:4px!important;
+  width:84%!important;
+  margin:5px auto 0!important;
+  border-radius:99px!important;
+  overflow:hidden!important;
+  background:rgba(126,164,192,.18)!important;
+  direction:rtl!important;
+}
+#page-compass.qa-digital-dashboard-active .qa-digital-confidence-track i{
+  display:block!important;
+  height:100%!important;
+  width:0;
+  margin-left:auto!important;
+  border-radius:99px!important;
+  background:#78BFF2;
+  transition:width .3s ease,background .3s ease;
+}
+#page-compass.qa-digital-dashboard-active .qa-digital-confidence-card[data-state="excellent"] .qa-digital-confidence-track i{background:#63C779}
+#page-compass.qa-digital-dashboard-active .qa-digital-confidence-card[data-state="good"] .qa-digital-confidence-track i{background:#7DB9D8}
+#page-compass.qa-digital-dashboard-active .qa-digital-confidence-card[data-state="fair"] .qa-digital-confidence-track i{background:#C9A85D}
+#page-compass.qa-digital-dashboard-active .qa-digital-confidence-card[data-state="weak"] .qa-digital-confidence-track i{background:#C76868}
+
+/* Preserve room for the entire deviation calculator; calculator logic is untouched. */
+#page-compass.qa-digital-dashboard-active .qa-deviation-calculator{
+  margin-bottom:8px!important;
+  max-height:170px!important;
+  overflow:hidden!important;
+}
+
+/* Button affordance: make the six cards read visually as real controls. */
+#page-compass.qa-digital-dashboard-active #live-compass-card,
+#page-compass.qa-digital-dashboard-active .qa-compass-legacy-grid>div>div:has(#box-qibla),
+#page-compass.qa-digital-dashboard-active .qa-compass-legacy-grid>div>div:has(#box-diff),
+#page-compass.qa-digital-dashboard-active .qa-digital-action-row>div>button,
+#page-compass.qa-digital-dashboard-active .qa-digital-confidence-card{
+  position:relative!important;
+  border:1px solid rgba(116,185,232,.40)!important;
+  background:
+    linear-gradient(180deg,rgba(255,255,255,.055) 0%,rgba(255,255,255,.010) 24%,rgba(0,0,0,.08) 100%),
+    linear-gradient(145deg,rgba(11,35,56,.98),rgba(3,13,24,.99))!important;
+  box-shadow:
+    inset 0 1px 0 rgba(255,255,255,.12),
+    inset 0 -2px 0 rgba(0,0,0,.32),
+    0 5px 0 rgba(0,6,12,.55),
+    0 9px 16px rgba(0,0,0,.25)!important;
+  text-shadow:0 1px 1px rgba(0,0,0,.60)!important;
+  transform:translateY(0)!important;
+  transition:transform .10s ease,box-shadow .10s ease,border-color .15s ease,filter .15s ease!important;
+}
+#page-compass.qa-digital-dashboard-active #live-compass-card::before,
+#page-compass.qa-digital-dashboard-active .qa-compass-legacy-grid>div>div:has(#box-qibla)::before,
+#page-compass.qa-digital-dashboard-active .qa-compass-legacy-grid>div>div:has(#box-diff)::before,
+#page-compass.qa-digital-dashboard-active .qa-digital-action-row>div>button::before,
+#page-compass.qa-digital-dashboard-active .qa-digital-confidence-card::before{
+  content:'';
+  position:absolute;
+  left:10%;right:10%;top:2px;
+  height:1px;
+  border-radius:999px;
+  background:linear-gradient(90deg,transparent,rgba(185,229,255,.45),transparent);
+  pointer-events:none;
+}
+#page-compass.qa-digital-dashboard-active #live-compass-card,
+#page-compass.qa-digital-dashboard-active .qa-digital-action-row>div>button{
+  cursor:pointer!important;
+}
+#page-compass.qa-digital-dashboard-active #live-compass-card:active,
+#page-compass.qa-digital-dashboard-active .qa-digital-action-row>div>button:active{
+  transform:translateY(3px) scale(.992)!important;
+  border-color:rgba(116,185,232,.58)!important;
+  box-shadow:
+    inset 0 1px 0 rgba(255,255,255,.08),
+    inset 0 -1px 0 rgba(0,0,0,.38),
+    0 2px 0 rgba(0,6,12,.58),
+    0 4px 8px rgba(0,0,0,.22)!important;
+  filter:brightness(1.07)!important;
+}
+#page-compass.qa-digital-dashboard-active .qa-digital-confidence-card{
+  cursor:default!important;
+}
+
+@media (max-height:820px){
+  #page-compass.qa-digital-dashboard-active>#cvs{width:min(96vw,46vh,415px)!important;margin:-5px auto 4px!important}
+  #page-compass.qa-digital-dashboard-active .qa-digital-action-row{grid-auto-rows:78px!important;height:82px!important;max-height:82px!important}
+  #page-compass.qa-digital-dashboard-active .qa-digital-action-row>div,
+  #page-compass.qa-digital-dashboard-active .qa-digital-action-row>div>button,
+  #page-compass.qa-digital-dashboard-active .qa-digital-confidence-card{height:78px!important;min-height:78px!important;max-height:78px!important}
+  #page-compass.qa-digital-dashboard-active .qa-deviation-calculator{max-height:150px!important;margin-bottom:6px!important}
+}
+@media (max-height:700px){
+  #page-compass.qa-digital-dashboard-active>#cvs{width:min(95vw,40vh,355px)!important;margin:-3px auto 4px!important}
+  #page-compass.qa-digital-dashboard-active .qa-digital-action-row{grid-auto-rows:70px!important;height:74px!important;max-height:74px!important;gap:4px!important;padding-left:7px!important;padding-right:7px!important}
+  #page-compass.qa-digital-dashboard-active .qa-digital-action-row>div,
+  #page-compass.qa-digital-dashboard-active .qa-digital-action-row>div>button,
+  #page-compass.qa-digital-dashboard-active .qa-digital-confidence-card{height:70px!important;min-height:70px!important;max-height:70px!important;padding-top:4px!important;padding-bottom:4px!important}
+  #page-compass.qa-digital-dashboard-active .qa-digital-confidence-icon{width:18px!important;height:18px!important;min-height:18px!important;font-size:.64rem!important}
+  #page-compass.qa-digital-dashboard-active #compass-accuracy{font-size:.45rem!important}
+  #page-compass.qa-digital-dashboard-active .qa-deviation-calculator{max-height:132px!important;margin-bottom:5px!important}
+}
+@media (max-height:610px){
+  #page-compass.qa-digital-dashboard-active>#cvs{width:min(93vw,35vh,305px)!important;margin:-1px auto 4px!important}
+  #page-compass.qa-digital-dashboard-active .qa-digital-action-row{grid-auto-rows:62px!important;height:66px!important;max-height:66px!important}
+  #page-compass.qa-digital-dashboard-active .qa-digital-action-row>div,
+  #page-compass.qa-digital-dashboard-active .qa-digital-action-row>div>button,
+  #page-compass.qa-digital-dashboard-active .qa-digital-confidence-card{height:62px!important;min-height:62px!important;max-height:62px!important}
+  #page-compass.qa-digital-dashboard-active .qa-digital-confidence-icon{display:none!important}
+  #page-compass.qa-digital-dashboard-active .qa-deviation-calculator{max-height:114px!important;margin-bottom:4px!important}
+}
+@media (max-width:360px){
+  #page-compass.qa-digital-dashboard-active .qa-digital-action-row{gap:4px!important;padding-left:7px!important;padding-right:7px!important}
+  #page-compass.qa-digital-dashboard-active .qa-digital-confidence-card{border-radius:13px!important}
+}
+
+/* Gold border identity only — no size, spacing, typography or behavior changes. */
+#page-compass.qa-digital-dashboard-active #live-compass-card,
+#page-compass.qa-digital-dashboard-active .qa-compass-legacy-grid>div>div:has(#box-qibla),
+#page-compass.qa-digital-dashboard-active .qa-compass-legacy-grid>div>div:has(#box-diff),
+#page-compass.qa-digital-dashboard-active .qa-digital-action-row>div>button,
+#page-compass.qa-digital-dashboard-active .qa-digital-confidence-card,
+#page-compass.qa-digital-dashboard-active .qa-deviation-calculator{
+  border-color:rgba(218,174,72,.86)!important;
+}
+#page-compass.qa-digital-dashboard-active #live-compass-card:active,
+#page-compass.qa-digital-dashboard-active .qa-digital-action-row>div>button:active{
+  border-color:rgba(238,199,98,.96)!important;
+}

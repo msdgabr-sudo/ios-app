@@ -1,0 +1,106 @@
+/* QiblaAstro — confidence indicator RTL + empty-state final
+   Presentation only; calculation engines untouched.
+   © 2026 محمد سيد جبر بحيرى — Mohamed SG Behairy. All Rights Reserved. */
+
+/* Reserve space for confidence by taking a small amount only from the compass. */
+#page-compass.qa-astro-dashboard-active>.qa-astro-compass-canvas{
+  width:min(98vw,54vh,490px)!important;
+  margin:-8px auto -10px!important;
+}
+
+#page-compass.qa-astro-dashboard-active .qa-astro-confidence{
+  min-height:58px!important;
+  margin:0 10px 5px!important;
+  padding:6px 10px!important;
+  grid-template-columns:1.18fr .82fr!important;
+  border-color:rgba(120,191,242,.32)!important;
+  box-shadow:inset 0 1px 0 rgba(255,255,255,.035),0 5px 14px rgba(0,0,0,.15)!important;
+}
+#page-compass.qa-astro-dashboard-active .qa-confidence-score>span{
+  font-size:.52rem!important;
+  color:#9EB6C9!important;
+}
+#page-compass.qa-astro-dashboard-active .qa-confidence-score>strong{
+  display:block!important;
+  font-size:1.22rem!important;
+  line-height:1!important;
+  margin:2px 0 1px!important;
+  letter-spacing:.01em;
+}
+#page-compass.qa-astro-dashboard-active .qa-confidence-score>b{
+  display:block!important;
+  font-size:.56rem!important;
+  line-height:1.1!important;
+}
+
+/* The track is neutral. Confidence fill exists only after a real astronomical verification. */
+#page-compass.qa-astro-dashboard-active .qa-confidence-track{
+  position:relative!important;
+  direction:rtl!important;
+  height:7px!important;
+  margin-top:5px!important;
+  border-radius:999px!important;
+  overflow:hidden!important;
+  background:rgba(126,164,192,.20)!important;
+  box-shadow:inset 0 1px 2px rgba(0,0,0,.42)!important;
+}
+#page-compass.qa-astro-dashboard-active .qa-confidence-track i{
+  position:absolute!important;
+  top:0!important;
+  bottom:0!important;
+  right:0!important;
+  left:auto!important;
+  width:0;
+  border-radius:999px!important;
+  background:#7DB9D8!important;
+  box-shadow:0 0 8px rgba(120,191,242,.25)!important;
+  transition:width .35s ease,background .35s ease!important;
+}
+
+/* Before the first verification: completely empty grey track, no fake marker/fill. */
+#page-compass.qa-astro-dashboard-active .qa-astro-confidence[data-state="empty"] .qa-confidence-track{
+  background:rgba(126,164,192,.18)!important;
+}
+#page-compass.qa-astro-dashboard-active .qa-astro-confidence[data-state="empty"] .qa-confidence-track i{
+  width:0!important;
+  background:transparent!important;
+  box-shadow:none!important;
+}
+
+/* After verification: fill starts from the RIGHT and its length is the real confidence score. */
+#page-compass.qa-astro-dashboard-active .qa-astro-confidence[data-state="excellent"] .qa-confidence-track i{background:#63C779!important}
+#page-compass.qa-astro-dashboard-active .qa-astro-confidence[data-state="good"] .qa-confidence-track i{background:#7DB9D8!important}
+#page-compass.qa-astro-dashboard-active .qa-astro-confidence[data-state="fair"] .qa-confidence-track i{background:#C9A85D!important}
+#page-compass.qa-astro-dashboard-active .qa-astro-confidence[data-state="stale"] .qa-confidence-track i{background:#C76868!important}
+
+#page-compass.qa-astro-dashboard-active .qa-astro-confidence[data-state="excellent"] .qa-confidence-score>strong,
+#page-compass.qa-astro-dashboard-active .qa-astro-confidence[data-state="excellent"] .qa-confidence-score>b{color:#63C779!important}
+#page-compass.qa-astro-dashboard-active .qa-astro-confidence[data-state="good"] .qa-confidence-score>strong,
+#page-compass.qa-astro-dashboard-active .qa-astro-confidence[data-state="good"] .qa-confidence-score>b{color:#7DB9D8!important}
+#page-compass.qa-astro-dashboard-active .qa-astro-confidence[data-state="fair"] .qa-confidence-score>strong,
+#page-compass.qa-astro-dashboard-active .qa-astro-confidence[data-state="fair"] .qa-confidence-score>b{color:#C9A85D!important}
+#page-compass.qa-astro-dashboard-active .qa-astro-confidence[data-state="stale"] .qa-confidence-score>strong,
+#page-compass.qa-astro-dashboard-active .qa-astro-confidence[data-state="stale"] .qa-confidence-score>b{color:#C76868!important}
+
+body.qa-astro-fullscreen-mode,
+#page-compass.qa-astro-dashboard-active{
+  overflow:hidden!important;
+  overscroll-behavior:none!important;
+}
+
+@media (max-height:820px){
+  #page-compass.qa-astro-dashboard-active>.qa-astro-compass-canvas{width:min(98vw,49vh,435px)!important}
+  #page-compass.qa-astro-dashboard-active .qa-astro-confidence{min-height:54px!important;padding-top:5px!important;padding-bottom:5px!important}
+  #page-compass.qa-astro-dashboard-active .qa-confidence-score>strong{font-size:1.12rem!important}
+}
+@media (max-height:700px){
+  #page-compass.qa-astro-dashboard-active>.qa-astro-compass-canvas{width:min(97vw,43vh,380px)!important}
+  #page-compass.qa-astro-dashboard-active .qa-astro-confidence{min-height:50px!important;margin-bottom:3px!important}
+  #page-compass.qa-astro-dashboard-active .qa-confidence-score>strong{font-size:1.04rem!important}
+  #page-compass.qa-astro-dashboard-active .qa-confidence-track{height:6px!important;margin-top:3px!important}
+}
+@media (max-height:610px){
+  #page-compass.qa-astro-dashboard-active>.qa-astro-compass-canvas{width:min(93vw,37vh,330px)!important}
+  #page-compass.qa-astro-dashboard-active .qa-astro-confidence{min-height:46px!important;padding-top:4px!important;padding-bottom:4px!important}
+  #page-compass.qa-astro-dashboard-active .qa-confidence-score>strong{font-size:.96rem!important}
+}
