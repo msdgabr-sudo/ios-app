@@ -1,0 +1,47 @@
+name: QiblaAstroIOS
+options:
+  bundleIdPrefix: com.qiblalabs
+  deploymentTarget:
+    iOS: "16.0"
+settings:
+  base:
+    SWIFT_VERSION: 5.0
+    IPHONEOS_DEPLOYMENT_TARGET: 16.0
+    TARGETED_DEVICE_FAMILY: "1,2"
+    CODE_SIGN_STYLE: Automatic
+    CURRENT_PROJECT_VERSION: 1
+    MARKETING_VERSION: 1.0.0
+targets:
+  QiblaAstroIOS:
+    type: application
+    platform: iOS
+    sources:
+      - path: iOS/App
+      - path: iOS/NativeBridge
+    resources:
+      - path: WebApp
+    settings:
+      base:
+        PRODUCT_BUNDLE_IDENTIFIER: com.qiblalabs.qiblaastro
+        PRODUCT_NAME: QiblaAstro
+        INFOPLIST_KEY_CFBundleDisplayName: QiblaAstro
+        INFOPLIST_KEY_NSLocationWhenInUseUsageDescription: "يستخدم QiblaAstro موقعك أثناء استخدام التطبيق لحساب اتجاه القبلة ومواقيت الصلاة والبيانات الفلكية بدقة."
+        INFOPLIST_KEY_NSCameraUsageDescription: "يستخدم QiblaAstro الكاميرا عند بدء التحقق الفلكي لرصد الشمس أو القمر وفق اختيارك."
+        INFOPLIST_KEY_NSMotionUsageDescription: "يستخدم QiblaAstro اتجاه وحركة الجهاز لتشغيل البوصلة والتحقق الفلكي أثناء استخدامك لهذه الميزات."
+        INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents: YES
+        GENERATE_INFOPLIST_FILE: YES
+        ASSETCATALOG_COMPILER_GENERATE_SWIFT_ASSET_SYMBOL_EXTENSIONS: YES
+    scheme:
+      testTargets:
+        - QiblaAstroIOSTests
+  QiblaAstroIOSTests:
+    type: bundle.unit-test
+    platform: iOS
+    sources:
+      - path: iOS/Tests
+    dependencies:
+      - target: QiblaAstroIOS
+    settings:
+      base:
+        PRODUCT_BUNDLE_IDENTIFIER: com.qiblalabs.qiblaastro.tests
+        GENERATE_INFOPLIST_FILE: YES
